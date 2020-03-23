@@ -1,0 +1,1010 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* MY */
+
+/* Inicio genéricos */
+body {
+    background: url("../../../View/assets/img/logo-liber-salus2.png") center fixed;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+.custom-dark-blue-color {
+    color: rgb(0, 117, 175);
+}
+@font-face {
+    font-family: 'Century Gothic';
+    src: url('../../../../View/assets/webfonts/gothic.eot');
+    src: local('gothic'), url('../../../View/assets/webfonts/gothic.woff') format('woff'), url('../../../View/assets/webfonts/gothic.ttf') format('truetype');
+}
+.fontsforweb_fontid_9785 {
+    font-family: 'Century Gothic' !important;
+}
+.regular-font {
+    font-family: Century Gothic
+}
+.bold-font {
+    font-family: Century Gothic;
+    font-weight: bold;
+}
+.icon-behind {
+    z-index: -10;
+    color: rgba(255, 255, 255, 0.2);
+}
+[class*="col-lg-4"] {
+    margin-bottom: 60px;
+}
+[class*="col-xs-0"] {
+    flex: 0 0 0;
+    max-width: 0;
+}
+.vertical-margin-bottom {
+    margin-bottom: 36px;
+}
+.vertical-margin-top {
+    margin-top: 36px;
+}
+.half-vertical-margin-top {
+    margin-top: 18px;
+}
+.double-vertical-margin-bottom {
+    margin-bottom: 72px;
+}
+.text-light-gray {
+    color: lightgray;
+}
+.text-gray {
+    color: #b0acab;
+}
+.text-black {
+    color: black;
+}
+.text-blue {
+    color: blue;
+}
+.link-disabled {
+    pointer-events: none;
+    color: lightgray;
+}
+/* .loaderImageDesktop {
+    background-image: url(../src/res/img/loader.gif);
+    background-size: cover;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+}
+.loaderImageMobile {
+    background-image: url(../src/res/img/loader-mob.gif);
+    background-size: cover;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+} */
+.loaderImage {
+    background-image: url(../src/res/img/loader.gif);
+    background-size: cover;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+}
+/* Fin genéricos */
+
+
+/* Inicio NavBar */
+.custom-navbar-gray {
+    background: rgb(215, 213, 213);
+}
+#bootstrap_overrides .custom-search-bar {
+    border-radius: 20px;
+    height: 36px;
+    width: 388px;
+}
+.custom-hamburger, .custom-search-icon {
+    font-size: 2.25rem;
+}
+#bootstrap_overrides .navbar{
+    padding: 0.4rem 1rem;
+}
+.text-royal-blue {
+    color: rgb(0, 117, 175);
+}
+.text-liber-salus-blue {
+    color: #60a9c9;
+}
+.text-orange {
+    color: rgb(245, 163, 49);
+}
+.text-purple{
+    color: rgb(146, 35, 27);
+}
+#bootstrap_overrides .custom-btn-disabled {
+    background: rgb(247, 164, 26);
+    /*height: 20%;
+    width: 50%;*/
+    min-width: 80%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 66px #afafaf;
+    pointer-events: none;
+}
+
+
+/* Fin NavBar */    
+
+
+/* Inicio boton Identificación */
+#bootstrap_overrides .custom-identify-icon, #bootstrap_overrides .custom-icon {
+    font-size: 3.7rem;
+    line-height: 0.8;
+}
+#bootstrap_overrides .custom-btn-identify {
+    background: rgb(148, 193, 33);
+    height: 64px;
+    width: 80%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 66px #afafaf;
+}
+.custom-vertical-padding {
+    padding: 36px 0px;
+}
+
+#tablaFormReg{
+	margin: 0 auto;
+	margin-top: 150px;
+	padding: 0px;
+	background: rgba(206, 205, 211, 0.7);
+	border-radius: 15px;
+}
+
+.register-patient-form{
+    margin: 0 auto;
+    margin-top: 40px;
+	padding: 0px;
+	background: rgba(206, 205, 211, 0.7);
+	border-radius: 15px;
+}
+
+#tablaFormReg td, .register-patient-form td{
+	padding: 15px 10px 10px 10px;
+	width: 300px;
+}
+
+
+.input-box{
+	
+	padding: 20px;
+	
+}
+
+/* Fin boton Identificación */
+
+/*Inicio de sesion*/
+
+#bootstrap_overrides .custom-title{
+    margin-top: 100px;
+    text-align: center;
+    font-family: Century Gothic;
+}
+
+
+/* Inicio botones genericos */
+#bootstrap_overrides .custom-btn-dark {
+    background-color: rgb(0, 117, 175);
+    height: 255px;
+    width: 255px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 66px #afafaf;
+}
+#bootstrap_overrides .custom-visual-icon, 
+#bootstrap_overrides .custom-auditory-icon,
+#bootstrap_overrides .custom-walking-icon,
+#bootstrap_overrides .custom-teeth-open-icon{
+    font-size: 12rem;
+    line-height: 0.3;
+}
+#bootstrap_overrides .custom-teeth-open-icon{
+    font-size: 11rem;
+}
+#bootstrap_overrides .custom-input-checkbox {
+    height: 40px;
+    margin-bottom: 0;
+}
+#bootstrap_overrides .custom-input-radio {
+    height: 40px;
+    margin-bottom: 0;
+}
+
+/* RADIO BUTTON INICIA */
+#bootstrap_overrides .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    height: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#bootstrap_overrides .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#bootstrap_overrides .radiomark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+#bootstrap_overrides .container:hover input ~ .radiomark {
+    background-color: #ccc;
+}
+
+#bootstrap_overrides .container input:checked ~ .radiomark {
+    background-color: #2196F3;
+}
+
+#bootstrap_overrides .radiomark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+#bootstrap_overrides .container input:checked ~ .radiomark:after {
+    display: block;
+}
+
+#bootstrap_overrides .container .radiomark:after {
+    top: 7px;
+    left: 7px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+}
+/* RADIO BUTTON TERMINA */
+
+/* CHEKBOX INICIA */
+.checktainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    height: 40px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checktainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    background-color: #eee;
+}
+
+.checktainer:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.checktainer input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checktainer input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checktainer .checkmark:after {
+    left: 9px;
+    top: 3px;
+    width: 8px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/* CHEKBOX TERMINA */
+
+.bg-gray {
+    background-color: #e6e6e6;
+}
+
+.bg-green {
+    color: white;
+    background-color: #669900;
+}
+
+.bg-bcg {
+    color: white;
+    background-color: #ff9900;
+}
+
+.bg-hepatb {
+    color: white;
+    background-color: #0b5394;
+}
+
+.bg-pentav {
+    background-color: #fdfb2d;
+}
+
+.bg-neumoco {
+    background-color: #70baff;
+}
+
+.bg-rotavirus {
+    background-color: #00ffff;
+}
+
+.bg-influenza {
+    background-color: #5aee82;
+}
+
+.bg-sarampion {
+    color: white;
+    background-color: #b91bb4;
+}
+
+.bg-sabin {
+    color: white;
+    background-color: #999999;
+}
+
+.bg-vph {
+    background-color: #ffc6c6;
+}
+
+.border-head {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.border-headmid {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.border-mid {
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.border-full {
+    border: 1px solid black;
+}
+
+.border-end {
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.border-row {
+    border-bottom: 1px solid black;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.divider {
+    border-bottom: 1px solid darkgray;
+    height: 1px;
+    width: 50%;
+}
+
+.react-datepicker-wrapper, .react-datepicker__input-container {
+    display: block !important;
+}
+
+#bootstrap_overrides .custom-input-select {
+    border: 2px solid rgb(248, 171, 43);
+    width: 100%;
+    height: 40px;
+    -webkit-appearance: button;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+}
+#bootstrap_overrides .custom-input {
+    border: 2px solid rgb(248, 171, 43);
+    width: 100%;
+    height: 40px;
+    border-radius: 25px;
+}
+#bootstrap_overrides .custom-input::placeholder, #bootstrap_overrides .custom-textarea::placeholder{
+    color: lightgray;
+}
+#bootstrap_overrides .custom-input::-webkit-input-placeholder, #bootstrap_overrides .custom-textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: lightgray;
+}
+#bootstrap_overrides .custom-input::-moz-placeholder, #bootstrap_overrides .custom-textarea::-moz-placeholder { /* Firefox 19+ */
+    color: lightgray;
+}
+#bootstrap_overrides .custom-input:-ms-input-placeholder, #bootstrap_overrides .custom-textarea:-ms-input-placeholder { /* IE 10+ */
+    color: lightgray;
+}
+#bootstrap_overrides .custom-input:-moz-placeholder, #bootstrap_overrides .custom-textarea:-moz-placeholder { /* Firefox 18- */
+    color: lightgray;
+}
+#bootstrap_overrides .custom-textarea {
+    border: 2px solid rgb(248, 171, 43);
+    width: 99%;
+    height: 120px;
+    border-radius: 25px;
+}
+.borde {
+    border-style: solid;
+    border-width: 1px;
+}
+.text-forward {
+    margin-top: -1.6em;
+}
+.text-forward2 {
+    margin-top: -3.0em;
+}
+.custom-bioimpedance-icon, .custom-vital-signs-icon {
+    opacity: 0.2;
+}
+
+.btn-center{
+	display: block;
+	margin-right: auto; 
+	margin-left: auto;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+/* Inicio boton con imagen atras */
+    .text-forward-img {
+        margin-top: -3.4em;
+    }
+    .img-behind {
+        transform: scale(2.2);
+    }
+/* Fin boton con imagen atras */
+/* Fin botones genericos home */
+
+/* Inicio identify */
+.letter-section {
+    margin-bottom: 27px;
+}
+.gray-letter {
+    color: rgb(176, 172, 171);
+    display: inline;
+}
+.gray-line {
+    border: 1px solid rgb(176, 172, 171);
+    background: rgb(176, 172, 171);
+    float: right;
+    width: 95.5%;
+}
+#bootstrap_overrides .custom-btn-slim {
+    border: 2px solid rgb(0, 117, 175);
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: stretch;
+    width: 100%;
+    /*height: 40px;*/
+    border-radius: 20px;
+    margin-bottom: 15px !important;
+}
+#bootstrap_overrides .custom-btn-slim-filled {
+    border: 2px solid rgb(0, 117, 175);
+    background-color: rgb(0, 117, 175);
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: stretch;
+    width: 100%;
+    /*height: 40px;*/
+    border-radius: 20px;
+    margin-bottom: 15px !important;
+}
+#bootstrap_overrides .custom-btn-slim-disabled {
+    border: 2px solid lightgray;
+    background-color: lightgray;
+    pointer-events: none;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: stretch;
+    width: 100%;
+    /*height: 40px;*/
+    border-radius: 20px;
+    margin-bottom: 15px !important;
+}
+#bootstrap_overrides .patient-basic-data > *{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1rem;
+    text-align: left;
+}
+#bootstrap_overrides .custom-full-name, .float-left {
+    float: left;
+}
+#bootstrap_overrides .custom-full-name, #bootstrap_overrides .custom-curp{
+    text-transform: uppercase;
+    width: 50%;
+    display: flex;
+}
+.empty-cell-before-file {
+    height: 57px;
+    background: blue;
+}
+.custom-file-icon {
+    font-size: 2.4rem;
+}
+.empty-cell-before-file-first {
+    height: 56px;
+}
+.empty-cell-before-file-normal {
+    height: 56px;
+}
+.document {
+    margin-bottom: 16px;
+}
+.custom-bioimpedance-text {
+    font-size: 1.7rem;
+}
+/* Fin identify */
+
+/* Inicio bioimpedancia y antropometria */
+.custom-bioimpedance-icon-small {
+    
+}
+.img-behind-small {
+    transform: scale(0.6);
+    margin-top: -23px;
+    min-height: 99px;
+    max-height: 99px;
+}
+.text-forward-img-small {
+    margin-top: -2.6em;
+}
+p.instructions-paragraph {
+    text-align: justify;
+}
+.custom-full-name-big {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.custom-table-form > table > tbody > tr > td {
+    border: none;
+    vertical-align: inherit;
+    padding: 0rem;
+}
+.units {
+    /*margin-left: 10px;*/
+    position: relative;
+    left: -60px;
+    width: 30px !important;
+}
+.custom-form-label-element {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    padding-left: 40px;
+}
+#bootstrap_overrides .custom-btn-save {
+    background-color: rgb(0, 117, 175);
+    /*height: 78px;*/
+    width: 250px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 66px #afafaf;
+}
+
+#bootstrap_overrides .custom-btn-signin {
+    background-color: rgb(0, 117, 175);
+    /*height: 78px;*/
+    min-height: 10%;
+    min-width: 30%;
+    /*width: 250px;*/
+    border-radius: 20px;
+    box-shadow: 0px 0px 66px #afafaf;
+    font-family: Century Gothic;
+    font-size: 1rem;
+}
+
+.custom-btn-save-text {
+    font-size: 1.4rem;
+}
+.flex-wrapper-to-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.flex-content-to-be-centered{
+    max-width: 50%;
+}
+/* Fin bioimpedancia y antropometria */
+
+/* Inicio pase de usuarios */
+.block-users {
+    background: #fff;
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    border: 2px solid rgb(0, 117, 175);
+    padding: 20px;
+    overflow: auto;
+    overflow-x: auto;
+}
+.user-list-element {
+    text-decoration: underline;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.user-list-element-passed {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.user-list-element-passed-content {
+    display: inline;
+}
+.user-list-element-began-to-be-captured {
+    cursor: pointer;
+}
+.user-list {
+    padding: 0;
+    list-style: none;
+}
+.label-user-pass {
+    margin-left: 20px;
+    font-size: 1.2rem;
+}
+.custom-edit-icon {
+    margin-left: 70px;
+}
+/* Fin pase de usuarios */
+
+/* Inicio pruebas */
+.testbg {
+    background-color: aqua;
+}
+.testbg2 {
+    background: #ff6f00;
+}
+.testbg3 {
+    background: #997355;
+}
+/* Fin pruebas */
+
+/* Inicio signos vitales */
+/* Customize the label (the container) */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/* Fin signos vitales */
+
+/* Inicio visual */
+#bootstrap_overrides .custom-btn-left {
+    background: rgb(0, 117, 175);
+    height: 40px;
+    /*width: 550px;*/
+    min-width: 50%;
+    border-radius: 20px;
+}
+#bootstrap_overrides .custom-btn-right {
+    background: rgb(176, 172, 171);
+    height: 40px;
+    /*width: 550px;*/
+    min-width: 50%;
+    border-radius: 20px;
+}
+.custom-btn-left-right-text {
+    font-size: 1.2rem;
+}
+/* Fin visual */
+
+/* Inicio marcha */
+.feet-img {
+    vertical-align: 20px;
+    margin-top: 10px;
+}
+/* Fin marcha */
+
+/* Inicio bucal */
+/* .custom-select-buccal > option {
+    color: 
+} */
+.teeth-img {
+    width: 100%;
+    height: auto;
+}
+/* Fin bucal */
+
+/* Inicio media queries. fuente: https://www.w3schools.com/css/css_rwd_mediaqueries.asp*/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #bootstrap_overrides {
+        /* background-color: #808; */
+    }
+    #bootstrap_overrides .custom-search-bar {
+        width: 187px;
+    }
+    #bootstrap_overrides .custom-search-icon {
+        margin-right: -18px;
+    }
+    #bootstrap_overrides .custom-btn-identify, #bootstrap_overrides .custom-btn-identify-signed-in  {
+        width: -webkit-fill-available;
+        width: -moz-available;
+        width: stretch;
+        width: 100%;
+        min-width: 50%;
+    }
+    .img-behind {
+        transform: scale(1.2);
+        margin-top: -20px;
+    }
+    #bootstrap_overrides .custom-btn-dark {
+        height: 150px;
+        width: 150px;
+    }
+
+    /* Inicio botones con img dentro */
+        .text-forward-img {
+            margin-top: -4em;
+        }
+        .custom-bioimpedance-text {
+            font-size: 0.8rem;
+        }
+        .custom-vital-signs-text {
+            font-size: 1rem;
+        }
+    /* Fin botones con img dentro */
+
+    .text-forward2 {
+        margin-top: -4rem;
+        font-size: 1.6rem;
+    }
+
+    #bootstrap_overrides .custom-visual-icon, #bootstrap_overrides .custom-auditory-icon, #bootstrap_overrides .custom-walking-icon, #bootstrap_overrides .custom-teeth-open-icon {
+        font-size: 7rem;
+        line-height: 0.4;
+    }
+
+    #bootstrap_overrides .custom-teeth-open-icon{
+        font-size: 6rem;
+    }
+
+    .custom-edit-icon {
+        margin-left: 22px;
+    }
+
+    /* Inicio identify */
+        #bootstrap_overrides .custom-full-name, #bootstrap_overrides .custom-curp{
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+        #bootstrap_overrides .custom-btn-slim, #bootstrap_overrides .custom-btn-slim-filled{
+            /*width: 109%;*/
+        }
+        .empty-cell-before-file-first {
+            height: 65px;
+        }
+        .empty-cell-before-file-normal {
+            height: 56px;
+        }
+        .document {
+            margin-bottom: 24px;
+        }
+        .gray-line {
+            width: 83.5%;   
+        }
+        #bootstrap_overrides .person-basic-data > * {
+            font-size: 0.7rem;
+        }
+        .letter {
+            font-size: 1rem;
+        }
+        /* .custom-file-icon {
+            font-size: 1.4rem;
+        } */
+    /* Fin identify */
+
+    /* Inicio formulario */
+    .custom-form-label-element {
+        padding-left: 0;
+    }
+    .custom-form-label-element-small{
+        font-size: 1rem;
+    }
+    .custom-form-label-element-alt{
+        font-size: 1rem;
+    }
+    .custom-form-label-element-small-padding-left{
+        padding-left: 50px;
+    }
+    /* Fin formulario */
+
+    .loaderImage {
+        background-image: url(../src/res/img/loader-mob.gif);
+        background-size: cover;
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+        background-repeat: no-repeat;
+    }
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 767px){
+    #bootstrap_overrides {
+        /* background-color: #000; */
+    }
+
+    /* Inicio identify */
+        #bootstrap_overrides .custom-full-name, #bootstrap_overrides .custom-curp{
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+        #bootstrap_overrides .custom-btn-slim, #bootstrap_overrides .custom-btn-slim-filled{
+            /*height: 54px;*/
+        }
+        #bootstrap_overrides .custom-btn-identify-signed-in, #bootstrap_overrides .custom-btn-identify #bootstrap_overrides .custom-btn-disabled  {
+            width: 100%;
+        }
+        .empty-cell-before-file-first {
+            height: 65px;
+        }
+        .empty-cell-before-file-normal {
+            height: 56px;
+        }
+        .document {
+            margin-bottom: 30px;
+        }
+        .gray-line {
+            width: 83.5%;
+        }
+    /* Fin identify */
+
+    /* Inicio formulario */
+    .custom-form-label-element {
+        padding-left: 0;
+    }
+    /* Fin formulario */
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    #bootstrap_overrides .custom-btn-disabled {
+        /* background-color: #0f0; */
+    }
+    .margin-bottom-row {
+        margin-bottom: 0;
+    }
+
+    /* Inicio formulario */
+    .custom-form-label-element {
+        padding-left: 0;
+    }
+    /* Fin formulario */
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #bootstrap_overrides .container-fluid {
+        /* background-color: #f00; */
+    }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    #bootstrap_overrides {
+        /* background-color: #0ff; */
+    }
+}
+/* Fin media queries */
+
+
+/* Nuevos CSS */
+
+.section-title {
+      text-transform: uppercase;
+}
