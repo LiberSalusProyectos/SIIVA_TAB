@@ -17,18 +17,14 @@
             if (isset($_GET) && sizeof($_GET)>0) {
                 switch($_GET["m"]){
                     
-                    case 'historiaClinica':
-                        $sectionName = "Historia Clínica";
-                        $sectionImage = "View/assets/img/icons/bioimpedancia.png";
-                        $table = "clinichistorydata";
-                        $module = "historia_clinica.php";
+                    case 'familyRecord':
+                        $sectionName = FAMILY_RECORD_NAME;
+                        $iconName = "fa-users";
+                        $table = "family_record";
+                        $module = "family_record.php";
                         break;
 
                     defalut:
-                        $sectionName = "DEFAULT";
-                        $sectionImage = "View/assets/img/icons/bioimpedancia.png";
-                        $table = "bartheldata";
-                        $module = "barthel.php";
                         break;
                 }
 
@@ -80,8 +76,8 @@
             <div class="offset-0 offset-md-2 offset-sm-2 offset-lg-3 col-12 col-sm-8 col-md-8 col-lg-6 text-center">
                 <button class="btn my-2 my-sm-0 custom-btn-disabled" type="submit">
                     <span>
-                        <Image alt="" src="<?php echo $sectionImage; ?>" class="custom-bioimpedance-icon img-behind-small" />
-                        <h4 class="section-title text-white bold-font text-forward-img-small"><?php echo $sectionName; ?></h4>
+                        <i class="fas <?php echo $iconName; ?> custom-icon icon-behind"></i>
+                        <h4 class="text-white bold-font text-forward"><?php echo $sectionName; ?></h4>
                     </span>
                 </button>
             </div>

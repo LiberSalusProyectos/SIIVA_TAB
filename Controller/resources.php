@@ -1,5 +1,7 @@
 <?php include_once("Model/queries.php");
 
+!defined('FAMILY_RECORD_NAME') && define('FAMILY_RECORD_NAME', 'ANTECEDENTES FAMILIARES');
+
 /**
  * [Función para validar las credenciales de acceso al sistema, por cuestión de facilidad se implementó un MD5 sencillo como método de encryptación]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
@@ -42,10 +44,9 @@ function userAuthentication($connection, $email, $password){
 function getModuleData($connection, $module, $id_patient){
 
 	switch ($module) {
-		case "historiaClinica":
-			$table = "clinichistorydata";
+		case "familyRecord":
+			$table = "family_record";
 			break;
-
 		default:
 			# code...
 			break;
