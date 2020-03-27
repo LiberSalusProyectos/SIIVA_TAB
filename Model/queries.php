@@ -164,7 +164,7 @@ function saveFamilyRecordData_DOM($connection, $method,
 function getModuleData_DOM($connection, $table, $id_patient){
 	$query = "SELECT * FROM `basicpatientdata` LEFT JOIN `".$table."` ON basicpatientdata.id = ".$table.".id_patient WHERE basicpatientdata.id = ".$id_patient." ORDER BY id ASC LIMIT 10";
 
-	//echo $query;
+	// echo $query;
 
 	$resultado = array();
 

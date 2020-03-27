@@ -97,13 +97,13 @@
 
                     <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-6">
                         <div class="form-group">
-                            <input type="text" class="form-control custom-input" name="birth_state" placeholder="Estado" />
+                            <input type="text" class="form-control custom-input" name="birth_state" value="<?php echo utf8_encode($result[0]["birth_state"]); ?>" placeholder="Estado" />
                         </div>
                     </div>
 
                     <div class="col-12 col-sm-12 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
-                            <input type="text" class="form-control custom-input" name="birth_place" placeholder="Localidad" />
+                            <input type="text" class="form-control custom-input" name="birth_place" value="<?php echo utf8_encode($result[0]["birth_place"]); ?>" placeholder="Localidad" />
                         </div>
                     </div>
 
@@ -113,13 +113,13 @@
 
                     <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-6">
                         <div class="form-group">
-                            <input type="text" class="form-control custom-input" name="residence_state" placeholder="Estado" />
+                            <input type="text" class="form-control custom-input" name="residence_state" value="<?php echo utf8_encode($result[0]["residence_state"]); ?>" placeholder="Estado" />
                         </div>
                     </div>
 
                     <div class="col-12 col-sm-12 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
-                            <input type="text" class="form-control custom-input" name="residence_place" placeholder="Localidad" />
+                            <input type="text" class="form-control custom-input" name="residence_place" value="<?php echo utf8_encode($result[0]["residence_place"]); ?>" placeholder="Localidad" />
                         </div>
                     </div>
 
@@ -188,7 +188,7 @@
                     <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <!-- <label for="localidad" class="text-royal-blue bold-font float-left custom-form-label-element">d) Otro</label> -->
-                            <input type="text" class="form-control custom-input" name="heart_other_desc" placeholder="¿Cuál?" />
+                            <input type="text" class="form-control custom-input" name="heart_other_desc" value="<?php echo utf8_encode($result[0]["heart_other_desc"]); ?>" placeholder="¿Cuál?" />
                         </div>
                     </div>
 
@@ -271,7 +271,7 @@
                     <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <!-- <label for="localidad" class="text-royal-blue bold-font float-left custom-form-label-element">d) Otro</label> -->
-                            <input type="text" class="form-control custom-input" name="cancer_other_desc" placeholder="¿Cuál?" />
+                            <input type="text" class="form-control custom-input" name="cancer_other_desc" value="<?php echo utf8_encode($result[0]["cancer_other_desc"]); ?>" placeholder="¿Cuál?" />
                         </div>
                     </div>
 
@@ -318,7 +318,7 @@
                     <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <!-- <label for="localidad" class="text-royal-blue bold-font float-left custom-form-label-element">d) Otro</label> -->
-                            <input type="text" class="form-control custom-input" name="psychiatric_other_desc" placeholder="¿Cuál?" />
+                            <input type="text" class="form-control custom-input" name="psychiatric_other_desc" value="<?php echo utf8_encode($result[0]["psychiatric_other_desc"]); ?>" placeholder="¿Cuál?" />
                         </div>
                     </div>
 
@@ -365,7 +365,7 @@
                     <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <!-- <label for="localidad" class="text-royal-blue bold-font float-left custom-form-label-element">d) Otro</label> -->
-                            <input type="text" class="form-control custom-input" name="eye_other_desc" placeholder="¿Cuál?" />
+                            <input type="text" class="form-control custom-input" name="eye_other_desc" value="<?php echo utf8_encode($result[0]["eye_other_desc"]); ?>" placeholder="¿Cuál?" />
                         </div>
                     </div>
 
@@ -412,7 +412,7 @@
                     <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <!-- <label for="localidad" class="text-royal-blue bold-font float-left custom-form-label-element">d) Otro</label> -->
-                            <input type="text" class="form-control custom-input" name="endocrine_other_desc" placeholder="¿Cuál?" />
+                            <input type="text" class="form-control custom-input" name="endocrine_other_desc" value="<?php echo utf8_encode($result[0]["endocrine_other_desc"]); ?>" placeholder="¿Cuál?" />
                         </div>
                     </div>
 
@@ -459,7 +459,7 @@
                     <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <!-- <label for="localidad" class="text-royal-blue bold-font float-left custom-form-label-element">d) Otro</label> -->
-                            <input type="text" class="form-control custom-input" name="gynecological_other_desc" placeholder="¿Cuál?" />
+                            <input type="text" class="form-control custom-input" name="gynecological_other_desc" value="<?php echo utf8_encode($result[0]["gynecological_other_desc"]); ?>" placeholder="¿Cuál?" />
                         </div>
                     </div>
 
@@ -506,7 +506,7 @@
                     <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <!-- <label for="localidad" class="text-royal-blue bold-font float-left custom-form-label-element">d) Otro</label> -->
-                            <input type="text" class="form-control custom-input" name="neurological_other_desc" placeholder="¿Cuál?" />
+                            <input type="text" class="form-control custom-input" name="neurological_other_desc" value="<?php echo utf8_encode($result[0]["neurological_other_desc"]); ?>" placeholder="¿Cuál?" />
                         </div>
                     </div>
 
@@ -553,7 +553,7 @@
                     <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <!-- <label for="localidad" class="text-royal-blue bold-font float-left custom-form-label-element">d) Otro</label> -->
-                            <input type="text" class="form-control custom-input" name="infectious_other_desc" placeholder="¿Cuál?" />
+                            <input type="text" class="form-control custom-input" name="infectious_other_desc" value="<?php echo utf8_encode($result[0]["infectious_other_desc"]); ?>" placeholder="¿Cuál?" />
                         </div>
                     </div>
 
@@ -600,35 +600,35 @@
                     <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <!-- <label for="localidad" class="text-royal-blue bold-font float-left custom-form-label-element">d) Otro</label> -->
-                            <input type="text" class="form-control custom-input" name="genetic_other_desc" placeholder="¿Cuál?" />
+                            <input type="text" class="form-control custom-input" name="genetic_other_desc" value="<?php echo utf8_encode($result[0]["genetic_other_desc"]); ?>" placeholder="¿Cuál?" />
                         </div>
                     </div>
 
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
                             <label for="other_diseases" class="text-royal-blue bold-font float-left custom-form-label-element">4) Otras enfermedades</label>
-                            <textarea class="form-control custom-textarea" name="other_diseases" rows="3"></textarea>
+                            <textarea class="form-control custom-textarea" name="other_diseases" rows="3"><?php echo utf8_encode($result[0]["other_diseases"]); ?></textarea>
                         </div>
                     </div>
 
                     <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <label for="death_age" class="text-royal-blue bold-font float-left custom-form-label-element">5) Edad de fallecimiento</label>
-                            <input type="number" class="form-control custom-input" name="death_age" min="0" />
+                            <input type="number" class="form-control custom-input" name="death_age" value="<?php echo utf8_encode($result[0]["death_age"]); ?>" min="0" />
                         </div>
                     </div>
 
                     <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <label for="death_cause" class="text-royal-blue bold-font float-left custom-form-label-element">6) Causa de muerte</label>
-                            <input type="text" class="form-control custom-input" name="death_cause" />
+                            <input type="text" class="form-control custom-input" name="death_cause" value="<?php echo utf8_encode($result[0]["death_cause"]); ?>" />
                         </div>
                     </div>
 
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
                             <label for="observations" class="text-royal-blue bold-font float-left custom-form-label-element">7) Observaciones</label>
-                            <textarea class="form-control custom-textarea" name="observations" rows="3"></textarea>
+                            <textarea class="form-control custom-textarea" name="observations" rows="3"><?php echo utf8_encode($result[0]["observations"]); ?></textarea>
                         </div>
                     </div>
 

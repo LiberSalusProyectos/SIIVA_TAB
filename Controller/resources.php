@@ -45,7 +45,7 @@ function getModuleData($connection, $module, $id_patient){
 
 	switch ($module) {
 		case "familyRecord":
-			$table = "family_record";
+			$table = "familyrecorddata";
 			break;
 		default:
 			# code...
