@@ -1,3 +1,4 @@
+<?php include_once("Controller/resources.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,11 +42,11 @@
     <div class="row">
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
         <center>
-          <a href="patient_pass.php?m=historiaClinica">
+          <a href="patient_pass.php?m=familyRecord">
             <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
               <span>
-                <i class="fas fa-coins custom-teeth-open-icon icon-behind"></i>
-                <h2 class="text-white bold-font text-forward2">HISTORIA CLÍNICA</h2>
+                <i class="fas fa-users custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo FAMILY_RECORD_NAME; ?></h2>
               </span>
             </button>
           </a>
