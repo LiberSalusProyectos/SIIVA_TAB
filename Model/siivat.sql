@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 23-03-2020 a las 23:22:55
+-- Tiempo de generación: 27-03-2020 a las 22:44:42
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10347,121 +10347,74 @@ INSERT INTO `basicpatientdata_s` (`id`, `affiliationNumber`, `affiliationNumber_
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clinichistorydata`
+-- Estructura de tabla para la tabla `familyrecorddata`
 --
 
-CREATE TABLE `clinichistorydata` (
+CREATE TABLE `familyrecorddata` (
   `id_data` int(14) NOT NULL,
-  `herencia_diabetes1` varchar(3) DEFAULT NULL,
-  `herencia_diabetes1_mother` tinyint(1) DEFAULT NULL,
-  `herencia_diabetes1_father` tinyint(1) DEFAULT NULL,
-  `herencia_diabetes1_other` tinyint(1) DEFAULT NULL,
-  `herencia_diabetes2` varchar(3) DEFAULT NULL,
-  `herencia_diabetes2_mother` tinyint(1) DEFAULT NULL,
-  `herencia_diabetes2_father` tinyint(1) DEFAULT NULL,
-  `herencia_diabetes2_other` tinyint(1) DEFAULT NULL,
-  `herencia_cardipatia` varchar(3) DEFAULT NULL,
-  `herencia_cardipatia_mother` tinyint(1) DEFAULT NULL,
-  `herencia_cardipatia_father` tinyint(1) DEFAULT NULL,
-  `herencia_cardipatia_other` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_mama` varchar(3) DEFAULT NULL,
-  `herencia_cancer_mama_mother` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_mama_father` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_mama_other` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_prostata` varchar(3) DEFAULT NULL,
-  `herencia_cancer_prostata_mother` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_prostata_father` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_prostata_other` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_cervico` varchar(3) DEFAULT NULL,
-  `herencia_cancer_cervico_mother` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_cervico_father` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_cervico_other` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_otro` varchar(3) DEFAULT NULL,
-  `herencia_cancer_otro_mother` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_otro_father` tinyint(1) DEFAULT NULL,
-  `herencia_cancer_otro_other` tinyint(1) DEFAULT NULL,
-  `herencia_psiquiatrico` varchar(3) DEFAULT NULL,
-  `herencia_psiquiatrico_mother` tinyint(1) DEFAULT NULL,
-  `herencia_psiquiatrico_father` tinyint(1) DEFAULT NULL,
-  `herencia_psiquiatrico_other` tinyint(1) DEFAULT NULL,
-  `herencia_glaucoma` varchar(3) DEFAULT NULL,
-  `herencia_glaucoma_mother` tinyint(1) DEFAULT NULL,
-  `herencia_glaucoma_father` tinyint(1) DEFAULT NULL,
-  `herencia_glaucoma_other` tinyint(1) DEFAULT NULL,
-  `herencia_alergia` varchar(3) DEFAULT NULL,
-  `herencia_alergia_mother` tinyint(1) DEFAULT NULL,
-  `herencia_alergia_father` tinyint(1) DEFAULT NULL,
-  `herencia_alergia_other` tinyint(1) DEFAULT NULL,
-  `herencia_gineco` varchar(3) DEFAULT NULL,
-  `herencia_gineco_mother` tinyint(1) DEFAULT NULL,
-  `herencia_gineco_father` tinyint(1) DEFAULT NULL,
-  `herencia_gineco_other` tinyint(1) DEFAULT NULL,
-  `herencia_genetico` varchar(3) DEFAULT NULL,
-  `herencia_genetico_mother` tinyint(1) DEFAULT NULL,
-  `herencia_genetico_father` tinyint(1) DEFAULT NULL,
-  `herencia_genetico_other` tinyint(1) DEFAULT NULL,
-  `patologico_vector` varchar(3) DEFAULT NULL,
-  `patologico_vector_familiar` varchar(100) DEFAULT NULL,
-  `patologico_tuberculosis` varchar(3) DEFAULT NULL,
-  `patologico_tuberculosis_familiar` varchar(100) DEFAULT NULL,
-  `patologico_asma` varchar(3) DEFAULT NULL,
-  `patologico_asma_familiar` varchar(100) DEFAULT NULL,
-  `patologico_influenza` varchar(3) DEFAULT NULL,
-  `patologico_influenza_familiar` varchar(100) DEFAULT NULL,
-  `patologico_vih` varchar(3) DEFAULT NULL,
-  `patologico_vih_familiar` varchar(100) DEFAULT NULL,
-  `patologico_ets` varchar(3) DEFAULT NULL,
-  `patologico_ets_familiar` varchar(100) DEFAULT NULL,
-  `patologico_exantematica` varchar(3) DEFAULT NULL,
-  `patologico_exantematica_familiar` varchar(100) DEFAULT NULL,
-  `patologico_cancer` varchar(3) DEFAULT NULL,
-  `patologico_cancer_familiar` varchar(100) DEFAULT NULL,
-  `patologico_sistemica` varchar(3) DEFAULT NULL,
-  `patologico_sistemica_familiar` varchar(100) DEFAULT NULL,
-  `patologico_cardiopatia` varchar(3) DEFAULT NULL,
-  `patologico_cardiopatia_familiar` varchar(100) DEFAULT NULL,
-  `patologico_psiquiatrico` varchar(3) DEFAULT NULL,
-  `patologico_psiquiatrico_familiar` varchar(100) DEFAULT NULL,
-  `patologico_neurologico` varchar(3) DEFAULT NULL,
-  `patologico_neurologico_familiar` varchar(100) DEFAULT NULL,
-  `patologico_oftalmologico` varchar(3) DEFAULT NULL,
-  `patologico_oftalmologico_familiar` varchar(100) DEFAULT NULL,
-  `gineco_inicio_menstruacion` varchar(100) DEFAULT NULL,
-  `gineco_crecimiento_mamas` varchar(100) DEFAULT NULL,
-  `gineco_inicio_vidasexual` varchar(100) DEFAULT NULL,
-  `gineco_embarazos` int(2) DEFAULT NULL,
-  `gineco_hijos_vivos` int(2) DEFAULT NULL,
-  `gineco_hijos_muertos` int(2) DEFAULT NULL,
-  `gineco_causa_fallecimiento` varchar(100) DEFAULT NULL,
-  `gineco_parto` int(2) DEFAULT NULL,
-  `gineco_cesarea` int(2) DEFAULT NULL,
-  `gineco_aborto` int(2) DEFAULT NULL,
-  `gineco_metodo_planificacion` varchar(100) DEFAULT NULL,
-  `gineco_ritmo` varchar(100) DEFAULT NULL,
-  `gineco_ultima_menstruacion` varchar(100) DEFAULT NULL,
-  `gineco_ultimo_papanicolaou` varchar(100) DEFAULT NULL,
-  `gineco_exploracion_mamas` varchar(100) DEFAULT NULL,
-  `gineco_inicio_menopausia` varchar(100) DEFAULT NULL,
-  `problemas_salud` varchar(1000) DEFAULT NULL,
-  `signos_tension_arterial` int(4) DEFAULT NULL,
-  `signos_frecuencia_cardiaca` int(4) DEFAULT NULL,
-  `signos_frecuencia_respiratoria` int(4) DEFAULT NULL,
-  `signos_temperatura` int(4) DEFAULT NULL,
-  `signos_peso` int(4) DEFAULT NULL,
-  `signos_talla` int(4) DEFAULT NULL,
-  `signos_imc` int(4) DEFAULT NULL,
-  `signos_perimetro_brazo` int(4) DEFAULT NULL,
-  `signos_perimetro_abdominal` int(4) DEFAULT NULL,
-  `signos_llenado_capilar` int(4) DEFAULT NULL,
-  `signos_glucosa` int(4) DEFAULT NULL,
-  `signos_hemoglobina` int(4) DEFAULT NULL,
-  `signos_colesterol` int(4) DEFAULT NULL,
-  `signos_campos_visuales` varchar(100) DEFAULT NULL,
-  `signos_acustica` varchar(100) DEFAULT NULL,
+  `birth_state` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
+  `birth_place` varchar(35) CHARACTER SET latin1 DEFAULT NULL,
+  `residence_state` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
+  `residence_place` varchar(35) CHARACTER SET latin1 DEFAULT NULL,
+  `hypertension` tinyint(1) DEFAULT NULL,
+  `diabetes` tinyint(1) DEFAULT NULL,
+  `heart_attack` tinyint(1) DEFAULT NULL,
+  `cardiac_arrhythmia` tinyint(1) DEFAULT NULL,
+  `heart_failure` tinyint(1) DEFAULT NULL,
+  `heart_other` tinyint(1) DEFAULT NULL,
+  `heart_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `asthma` tinyint(1) DEFAULT NULL,
+  `obesity` tinyint(1) DEFAULT NULL,
+  `dyslipidemia` tinyint(1) DEFAULT NULL,
+  `breast_cancer` tinyint(1) DEFAULT NULL,
+  `cervical_cancer` tinyint(1) DEFAULT NULL,
+  `prostate_cancer` tinyint(1) DEFAULT NULL,
+  `leukemia` tinyint(1) DEFAULT NULL,
+  `cancer_other` tinyint(1) DEFAULT NULL,
+  `cancer_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `anxiety_depression` tinyint(1) DEFAULT NULL,
+  `eating_disorders` tinyint(1) DEFAULT NULL,
+  `schizophrenia` tinyint(1) DEFAULT NULL,
+  `psychiatric_other` tinyint(1) DEFAULT NULL,
+  `psychiatric_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `glaucoma` tinyint(1) DEFAULT NULL,
+  `ametropia` tinyint(1) DEFAULT NULL,
+  `waterfalls` tinyint(1) DEFAULT NULL,
+  `eye_other` tinyint(1) DEFAULT NULL,
+  `eye_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `hyperthyroidism` tinyint(1) DEFAULT NULL,
+  `hypothyroidism` tinyint(1) DEFAULT NULL,
+  `cushing` tinyint(1) DEFAULT NULL,
+  `endocrine_other` tinyint(1) DEFAULT NULL,
+  `endocrine_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `preeclampsia` tinyint(1) DEFAULT NULL,
+  `cystic_ovary` tinyint(1) DEFAULT NULL,
+  `gestational_diabetes` tinyint(1) DEFAULT NULL,
+  `gynecological_other` tinyint(1) DEFAULT NULL,
+  `gynecological_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `parkinson` tinyint(1) DEFAULT NULL,
+  `epilepsy` tinyint(1) DEFAULT NULL,
+  `alzheimer` tinyint(1) DEFAULT NULL,
+  `neurological_other` tinyint(1) DEFAULT NULL,
+  `neurological_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tuberculosis` tinyint(1) DEFAULT NULL,
+  `sida` tinyint(1) DEFAULT NULL,
+  `syphilis` tinyint(1) DEFAULT NULL,
+  `infectious_other` tinyint(1) DEFAULT NULL,
+  `infectious_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `down_syndrome` tinyint(1) DEFAULT NULL,
+  `cretinism_acromegaly` tinyint(1) DEFAULT NULL,
+  `hemophilia` tinyint(1) DEFAULT NULL,
+  `genetic_other` tinyint(1) DEFAULT NULL,
+  `genetic_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `other_diseases` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `death_age` tinyint(4) DEFAULT NULL,
+  `death_cause` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `observations` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `id_patient` int(7) NOT NULL,
   `capturist` int(7) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -10530,10 +10483,10 @@ ALTER TABLE `basicpatientdata_s`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indices de la tabla `clinichistorydata`
+-- Indices de la tabla `familyrecorddata`
 --
-ALTER TABLE `clinichistorydata`
-  ADD PRIMARY KEY (`id_data`);
+ALTER TABLE `familyrecorddata`
+  ADD PRIMARY KEY (`id_data`) USING BTREE;
 
 --
 -- Indices de la tabla `roles`
@@ -10571,9 +10524,9 @@ ALTER TABLE `basicpatientdata_s`
   MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4257;
 
 --
--- AUTO_INCREMENT de la tabla `clinichistorydata`
+-- AUTO_INCREMENT de la tabla `familyrecorddata`
 --
-ALTER TABLE `clinichistorydata`
+ALTER TABLE `familyrecorddata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
