@@ -20,7 +20,7 @@
                     case 'familyRecord':
                         $sectionName = FAMILY_RECORD_NAME;
                         $iconName = "fa-users";
-                        $table = "family_record";
+                        $table = "familyrecorddata";
                         $module = "family_record.php";
                         break;
 

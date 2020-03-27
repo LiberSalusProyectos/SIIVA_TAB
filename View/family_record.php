@@ -14,23 +14,23 @@
     //var_dump($_SESSION);
     //var_dump($_SESSION["email"]);
     //$_SESSION["id_user"] = 1;
-    echo "<pre>";
-    var_dump($_POST);
-    echo "</pre>";
+    // echo "<pre>";
+    // var_dump($_POST);
+    // echo "</pre>";
 
     if (sizeof($_POST)>0) {
       $result = getModuleData($linkDB, $_POST["module"], $_POST["id_patient"]);
       //var_dump($result);
 
       if ($_POST["form_answered"]=="true") {
-        //   if ($result[0]["id_data"] != "") {
-        //     $realized = saveHistoriaClinicaData($linkDB, "UPDATE", $_POST, $_SESSION["id_user"]);
-        //   }else{
-        //     $realized = saveHistoriaClinicaData($linkDB, "INSERT", $_POST, $_SESSION["id_user"]);
-        //   }
-        //   if ($realized) {
-        //     header('Location: patient_pass.php?m=historiaClinica'); exit;
-        //   }
+          if ($result[0]["id_data"] != "") {
+            $realized = saveFamilyRecordData($linkDB, "UPDATE", $_POST, $_SESSION["id_user"]);
+          }else{
+            $realized = saveFamilyRecordData($linkDB, "INSERT", $_POST, $_SESSION["id_user"]);
+          }
+          if ($realized) {
+            header('Location: patient_pass.php?m=familyRecord'); exit;
+          }
       }
 
       $result = getModuleData($linkDB, $_POST["module"], $_POST["id_patient"]);
