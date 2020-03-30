@@ -24,6 +24,13 @@
                         $module = "family_record.php";
                         break;
 
+                    case 'bornLifestyle':
+                        $sectionName = BORN_LIFESTYLE_NAME;
+                        $iconName = "fa-baby";
+                        $table = "bornlifestyledata";
+                        $module = "born_lifestyle.php";
+                        break;
+
                     defalut:
                         break;
                 }

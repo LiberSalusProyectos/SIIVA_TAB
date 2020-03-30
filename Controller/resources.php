@@ -1,6 +1,7 @@
 <?php include_once("Model/queries.php");
 
 !defined('FAMILY_RECORD_NAME') && define('FAMILY_RECORD_NAME', 'ANTECEDENTES FAMILIARES');
+!defined('BORN_LIFESTYLE_NAME') && define('BORN_LIFESTYLE_NAME', 'ESTILO DE VIDA [0-1] AÑO');
 
 /**
  * [Función para validar las credenciales de acceso al sistema, por cuestión de facilidad se implementó un MD5 sencillo como método de encryptación]
@@ -46,6 +47,9 @@ function getModuleData($connection, $module, $id_patient){
 	switch ($module) {
 		case "familyRecord":
 			$table = "familyrecorddata";
+			break;
+		case "bornLifestyle":
+			$table = "bornlifestyledata";
 			break;
 		default:
 			# code...
@@ -153,6 +157,51 @@ function saveFamilyRecordData($connection, $method, $data, $id_user){
 		($data['death_age']!="" ? 1 : 0),
 		$data['death_cause'],
 		$data['observations'],
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveBornLifestyleData($connection, $method, $data, $id_user){
+
+	$result = saveBornLifestyleData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['consultations'],
+		$data['pregnancy_complication'],
+		$data['pregnancy_resolution'],
+		$data['pregnancy_resolution_desc'],
+		$data['pregnancy_duration'],
+		$data['baby_weight'],
+		$data['lactation_type'],
+		$data['lactation_desc'],
+		$data['lactation_duration'],
+		$data['baby_allergy'],
+		$data['tamiz_neonatal'],
+		$data['tamiz_neonatal_desc'],
+		$data['table_one'],
+		$data['table_two'],
+		$data['table_three'],
+		$data['table_four'],
+		$data['table_five'],
+		$data['table_six'],
+		$data['table_seven'],
+		$data['table_eight'],
+		$data['table_nine'],
+		$data['table_ten'],
+		$data['table_eleven'],
+		$data['table_twelve'],
+		$data['table_thirteen'],
+		$data['table_fourteen'],
+		$data['table_fifteen'],
+		$data['table_sixteen'],
 		$id_user);
 
 	return $result;

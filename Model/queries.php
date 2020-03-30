@@ -155,6 +155,99 @@ function saveFamilyRecordData_DOM($connection, $method,
 
 
 /**
+ * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveBornLifestyleData_DOM($connection, $method,
+	$id_patient,
+	$consultations,
+	$pregnancy_complication,
+	$pregnancy_resolution,
+	$pregnancy_resolution_desc,
+	$pregnancy_duration,
+	$baby_weight,
+	$lactation_type,
+	$lactation_desc,
+	$lactation_duration,
+	$baby_allergy,
+	$tamiz_neonatal,
+	$tamiz_neonatal_desc,
+	$table_one,
+	$table_two,
+	$table_three,
+	$table_four,
+	$table_five,
+	$table_six,
+	$table_seven,
+	$table_eight,
+	$table_nine,
+	$table_ten,
+	$table_eleven,
+	$table_twelve,
+	$table_thirteen,
+	$table_fourteen,
+	$table_fifteen,
+	$table_sixteen,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `bornlifestyledata` SET
+	`consultations`				= '$consultations',
+	`pregnancy_complication`	= '$pregnancy_complication',
+	`pregnancy_resolution`		= '$pregnancy_resolution',
+	`pregnancy_resolution_desc`	= '$pregnancy_resolution_desc',
+	`pregnancy_duration`		= '$pregnancy_duration',
+	`baby_weight`				= '$baby_weight',
+	`lactation_type`			= '$lactation_type',
+	`lactation_desc`			= '$lactation_desc',
+	`lactation_duration`		= '$lactation_duration',
+	`baby_allergy`				= '$baby_allergy',
+	`tamiz_neonatal`			= '$tamiz_neonatal',
+	`tamiz_neonatal_desc`		= '$tamiz_neonatal_desc',
+	`table_one`					= '$table_one',
+	`table_two`					= '$table_two',
+	`table_three`				= '$table_three',
+	`table_four`			= '$table_four',
+	`table_five`			= '$table_five',
+	`table_six`				= '$table_six',
+	`table_seven`			= '$table_seven',
+	`table_eight`			= '$table_eight',
+	`table_nine`			= '$table_nine',
+	`table_ten`				= '$table_ten',
+	`table_eleven`			= '$table_eleven',
+	`table_twelve`			= '$table_twelve',
+	`table_thirteen`		= '$table_thirteen',
+	`table_fourteen`		= '$table_fourteen',
+	`table_fifteen`			= '$table_fifteen',
+	`table_sixteen`			= '$table_sixteen',
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+
+/**
  * [Función para obtener todos los datos de un usuario, para determinado módulo.]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $module      [Nombre del módulo transmitido por GET]

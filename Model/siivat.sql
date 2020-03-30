@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 27-03-2020 a las 22:44:42
+-- Tiempo de generación: 30-03-2020 a las 22:56:37
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10347,6 +10347,47 @@ INSERT INTO `basicpatientdata_s` (`id`, `affiliationNumber`, `affiliationNumber_
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `bornlifestyledata`
+--
+
+CREATE TABLE `bornlifestyledata` (
+  `id_data` int(14) NOT NULL,
+  `consultations` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pregnancy_complication` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pregnancy_resolution` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pregnancy_resolution_desc` varchar(35) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pregnancy_duration` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `baby_weight` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `lactation_type` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `lactation_desc` varchar(35) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `lactation_duration` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `baby_allergy` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tamiz_neonatal` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tamiz_neonatal_desc` varchar(35) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_one` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_two` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_three` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_four` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_five` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_six` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_seven` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_eight` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_nine` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_ten` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_eleven` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_twelve` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_thirteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_fourteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_fifteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_sixteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `familyrecorddata`
 --
 
@@ -10483,6 +10524,12 @@ ALTER TABLE `basicpatientdata_s`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indices de la tabla `bornlifestyledata`
+--
+ALTER TABLE `bornlifestyledata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `familyrecorddata`
 --
 ALTER TABLE `familyrecorddata`
@@ -10522,6 +10569,12 @@ ALTER TABLE `basicpatientdata`
 --
 ALTER TABLE `basicpatientdata_s`
   MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4257;
+
+--
+-- AUTO_INCREMENT de la tabla `bornlifestyledata`
+--
+ALTER TABLE `bornlifestyledata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `familyrecorddata`
