@@ -30,6 +30,14 @@
                         $table = "bornlifestyledata";
                         $module = "born_lifestyle.php";
                         break;
+                
+                    case 'childLifestyle':
+                        $sectionName = CHILD_LIFESTYLE_NAME;
+                        $iconName = "fa-child";
+                        $table = "bornlifestyledata";
+                        // $table = "chlidlifestyledata";
+                        $module = "chlid_lifestyle.php";
+                        break;
 
                     defalut:
                         break;
