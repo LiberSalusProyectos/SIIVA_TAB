@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 30-03-2020 a las 22:56:37
+-- Tiempo de generación: 01-04-2020 a las 16:55:32
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10388,6 +10388,71 @@ CREATE TABLE `bornlifestyledata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `childlifestyledata`
+--
+
+CREATE TABLE `childlifestyledata` (
+  `id_data` int(14) NOT NULL,
+  `wake_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sausages` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `food_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fast_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fatty_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `mealtime` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `balanced_diet` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dairy_products` tinyint(1) DEFAULT NULL,
+  `meats` tinyint(1) DEFAULT NULL,
+  `tubers` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `vegetables` tinyint(1) DEFAULT NULL,
+  `fruits` tinyint(1) DEFAULT NULL,
+  `cereals` tinyint(1) DEFAULT NULL,
+  `snacks` tinyint(1) DEFAULT NULL,
+  `exercise` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `exercise_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sport_active` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `kid_review` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_exams` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dentist` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `psychology` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nutrition` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `previous_treatment` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `diseases` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `childcare` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `second_opinion` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `restless` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `quiet` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `difficulty_relating` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `weeping` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `alone_prefer` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `bath_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `handwashing` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `brush_teeth` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `floss_use` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `underwear` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nails_cut` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `bath_towel` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `diagnostic_disorder` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `school_perform` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `relates` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `stumbles` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `vision_problems` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `approximate` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `headache` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `difficult_learn` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `frequent_restless` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `difficult_pronounce` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `letter_invert` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `unfinished_activities` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `naughty` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `familyrecorddata`
 --
 
@@ -10530,6 +10595,12 @@ ALTER TABLE `bornlifestyledata`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `childlifestyledata`
+--
+ALTER TABLE `childlifestyledata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `familyrecorddata`
 --
 ALTER TABLE `familyrecorddata`
@@ -10574,6 +10645,12 @@ ALTER TABLE `basicpatientdata_s`
 -- AUTO_INCREMENT de la tabla `bornlifestyledata`
 --
 ALTER TABLE `bornlifestyledata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `childlifestyledata`
+--
+ALTER TABLE `childlifestyledata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
