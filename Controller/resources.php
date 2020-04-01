@@ -52,6 +52,9 @@ function getModuleData($connection, $module, $id_patient){
 		case "bornLifestyle":
 			$table = "bornlifestyledata";
 			break;
+		case "childLifestyle":
+			$table = "childlifestyledata";
+			break;
 		default:
 			# code...
 			break;
@@ -203,6 +206,75 @@ function saveBornLifestyleData($connection, $method, $data, $id_user){
 		$data['table_fourteen'],
 		$data['table_fifteen'],
 		$data['table_sixteen'],
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveChildLifestyleData($connection, $method, $data, $id_user){
+
+	$result = saveChildLifestyleData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['wake_food'],
+		$data['sausages'],
+		$data['food_times'],
+		$data['fast_food'],
+		$data['fatty_food'],
+		$data['mealtime'],
+		$data['balanced_diet'],
+		$data['dairy_products'],
+		$data['meats'],
+		$data['tubers'],
+		$data['vegetables'],
+		$data['fruits'],
+		$data['cereals'],
+		$data['snacks'],
+		$data['exercise'],
+		$data['exercise_times'],
+		$data['sport_active'],
+		$data['medical_times'],
+		$data['kid_review'],
+		$data['medical_exams'],
+		$data['dentist'],
+		$data['psychology'],
+		$data['nutrition'],
+		$data['previous_treatment'],
+		$data['diseases'],
+		$data['childcare'],
+		$data['second_opinion'],
+		$data['restless'],
+		$data['quiet'],
+		$data['difficulty_relating'],
+		$data['weeping'],
+		$data['alone_prefer'],
+		$data['bath_times'],
+		$data['handwashing'],
+		$data['brush_teeth'],
+		$data['floss_use'],
+		$data['underwear'],
+		$data['nails_cut'],
+		$data['bath_towel'],
+		$data['diagnostic_disorder'],
+		$data['school_perform'],
+		$data['relates'],
+		$data['stumbles'],
+		$data['vision_problems'],
+		$data['approximate'],
+		$data['headache'],
+		$data['difficult_learn'],
+		$data['frequent_restless'],
+		$data['difficult_pronounce'],
+		$data['letter_invert'],
+		$data['unfinished_activities'],
+		$data['naughty'],
 		$id_user);
 
 	return $result;

@@ -34,7 +34,7 @@
                     case 'childLifestyle':
                         $sectionName = CHILD_LIFESTYLE_NAME;
                         $iconName = "fa-child";
-                        $table = "bornlifestyledata";
+                        $table = "childlifestyledata";
                         // $table = "chlidlifestyledata";
                         $module = "chlid_lifestyle.php";
                         break;

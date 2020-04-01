@@ -248,6 +248,147 @@ function saveBornLifestyleData_DOM($connection, $method,
 
 
 /**
+ * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveChildLifestyleData_DOM($connection, $method,
+	$id_patient,
+	$wake_food,
+	$sausages,
+	$food_times,
+	$fast_food,
+	$fatty_food,
+	$mealtime,
+	$balanced_diet,
+	$dairy_products,
+	$meats,
+	$tubers,
+	$vegetables,
+	$fruits,
+	$cereals,
+	$snacks,
+	$exercise,
+	$exercise_times,
+	$sport_active,
+	$medical_times,
+	$kid_review,
+	$medical_exams,
+	$dentist,
+	$psychology,
+	$nutrition,
+	$previous_treatment,
+	$diseases,
+	$childcare,
+	$second_opinion,
+	$restless,
+	$quiet,
+	$difficulty_relating,
+	$weeping,
+	$alone_prefer,
+	$bath_times,
+	$handwashing,
+	$brush_teeth,
+	$floss_use,
+	$underwear,
+	$nails_cut,
+	$bath_towel,
+	$diagnostic_disorder,
+	$school_perform,
+	$relates,
+	$stumbles,
+	$vision_problems,
+	$approximate,
+	$headache,
+	$difficult_learn,
+	$frequent_restless,
+	$difficult_pronounce,
+	$letter_invert,
+	$unfinished_activities,
+	$naughty,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `childlifestyledata` SET
+	`wake_food`				= '$wake_food',
+	`sausages`				= '$sausages',
+	`food_times`			= '$food_times',
+	`fast_food`				= '$fast_food',
+	`fatty_food`			= '$fatty_food',
+	`mealtime`				= '$mealtime',
+	`balanced_diet`			= '$balanced_diet',
+	`dairy_products`		= $dairy_products,
+	`meats`					= $meats,
+	`tubers`				= $tubers,
+	`vegetables`			= $vegetables,
+	`fruits`				= $fruits,
+	`cereals`				= $cereals,
+	`snacks`				= $snacks,
+	`exercise`				= '$exercise',
+	`exercise_times`		= '$exercise_times',
+	`sport_active`			= '$sport_active',
+	`medical_times`			= '$medical_times',
+	`kid_review`			= '$kid_review',
+	`medical_exams`			= '$medical_exams',
+	`dentist`				= '$dentist',
+	`psychology`			= '$psychology',
+	`nutrition`				= '$nutrition',
+	`previous_treatment`	= '$previous_treatment',
+	`diseases`				= '$diseases',
+	`childcare`				= '$childcare',
+	`second_opinion`		= '$second_opinion',
+	`restless`				= '$restless',
+	`quiet`					= '$quiet',
+	`difficulty_relating`	= '$difficulty_relating',
+	`weeping`				= '$weeping',
+	`alone_prefer`			= '$alone_prefer',
+	`bath_times`			= '$bath_times',
+	`handwashing`			= '$handwashing',
+	`brush_teeth`			= '$brush_teeth',
+	`floss_use`				= '$floss_use',
+	`underwear`				= '$underwear',
+	`nails_cut`				= '$nails_cut',
+	`bath_towel`			= '$bath_towel',
+	`diagnostic_disorder`	= '$diagnostic_disorder',
+	`school_perform`		= '$school_perform',
+	`relates`				= '$relates',
+	`stumbles`				= '$stumbles',
+	`vision_problems`		= '$vision_problems',
+	`approximate`			= '$approximate',
+	`headache`				= '$headache',
+	`difficult_learn`		= '$difficult_learn',
+	`frequent_restless`		= '$frequent_restless',
+	`difficult_pronounce`	= '$difficult_pronounce',
+	`letter_invert`			= '$letter_invert',
+	`unfinished_activities`	= '$unfinished_activities',
+	`naughty`				= '$naughty',
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+
+/**
  * [Función para obtener todos los datos de un usuario, para determinado módulo.]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $module      [Nombre del módulo transmitido por GET]

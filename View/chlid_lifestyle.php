@@ -24,12 +24,12 @@
 
       if ($_POST["form_answered"]=="true") {
           if ($result[0]["id_data"] != "") {
-            $realized = saveBornLifestyleData($linkDB, "UPDATE", $_POST, $_SESSION["id_user"]);
+            $realized = saveChildLifestyleData($linkDB, "UPDATE", $_POST, $_SESSION["id_user"]);
           }else{
-            $realized = saveBornLifestyleData($linkDB, "INSERT", $_POST, $_SESSION["id_user"]);
+            $realized = saveChildLifestyleData($linkDB, "INSERT", $_POST, $_SESSION["id_user"]);
           }
           if ($realized) {
-            header('Location: patient_pass.php?m=bornLifestyle'); exit;
+            header('Location: patient_pass.php?m=childLifestyle'); exit;
           }
       }
 
@@ -218,7 +218,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) 3 veces
-                            <input type="radio" name="food_times" <?php if ($result[0]["food_times"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="food_times" <?php if ($result[0]["food_times"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -226,7 +226,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) 1 o 2 veces
-                            <input type="radio" name="food_times" <?php if ($result[0]["food_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="food_times" <?php if ($result[0]["food_times"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -234,7 +234,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) No siempre como diario
-                            <input type="radio" name="food_times" <?php if ($result[0]["food_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="food_times" <?php if ($result[0]["food_times"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -473,14 +473,14 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group">
-                            <select class="form-control custom-input custom-input-select" name="numero">
-                                <option <?php if ($result[0]["numero"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
-                                <option <?php if ($result[0]["numero"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
-                                <option <?php if ($result[0]["numero"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
-                                <option <?php if ($result[0]["numero"]=="4")  { echo 'selected="selected"'; } ?> value="4">4</option>
-                                <option <?php if ($result[0]["numero"]=="5")  { echo 'selected="selected"'; } ?> value="5">5</option>
-                                <option <?php if ($result[0]["numero"]=="6")  { echo 'selected="selected"'; } ?> value="6">6</option>
-                                <option <?php if ($result[0]["numero"]=="7")  { echo 'selected="selected"'; } ?> value="7">7</option>
+                            <select class="form-control custom-input custom-input-select" name="meats">
+                                <option <?php if ($result[0]["meats"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
+                                <option <?php if ($result[0]["meats"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
+                                <option <?php if ($result[0]["meats"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
+                                <option <?php if ($result[0]["meats"]=="4")  { echo 'selected="selected"'; } ?> value="4">4</option>
+                                <option <?php if ($result[0]["meats"]=="5")  { echo 'selected="selected"'; } ?> value="5">5</option>
+                                <option <?php if ($result[0]["meats"]=="6")  { echo 'selected="selected"'; } ?> value="6">6</option>
+                                <option <?php if ($result[0]["meats"]=="7")  { echo 'selected="selected"'; } ?> value="7">7</option>
                             </select>
                         </div>
                     </div>
@@ -491,14 +491,14 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group">
-                            <select class="form-control custom-input custom-input-select" name="meats">
-                                <option <?php if ($result[0]["meats"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
-                                <option <?php if ($result[0]["meats"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
-                                <option <?php if ($result[0]["meats"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
-                                <option <?php if ($result[0]["meats"]=="4")  { echo 'selected="selected"'; } ?> value="4">4</option>
-                                <option <?php if ($result[0]["meats"]=="5")  { echo 'selected="selected"'; } ?> value="5">5</option>
-                                <option <?php if ($result[0]["meats"]=="6")  { echo 'selected="selected"'; } ?> value="6">6</option>
-                                <option <?php if ($result[0]["meats"]=="7")  { echo 'selected="selected"'; } ?> value="7">7</option>
+                            <select class="form-control custom-input custom-input-select" name="tubers">
+                                <option <?php if ($result[0]["tubers"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
+                                <option <?php if ($result[0]["tubers"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
+                                <option <?php if ($result[0]["tubers"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
+                                <option <?php if ($result[0]["tubers"]=="4")  { echo 'selected="selected"'; } ?> value="4">4</option>
+                                <option <?php if ($result[0]["tubers"]=="5")  { echo 'selected="selected"'; } ?> value="5">5</option>
+                                <option <?php if ($result[0]["tubers"]=="6")  { echo 'selected="selected"'; } ?> value="6">6</option>
+                                <option <?php if ($result[0]["tubers"]=="7")  { echo 'selected="selected"'; } ?> value="7">7</option>
                             </select>
                         </div>
                     </div>
@@ -658,7 +658,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) 2 o 3 días por semana
-                            <input type="radio" name="exercise_times" <?php if ($result[0]["exercise_times"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="exercise_times" <?php if ($result[0]["exercise_times"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -666,7 +666,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) 3 a 5 días a la semana
-                            <input type="radio" name="exercise_times" <?php if ($result[0]["exercise_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="exercise_times" <?php if ($result[0]["exercise_times"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -674,7 +674,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) 6 o más días a la semana
-                            <input type="radio" name="exercise_times" <?php if ($result[0]["exercise_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="exercise_times" <?php if ($result[0]["exercise_times"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -763,7 +763,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) 1 vez cada mes o 3 meses
-                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -771,7 +771,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) 1 vez cada 3 meses o al año
-                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -779,7 +779,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) 1 vez cada 2 años o más
-                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -907,7 +907,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) 1 vez cada mes o 3 meses
-                            <input type="radio" name="dentist" <?php if ($result[0]["dentist"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="dentist" <?php if ($result[0]["dentist"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -915,7 +915,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) 1 vez cada 3 meses o al año
-                            <input type="radio" name="dentist" <?php if ($result[0]["dentist"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="dentist" <?php if ($result[0]["dentist"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -923,7 +923,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) 1 vez cada 2 años o más
-                            <input type="radio" name="dentist" <?php if ($result[0]["dentist"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="dentist" <?php if ($result[0]["dentist"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
