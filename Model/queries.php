@@ -387,6 +387,83 @@ function saveChildLifestyleData_DOM($connection, $method,
 	return $inserted;
 }
 
+/**
+ * [Función para el almacenado de información dentro de la sección de Signos vitales + Laboratorio]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveVitalSignData_DOM($connection, $method,
+	$id_patient,
+	$blood_pressure,
+	$heart_rate,
+	$breathe_rate,
+	$temperature,
+	$glucose,
+	$weight,
+	$height,
+	$body_mass,
+	$body_fat,
+	$arm_perimeter,
+	$abdomen_perimeter,
+	$capillary_refill,
+	$saturation,
+	$glycated_hemoglobin,
+	$glucose_lab,
+	$creatinine,
+	$cholesterol,
+	$triglycerides,
+	$prostatic_antigen,
+	$sida,
+	$syphilis,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `vitalsigndata` SET
+	`blood_pressure`		= '$blood_pressure',
+	`heart_rate`			= $heart_rate,
+	`breathe_rate`			= $breathe_rate,
+	`temperature`			= $temperature,
+	`glucose`				= $glucose,
+	`weight`				= $weight,
+	`height`				= $height,
+	`body_mass`				= $body_mass,
+	`body_fat`				= $body_fat,
+	`arm_perimeter`			= $arm_perimeter,
+	`abdomen_perimeter`		= $abdomen_perimeter,
+	`capillary_refill`		= $capillary_refill,
+	`saturation`			= $saturation,
+	`glycated_hemoglobin`	= $glycated_hemoglobin,
+	`glucose_lab`			= $glucose_lab,
+	`creatinine`			= $creatinine,
+	`cholesterol`			= $cholesterol,
+	`triglycerides`			= $triglycerides,
+	`prostatic_antigen`		= $prostatic_antigen,
+	`sida`					= $sida,
+	`syphilis`				= $syphilis,
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
 
 /**
  * [Función para obtener todos los datos de un usuario, para determinado módulo.]

@@ -456,6 +456,7 @@
                     <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group">
                             <select class="form-control custom-input custom-input-select" name="dairy_products">
+                                <option <?php if(!isset($result[0]["dairy_products"])) echo " selected "; ?> disabled>SELECCIONAR</option>
                                 <option <?php if ($result[0]["dairy_products"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
                                 <option <?php if ($result[0]["dairy_products"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
                                 <option <?php if ($result[0]["dairy_products"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
@@ -474,6 +475,7 @@
                     <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group">
                             <select class="form-control custom-input custom-input-select" name="meats">
+                                <option <?php if(!isset($result[0]["meats"])) echo " selected "; ?> disabled>SELECCIONAR</option>
                                 <option <?php if ($result[0]["meats"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
                                 <option <?php if ($result[0]["meats"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
                                 <option <?php if ($result[0]["meats"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
@@ -492,6 +494,7 @@
                     <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group">
                             <select class="form-control custom-input custom-input-select" name="tubers">
+                                <option <?php if(!isset($result[0]["tubers"])) echo " selected "; ?> disabled>SELECCIONAR</option>
                                 <option <?php if ($result[0]["tubers"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
                                 <option <?php if ($result[0]["tubers"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
                                 <option <?php if ($result[0]["tubers"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
@@ -510,6 +513,7 @@
                     <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group">
                             <select class="form-control custom-input custom-input-select" name="vegetables">
+                                <option <?php if(!isset($result[0]["vegetables"])) echo " selected "; ?> disabled>SELECCIONAR</option>
                                 <option <?php if ($result[0]["vegetables"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
                                 <option <?php if ($result[0]["vegetables"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
                                 <option <?php if ($result[0]["vegetables"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
@@ -528,6 +532,7 @@
                     <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group">
                             <select class="form-control custom-input custom-input-select" name="fruits">
+                                <option <?php if(!isset($result[0]["fruits"])) echo " selected "; ?> disabled>SELECCIONAR</option>
                                 <option <?php if ($result[0]["fruits"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
                                 <option <?php if ($result[0]["fruits"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
                                 <option <?php if ($result[0]["fruits"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
@@ -546,6 +551,7 @@
                     <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group">
                             <select class="form-control custom-input custom-input-select" name="cereals">
+                                <option <?php if(!isset($result[0]["cereals"])) echo " selected "; ?> disabled>SELECCIONAR</option>
                                 <option <?php if ($result[0]["cereals"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
                                 <option <?php if ($result[0]["cereals"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
                                 <option <?php if ($result[0]["cereals"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
@@ -564,6 +570,7 @@
                     <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group">
                             <select class="form-control custom-input custom-input-select" name="snacks">
+                                <option <?php if(!isset($result[0]["snacks"])) echo " selected "; ?> disabled>SELECCIONAR</option>
                                 <option <?php if ($result[0]["snacks"]=="1")  { echo 'selected="selected"'; } ?> value="1">1</option>
                                 <option <?php if ($result[0]["snacks"]=="2")  { echo 'selected="selected"'; } ?> value="2">2</option>
                                 <option <?php if ($result[0]["snacks"]=="3")  { echo 'selected="selected"'; } ?> value="3">3</option>
