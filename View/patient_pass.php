@@ -35,8 +35,14 @@
                         $sectionName = CHILD_LIFESTYLE_NAME;
                         $iconName = "fa-child";
                         $table = "childlifestyledata";
-                        // $table = "chlidlifestyledata";
                         $module = "chlid_lifestyle.php";
+                        break;
+
+                    case 'vitalSign':
+                        $sectionName = VITAL_SIGN_NAME;
+                        $iconName = "fa-stethoscope";
+                        $table = "vitalsigndata";
+                        $module = "vital_sign.php";
                         break;
 
                     defalut:

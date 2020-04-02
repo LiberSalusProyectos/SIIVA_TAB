@@ -3,6 +3,7 @@
 !defined('FAMILY_RECORD_NAME') && define('FAMILY_RECORD_NAME', 'ANTECEDENTES FAMILIARES');
 !defined('BORN_LIFESTYLE_NAME') && define('BORN_LIFESTYLE_NAME', 'ESTILO VIDA [0-1] AÑO');
 !defined('CHILD_LIFESTYLE_NAME') && define('CHILD_LIFESTYLE_NAME', 'ESTILO VIDA [6-12] AÑOS');
+!defined('VITAL_SIGN_NAME') && define('VITAL_SIGN_NAME', 'SIGNOS VITALES + LAB');
 
 /**
  * [Función para validar las credenciales de acceso al sistema, por cuestión de facilidad se implementó un MD5 sencillo como método de encryptación]
@@ -54,6 +55,9 @@ function getModuleData($connection, $module, $id_patient){
 			break;
 		case "childLifestyle":
 			$table = "childlifestyledata";
+			break;
+		case "vitalSign":
+			$table = "vitalsigndata";
 			break;
 		default:
 			# code...
@@ -275,6 +279,44 @@ function saveChildLifestyleData($connection, $method, $data, $id_user){
 		$data['letter_invert'],
 		$data['unfinished_activities'],
 		$data['naughty'],
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Signos vitales + Laboratorio]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveVitalSignData($connection, $method, $data, $id_user){
+
+	$result = saveVitalSignData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['blood_pressure'],
+		($data['heart_rate']!="" ? $data['heart_rate'] : 0),
+		($data['breathe_rate']!="" ? $data['breathe_rate'] : 0),
+		($data['temperature']!="" ? $data['temperature'] : 0),
+		($data['glucose']!="" ? $data['glucose'] : 0),
+		($data['weight']!="" ? $data['weight'] : 0),
+		($data['height']!="" ? $data['height'] : 0),
+		($data['body_mass']!="" ? $data['body_mass'] : 0),
+		($data['body_fat']!="" ? $data['body_fat'] : 0),
+		($data['arm_perimeter']!="" ? $data['arm_perimeter'] : 0),
+		($data['abdomen_perimeter']!="" ? $data['abdomen_perimeter'] : 0),
+		($data['capillary_refill']!="" ? $data['capillary_refill'] : 0),
+		($data['saturation']!="" ? $data['saturation'] : 0),
+		($data['glycated_hemoglobin']!="" ? $data['glycated_hemoglobin'] : 0),
+		($data['glucose_lab']!="" ? $data['glucose_lab'] : 0),
+		($data['creatinine']!="" ? $data['creatinine'] : 0),
+		($data['cholesterol']!="" ? $data['cholesterol'] : 0),
+		($data['triglycerides']!="" ? $data['triglycerides'] : 0),
+		($data['prostatic_antigen']!="" ? $data['prostatic_antigen'] : 0),
+		($data['sida']!="" ? 1 : 0),
+		($data['syphilis']!="" ? 1 : 0),
 		$id_user);
 
 	return $result;

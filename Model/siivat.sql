@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 01-04-2020 a las 16:55:32
+-- Tiempo de generación: 02-04-2020 a las 17:01:20
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10566,6 +10566,40 @@ INSERT INTO `users` (`id`, `nombre`, `email`, `password`, `lastLogin`, `id_role`
 (1, 'prueba', 'proyectos.software@libersalus.com', '22b75d6007e06f4a959d1b1d69b4c4bd', '2020-01-24 01:43:17', 1),
 (6, 'test', 'desarrollo.tabasco@libersalus.com', '098f6bcd4621d373cade4e832627b4f6', '2020-03-23 23:21:28', 4);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vitalsigndata`
+--
+
+CREATE TABLE `vitalsigndata` (
+  `id_data` int(14) NOT NULL,
+  `blood_pressure` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `heart_rate` smallint(6) DEFAULT NULL,
+  `breathe_rate` smallint(6) DEFAULT NULL,
+  `temperature` float DEFAULT NULL,
+  `glucose` float DEFAULT NULL,
+  `weight` float DEFAULT NULL,
+  `height` float DEFAULT NULL,
+  `body_mass` float DEFAULT NULL,
+  `body_fat` float DEFAULT NULL,
+  `arm_perimeter` float DEFAULT NULL,
+  `abdomen_perimeter` float DEFAULT NULL,
+  `capillary_refill` float DEFAULT NULL,
+  `saturation` smallint(6) DEFAULT NULL,
+  `glycated_hemoglobin` float DEFAULT NULL,
+  `glucose_lab` float DEFAULT NULL,
+  `creatinine` float DEFAULT NULL,
+  `cholesterol` float DEFAULT NULL,
+  `triglycerides` float DEFAULT NULL,
+  `prostatic_antigen` float DEFAULT NULL,
+  `sida` tinyint(1) DEFAULT NULL,
+  `syphilis` tinyint(1) DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -10620,6 +10654,12 @@ ALTER TABLE `users`
   ADD KEY `fk_id_role` (`id_role`);
 
 --
+-- Indices de la tabla `vitalsigndata`
+--
+ALTER TABLE `vitalsigndata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -10670,6 +10710,12 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `users`
   MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `vitalsigndata`
+--
+ALTER TABLE `vitalsigndata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
