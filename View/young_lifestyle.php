@@ -24,9 +24,9 @@
 
       if ($_POST["form_answered"]=="true") {
           if ($result[0]["id_data"] != "") {
-            $realized = saveChildLifestyleData($linkDB, "UPDATE", $_POST, $_SESSION["id_user"]);
+            $realized = saveYoungLifestyleData($linkDB, "UPDATE", $_POST, $_SESSION["id_user"]);
           }else{
-            $realized = saveChildLifestyleData($linkDB, "INSERT", $_POST, $_SESSION["id_user"]);
+            $realized = saveYoungLifestyleData($linkDB, "INSERT", $_POST, $_SESSION["id_user"]);
           }
           if ($realized) {
             header('Location: patient_pass.php?m=youngLifestyle'); exit;
@@ -101,7 +101,7 @@
 
                 <div class="row mt-3">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">1) ¿Normalmente a la semana, el niño consume algún alimento al levantarse?</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">1) ¿Normalmente a la semana, consumo algún alimento al levantarme?</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -154,7 +154,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="sausages" <?php if ($result[0]["sausages"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="chemical_food" <?php if ($result[0]["chemical_food"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -162,7 +162,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="sausages" <?php if ($result[0]["sausages"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="chemical_food" <?php if ($result[0]["chemical_food"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -170,7 +170,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="sausages" <?php if ($result[0]["sausages"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="chemical_food" <?php if ($result[0]["chemical_food"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -178,7 +178,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="sausages" <?php if ($result[0]["sausages"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="chemical_food" <?php if ($result[0]["chemical_food"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -186,7 +186,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="sausages" <?php if ($result[0]["sausages"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="chemical_food" <?php if ($result[0]["chemical_food"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -394,7 +394,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="overeat" <?php if ($result[0]["overeat"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -402,7 +402,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="overeat" <?php if ($result[0]["overeat"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -410,7 +410,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="overeat" <?php if ($result[0]["overeat"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -418,7 +418,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="overeat" <?php if ($result[0]["overeat"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -426,7 +426,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="overeat" <?php if ($result[0]["overeat"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -490,7 +490,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="eat_pleasure" <?php if ($result[0]["eat_pleasure"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -498,7 +498,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="eat_pleasure" <?php if ($result[0]["eat_pleasure"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -506,7 +506,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="eat_pleasure" <?php if ($result[0]["eat_pleasure"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -514,7 +514,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="eat_pleasure" <?php if ($result[0]["eat_pleasure"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -522,7 +522,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="eat_pleasure" <?php if ($result[0]["eat_pleasure"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -538,7 +538,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="check_labels" <?php if ($result[0]["check_labels"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -546,7 +546,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="check_labels" <?php if ($result[0]["check_labels"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -554,7 +554,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="check_labels" <?php if ($result[0]["check_labels"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -562,7 +562,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="check_labels" <?php if ($result[0]["check_labels"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -570,7 +570,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="check_labels" <?php if ($result[0]["check_labels"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -946,7 +946,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="kid_review" <?php if ($result[0]["kid_review"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="body_explore" <?php if ($result[0]["body_explore"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -954,7 +954,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="kid_review" <?php if ($result[0]["kid_review"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="body_explore" <?php if ($result[0]["body_explore"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -962,7 +962,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="kid_review" <?php if ($result[0]["kid_review"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="body_explore" <?php if ($result[0]["body_explore"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -970,7 +970,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="kid_review" <?php if ($result[0]["kid_review"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="body_explore" <?php if ($result[0]["body_explore"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -978,7 +978,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="kid_review" <?php if ($result[0]["kid_review"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="body_explore" <?php if ($result[0]["body_explore"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1018,7 +1018,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="medical_exams" <?php if ($result[0]["pregnancy_complication"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="medical_exams" <?php if ($result[0]["medical_exams"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1042,7 +1042,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Cada 3 meses o menos
-                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="blood_pressure" <?php if ($result[0]["blood_pressure"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1050,7 +1050,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Cada 3 a 6 meses
-                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="blood_pressure" <?php if ($result[0]["blood_pressure"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1058,7 +1058,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) Cada 7 meses al año
-                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="blood_pressure" <?php if ($result[0]["blood_pressure"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1066,7 +1066,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Cada 1 o 2 años
-                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="blood_pressure" <?php if ($result[0]["blood_pressure"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1074,7 +1074,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) 1 vez cada 2 años o más
-                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="blood_pressure" <?php if ($result[0]["blood_pressure"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1186,7 +1186,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="previous_treatment" <?php if ($result[0]["previous_treatment"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="self_medicate" <?php if ($result[0]["self_medicate"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1194,7 +1194,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="previous_treatment" <?php if ($result[0]["previous_treatment"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="self_medicate" <?php if ($result[0]["self_medicate"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1202,7 +1202,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="previous_treatment" <?php if ($result[0]["previous_treatment"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="self_medicate" <?php if ($result[0]["self_medicate"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1210,7 +1210,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="previous_treatment" <?php if ($result[0]["previous_treatment"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="self_medicate" <?php if ($result[0]["self_medicate"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1218,7 +1218,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="previous_treatment" <?php if ($result[0]["previous_treatment"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="self_medicate" <?php if ($result[0]["self_medicate"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1282,7 +1282,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="childcare" <?php if ($result[0]["childcare"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="search_information" <?php if ($result[0]["search_information"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1290,7 +1290,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="childcare" <?php if ($result[0]["childcare"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="search_information" <?php if ($result[0]["search_information"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1298,7 +1298,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="childcare" <?php if ($result[0]["childcare"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="search_information" <?php if ($result[0]["search_information"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1306,7 +1306,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="childcare" <?php if ($result[0]["childcare"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="search_information" <?php if ($result[0]["search_information"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1314,7 +1314,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="childcare" <?php if ($result[0]["childcare"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="search_information" <?php if ($result[0]["search_information"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1387,7 +1387,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="relax_time" <?php if ($result[0]["relax_time"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1395,7 +1395,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="relax_time" <?php if ($result[0]["relax_time"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1403,7 +1403,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="relax_time" <?php if ($result[0]["relax_time"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1411,7 +1411,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="relax_time" <?php if ($result[0]["relax_time"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1419,7 +1419,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="relax_time" <?php if ($result[0]["relax_time"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1435,7 +1435,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="stress_causes" <?php if ($result[0]["stress_causes"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1443,7 +1443,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="stress_causes" <?php if ($result[0]["stress_causes"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1451,7 +1451,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="stress_causes" <?php if ($result[0]["stress_causes"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1459,7 +1459,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="stress_causes" <?php if ($result[0]["stress_causes"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1467,7 +1467,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="stress_causes" <?php if ($result[0]["stress_causes"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1483,7 +1483,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="stress_impact" <?php if ($result[0]["stress_impact"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1491,7 +1491,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="stress_impact" <?php if ($result[0]["stress_impact"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1499,7 +1499,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="stress_impact" <?php if ($result[0]["stress_impact"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1507,7 +1507,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="stress_impact" <?php if ($result[0]["stress_impact"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1515,7 +1515,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="stress_impact" <?php if ($result[0]["stress_impact"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1531,7 +1531,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="stress_control_methods" <?php if ($result[0]["stress_control_methods"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1539,7 +1539,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="stress_control_methods" <?php if ($result[0]["stress_control_methods"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1547,7 +1547,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="stress_control_methods" <?php if ($result[0]["stress_control_methods"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1555,7 +1555,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="stress_control_methods" <?php if ($result[0]["stress_control_methods"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1563,7 +1563,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="stress_control_methods" <?php if ($result[0]["stress_control_methods"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1588,7 +1588,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="restless" <?php if ($result[0]["restless"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="confident" <?php if ($result[0]["confident"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1596,7 +1596,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="restless" <?php if ($result[0]["restless"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="confident" <?php if ($result[0]["confident"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1612,7 +1612,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="quiet" <?php if ($result[0]["quiet"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="feeling_alone" <?php if ($result[0]["feeling_alone"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1620,7 +1620,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="quiet" <?php if ($result[0]["quiet"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="feeling_alone" <?php if ($result[0]["feeling_alone"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1660,7 +1660,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="criticize" <?php if ($result[0]["criticize"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1668,7 +1668,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="criticize" <?php if ($result[0]["criticize"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1684,7 +1684,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="no_opinion" <?php if ($result[0]["no_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1692,7 +1692,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="no_opinion" <?php if ($result[0]["no_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1708,7 +1708,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="tofeel_affection" <?php if ($result[0]["tofeel_affection"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1716,7 +1716,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="tofeel_affection" <?php if ($result[0]["tofeel_affection"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1732,7 +1732,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="affection_taste" <?php if ($result[0]["affection_taste"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1740,7 +1740,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="affection_taste" <?php if ($result[0]["affection_taste"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1789,7 +1789,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="diagnostic_disorder" <?php if ($result[0]["diagnostic_disorder"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="love_me" <?php if ($result[0]["love_me"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1797,7 +1797,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="diagnostic_disorder" <?php if ($result[0]["diagnostic_disorder"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="love_me" <?php if ($result[0]["love_me"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1813,7 +1813,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="school_perform" <?php if ($result[0]["school_perform"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="purpose_life" <?php if ($result[0]["purpose_life"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1821,7 +1821,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="school_perform" <?php if ($result[0]["school_perform"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="purpose_life" <?php if ($result[0]["purpose_life"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1837,7 +1837,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="relates" <?php if ($result[0]["relates"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="enthusiast" <?php if ($result[0]["enthusiast"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1845,7 +1845,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="relates" <?php if ($result[0]["relates"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="enthusiast" <?php if ($result[0]["enthusiast"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1861,7 +1861,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="stumbles" <?php if ($result[0]["stumbles"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="long_term_goals" <?php if ($result[0]["long_term_goals"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1869,7 +1869,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="stumbles" <?php if ($result[0]["stumbles"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="long_term_goals" <?php if ($result[0]["long_term_goals"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1885,7 +1885,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="vision_problems" <?php if ($result[0]["vision_problems"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="realistic_goals" <?php if ($result[0]["realistic_goals"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1893,7 +1893,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="vision_problems" <?php if ($result[0]["vision_problems"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="realistic_goals" <?php if ($result[0]["realistic_goals"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1909,7 +1909,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="approximate" <?php if ($result[0]["approximate"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="fulfilled_goals" <?php if ($result[0]["fulfilled_goals"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1917,7 +1917,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="approximate" <?php if ($result[0]["approximate"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="fulfilled_goals" <?php if ($result[0]["fulfilled_goals"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1933,7 +1933,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="headache" <?php if ($result[0]["headache"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="capacity_debility" <?php if ($result[0]["capacity_debility"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1941,7 +1941,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="headache" <?php if ($result[0]["headache"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="capacity_debility" <?php if ($result[0]["capacity_debility"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1957,7 +1957,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="difficult_learn" <?php if ($result[0]["difficult_learn"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="mistakes" <?php if ($result[0]["mistakes"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1965,7 +1965,256 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="difficult_learn" <?php if ($result[0]["difficult_learn"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="mistakes" <?php if ($result[0]["mistakes"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2 text-center">
+                    <span class="text-royal-blue bold-font custom-form-label-element">
+                        EVALUACIÓN DE TIEMPO LIBRE
+                    </span>
+                </div>
+                <div class="offset-1 offset-sm-2 offset-md-3 col-10 col-sm-8 col-md-6 mb-4 divider"></div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">45) Durante la semana dedico tiempo a actividades de recreación.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="recreation" <?php if ($result[0]["recreation"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="recreation" <?php if ($result[0]["recreation"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="recreation" <?php if ($result[0]["recreation"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="recreation" <?php if ($result[0]["recreation"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="recreation" <?php if ($result[0]["recreation"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">46) Cuando decides quedarte en casa a escuchar música, ver televisión o jugar videojuegos, ¿Cuántas horas al día le dedica a estas actividades?</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) 15 a 30 minutos
+                            <input type="radio" name="entertainment_time" <?php if ($result[0]["entertainment_time"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) 31 minutos a 1 hora
+                            <input type="radio" name="entertainment_time" <?php if ($result[0]["entertainment_time"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) 1 a 2 horas
+                            <input type="radio" name="entertainment_time" <?php if ($result[0]["entertainment_time"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) 2 a 5 horas
+                            <input type="radio" name="entertainment_time" <?php if ($result[0]["entertainment_time"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Más de 5 horas
+                            <input type="radio" name="entertainment_time" <?php if ($result[0]["entertainment_time"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">47) Durante la semana consumo alcohol (Cerveza, licor, vino, vodka)</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="alcohol" <?php if ($result[0]["alcohol"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="alcohol" <?php if ($result[0]["alcohol"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="alcohol" <?php if ($result[0]["alcohol"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="alcohol" <?php if ($result[0]["alcohol"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="alcohol" <?php if ($result[0]["alcohol"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">48) Durante la semana consumo tabaco (Cigarro, pipa, masticable, cigarro electrónico)</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="cigar" <?php if ($result[0]["cigar"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="cigar" <?php if ($result[0]["cigar"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="cigar" <?php if ($result[0]["cigar"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="cigar" <?php if ($result[0]["cigar"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="cigar" <?php if ($result[0]["cigar"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">49) Durante la semana dedico tiempo para realizar actividades recreativas con la familia.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="recreational_activities" <?php if ($result[0]["recreational_activities"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="recreational_activities" <?php if ($result[0]["recreational_activities"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="recreational_activities" <?php if ($result[0]["recreational_activities"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="recreational_activities" <?php if ($result[0]["recreational_activities"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="recreational_activities" <?php if ($result[0]["recreational_activities"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1990,7 +2239,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Menos de 3 horas
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="time_sleep" <?php if ($result[0]["time_sleep"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1998,7 +2247,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) De 3 a 5 horas
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="time_sleep" <?php if ($result[0]["time_sleep"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2006,7 +2255,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) De 5 a 7 horas
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="time_sleep" <?php if ($result[0]["time_sleep"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2014,7 +2263,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) De 7 a 9 horas
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="time_sleep" <?php if ($result[0]["time_sleep"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2022,7 +2271,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Más de 9 horas
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="time_sleep" <?php if ($result[0]["time_sleep"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2038,7 +2287,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="insomnia" <?php if ($result[0]["insomnia"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2046,7 +2295,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="insomnia" <?php if ($result[0]["insomnia"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2054,7 +2303,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="insomnia" <?php if ($result[0]["insomnia"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2062,7 +2311,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="insomnia" <?php if ($result[0]["insomnia"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2070,7 +2319,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="insomnia" <?php if ($result[0]["insomnia"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2086,7 +2335,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="wake_midnight" <?php if ($result[0]["wake_midnight"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2094,7 +2343,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="wake_midnight" <?php if ($result[0]["wake_midnight"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2102,7 +2351,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="wake_midnight" <?php if ($result[0]["wake_midnight"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2110,7 +2359,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="wake_midnight" <?php if ($result[0]["wake_midnight"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2118,7 +2367,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="wake_midnight" <?php if ($result[0]["wake_midnight"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2134,7 +2383,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="drowsiness" <?php if ($result[0]["drowsiness"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2142,7 +2391,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="drowsiness" <?php if ($result[0]["drowsiness"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2150,7 +2399,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="drowsiness" <?php if ($result[0]["drowsiness"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2158,7 +2407,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="drowsiness" <?php if ($result[0]["drowsiness"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2166,7 +2415,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="drowsiness" <?php if ($result[0]["drowsiness"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2182,7 +2431,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="shortness_breath" <?php if ($result[0]["shortness_breath"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2190,7 +2439,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="shortness_breath" <?php if ($result[0]["shortness_breath"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2198,7 +2447,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="shortness_breath" <?php if ($result[0]["shortness_breath"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2206,7 +2455,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="shortness_breath" <?php if ($result[0]["shortness_breath"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2214,7 +2463,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="shortness_breath" <?php if ($result[0]["shortness_breath"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2230,7 +2479,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="cough_snore" <?php if ($result[0]["cough_snore"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2238,7 +2487,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="cough_snore" <?php if ($result[0]["cough_snore"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2246,7 +2495,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="cough_snore" <?php if ($result[0]["cough_snore"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2254,7 +2503,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="cough_snore" <?php if ($result[0]["cough_snore"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2262,7 +2511,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="cough_snore" <?php if ($result[0]["cough_snore"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2278,7 +2527,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="nightmare" <?php if ($result[0]["nightmare"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2286,7 +2535,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="nightmare" <?php if ($result[0]["nightmare"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2294,7 +2543,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="nightmare" <?php if ($result[0]["nightmare"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2302,7 +2551,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="nightmare" <?php if ($result[0]["nightmare"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2310,7 +2559,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="nightmare" <?php if ($result[0]["nightmare"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2326,7 +2575,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="thoughts" <?php if ($result[0]["thoughts"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2334,7 +2583,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="thoughts" <?php if ($result[0]["thoughts"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2342,7 +2591,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="thoughts" <?php if ($result[0]["thoughts"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2350,7 +2599,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="thoughts" <?php if ($result[0]["thoughts"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2358,7 +2607,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="thoughts" <?php if ($result[0]["thoughts"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2374,7 +2623,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="sleeping_pills" <?php if ($result[0]["sleeping_pills"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2382,7 +2631,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="sleeping_pills" <?php if ($result[0]["sleeping_pills"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2390,7 +2639,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="sleeping_pills" <?php if ($result[0]["sleeping_pills"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2398,7 +2647,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="sleeping_pills" <?php if ($result[0]["sleeping_pills"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2406,7 +2655,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="sleeping_pills" <?php if ($result[0]["sleeping_pills"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2422,7 +2671,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="energy_drink" <?php if ($result[0]["energy_drink"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2430,7 +2679,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="energy_drink" <?php if ($result[0]["energy_drink"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2438,7 +2687,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="energy_drink" <?php if ($result[0]["energy_drink"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2446,7 +2695,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="energy_drink" <?php if ($result[0]["energy_drink"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2454,7 +2703,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="energy_drink" <?php if ($result[0]["energy_drink"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2671,7 +2920,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="toothbrush" <?php if ($result[0]["toothbrush"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2679,7 +2928,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="toothbrush" <?php if ($result[0]["toothbrush"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2687,7 +2936,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="toothbrush" <?php if ($result[0]["toothbrush"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2695,7 +2944,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="toothbrush" <?php if ($result[0]["toothbrush"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2703,7 +2952,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="toothbrush" <?php if ($result[0]["toothbrush"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2719,7 +2968,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">a) Nunca
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <input type="radio" name="deodorant" <?php if ($result[0]["deodorant"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2727,7 +2976,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">b) Casi nunca
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <input type="radio" name="deodorant" <?php if ($result[0]["deodorant"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2735,7 +2984,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="deodorant" <?php if ($result[0]["deodorant"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2743,7 +2992,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="deodorant" <?php if ($result[0]["deodorant"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -2751,7 +3000,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
-                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <input type="radio" name="deodorant" <?php if ($result[0]["deodorant"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>
                         </div>

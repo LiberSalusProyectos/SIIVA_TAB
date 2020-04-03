@@ -388,6 +388,192 @@ function saveChildLifestyleData_DOM($connection, $method,
 }
 
 /**
+ * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveYoungLifestyleData_DOM($connection, $method,
+	$id_patient,
+	$wake_food,
+	$chemical_food,
+	$food_times,
+	$fast_food,
+	$fatty_food,
+	$mealtime,
+	$overeat,
+	$balanced_diet,
+	$eat_pleasure,
+	$check_labels,
+	$dairy_products,
+	$meats,
+	$tubers,
+	$vegetables,
+	$fruits,
+	$cereals,
+	$snacks,
+	$exercise,
+	$exercise_times,
+	$sport_active,
+	$medical_times,
+	$body_explore,
+	$medical_exams,
+	$blood_pressure,
+	$dentist,
+	$psychology,
+	$nutrition,
+	$self_medicate,
+	$diseases,
+	$search_information,
+	$second_opinion,
+	$relax_time,
+	$stress_causes,
+	$stress_impact,
+	$stress_control_methods,
+	$confident,
+	$feeling_alone,
+	$difficulty_relating,
+	$criticize,
+	$no_opinion,
+	$tofeel_affection,
+	$affection_taste,
+	$alone_prefer,
+	$love_me,
+	$purpose_life,
+	$enthusiast,
+	$long_term_goals,
+	$realistic_goals,
+	$fulfilled_goals,
+	$capacity_debility,
+	$mistakes,
+	$recreation,
+	$entertainment_time,
+	$alcohol,
+	$cigar,
+	$recreational_activities,
+	$time_sleep,
+	$insomnia,
+	$wake_midnight,
+	$drowsiness,
+	$shortness_breath,
+	$cough_snore,
+	$nightmare,
+	$thoughts,
+	$sleeping_pills,
+	$energy_drink,
+	$bath_times,
+	$handwashing,
+	$brush_teeth,
+	$floss_use,
+	$toothbrush,
+	$deodorant,
+	$underwear,
+	$nails_cut,
+	$bath_towel,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `younglifestyledata` SET
+	`wake_food`				= '$wake_food',
+	`chemical_food`			= '$chemical_food',
+	`food_times`			= '$food_times',
+	`fast_food`				= '$fast_food',
+	`fatty_food`			= '$fatty_food',
+	`mealtime`				= '$mealtime',
+	`overeat`				= '$overeat',
+	`balanced_diet`			= '$balanced_diet',
+	`eat_pleasure`			= '$eat_pleasure',
+	`check_labels`			= '$check_labels',
+	`dairy_products`		= $dairy_products,
+	`meats`					= $meats,
+	`tubers`				= $tubers,
+	`vegetables`			= $vegetables,
+	`fruits`				= $fruits,
+	`cereals`				= $cereals,
+	`snacks`				= $snacks,
+	`exercise`				= '$exercise',
+	`exercise_times`		= '$exercise_times',
+	`sport_active`			= '$sport_active',
+	`medical_times`			= '$medical_times',
+	`body_explore`			= '$body_explore',
+	`medical_exams`			= '$medical_exams',
+	`blood_pressure`		= '$blood_pressure',
+	`dentist`				= '$dentist',
+	`psychology`			= '$psychology',
+	`nutrition`				= '$nutrition',
+	`self_medicate`			= '$self_medicate',
+	`diseases`				= '$diseases',
+	`search_information`	= '$search_information',
+	`second_opinion`		= '$second_opinion',
+	`relax_time`			= '$relax_time',
+	`stress_causes`			= '$stress_causes',
+	`stress_impact`			= '$stress_impact',
+	`stress_control_methods`	= '$stress_control_methods',
+	`confident`				= '$confident',
+	`feeling_alone`			= '$feeling_alone',
+	`difficulty_relating`	= '$difficulty_relating',
+	`criticize`				= '$criticize',
+	`no_opinion`			= '$no_opinion',
+	`tofeel_affection`		= '$tofeel_affection',
+	`affection_taste`		= '$affection_taste',
+	`alone_prefer`			= '$alone_prefer',
+	`love_me`				= '$love_me',
+	`purpose_life`			= '$purpose_life',
+	`enthusiast`			= '$enthusiast',
+	`long_term_goals`		= '$long_term_goals',
+	`realistic_goals`		= '$realistic_goals',
+	`fulfilled_goals`		= '$fulfilled_goals',
+	`capacity_debility`		= '$capacity_debility',
+	`mistakes`				= '$mistakes',
+	`recreation`			= '$recreation',
+	`entertainment_time`	= '$entertainment_time',
+	`alcohol`				= '$alcohol',
+	`cigar`					= '$cigar',
+	`recreational_activities`	= '$recreational_activities',
+	`time_sleep`			= '$time_sleep',
+	`insomnia`				= '$insomnia',
+	`wake_midnight`			= '$wake_midnight',
+	`drowsiness`			= '$drowsiness',
+	`shortness_breath`		= '$shortness_breath',
+	`cough_snore`			= '$cough_snore',
+	`nightmare`				= '$nightmare',
+	`thoughts`				= '$thoughts',
+	`sleeping_pills`		= '$sleeping_pills',
+	`energy_drink`			= '$energy_drink',
+	`bath_times`			= '$bath_times',
+	`handwashing`			= '$handwashing',
+	`brush_teeth`			= '$brush_teeth',
+	`floss_use`				= '$floss_use',
+	`toothbrush`			= '$toothbrush',
+	`deodorant`				= '$deodorant',
+	`underwear`				= '$underwear',
+	`nails_cut`				= '$nails_cut',
+	`bath_towel`			= '$bath_towel',
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
  * [Función para el almacenado de información dentro de la sección de Signos vitales + Laboratorio]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $method      [Selección entre insertar o actualizar]

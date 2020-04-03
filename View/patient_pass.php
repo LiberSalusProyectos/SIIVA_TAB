@@ -41,14 +41,14 @@
                     case 'youngLifestyle':
                         $sectionName = YOUNG_LIFESTYLE_NAME;
                         $iconName = "fa-child";
-                        $table = "childlifestyledata";
+                        $table = "younglifestyledata";
                         $module = "young_lifestyle.php";
                         break;
 
                     case 'vitalSign':
                         $sectionName = VITAL_SIGN_NAME;
                         $iconName = "fa-stethoscope";
-                        $table = "vitalsigndata";
+                        $table = "younglifestyledata";
                         $module = "vital_sign.php";
                         break;
 
