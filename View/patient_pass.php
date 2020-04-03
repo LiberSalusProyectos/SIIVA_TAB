@@ -37,6 +37,13 @@
                         $table = "childlifestyledata";
                         $module = "chlid_lifestyle.php";
                         break;
+                    
+                    case 'youngLifestyle':
+                        $sectionName = YOUNG_LIFESTYLE_NAME;
+                        $iconName = "fa-child";
+                        $table = "childlifestyledata";
+                        $module = "young_lifestyle.php";
+                        break;
 
                     case 'vitalSign':
                         $sectionName = VITAL_SIGN_NAME;

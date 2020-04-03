@@ -29,7 +29,7 @@
             $realized = saveChildLifestyleData($linkDB, "INSERT", $_POST, $_SESSION["id_user"]);
           }
           if ($realized) {
-            header('Location: patient_pass.php?m=childLifestyle'); exit;
+            header('Location: patient_pass.php?m=youngLifestyle'); exit;
           }
       }
 
@@ -56,7 +56,7 @@
                 <button class="btn my-2 my-sm-0 custom-btn-disabled" type="submit">
                     <span>
                         <i class="fas fa-child custom-icon icon-behind"></i>
-                        <h4 class="text-white bold-font text-forward"><?php echo CHILD_LIFESTYLE_NAME; ?></h4>
+                        <h4 class="text-white bold-font text-forward"><?php echo YOUNG_LIFESTYLE_NAME; ?></h4>
                     </span>
                 </button>
             </div>
@@ -149,7 +149,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">2) ¿A la semana, con qué frecuencia consume alimentos como embutidos, enlatados y refrigerados?</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">2) ¿Normalmente a la semana con qué frecuencia consumo alimentos con conservadores artificiales?</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -389,7 +389,151 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">7) Considero que la dieta del niño es balanceada</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">7) Continúo comiendo después de quedar satisfecho.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="mealtime" <?php if ($result[0]["mealtime"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">8) Considero que mi dieta es balanceada</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">9) Como para sentirme bien o tranquilizarme</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="balanced_diet" <?php if ($result[0]["balanced_diet"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">10) Cuando compro alimentos reviso las etiquetas en los alimentos para conocer sus ingredientes</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -446,7 +590,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">8) ALIMENTACIÓN. Ordena en orden de frecuencia los grupos alimenticios en la dieta del niño del 1 al 7 en los recuadros, donde 1 sea el grupo más frecuente y 7 sea el grupo menos frecuente.</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">11) ALIMENTACIÓN. Ordena en orden de frecuencia los grupos alimenticios en la dieta del niño del 1 al 7 en los recuadros, donde 1 sea el grupo más frecuente y 7 sea el grupo menos frecuente.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-8">
                         <label class="container regular-font text-royal-blue">
@@ -596,7 +740,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">9) El niño realiza actividades físicas de recreo como caminar, nadar, jugar futbol o ciclismo de 20 a 30min en la semana</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">12) Realizo actividades físicas de recreo como caminar, nadar, jugar futbol o ciclismo de 20 a 30min en la semana.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -644,7 +788,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">10) La frecuencia con la que hace actividad física a la semana</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">13) La frecuencia con la que hago actividad física a la semana.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -692,7 +836,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">11) Le interesa el deporte y es un niño activo</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">14) Si realizas ejercicio, consideras que el tiempo invertido es el suficiente.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -749,7 +893,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">12) El número de veces que acudo a servicios médicos para valoración del niño</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">15) El número de veces que acudo a servicios médicos.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -797,7 +941,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">13) Reviso físicamente al niño en busca de cambios en su cuerpo</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">16) Autoexploro físicamente mi cuerpo para detectar cambios.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -845,7 +989,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">14) Le realizo exámenes médicos de rutina (biometría hemática, examen general de orina, entre otros)</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">17) Me realizo exámenes médicos de rutina (biometría hemática, examen general de orina, química sanguínea, perfil de lípidos, entre otros)</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -893,7 +1037,55 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">15) Acudo a servicios con el dentista para valoración de salud bucal en el niño</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">18) ¿Con que frecuencia te checas la presión arterial?</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Cada 3 meses o menos
+                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Cada 3 a 6 meses
+                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) Cada 7 meses al año
+                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Cada 1 o 2 años
+                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) 1 vez cada 2 años o más
+                            <input type="radio" name="medical_times" <?php if ($result[0]["medical_times"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">19) Acudo a servicios con el dentista.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -941,7 +1133,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">16) ¿Has acudido con él a consulta con psicología?</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">20) ¿Has acudido con él a consulta con psicología?</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -989,7 +1181,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">17) Cuando se enferma, yo le doy tratamiento previo a la visita del médico</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">21) Cuando me enfermo me automedico.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1037,7 +1229,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">18) Durante el último año ¿el niño se enfermó?</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">22) Durante el último año ¿usted se enfermó?</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1085,7 +1277,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">19) Busco información confiable sobre cuidados de la salud infantil (Revistas, programas de salud, conferencias o exposiciones)</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">23) Busco información confiable sobre cuidados de la salud (Revistas, programas de salud, conferencias o exposiciones)</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1133,7 +1325,208 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">20) Le pregunto a otro médico u otra opción cuando no estoy de acuerdo con el</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">24) Le pregunto a otro médico u otra opción cuando no estoy de acuerdo con el.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2 text-center">
+                    <span class="text-royal-blue bold-font custom-form-label-element">
+                        EVALUACIÓN DEL MANEJO DEL ESTRÉS
+                    </span>
+                </div>
+                <div class="offset-1 offset-sm-2 offset-md-3 col-10 col-sm-8 col-md-6 mb-4 divider"></div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">25) Me tomo mi tiempo para relajarme.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">26) Soy consciente de las causas que me producen estrés o ansiedad.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">27) Durante el día siento que el estrés afecta mis actividades cotidianas.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">28) Utilizo técnicas o métodos para controlar el estrés.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1190,7 +1583,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">21) El niño ríe y habla con un timbre de voz alto</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">29) Tengo una persona con quien me siento en confianza para hablar.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1214,7 +1607,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">22) El niño es callado o retraído la mayoría de las veces</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">30) Me siento solo a pesar de estar acompañado.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1238,7 +1631,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">23) Tiene dificultad para relacionarse con las demás personas</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">31) Tengo dificultad para relacionarme con las demás personas.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1262,7 +1655,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">24) Llora ante cualquier estimulo externo</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">32) Critico a los demás por sus éxitos.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1286,7 +1679,79 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">25) Prefiere estar solo</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">33) Evito dar opiniones por temor al rechazo, burlo o que otras personas me ignoren.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">34) Me gusta expresar afecto a personas cercanas a mi.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">35) Me gusta recibir muestras de afecto de personas cercanas a mi.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="weeping" <?php if ($result[0]["weeping"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">36) Prefiero trabajar solo.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1310,6 +1775,696 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2 text-center">
                     <span class="text-royal-blue bold-font custom-form-label-element">
+                        EVALUACIÓN DE AUTOACEPTACIÓN
+                    </span>
+                </div>
+                <div class="offset-1 offset-sm-2 offset-md-3 col-10 col-sm-8 col-md-6 mb-4 divider"></div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">37) Me quiero a mí mismo.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="diagnostic_disorder" <?php if ($result[0]["diagnostic_disorder"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="diagnostic_disorder" <?php if ($result[0]["diagnostic_disorder"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">38) Considero que mi vida tiene un propósito.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="school_perform" <?php if ($result[0]["school_perform"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="school_perform" <?php if ($result[0]["school_perform"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">39) Soy entusiasta y optimista sobre aspectos de mi vida.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="relates" <?php if ($result[0]["relates"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="relates" <?php if ($result[0]["relates"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">40) Tengo metas a largo plazo.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="stumbles" <?php if ($result[0]["stumbles"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="stumbles" <?php if ($result[0]["stumbles"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">41) Soy realista en las metas que me propongo.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="vision_problems" <?php if ($result[0]["vision_problems"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="vision_problems" <?php if ($result[0]["vision_problems"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">42) En el último año, considero que he cumplido mis metas.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="approximate" <?php if ($result[0]["approximate"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="approximate" <?php if ($result[0]["approximate"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">43) Soy consciente de mis capacidades y debilidades personales.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="headache" <?php if ($result[0]["headache"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="headache" <?php if ($result[0]["headache"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">44) Considero que mis errores me han hecho crecer como persona.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Si
+                            <input type="radio" name="difficult_learn" <?php if ($result[0]["difficult_learn"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) No
+                            <input type="radio" name="difficult_learn" <?php if ($result[0]["difficult_learn"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2 text-center">
+                    <span class="text-royal-blue bold-font custom-form-label-element">
+                        EVALUACIÓN DEL SUEÑO
+                    </span>
+                </div>
+                <div class="offset-1 offset-sm-2 offset-md-3 col-10 col-sm-8 col-md-6 mb-4 divider"></div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">50) En el último mes, duermo por lo regular.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Menos de 3 horas
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) De 3 a 5 horas
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) De 5 a 7 horas
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) De 7 a 9 horas
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Más de 9 horas
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">51) En el último mes, tengo problemas para dormir dentro de la primera hora después de acostarme.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">52) En el último mes, me despierto durante la noche o madrugada.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">53) En el último mes, me siento cansado o somnoliento durante el día.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">54) En el último mes, me he despertado durante la noche por no poder respirar bien.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">55) En el último mes, me han dicho que toso o ronco intensamente mientras duermo.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">56) En el último mes, he tenido pesadillas o "malos sueños".</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">57) En el último mes, por la noche siento que mis propios pensamientos no me dejan dormir.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">58) En el último mes, tomo medicamentos u otras sustancias o remedios para poder dormir.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">59) Consumo café, bebidas energéticas, tabaco o hago ejercicio después de las 19:00 (7pm) horas.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="second_opinion" <?php if ($result[0]["second_opinion"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2 text-center">
+                    <span class="text-royal-blue bold-font custom-form-label-element">
                         EVALUACIÓN DE HIGIENE PERSONAL
                     </span>
                 </div>
@@ -1319,7 +2474,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">26) El número de veces que se baña al día el niño</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">60) El número de veces que me baño al día.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1367,7 +2522,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">27) Acostumbra a lavarse las manos antes de comer o después de ir al baño</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">61) Acostumbro lavarme las manos antes de comer o después de ir al baño.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1415,7 +2570,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">28) La frecuencia con la que se lava los dientes es</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">62) La frecuencia con la que me lavo los dientes es:</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1463,7 +2618,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">29) Hace uso de hilo dental bajo la supervisión de un adulto</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">63) Hago uso de hilo dental.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1511,7 +2666,103 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">30) El niño cambia de ropa interior diario</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">64) Cambio el cepillo de dientes que uso.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">65) Acostumbro a usar desodorante natural y/o artificial.</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">a) Nunca
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">b) Casi nunca
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">c) A veces
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">d) Casi siempre
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                        <label class="container regular-font text-royal-blue">e) Siempre
+                            <input type="radio" name="floss_use" <?php if ($result[0]["floss_use"]=="e")  { echo 'checked="true"'; } ?> value="e" />
+                            <span class="radiomark"></span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
+                <div class="row mt-4">
+                    <div class="col-12 mb-2">
+                        <span class="text-royal-blue bold-font custom-form-label-element">66) Tiendo a cambiar mi ropa interior.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1559,7 +2810,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">31) En el ultimo mes, le he cortado las uñas de las manos y de los pies al niño</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">67) En el último mes, me he cortado las uñas de las manos y de los pies.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1607,7 +2858,7 @@
             <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
                 <div class="row mt-4">
                     <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">32) Las toallas que el niño ocupa son limpias cada vez que se baña</span>
+                        <span class="text-royal-blue bold-font custom-form-label-element">68) Cambio regularmente la toalla que uso.</span>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
@@ -1645,327 +2896,6 @@
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">e) Siempre
                             <input type="radio" name="bath_towel" <?php if ($result[0]["bath_towel"]=="e")  { echo 'checked="true"'; } ?> value="e" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2 text-center">
-                    <span class="text-royal-blue bold-font custom-form-label-element">
-                        EVALUACIÓN DE CRECIMIENTO Y DESARROLLO
-                    </span>
-                </div>
-                <div class="offset-1 offset-sm-2 offset-md-3 col-10 col-sm-8 col-md-6 mb-4 divider"></div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">33) Tiene diagnóstico de algún trastorno de aprendizaje o desarrollo</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="diagnostic_disorder" <?php if ($result[0]["diagnostic_disorder"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="diagnostic_disorder" <?php if ($result[0]["diagnostic_disorder"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">34) Presenta adecuado rendimiento escolar</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="school_perform" <?php if ($result[0]["school_perform"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="school_perform" <?php if ($result[0]["school_perform"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">35) Se relaciona con sus compañeros</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="relates" <?php if ($result[0]["relates"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="relates" <?php if ($result[0]["relates"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">36) ¿Ha notado si se cae mucho al caminar o correr?</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="stumbles" <?php if ($result[0]["stumbles"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="stumbles" <?php if ($result[0]["stumbles"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">37) ¿Ha presentado problemas de visión?</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="vision_problems" <?php if ($result[0]["vision_problems"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="vision_problems" <?php if ($result[0]["vision_problems"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">38) ¿Se acerca mucho al televisor y/o al cuaderno?</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="approximate" <?php if ($result[0]["approximate"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="approximate" <?php if ($result[0]["approximate"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">39) Presenta dolor de cabeza al realizar sus tareas y/o estímulos visuales</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="headache" <?php if ($result[0]["headache"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="headache" <?php if ($result[0]["headache"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">40) Se le dificulta retener información</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="difficult_learn" <?php if ($result[0]["difficult_learn"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="difficult_learn" <?php if ($result[0]["difficult_learn"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">41) Frecuentemente se le dificulta quedarse quieto</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="frequent_restless" <?php if ($result[0]["frequent_restless"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="frequent_restless" <?php if ($result[0]["frequent_restless"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">42) Se le dificulta pronunciar algunas palabras</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="difficult_pronounce" <?php if ($result[0]["difficult_pronounce"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="difficult_pronounce" <?php if ($result[0]["difficult_pronounce"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">43) Invierte letras o números similares (7 F, P 9, d b, etc.)</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="letter_invert" <?php if ($result[0]["letter_invert"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="letter_invert" <?php if ($result[0]["letter_invert"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">44) Frecuentemente deja actividades inconclusas</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="unfinished_activities" <?php if ($result[0]["unfinished_activities"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="unfinished_activities" <?php if ($result[0]["unfinished_activities"]=="b")  { echo 'checked="true"'; } ?> value="b" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 mb-4">
-                <div class="row mt-4">
-                    <div class="col-12 mb-2">
-                        <span class="text-royal-blue bold-font custom-form-label-element">45) Frecuentemente se le dificulta seguir órdenes</span>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Si
-                            <input type="radio" name="naughty" <?php if ($result[0]["naughty"]=="a")  { echo 'checked="true"'; } ?> value="a" />
-                            <span class="radiomark"></span>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6">
-                        <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) No
-                            <input type="radio" name="naughty" <?php if ($result[0]["naughty"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
