@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 02-04-2020 a las 17:01:20
+-- Tiempo de generación: 03-04-2020 a las 19:20:30
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10402,7 +10402,7 @@ CREATE TABLE `childlifestyledata` (
   `balanced_diet` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
   `dairy_products` tinyint(1) DEFAULT NULL,
   `meats` tinyint(1) DEFAULT NULL,
-  `tubers` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tubers` tinyint(1) DEFAULT NULL,
   `vegetables` tinyint(1) DEFAULT NULL,
   `fruits` tinyint(1) DEFAULT NULL,
   `cereals` tinyint(1) DEFAULT NULL,
@@ -10600,6 +10600,94 @@ CREATE TABLE `vitalsigndata` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `younglifestyledata`
+--
+
+CREATE TABLE `younglifestyledata` (
+  `id_data` int(14) NOT NULL,
+  `wake_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `chemical_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `food_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fast_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fatty_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `mealtime` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `overeat` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `balanced_diet` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `eat_pleasure` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `check_labels` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dairy_products` tinyint(1) DEFAULT NULL,
+  `meats` tinyint(1) DEFAULT NULL,
+  `tubers` tinyint(1) DEFAULT NULL,
+  `vegetables` tinyint(1) DEFAULT NULL,
+  `fruits` tinyint(1) DEFAULT NULL,
+  `cereals` tinyint(1) DEFAULT NULL,
+  `snacks` tinyint(1) DEFAULT NULL,
+  `exercise` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `exercise_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sport_active` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `body_explore` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_exams` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `blood_pressure` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dentist` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `psychology` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nutrition` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `self_medicate` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `diseases` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `search_information` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `second_opinion` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `relax_time` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `stress_causes` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `stress_impact` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `stress_control_methods` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `confident` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `feeling_alone` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `difficulty_relating` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `criticize` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `no_opinion` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tofeel_affection` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `affection_taste` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `alone_prefer` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `love_me` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `purpose_life` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `enthusiast` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `long_term_goals` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `realistic_goals` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fulfilled_goals` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `capacity_debility` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `mistakes` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `recreation` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `entertainment_time` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `alcohol` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `cigar` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `recreational_activities` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `time_sleep` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `insomnia` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `wake_midnight` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `drowsiness` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `shortness_breath` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `cough_snore` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nightmare` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `thoughts` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sleeping_pills` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `energy_drink` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `bath_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `handwashing` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `brush_teeth` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `floss_use` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `toothbrush` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `deodorant` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `underwear` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nails_cut` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `bath_towel` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -10660,6 +10748,12 @@ ALTER TABLE `vitalsigndata`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `younglifestyledata`
+--
+ALTER TABLE `younglifestyledata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -10715,6 +10809,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `vitalsigndata`
 --
 ALTER TABLE `vitalsigndata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `younglifestyledata`
+--
+ALTER TABLE `younglifestyledata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --

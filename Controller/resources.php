@@ -3,6 +3,7 @@
 !defined('FAMILY_RECORD_NAME') && define('FAMILY_RECORD_NAME', 'ANTECEDENTES FAMILIARES');
 !defined('BORN_LIFESTYLE_NAME') && define('BORN_LIFESTYLE_NAME', 'ESTILO VIDA [0-1] AÑO');
 !defined('CHILD_LIFESTYLE_NAME') && define('CHILD_LIFESTYLE_NAME', 'ESTILO VIDA [6-12] AÑOS');
+!defined('YOUNG_LIFESTYLE_NAME') && define('YOUNG_LIFESTYLE_NAME', 'ESTILO VIDA [12+] AÑOS');
 !defined('VITAL_SIGN_NAME') && define('VITAL_SIGN_NAME', 'SIGNOS VITALES + LAB');
 
 /**
@@ -55,6 +56,9 @@ function getModuleData($connection, $module, $id_patient){
 			break;
 		case "childLifestyle":
 			$table = "childlifestyledata";
+			break;
+		case "youngLifestyle":
+			$table = "younglifestyledata";
 			break;
 		case "vitalSign":
 			$table = "vitalsigndata";
@@ -283,6 +287,99 @@ function saveChildLifestyleData($connection, $method, $data, $id_user){
 
 	return $result;
 }
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveYoungLifestyleData($connection, $method, $data, $id_user){
+
+	$result = saveYoungLifestyleData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['wake_food'],
+		$data['chemical_food'],
+		$data['food_times'],
+		$data['fast_food'],
+		$data['fatty_food'],
+		$data['mealtime'],
+		$data['overeat'],
+		$data['balanced_diet'],
+		$data['eat_pleasure'],
+		$data['check_labels'],
+		$data['dairy_products'],
+		$data['meats'],
+		$data['tubers'],
+		$data['vegetables'],
+		$data['fruits'],
+		$data['cereals'],
+		$data['snacks'],
+		$data['exercise'],
+		$data['exercise_times'],
+		$data['sport_active'],
+		$data['medical_times'],
+		$data['body_explore'],
+		$data['medical_exams'],
+		$data['blood_pressure'],
+		$data['dentist'],
+		$data['psychology'],
+		$data['nutrition'],
+		$data['self_medicate'],
+		$data['diseases'],
+		$data['search_information'],
+		$data['second_opinion'],
+		$data['relax_time'],
+		$data['stress_causes'],
+		$data['stress_impact'],
+		$data['stress_control_methods'],
+		$data['confident'],
+		$data['feeling_alone'],
+		$data['difficulty_relating'],
+		$data['criticize'],
+		$data['no_opinion'],
+		$data['tofeel_affection'],
+		$data['affection_taste'],
+		$data['alone_prefer'],
+		$data['love_me'],
+		$data['purpose_life'],
+		$data['enthusiast'],
+		$data['long_term_goals'],
+		$data['realistic_goals'],
+		$data['fulfilled_goals'],
+		$data['capacity_debility'],
+		$data['mistakes'],
+		$data['recreation'],
+		$data['entertainment_time'],
+		$data['alcohol'],
+		$data['cigar'],
+		$data['recreational_activities'],
+		$data['time_sleep'],
+		$data['insomnia'],
+		$data['wake_midnight'],
+		$data['drowsiness'],
+		$data['shortness_breath'],
+		$data['cough_snore'],
+		$data['nightmare'],
+		$data['thoughts'],
+		$data['sleeping_pills'],
+		$data['energy_drink'],
+		$data['bath_times'],
+		$data['handwashing'],
+		$data['brush_teeth'],
+		$data['floss_use'],
+		$data['toothbrush'],
+		$data['deodorant'],
+		$data['underwear'],
+		$data['nails_cut'],
+		$data['bath_towel'],
+		$id_user);
+
+	return $result;
+}
+
 
 /**
  * [Función para el almacenado de información dentro de la sección de Signos vitales + Laboratorio]

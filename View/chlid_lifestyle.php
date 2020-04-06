@@ -874,7 +874,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">d) Casi siempre
-                            <input type="radio" name="medical_exams" <?php if ($result[0]["pregnancy_complication"]=="d")  { echo 'checked="true"'; } ?> value="d" />
+                            <input type="radio" name="medical_exams" <?php if ($result[0]["medical_exams"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
@@ -1532,7 +1532,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                         <label class="container regular-font text-royal-blue">c) A veces
-                            <input type="radio" name="underwear" <?php if ($result[0]["pregnancy_complication"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="underwear" <?php if ($result[0]["underwear"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                         </div>
