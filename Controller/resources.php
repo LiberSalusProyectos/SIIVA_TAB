@@ -2,6 +2,7 @@
 
 !defined('FAMILY_RECORD_NAME') && define('FAMILY_RECORD_NAME', 'ANTECEDENTES FAMILIARES');
 !defined('BORN_LIFESTYLE_NAME') && define('BORN_LIFESTYLE_NAME', 'ESTILO VIDA [0-1] AÑO');
+!defined('BABY_LIFESTYLE_NAME') && define('BABY_LIFESTYLE_NAME', 'ESTILO VIDA [1-5] AÑOS');
 !defined('CHILD_LIFESTYLE_NAME') && define('CHILD_LIFESTYLE_NAME', 'ESTILO VIDA [6-12] AÑOS');
 !defined('YOUNG_LIFESTYLE_NAME') && define('YOUNG_LIFESTYLE_NAME', 'ESTILO VIDA [12+] AÑOS');
 !defined('VITAL_SIGN_NAME') && define('VITAL_SIGN_NAME', 'SIGNOS VITALES + LAB');
@@ -53,6 +54,9 @@ function getModuleData($connection, $module, $id_patient){
 			break;
 		case "bornLifestyle":
 			$table = "bornlifestyledata";
+			break;
+		case "babyLifestyle":
+			$table = "babylifestyledata";
 			break;
 		case "childLifestyle":
 			$table = "childlifestyledata";
@@ -214,6 +218,91 @@ function saveBornLifestyleData($connection, $method, $data, $id_user){
 		$data['table_fourteen'],
 		$data['table_fifteen'],
 		$data['table_sixteen'],
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveBabyLifestyleData($connection, $method, $data, $id_user){
+
+	$result = saveBabyLifestyleData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['wake_food'],
+		$data['chemical_food'],
+		$data['food_times'],
+		$data['fast_food'],
+		$data['fatty_food'],
+		$data['mealtime'],
+		$data['overeat'],
+		$data['balanced_diet'],
+		$data['fruit_diet'],
+		$data['meat_diet'],
+		$data['dairy_products'],
+		$data['meats'],
+		$data['tubers'],
+		$data['vegetables'],
+		$data['fruits'],
+		$data['cereals'],
+		$data['snacks'],
+		$data['early_stimulation'],
+		$data['exercise'],
+		$data['exercise_times'],
+		$data['sport_active'],
+		$data['medical_times'],
+		$data['kid_review'],
+		$data['medical_exams'],
+		$data['dentist'],
+		$data['nutrition'],
+		$data['psychology'],
+		$data['previous_treatment'],
+		$data['diseases'],
+		$data['childcare'],
+		$data['second_opinion'],
+		$data['say_feelings'],
+		$data['speak_louder'],
+		$data['play'],
+		$data['withdrawn'],
+		$data['share_family'],
+		$data['moodiness'],
+		$data['work_alone'],
+		$data['table_one'],
+		$data['table_two'],
+		$data['table_three'],
+		$data['table_four'],
+		$data['table_five'],
+		$data['table_six'],
+		$data['table_seven'],
+		$data['table_eight'],
+		$data['table_nine'],
+		$data['table_ten'],
+		$data['table_eleven'],
+		$data['table_twelve'],
+		$data['table_thirteen'],
+		$data['table_fourteen'],
+		$data['table_fifteen'],
+		$data['table_sixteen'],
+		$data['table_seventeen'],
+		$data['table_eighteen'],
+		$data['table_nineteen'],
+		$data['table_twenty'],
+		$data['table_twentyone'],
+		$data['table_twentytwo'],
+		$data['table_twentythree'],
+		$data['bath_times'],
+		$data['handwashing'],
+		$data['brush_teeth'],
+		$data['floss_use'],
+		$data['toothbrush'],
+		$data['nails_cut'],
+		$data['bath_towel'],
 		$id_user);
 
 	return $result;

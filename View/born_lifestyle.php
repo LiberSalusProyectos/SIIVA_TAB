@@ -538,7 +538,7 @@
                     </div>
                     <div class="col-2">
                         <label class="container regular-font text-royal-blue">
-                            <input type="radio" name="table_four" <?php if ($result[0]["otable_fourne"]=="c")  { echo 'checked="true"'; } ?> value="c" />
+                            <input type="radio" name="table_four" <?php if ($result[0]["table_four"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
                     </div>

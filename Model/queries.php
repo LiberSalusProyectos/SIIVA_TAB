@@ -255,6 +255,179 @@ function saveBornLifestyleData_DOM($connection, $method,
  * @param  [int] $id_user    	 [ID del usuario en cuestión]
  * @return [bool]             	 [Resultado de la inserción/actualización]
  */
+function saveBabyLifestyleData_DOM($connection, $method,
+	$id_patient,
+	$wake_food,
+	$chemical_food,
+	$food_times,
+	$fast_food,
+	$fatty_food,
+	$mealtime,
+	$overeat,
+	$balanced_diet,
+	$fruit_diet,
+	$meat_diet,
+	$dairy_products,
+	$meats,
+	$tubers,
+	$vegetables,
+	$fruits,
+	$cereals,
+	$snacks,
+	$early_stimulation,
+	$exercise,
+	$exercise_times,
+	$sport_active,
+	$medical_times,
+	$kid_review,
+	$medical_exams,
+	$dentist,
+	$nutrition,
+	$psychology,
+	$previous_treatment,
+	$diseases,
+	$childcare,
+	$second_opinion,
+	$say_feelings,
+	$speak_louder,
+	$play,
+	$withdrawn,
+	$share_family,
+	$moodiness,
+	$work_alone,
+	$table_one,
+	$table_two,
+	$table_three,
+	$table_four,
+	$table_five,
+	$table_six,
+	$table_seven,
+	$table_eight,
+	$table_nine,
+	$table_ten,
+	$table_eleven,
+	$table_twelve,
+	$table_thirteen,
+	$table_fourteen,
+	$table_fifteen,
+	$table_sixteen,
+	$table_seventeen,
+	$table_eighteen,
+	$table_nineteen,
+	$table_twenty,
+	$table_twentyone,
+	$table_twentytwo,
+	$table_twentythree,
+	$bath_times,
+	$handwashing,
+	$brush_teeth,
+	$floss_use,
+	$toothbrush,
+	$nails_cut,
+	$bath_towel,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `babylifestyledata` SET
+	`wake_food`				= '$wake_food',
+	`chemical_food`			= '$chemical_food',
+	`food_times`			= '$food_times',
+	`fast_food`				= '$fast_food',
+	`fatty_food`			= '$fatty_food',
+	`mealtime`				= '$mealtime',
+	`overeat`				= '$overeat',
+	`balanced_diet`			= '$balanced_diet',
+	`fruit_diet`			= '$fruit_diet',
+	`meat_diet`				= '$meat_diet',
+	`dairy_products`		= $dairy_products,
+	`meats`					= $meats,
+	`tubers`				= $tubers,
+	`vegetables`			= $vegetables,
+	`fruits`				= $fruits,
+	`cereals`				= $cereals,
+	`snacks`				= $snacks,
+	`early_stimulation`		= '$early_stimulation',
+	`exercise`				= '$exercise',
+	`exercise_times`		= '$exercise_times',
+	`sport_active`			= '$sport_active',
+	`medical_times`			= '$medical_times',
+	`kid_review`			= '$kid_review',
+	`medical_exams`			= '$medical_exams',
+	`dentist`				= '$dentist',
+	`nutrition`				= '$nutrition',
+	`psychology`			= '$psychology',
+	`previous_treatment`	= '$previous_treatment',
+	`diseases`				= '$diseases',
+	`childcare`				= '$childcare',
+	`second_opinion`		= '$second_opinion',
+	`say_feelings`			= '$say_feelings',
+	`speak_louder`			= '$speak_louder',
+	`play`					= '$play',
+	`withdrawn`				= '$withdrawn',
+	`share_family`			= '$share_family',
+	`moodiness`				= '$moodiness',
+	`work_alone`			= '$work_alone',
+	`table_one`				= '$table_one',
+	`table_two`				= '$table_two',
+	`table_three`			= '$table_three',
+	`table_four`			= '$table_four',
+	`table_five`			= '$table_five',
+	`table_six`				= '$table_six',
+	`table_seven`			= '$table_seven',
+	`table_eight`			= '$table_eight',
+	`table_nine`			= '$table_nine',
+	`table_ten`				= '$table_ten',
+	`table_eleven`			= '$table_eleven',
+	`table_twelve`			= '$table_twelve',
+	`table_thirteen`		= '$table_thirteen',
+	`table_fourteen`		= '$table_fourteen',
+	`table_fifteen`			= '$table_fifteen',
+	`table_sixteen`			= '$table_sixteen',
+	`table_seventeen`		= '$table_seventeen',
+	`table_eighteen`		= '$table_eighteen',
+	`table_nineteen`		= '$table_nineteen',
+	`table_twenty`			= '$table_twenty',
+	`table_twentyone`		= '$table_twentyone',
+	`table_twentytwo`		= '$table_twentytwo',
+	`table_twentythree`		= '$table_twentythree',
+	`bath_times`			= '$bath_times',
+	`handwashing`			= '$handwashing',
+	`brush_teeth`			= '$brush_teeth',
+	`floss_use`				= '$floss_use',
+	`toothbrush`			= '$toothbrush',
+	`nails_cut`				= '$nails_cut',
+	`bath_towel`			= '$bath_towel',
+	`id_patient`			= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
 function saveChildLifestyleData_DOM($connection, $method,
 	$id_patient,
 	$wake_food,

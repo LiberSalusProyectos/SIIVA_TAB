@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 03-04-2020 a las 19:20:30
+-- Tiempo de generación: 07-04-2020 a las 16:49:49
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -21,6 +21,87 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `siivat`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `babylifestyledata`
+--
+
+CREATE TABLE `babylifestyledata` (
+  `id_data` int(14) NOT NULL,
+  `wake_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `chemical_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `food_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fast_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fatty_food` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `mealtime` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `overeat` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `balanced_diet` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fruit_diet` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `meat_diet` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dairy_products` tinyint(1) DEFAULT NULL,
+  `meats` tinyint(1) DEFAULT NULL,
+  `tubers` tinyint(1) DEFAULT NULL,
+  `vegetables` tinyint(1) DEFAULT NULL,
+  `fruits` tinyint(1) DEFAULT NULL,
+  `cereals` tinyint(1) DEFAULT NULL,
+  `snacks` tinyint(1) DEFAULT NULL,
+  `early_stimulation` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `exercise` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `exercise_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sport_active` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `kid_review` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_exams` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dentist` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nutrition` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `psychology` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `previous_treatment` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `diseases` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `childcare` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `second_opinion` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `say_feelings` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `speak_louder` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `play` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `withdrawn` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `share_family` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `moodiness` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `work_alone` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_one` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_two` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_three` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_four` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_five` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_six` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_seven` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_eight` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_nine` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_ten` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_eleven` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_twelve` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_thirteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_fourteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_fifteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_sixteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_seventeen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_eighteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_nineteen` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_twenty` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_twentyone` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_twentytwo` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `table_twentythree` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `bath_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `handwashing` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `brush_teeth` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `floss_use` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `toothbrush` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nails_cut` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `bath_towel` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -10693,6 +10774,12 @@ CREATE TABLE `younglifestyledata` (
 --
 
 --
+-- Indices de la tabla `babylifestyledata`
+--
+ALTER TABLE `babylifestyledata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `basicfamilydata`
 --
 ALTER TABLE `basicfamilydata`
@@ -10756,6 +10843,12 @@ ALTER TABLE `younglifestyledata`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `babylifestyledata`
+--
+ALTER TABLE `babylifestyledata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `basicfamilydata`
