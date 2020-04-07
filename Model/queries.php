@@ -155,6 +155,71 @@ function saveFamilyRecordData_DOM($connection, $method,
 
 
 /**
+ * [Función para el almacenado de información del contexto socio-cultural]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveSocioculturalData_DOM($connection, $method,
+	$id_patient,
+	$decisions,
+	$harmony,
+	$responsibility,
+	$sweetie,
+	$point_blank,
+	$defects,
+	$experience,
+	$support,
+	$tasks,
+	$habits,
+	$converse,
+	$look_help,
+	$respect,
+	$show_affection,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `socioculturaldata` SET
+	`decisions`			= '$decisions',
+	`harmony`			= '$harmony',
+	`responsibility`	= '$responsibility',
+	`sweetie`			= '$sweetie',
+	`point_blank`		= '$point_blank',
+	`defects`			= '$defects',
+	`experience`		= '$experience',
+	`support`			= '$support',
+	`tasks`				= '$tasks',
+	`habits`			= '$habits',
+	`converse`			= '$converse',
+	`look_help`			= '$look_help',
+	`respect`			= '$respect',
+	`show_affection`	= '$show_affection',
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+
+/**
  * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $method      [Selección entre insertar o actualizar]

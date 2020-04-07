@@ -24,6 +24,13 @@
                         $module = "family_record.php";
                         break;
 
+                    case 'socioCultural':
+                        $sectionName = SOCIOCULTURAL_NAME;
+                        $iconName = "fa-futbol";
+                        $table = "socioculturaldata";
+                        $module = "sociocultural.php";
+                        break;
+
                     case 'bornLifestyle':
                         $sectionName = BORN_LIFESTYLE_NAME;
                         $iconName = "fa-baby";

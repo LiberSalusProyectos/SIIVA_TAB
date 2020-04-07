@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 07-04-2020 a las 16:49:49
+-- Tiempo de generación: 07-04-2020 a las 23:35:23
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10627,6 +10627,33 @@ INSERT INTO `roles` (`id`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `socioculturaldata`
+--
+
+CREATE TABLE `socioculturaldata` (
+  `id_data` int(14) NOT NULL,
+  `decisions` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `harmony` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `responsibility` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sweetie` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `point_blank` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `defects` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `experience` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `support` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tasks` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `habits` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `converse` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `look_help` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `respect` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `show_affection` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -10822,6 +10849,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `socioculturaldata`
+--
+ALTER TABLE `socioculturaldata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -10891,6 +10924,12 @@ ALTER TABLE `familyrecorddata`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `socioculturaldata`
+--
+ALTER TABLE `socioculturaldata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

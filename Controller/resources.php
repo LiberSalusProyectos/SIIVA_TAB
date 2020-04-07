@@ -1,6 +1,7 @@
 <?php include_once("Model/queries.php");
 
 !defined('FAMILY_RECORD_NAME') && define('FAMILY_RECORD_NAME', 'ANTECEDENTES FAMILIARES');
+!defined('SOCIOCULTURAL_NAME') && define('SOCIOCULTURAL_NAME', 'SOCIO CULTURAL');
 !defined('BORN_LIFESTYLE_NAME') && define('BORN_LIFESTYLE_NAME', 'ESTILO VIDA [0-1] AÑO');
 !defined('BABY_LIFESTYLE_NAME') && define('BABY_LIFESTYLE_NAME', 'ESTILO VIDA [1-5] AÑOS');
 !defined('CHILD_LIFESTYLE_NAME') && define('CHILD_LIFESTYLE_NAME', 'ESTILO VIDA [6-12] AÑOS');
@@ -51,6 +52,9 @@ function getModuleData($connection, $module, $id_patient){
 	switch ($module) {
 		case "familyRecord":
 			$table = "familyrecorddata";
+			break;
+		case "socioCultural":
+			$table = "socioculturaldata";
 			break;
 		case "bornLifestyle":
 			$table = "bornlifestyledata";
@@ -173,6 +177,37 @@ function saveFamilyRecordData($connection, $method, $data, $id_user){
 		($data['death_age']!="" ? 1 : 0),
 		$data['death_cause'],
 		$data['observations'],
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro del contexto socio-cultural]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveSocioculturalData($connection, $method, $data, $id_user){
+
+	$result = saveSocioculturalData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['decisions'],
+		$data['harmony'],
+		$data['responsibility'],
+		$data['sweetie'],
+		$data['point_blank'],
+		$data['defects'],
+		$data['experience'],
+		$data['support'],
+		$data['tasks'],
+		$data['habits'],
+		$data['converse'],
+		$data['look_help'],
+		$data['respect'],
+		$data['show_affection'],
 		$id_user);
 
 	return $result;
