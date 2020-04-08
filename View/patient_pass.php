@@ -40,14 +40,14 @@
 
                     case 'socioCultural':
                         $sectionName = SOCIOCULTURAL_NAME;
-                        $iconName = "fa-futbol";
+                        $iconName = "fa-leaf";
                         $table = "socioculturaldata";
                         $module = "sociocultural.php";
                         break;
 
                     case 'bornLifestyle':
                         $sectionName = BORN_LIFESTYLE_NAME;
-                        $iconName = "fa-baby";
+                        $iconName = "fa-baby-carriage";
                         $table = "bornlifestyledata";
                         $module = "born_lifestyle.php";
                         break;

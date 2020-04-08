@@ -55,7 +55,7 @@
             <div class="offset-0 offset-md-2 offset-sm-2 offset-lg-3 col-12 col-sm-8 col-md-8 col-lg-6 text-center">
                 <button class="btn my-2 my-sm-0 custom-btn-disabled" type="submit">
                     <span>
-                        <i class="fas fa-futbol custom-icon icon-behind"></i>
+                        <i class="fas fa-leaf custom-icon icon-behind"></i>
                         <h4 class="text-white bold-font text-forward"><?php echo SOCIOCULTURAL_NAME; ?></h4>
                     </span>
                 </button>
