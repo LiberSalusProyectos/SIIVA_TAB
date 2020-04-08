@@ -24,6 +24,13 @@
                         $module = "family_record.php";
                         break;
 
+                    case 'dass21Scale':
+                        $sectionName = DASS21_SCALE_NAME;
+                        $iconName = "fa-file-medical-alt";
+                        $table = "dass21data";
+                        $module = "dass21_scale.php";
+                        break;
+
                     case 'geriatricDepression':
                         $sectionName = GERIATRIC_DEPRESSION_NAME;
                         $iconName = "fa-hourglass-end";

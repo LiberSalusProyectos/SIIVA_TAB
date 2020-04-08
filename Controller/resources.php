@@ -1,6 +1,7 @@
 <?php include_once("Model/queries.php");
 
 !defined('FAMILY_RECORD_NAME') && define('FAMILY_RECORD_NAME', 'ANTECEDENTES FAMILIARES');
+!defined('DASS21_SCALE_NAME') && define('DASS21_SCALE_NAME', 'DASS-21');
 !defined('GERIATRIC_DEPRESSION_NAME') && define('GERIATRIC_DEPRESSION_NAME', 'DEPRESIÓN GERIÁTRICA');
 !defined('ZARITT_SCALE_NAME') && define('ZARITT_SCALE_NAME', 'ESCALA DE ZARITT');
 !defined('SOCIOCULTURAL_NAME') && define('SOCIOCULTURAL_NAME', 'SOCIO CULTURAL');
@@ -54,6 +55,9 @@ function getModuleData($connection, $module, $id_patient){
 	switch ($module) {
 		case "familyRecord":
 			$table = "familyrecorddata";
+			break;
+		case "dass21Scale":
+			$table = "dass21data";
 			break;
 		case "geriatricDepression":
 			$table = "geriatricdepressiondata";
@@ -185,6 +189,44 @@ function saveFamilyRecordData($connection, $method, $data, $id_user){
 		($data['death_age']!="" ? 1 : 0),
 		$data['death_cause'],
 		$data['observations'],
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de Escala abreviada de la Hoja de administración familiar de DASS-21.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveDass21Data($connection, $method, $data, $id_user){
+
+	$result = saveDass21Data_DOM($connection, $method,
+		$data['id_patient'],
+		$data['relax'],
+		$data['dry_mouth'],
+		$data['positive_feelings'],
+		$data['breathe'],
+		$data['initiative'],
+		$data['exaggerate'],
+		$data['tingling_hands'],
+		$data['worried'],
+		$data['concerned'],
+		$data['be_down'],
+		$data['agitate'],
+		$data['relax_difficult'],
+		$data['depression'],
+		$data['intolerance'],
+		$data['panic'],
+		$data['enthusiasm'],
+		$data['selfsteem'],
+		$data['irritable'],
+		$data['feel_agitated'],
+		$data['fear'],
+		$data['meaningless_life'],
 		$id_user);
 
 	return $result;

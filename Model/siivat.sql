@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 08-04-2020 a las 19:35:41
+-- Tiempo de generación: 08-04-2020 a las 23:46:28
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10534,6 +10534,40 @@ CREATE TABLE `childlifestyledata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `dass21data`
+--
+
+CREATE TABLE `dass21data` (
+  `id_data` int(14) NOT NULL,
+  `relax` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dry_mouth` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `positive_feelings` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `breathe` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `initiative` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `exaggerate` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tingling_hands` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `worried` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `concerned` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `be_down` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `agitate` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `relax_difficult` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `depression` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `intolerance` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `panic` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `enthusiasm` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `selfsteem` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `irritable` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `feel_agitated` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fear` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `meaningless_life` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `familyrecorddata`
 --
 
@@ -10885,6 +10919,12 @@ ALTER TABLE `childlifestyledata`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `dass21data`
+--
+ALTER TABLE `dass21data`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `familyrecorddata`
 --
 ALTER TABLE `familyrecorddata`
@@ -10971,6 +11011,12 @@ ALTER TABLE `bornlifestyledata`
 -- AUTO_INCREMENT de la tabla `childlifestyledata`
 --
 ALTER TABLE `childlifestyledata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `dass21data`
+--
+ALTER TABLE `dass21data`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --

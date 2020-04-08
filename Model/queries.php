@@ -154,6 +154,84 @@ function saveFamilyRecordData_DOM($connection, $method,
 }
 
 /**
+ * [Función para el almacenado de información de la Hoja de administración familiar de DASS-21.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveDass21Data_DOM($connection, $method,
+	$id_patient,
+	$relax,
+	$dry_mouth,
+	$positive_feelings,
+	$breathe,
+	$initiative,
+	$exaggerate,
+	$tingling_hands,
+	$worried,
+	$concerned,
+	$be_down,
+	$agitate,
+	$relax_difficult,
+	$depression,
+	$intolerance,
+	$panic,
+	$enthusiasm,
+	$selfsteem,
+	$irritable,
+	$feel_agitated,
+	$fear,
+	$meaningless_life,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `dass21data` SET
+	`relax`				= '$relax',
+	`dry_mouth`			= '$dry_mouth',
+	`positive_feelings`	= '$positive_feelings',
+	`breathe`			= '$breathe',
+	`initiative`		= '$initiative',
+	`exaggerate`		= '$exaggerate',
+	`tingling_hands`	= '$tingling_hands',
+	`worried`			= '$worried',
+	`concerned`			= '$concerned',
+	`be_down`			= '$be_down',
+	`agitate`			= '$agitate',
+	`relax_difficult`	= '$relax_difficult',
+	`depression`		= '$depression',
+	`intolerance`		= '$intolerance',
+	`panic`				= '$panic',
+	`enthusiasm`		= '$enthusiasm',
+	`selfsteem`			= '$selfsteem',
+	`irritable`			= '$irritable',
+	`feel_agitated`		= '$feel_agitated',
+	`fear`				= '$fear',
+	`meaningless_life`	= '$meaningless_life',
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
  * [Función para el almacenado de información de la Escala abreviada de depresión geriátrica deYesavage.]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $method      [Selección entre insertar o actualizar]
