@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 07-04-2020 a las 23:35:23
+-- Tiempo de generación: 08-04-2020 a las 19:35:41
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10606,6 +10606,34 @@ CREATE TABLE `familyrecorddata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `geriatricdepressiondata`
+--
+
+CREATE TABLE `geriatricdepressiondata` (
+  `id_data` int(14) NOT NULL,
+  `satisfied` tinyint(1) DEFAULT NULL,
+  `giveup_hobby` tinyint(1) DEFAULT NULL,
+  `empty_life` tinyint(1) DEFAULT NULL,
+  `boredom` tinyint(1) DEFAULT NULL,
+  `optimism` tinyint(1) DEFAULT NULL,
+  `fear` tinyint(1) DEFAULT NULL,
+  `happiness` tinyint(1) DEFAULT NULL,
+  `abandonment` tinyint(1) DEFAULT NULL,
+  `at_home` tinyint(1) DEFAULT NULL,
+  `memory_loss` tinyint(1) DEFAULT NULL,
+  `love_forlife` tinyint(1) DEFAULT NULL,
+  `start_difficult` tinyint(1) DEFAULT NULL,
+  `full_energy` tinyint(1) DEFAULT NULL,
+  `anxiety` tinyint(1) DEFAULT NULL,
+  `economy` tinyint(1) DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -10796,6 +10824,26 @@ CREATE TABLE `younglifestyledata` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `zarittscaledata`
+--
+
+CREATE TABLE `zarittscaledata` (
+  `id_data` int(14) NOT NULL,
+  `own_time` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `stressed` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `relationship` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `exhausted` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `healthy` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `control_life` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `overloaded` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -10843,6 +10891,12 @@ ALTER TABLE `familyrecorddata`
   ADD PRIMARY KEY (`id_data`) USING BTREE;
 
 --
+-- Indices de la tabla `geriatricdepressiondata`
+--
+ALTER TABLE `geriatricdepressiondata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -10871,6 +10925,12 @@ ALTER TABLE `vitalsigndata`
 -- Indices de la tabla `younglifestyledata`
 --
 ALTER TABLE `younglifestyledata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
+-- Indices de la tabla `zarittscaledata`
+--
+ALTER TABLE `zarittscaledata`
   ADD PRIMARY KEY (`id_data`);
 
 --
@@ -10920,6 +10980,12 @@ ALTER TABLE `familyrecorddata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `geriatricdepressiondata`
+--
+ALTER TABLE `geriatricdepressiondata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -10947,6 +11013,12 @@ ALTER TABLE `vitalsigndata`
 -- AUTO_INCREMENT de la tabla `younglifestyledata`
 --
 ALTER TABLE `younglifestyledata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `zarittscaledata`
+--
+ALTER TABLE `zarittscaledata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --

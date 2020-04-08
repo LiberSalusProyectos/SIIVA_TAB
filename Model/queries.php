@@ -153,6 +153,121 @@ function saveFamilyRecordData_DOM($connection, $method,
 	return $inserted;
 }
 
+/**
+ * [Función para el almacenado de información de la Escala abreviada de depresión geriátrica deYesavage.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveGeriatricDepressionData_DOM($connection, $method,
+	$id_patient,
+	$satisfied,
+	$giveup_hobby,
+	$empty_life,
+	$boredom,
+	$optimism,
+	$fear,
+	$happiness,
+	$abandonment,
+	$at_home,
+	$memory_loss,
+	$love_forlife,
+	$start_difficult,
+	$full_energy,
+	$anxiety,
+	$economy,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `geriatricdepressiondata` SET
+	`satisfied`			= $satisfied,
+	`giveup_hobby`		= $giveup_hobby,
+	`empty_life`		= $empty_life,
+	`boredom`			= $boredom,
+	`optimism`			= $optimism,
+	`fear`				= $fear,
+	`happiness`			= $happiness,
+	`abandonment`		= $abandonment,
+	`at_home`			= $at_home,
+	`memory_loss`		= $memory_loss,
+	`love_forlife`		= $love_forlife,
+	`start_difficult`	= $start_difficult,
+	`full_energy`		= $full_energy,
+	`anxiety`			= $anxiety,
+	`economy`			= $economy,
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
+ * [Función para el almacenado de información de la Escala abreviada de sobre carga del cuidador de Zarit.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveZarittScaleData_DOM($connection, $method,
+	$id_patient,
+	$own_time,
+	$stressed,
+	$relationship,
+	$exhausted,
+	$healthy,
+	$control_life,
+	$overloaded,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `zarittscaledata` SET
+	`own_time`			= '$own_time',
+	`stressed`			= '$stressed',
+	`relationship`		= '$relationship',
+	`exhausted`			= '$exhausted',
+	`healthy`			= '$healthy',
+	`control_life`		= '$control_life',
+	`overloaded`		= '$overloaded',
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
 
 /**
  * [Función para el almacenado de información del contexto socio-cultural]

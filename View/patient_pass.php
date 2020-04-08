@@ -24,6 +24,20 @@
                         $module = "family_record.php";
                         break;
 
+                    case 'geriatricDepression':
+                        $sectionName = GERIATRIC_DEPRESSION_NAME;
+                        $iconName = "fa-hourglass-end";
+                        $table = "geriatricdepressiondata";
+                        $module = "geriatric_depression.php";
+                        break;
+                    
+                    case 'zarittScale':
+                        $sectionName = ZARITT_SCALE_NAME;
+                        $iconName = "fa-bath";
+                        $table = "zarittscaledata";
+                        $module = "zaritt_scale.php";
+                        break;
+
                     case 'socioCultural':
                         $sectionName = SOCIOCULTURAL_NAME;
                         $iconName = "fa-futbol";

@@ -1,6 +1,8 @@
 <?php include_once("Model/queries.php");
 
 !defined('FAMILY_RECORD_NAME') && define('FAMILY_RECORD_NAME', 'ANTECEDENTES FAMILIARES');
+!defined('GERIATRIC_DEPRESSION_NAME') && define('GERIATRIC_DEPRESSION_NAME', 'DEPRESIÓN GERIÁTRICA');
+!defined('ZARITT_SCALE_NAME') && define('ZARITT_SCALE_NAME', 'ESCALA DE ZARITT');
 !defined('SOCIOCULTURAL_NAME') && define('SOCIOCULTURAL_NAME', 'SOCIO CULTURAL');
 !defined('BORN_LIFESTYLE_NAME') && define('BORN_LIFESTYLE_NAME', 'ESTILO VIDA [0-1] AÑO');
 !defined('BABY_LIFESTYLE_NAME') && define('BABY_LIFESTYLE_NAME', 'ESTILO VIDA [1-5] AÑOS');
@@ -52,6 +54,12 @@ function getModuleData($connection, $module, $id_patient){
 	switch ($module) {
 		case "familyRecord":
 			$table = "familyrecorddata";
+			break;
+		case "geriatricDepression":
+			$table = "geriatricdepressiondata";
+			break;
+		case "zarittScale":
+			$table = "zarittscaledata";
 			break;
 		case "socioCultural":
 			$table = "socioculturaldata";
@@ -181,6 +189,63 @@ function saveFamilyRecordData($connection, $method, $data, $id_user){
 
 	return $result;
 }
+
+/**
+ * [Función para el almacenado de información dentro de la Escala abreviada de depresión geriátrica deYesavage.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveGeriatricDepressionData($connection, $method, $data, $id_user){
+
+	$result = saveGeriatricDepressionData_DOM($connection, $method,
+		$data['id_patient'],
+		($data['satisfied']!="" ? $data['satisfied'] : 0),
+		($data['giveup_hobby']!="" ? $data['giveup_hobby'] : 0),
+		($data['empty_life']!="" ? $data['empty_life'] : 0),
+		($data['boredom']!="" ? $data['boredom'] : 0),
+		($data['optimism']!="" ? $data['optimism'] : 0),
+		($data['fear']!="" ? $data['fear'] : 0),
+		($data['happiness']!="" ? $data['happiness'] : 0),
+		($data['abandonment']!="" ? $data['abandonment'] : 0),
+		($data['at_home']!="" ? $data['at_home'] : 0),
+		($data['memory_loss']!="" ? $data['memory_loss'] : 0),
+		($data['love_forlife']!="" ? $data['love_forlife'] : 0),
+		($data['start_difficult']!="" ? $data['start_difficult'] : 0),
+		($data['full_energy']!="" ? $data['full_energy'] : 0),
+		($data['anxiety']!="" ? $data['anxiety'] : 0),
+		($data['economy']!="" ? $data['economy'] : 0),
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de Escala abreviada de sobre carga del cuidador de Zarit.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveZarittScaleData($connection, $method, $data, $id_user){
+
+	$result = saveZarittScaleData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['own_time'],
+		$data['stressed'],
+		$data['relationship'],
+		$data['exhausted'],
+		$data['healthy'],
+		$data['control_life'],
+		$data['overloaded'],
+		$id_user);
+
+	return $result;
+}
+
 
 /**
  * [Función para el almacenado de información dentro del contexto socio-cultural]
