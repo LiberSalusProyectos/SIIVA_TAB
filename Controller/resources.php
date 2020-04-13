@@ -4,6 +4,7 @@
 !defined('DASS21_SCALE_NAME') && define('DASS21_SCALE_NAME', 'DASS-21');
 !defined('GERIATRIC_DEPRESSION_NAME') && define('GERIATRIC_DEPRESSION_NAME', 'DEPRESIÓN GERIÁTRICA');
 !defined('ZARITT_SCALE_NAME') && define('ZARITT_SCALE_NAME', 'ESCALA DE ZARITT');
+!defined('ETS_NAME') && define('ETS_NAME', 'ENF. TRANS. SEXUAL');
 !defined('SOCIOCULTURAL_NAME') && define('SOCIOCULTURAL_NAME', 'SOCIO CULTURAL');
 !defined('BORN_LIFESTYLE_NAME') && define('BORN_LIFESTYLE_NAME', 'ESTILO VIDA [0-1] AÑO');
 !defined('BABY_LIFESTYLE_NAME') && define('BABY_LIFESTYLE_NAME', 'ESTILO VIDA [1-5] AÑOS');
@@ -64,6 +65,9 @@ function getModuleData($connection, $module, $id_patient){
 			break;
 		case "zarittScale":
 			$table = "zarittscaledata";
+			break;
+		case "ets":
+			$table = "etsdata";
 			break;
 		case "socioCultural":
 			$table = "socioculturaldata";
@@ -288,6 +292,40 @@ function saveZarittScaleData($connection, $method, $data, $id_user){
 	return $result;
 }
 
+/**
+ * [Función para el almacenado de información dentro de la sección de Enfermedades de transmisión sexual de acuerdo a edad, sexo y orientación sexual.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveETSData($connection, $method, $data, $id_user){
+
+	$result = saveETSData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['gender'],
+		($data['starts_activity']!="" ? $data['starts_activity'] : 0),
+		utf8_decode($data['sexual_orientation']),
+		($data['couples']!="" ? $data['couples'] : 0),
+		($data['safe_sex']!="" ? $data['safe_sex'] : 0),
+		($data['contraceptives']!="" ? $data['contraceptives'] : 0),
+		($data['condom']!="" ? $data['condom'] : 0),
+		($data['intercourse']!="" ? $data['intercourse'] : 0),
+		($data['ets_exposed']!="" ? $data['ets_exposed'] : 0),
+		($data['medical_treatment']!="" ? $data['medical_treatment'] : 0),
+		($data['vih_test']!="" ? $data['vih_test'] : 0),
+		($data['pap_smear']!="" ? $data['pap_smear'] : 0),
+		utf8_decode($data['pap_smear_result']),
+		utf8_decode($data['knowledge']),
+		($data['ways_transmit']!="" ? $data['ways_transmit'] : 0),
+		($data['talks']!="" ? $data['talks'] : 0),
+		($data['vih_symptom']!="" ? $data['vih_symptom'] : 0),
+		($data['vih_clinic']!="" ? $data['vih_clinic'] : 0),
+		$id_user);
+
+	return $result;
+}
 
 /**
  * [Función para el almacenado de información dentro del contexto socio-cultural]

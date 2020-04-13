@@ -348,6 +348,78 @@ function saveZarittScaleData_DOM($connection, $method,
 }
 
 /**
+ * [Función para el almacenado de información de Enfermedades de transmisión sexual de acuerdo a edad, sexo y orientación sexual.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveETSData_DOM($connection, $method,
+	$id_patient,
+	$gender,
+	$starts_activity,
+	$sexual_orientation,
+	$couples,
+	$safe_sex,
+	$contraceptives,
+	$condom,
+	$intercourse,
+	$ets_exposed,
+	$medical_treatment,
+	$vih_test,
+	$pap_smear,
+	$pap_smear_result,
+	$knowledge,
+	$ways_transmit,
+	$talks,
+	$vih_symptom,
+	$vih_clinic,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `etsdata` SET
+	`gender`			= '$gender',
+	`starts_activity`	= $starts_activity,
+	`sexual_orientation`= '$sexual_orientation',
+	`couples`			= $couples,
+	`safe_sex`			= $safe_sex,
+	`contraceptives`	= $contraceptives,
+	`condom`			= $condom,
+	`intercourse`		= $intercourse,
+	`ets_exposed`		= $ets_exposed,
+	`medical_treatment`	= $medical_treatment,
+	`vih_test`			= $vih_test,
+	`pap_smear`			= $pap_smear,
+	`pap_smear_result`	= '$pap_smear_result',
+	`knowledge`			= '$knowledge',
+	`ways_transmit`		= $ways_transmit,
+	`talks`				= $talks,
+	`vih_symptom`		= $vih_symptom,
+	`vih_clinic`		= $vih_clinic,
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
  * [Función para el almacenado de información del contexto socio-cultural]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $method      [Selección entre insertar o actualizar]

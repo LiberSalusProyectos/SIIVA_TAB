@@ -31,6 +31,13 @@
                         $module = "dass21_scale.php";
                         break;
 
+                    case 'ets':
+                        $sectionName = ETS_NAME;
+                        $iconName = "fa-random";
+                        $table = "etsdata";
+                        $module = "ets.php";
+                        break;
+
                     case 'geriatricDepression':
                         $sectionName = GERIATRIC_DEPRESSION_NAME;
                         $iconName = "fa-hourglass-end";
