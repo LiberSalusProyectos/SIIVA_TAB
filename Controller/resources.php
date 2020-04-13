@@ -74,6 +74,9 @@ function getModuleData($connection, $module, $id_patient){
 		case "socioCultural":
 			$table = "socioculturaldata";
 			break;
+		case "diabetes":
+			$table = "diabetesdata";
+			break;
 		case "bornLifestyle":
 			$table = "bornlifestyledata";
 			break;
@@ -359,6 +362,47 @@ function saveSocioculturalData($connection, $method, $data, $id_user){
 
 	return $result;
 }
+
+/**
+ * [Función para el almacenado de información de Tamizaje de diabetes mellitus.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveDiabetesData($connection, $method, $data, $id_user){
+
+	$result = saveDiabetesData_DOM($connection, $method,
+		$data['id_patient'],
+		($data['suffer_from']!="" ? $data['suffer_from'] : 0),
+		($data['thirsty']!="" ? $data['thirsty'] : 0),
+		($data['urinate']!="" ? $data['urinate'] : 0),
+		($data['lose_weight']!="" ? $data['lose_weight'] : 0),
+		($data['over_eat']!="" ? $data['over_eat'] : 0),
+		($data['glucose_check']!="" ? $data['glucose_check'] : 0),
+		$data['medical_times'],
+		$data['treatment'],
+		$data['feel_bad'],
+		$data['check_foot'],
+		$data['vision_changes'],
+		$data['healing_problems'],
+		$data['proper_diet'],
+		$data['weight_changes'],
+		$data['medical_control'],
+		($data['naturist']!="" ? $data['naturist'] : 0),
+		$data['age'],
+		$data['gender'],
+		($data['gestational_diabetes']!="" ? $data['gestational_diabetes'] : 0),
+		($data['family']!="" ? $data['family'] : 0),
+		($data['blood_pressure']!="" ? $data['blood_pressure'] : 0),
+		($data['physical_activity']!="" ? $data['physical_activity'] : 0),
+		$data['weight'],
+		$id_user);
+
+	return $result;
+}
+
 
 /**
  * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]

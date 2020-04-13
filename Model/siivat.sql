@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 13-04-2020 a las 20:06:34
+-- Tiempo de generación: 13-04-2020 a las 23:36:03
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10568,6 +10568,42 @@ CREATE TABLE `dass21data` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `diabetesdata`
+--
+
+CREATE TABLE `diabetesdata` (
+  `id_data` int(14) NOT NULL,
+  `suffer_from` tinyint(1) DEFAULT NULL,
+  `thirsty` tinyint(1) DEFAULT NULL,
+  `urinate` tinyint(1) DEFAULT NULL,
+  `lose_weight` tinyint(1) DEFAULT NULL,
+  `over_eat` tinyint(1) DEFAULT NULL,
+  `glucose_check` tinyint(1) DEFAULT NULL,
+  `medical_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `treatment` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `feel_bad` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `check_foot` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `vision_changes` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `healing_problems` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `proper_diet` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `weight_changes` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_control` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `naturist` tinyint(1) DEFAULT NULL,
+  `age` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `gender` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `gestational_diabetes` tinyint(1) DEFAULT NULL,
+  `family` tinyint(1) DEFAULT NULL,
+  `blood_pressure` tinyint(1) DEFAULT NULL,
+  `physical_activity` tinyint(1) DEFAULT NULL,
+  `weight` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `etsdata`
 --
 
@@ -10956,6 +10992,12 @@ ALTER TABLE `dass21data`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `diabetesdata`
+--
+ALTER TABLE `diabetesdata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `etsdata`
 --
 ALTER TABLE `etsdata`
@@ -11054,6 +11096,12 @@ ALTER TABLE `childlifestyledata`
 -- AUTO_INCREMENT de la tabla `dass21data`
 --
 ALTER TABLE `dass21data`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `diabetesdata`
+--
+ALTER TABLE `diabetesdata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --

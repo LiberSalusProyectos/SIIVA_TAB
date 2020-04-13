@@ -62,7 +62,7 @@
                     case 'diabetes':
                         $sectionName = DIABETES_NAME;
                         $iconName = "fa-dna";
-                        $table = "socioculturaldata";
+                        $table = "diabetesdata";
                         $module = "diabetes.php";
                         break;
                 

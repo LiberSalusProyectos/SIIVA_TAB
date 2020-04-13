@@ -412,7 +412,7 @@ function saveETSData_DOM($connection, $method,
 	`capturist` 		= $capturist $postQuery";
 
 	// var_dump($query);
-	echo $query;
+	// echo $query;
 
 	$inserted = mysqli_query($connection, $query);
 
@@ -483,6 +483,87 @@ function saveSocioculturalData_DOM($connection, $method,
 	return $inserted;
 }
 
+/**
+ * [Función para el almacenado de información de Tamizaje de diabetes mellitus.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveDiabetesData_DOM($connection, $method,
+	$id_patient,
+	$suffer_from,
+	$thirsty,
+	$urinate,
+	$lose_weight,
+	$over_eat,
+	$glucose_check,
+	$medical_times,
+	$treatment,
+	$feel_bad,
+	$check_foot,
+	$vision_changes,
+	$healing_problems,
+	$proper_diet,
+	$weight_changes,
+	$medical_control,
+	$naturist,
+	$age,
+	$gender,
+	$gestational_diabetes,
+	$family,
+	$blood_pressure,
+	$physical_activity,
+	$weight,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `diabetesdata` SET
+	`suffer_from`			= $suffer_from,
+	`thirsty`				= $thirsty,
+	`urinate`				= $urinate,
+	`lose_weight`			= $lose_weight,
+	`over_eat`				= $over_eat,
+	`glucose_check`			= $glucose_check,
+	`medical_times`			= '$medical_times',
+	`treatment`				= '$treatment',
+	`feel_bad`				= '$feel_bad',
+	`check_foot`			= '$check_foot',
+	`vision_changes`		= '$vision_changes',
+	`healing_problems`		= '$healing_problems',
+	`proper_diet`			= '$proper_diet',
+	`weight_changes`		= '$weight_changes',
+	`medical_control`		= '$medical_control',
+	`naturist`				= $naturist,
+	`age`					= '$age',
+	`gender`				= '$gender',
+	`gestational_diabetes`	= $gestational_diabetes,
+	`family`				= $family,
+	`blood_pressure`		= $blood_pressure,
+	`physical_activity`		= $physical_activity,
+	`weight`				= '$weight',
+	`id_patient`	= $id_patient,
+	`created_at` 	= CURRENT_TIMESTAMP,
+	`capturist` 	= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
 
 /**
  * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
