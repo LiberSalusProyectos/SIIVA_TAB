@@ -26,7 +26,7 @@
 
                     case 'dass21Scale':
                         $sectionName = DASS21_SCALE_NAME;
-                        $iconName = "fa-file-medical-alt";
+                        $iconName = "fa-tablets";
                         $table = "dass21data";
                         $module = "dass21_scale.php";
                         break;
@@ -57,6 +57,20 @@
                         $iconName = "fa-leaf";
                         $table = "socioculturaldata";
                         $module = "sociocultural.php";
+                        break;
+
+                    case 'diabetes':
+                        $sectionName = DIABETES_NAME;
+                        $iconName = "fa-dna";
+                        $table = "socioculturaldata";
+                        $module = "diabetes.php";
+                        break;
+                
+                    case 'hypertension':
+                        $sectionName = HYPERTENSION_NAME;
+                        $iconName = "fa-heartbeat";
+                        $table = "socioculturaldata";
+                        $module = "hypertension.php";
                         break;
 
                     case 'bornLifestyle':

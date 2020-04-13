@@ -57,7 +57,7 @@
           <a href="patient_pass.php?m=dass21Scale">
             <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
               <span>
-                <i class="fas fa-file-medical-alt custom-teeth-open-icon icon-behind"></i>
+                <i class="fas fa-tablets custom-teeth-open-icon icon-behind"></i>
                 <h2 class="text-white bold-font text-forward2"><?php echo DASS21_SCALE_NAME; ?></h2>
               </span>
             </button>
@@ -107,6 +107,30 @@
               <span>
                 <i class="fas fa-leaf custom-teeth-open-icon icon-behind"></i>
                 <h2 class="text-white bold-font text-forward2"><?php echo SOCIOCULTURAL_NAME; ?></h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
+          <a href="patient_pass.php?m=diabetes">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-dna custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo DIABETES_NAME; ?></h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
+          <a href="patient_pass.php?m=hypertension">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-heartbeat custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo HYPERTENSION_NAME; ?></h2>
               </span>
             </button>
           </a>
