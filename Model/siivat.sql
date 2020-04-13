@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 08-04-2020 a las 23:46:28
+-- Tiempo de generación: 13-04-2020 a las 20:06:34
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10568,6 +10568,37 @@ CREATE TABLE `dass21data` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `etsdata`
+--
+
+CREATE TABLE `etsdata` (
+  `id_data` int(14) NOT NULL,
+  `gender` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `starts_activity` tinyint(1) DEFAULT NULL,
+  `sexual_orientation` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `couples` tinyint(1) DEFAULT NULL,
+  `safe_sex` tinyint(1) DEFAULT NULL,
+  `contraceptives` tinyint(1) DEFAULT NULL,
+  `condom` tinyint(1) DEFAULT NULL,
+  `intercourse` tinyint(1) DEFAULT NULL,
+  `ets_exposed` tinyint(1) DEFAULT NULL,
+  `medical_treatment` tinyint(1) DEFAULT NULL,
+  `vih_test` tinyint(1) DEFAULT NULL,
+  `pap_smear` tinyint(1) DEFAULT NULL,
+  `pap_smear_result` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `knowledge` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ways_transmit` tinyint(1) DEFAULT NULL,
+  `talks` tinyint(1) DEFAULT NULL,
+  `vih_symptom` tinyint(1) DEFAULT NULL,
+  `vih_clinic` tinyint(1) DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `familyrecorddata`
 --
 
@@ -10925,6 +10956,12 @@ ALTER TABLE `dass21data`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `etsdata`
+--
+ALTER TABLE `etsdata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `familyrecorddata`
 --
 ALTER TABLE `familyrecorddata`
@@ -11017,6 +11054,12 @@ ALTER TABLE `childlifestyledata`
 -- AUTO_INCREMENT de la tabla `dass21data`
 --
 ALTER TABLE `dass21data`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `etsdata`
+--
+ALTER TABLE `etsdata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
