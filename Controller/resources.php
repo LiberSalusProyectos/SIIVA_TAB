@@ -12,7 +12,9 @@
 !defined('BABY_LIFESTYLE_NAME') && define('BABY_LIFESTYLE_NAME', 'ESTILO VIDA [1-5] AÑOS');
 !defined('CHILD_LIFESTYLE_NAME') && define('CHILD_LIFESTYLE_NAME', 'ESTILO VIDA [6-12] AÑOS');
 !defined('YOUNG_LIFESTYLE_NAME') && define('YOUNG_LIFESTYLE_NAME', 'ESTILO VIDA [12+] AÑOS');
+!defined('HEALTH_CARE_NAME') && define('HEALTH_CARE_NAME', 'CUIDADO DE LA SALUD');
 !defined('VITAL_SIGN_NAME') && define('VITAL_SIGN_NAME', 'SIGNOS VITALES + LAB');
+!defined('GENDER_VIOLENCE_NAME') && define('GENDER_VIOLENCE_NAME', 'VIOLENCIA DE GÉNERO');
 
 /**
  * [Función para validar las credenciales de acceso al sistema, por cuestión de facilidad se implementó un MD5 sencillo como método de encryptación]
@@ -91,6 +93,9 @@ function getModuleData($connection, $module, $id_patient){
 			break;
 		case "youngLifestyle":
 			$table = "younglifestyledata";
+			break;
+		case "healthCare":
+			$table = "healthcaredata";
 			break;
 		case "vitalSign":
 			$table = "vitalsigndata";
@@ -736,6 +741,40 @@ function saveYoungLifestyleData($connection, $method, $data, $id_user){
 	return $result;
 }
 
+/**
+ * [Función para el almacenado de información dentro de la sección de Cuidado de la Salud]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveHealthCareData($connection, $method, $data, $id_user){
+
+	$result = saveHealthCareData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['scare'],
+		$data['confront'],
+		$data['take_control'],
+		$data['relapse'],
+		$data['bad_inside'],
+		$data['normal'],
+		$data['personality'],
+		$data['something_inside'],
+		$data['professionals'],
+		$data['competent'],
+		$data['can_work'],
+		$data['ashamed'],
+		$data['judge_me'],
+		$data['can_talk'],
+		$data['draw_away'],
+		$data['psychiatric'],
+		$data['well_mentally'],
+		$data['mental_illness'],
+		$id_user);
+
+	return $result;
+}
 
 /**
  * [Función para el almacenado de información dentro de la sección de Signos vitales + Laboratorio]

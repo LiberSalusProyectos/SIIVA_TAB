@@ -101,11 +101,25 @@
                         $module = "young_lifestyle.php";
                         break;
 
+                    case 'healthCare':
+                        $sectionName = HEALTH_CARE_NAME;
+                        $iconName = "fa-user-md";
+                        $table = "healthcaredata";
+                        $module = "health_care.php";
+                        break;
+
                     case 'vitalSign':
                         $sectionName = VITAL_SIGN_NAME;
-                        $iconName = "fa-stethoscope";
+                        $iconName = "fa-microscope";
                         $table = "younglifestyledata";
                         $module = "vital_sign.php";
+                        break;
+
+                    case 'genderViolence':
+                        $sectionName = GENDER_VIOLENCE_NAME;
+                        $iconName = "fa-venus-mars";
+                        $table = "younglifestyledata";
+                        $module = "gender_violence.php";
                         break;
 
                     defalut:

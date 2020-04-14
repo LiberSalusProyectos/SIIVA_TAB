@@ -186,11 +186,35 @@
       </div>
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
         <center>
+          <a href="patient_pass.php?m=healthCare">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-user-md custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo HEALTH_CARE_NAME; ?></h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
           <a href="patient_pass.php?m=vitalSign">
             <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
               <span>
-                <i class="fas fa-stethoscope custom-teeth-open-icon icon-behind"></i>
+                <i class="fas fa-microscope custom-teeth-open-icon icon-behind"></i>
                 <h2 class="text-white bold-font text-forward2"><?php echo VITAL_SIGN_NAME; ?></h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
+          <a href="patient_pass.php?m=genderViolence">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-venus-mars custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo GENDER_VIOLENCE_NAME; ?></h2>
               </span>
             </button>
           </a>

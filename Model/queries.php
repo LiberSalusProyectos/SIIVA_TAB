@@ -1238,6 +1238,79 @@ function saveYoungLifestyleData_DOM($connection, $method,
 }
 
 /**
+ * [Función para el almacenado de información dentro de la sección de Cuidado de la Salud]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveHealthCareData_DOM($connection, $method,
+	$id_patient,
+	$scare,
+	$confront,
+	$take_control,
+	$relapse,
+	$bad_inside,
+	$normal,
+	$personality,
+	$something_inside,
+	$professionals,
+	$competent,
+	$can_work,
+	$ashamed,
+	$judge_me,
+	$can_talk,
+	$draw_away,
+	$psychiatric,
+	$well_mentally,
+	$mental_illness,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `healthcaredata` SET
+	`scare`				= '$scare',
+	`confront`			= '$confront',
+	`take_control`		= '$take_control',
+	`relapse`			= '$relapse',
+	`bad_inside`		= '$bad_inside',
+	`normal`			= '$normal',
+	`personality`		= '$personality',
+	`something_inside`	= '$something_inside',
+	`professionals`		= '$professionals',
+	`competent`			= '$competent',
+	`can_work`			= '$can_work',
+	`ashamed`			= '$ashamed',
+	`judge_me`			= '$judge_me',
+	`can_talk`			= '$can_talk',
+	`draw_away`			= '$draw_away',
+	`psychiatric`		= '$psychiatric',
+	`well_mentally`		= '$well_mentally',
+	`mental_illness`	= '$mental_illness',
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+
+/**
  * [Función para el almacenado de información dentro de la sección de Signos vitales + Laboratorio]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $method      [Selección entre insertar o actualizar]
