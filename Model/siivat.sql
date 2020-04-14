@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 13-04-2020 a las 23:36:03
+-- Tiempo de generación: 14-04-2020 a las 18:06:14
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10735,6 +10735,41 @@ CREATE TABLE `geriatricdepressiondata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `hypertensiondata`
+--
+
+CREATE TABLE `hypertensiondata` (
+  `id_data` int(14) NOT NULL,
+  `heart_attack` tinyint(1) DEFAULT NULL,
+  `family` tinyint(1) DEFAULT NULL,
+  `alcoholic_drinks` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `smoke` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `blood_test` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `stress` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nutrition` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `physical_activity` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_consult` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ringing_ears` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `flashes` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `headache` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pression_check` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `chest_pain` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `difficulty_breathing` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `forget_things` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `kidney_test` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `vision_test` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_visit` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `treatment` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `diet` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_place` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -11016,6 +11051,12 @@ ALTER TABLE `geriatricdepressiondata`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `hypertensiondata`
+--
+ALTER TABLE `hypertensiondata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -11120,6 +11161,12 @@ ALTER TABLE `familyrecorddata`
 -- AUTO_INCREMENT de la tabla `geriatricdepressiondata`
 --
 ALTER TABLE `geriatricdepressiondata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `hypertensiondata`
+--
+ALTER TABLE `hypertensiondata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --

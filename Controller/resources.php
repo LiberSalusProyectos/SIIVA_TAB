@@ -77,6 +77,9 @@ function getModuleData($connection, $module, $id_patient){
 		case "diabetes":
 			$table = "diabetesdata";
 			break;
+		case "hypertension":
+			$table = "hypertensiondata";
+			break;
 		case "bornLifestyle":
 			$table = "bornlifestyledata";
 			break;
@@ -403,6 +406,44 @@ function saveDiabetesData($connection, $method, $data, $id_user){
 	return $result;
 }
 
+/**
+ * [Función para el almacenado de información de Prevención, Tamizaje, Detección y Control de Hipertensión Arterial Sistemica.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveHypertensionData($connection, $method, $data, $id_user){
+
+	$result = saveHypertensionData_DOM($connection, $method,
+		$data['id_patient'],
+		($data['heart_attack']!="" ? $data['heart_attack'] : 0),
+		($data['family']!="" ? $data['family'] : 0),
+		$data['alcoholic_drinks'],
+		$data['smoke'],
+		$data['blood_test'],
+		$data['stress'],
+		$data['nutrition'],
+		$data['physical_activity'],
+		$data['medical_consult'],
+		$data['ringing_ears'],
+		$data['flashes'],
+		$data['headache'],
+		$data['pression_check'],
+		$data['chest_pain'],
+		$data['difficulty_breathing'],
+		$data['forget_things'],
+		$data['kidney_test'],
+		$data['vision_test'],
+		$data['medical_visit'],
+		$data['treatment'],
+		$data['diet'],
+		$data['medical_place'],
+		$id_user);
+
+	return $result;
+}
 
 /**
  * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]

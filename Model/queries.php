@@ -566,6 +566,86 @@ function saveDiabetesData_DOM($connection, $method,
 }
 
 /**
+ * [Función para el almacenado de información de Prevención, Tamizaje, Detección y Control de Hipertensión Arterial Sistemica.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveHypertensionData_DOM($connection, $method,
+	$id_patient,
+	$heart_attack,
+	$family,
+	$alcoholic_drinks,
+	$smoke,
+	$blood_test,
+	$stress,
+	$nutrition,
+	$physical_activity,
+	$medical_consult,
+	$ringing_ears,
+	$flashes,
+	$headache,
+	$pression_check,
+	$chest_pain,
+	$difficulty_breathing,
+	$forget_things,
+	$kidney_test,
+	$vision_test,
+	$medical_visit,
+	$treatment,
+	$diet,
+	$medical_place,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `hypertensiondata` SET
+	`heart_attack`			= $heart_attack,
+	`family`				= $family,
+	`alcoholic_drinks`		= '$alcoholic_drinks',
+	`smoke`					= '$smoke',
+	`blood_test`			= '$blood_test',
+	`stress`				= '$stress',
+	`nutrition`				= '$nutrition',
+	`physical_activity`		= '$physical_activity',
+	`medical_consult`		= '$medical_consult',
+	`ringing_ears`			= '$ringing_ears',
+	`flashes`				= '$flashes',
+	`headache`				= '$headache',
+	`pression_check`		= '$pression_check',
+	`chest_pain`			= '$chest_pain',
+	`difficulty_breathing`	= '$difficulty_breathing',
+	`forget_things`			= '$forget_things',
+	`kidney_test`			= '$kidney_test',
+	`vision_test`			= '$vision_test',
+	`medical_visit`			= '$medical_visit',
+	`treatment`				= '$treatment',
+	`diet`					= '$diet',
+	`medical_place`			= '$medical_place',
+	`id_patient`	= $id_patient,
+	`created_at` 	= CURRENT_TIMESTAMP,
+	`capturist` 	= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
  * [Función para el almacenado de información dentro de la sección de Evaluación de crecimiento y desarrollo]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $method      [Selección entre insertar o actualizar]

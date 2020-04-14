@@ -69,7 +69,7 @@
                     case 'hypertension':
                         $sectionName = HYPERTENSION_NAME;
                         $iconName = "fa-heartbeat";
-                        $table = "socioculturaldata";
+                        $table = "hypertensiondata";
                         $module = "hypertension.php";
                         break;
 
