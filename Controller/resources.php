@@ -100,6 +100,9 @@ function getModuleData($connection, $module, $id_patient){
 		case "vitalSign":
 			$table = "vitalsigndata";
 			break;
+		case "genderViolence":
+			$table = "genderviolencedata";
+			break;
 		default:
 			# code...
 			break;
@@ -809,6 +812,65 @@ function saveVitalSignData($connection, $method, $data, $id_user){
 		($data['prostatic_antigen']!="" ? $data['prostatic_antigen'] : 0),
 		($data['sida']!="" ? 1 : 0),
 		($data['syphilis']!="" ? 1 : 0),
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la secciónd de Cuestionario para evaluación de violencia de género.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveGenderViolenceData($connection, $method, $data, $id_user){
+
+	$result = saveGenderViolenceData_DOM($connection, $method,
+		$data['id_patient'],
+		$data['push_up'],
+		$data['push_down'],
+		$data['strike'],
+		$data['wants'],
+		$data['useless'],
+		$data['normal_hit'],
+		$data['without_reason'],
+		$data['violent'],
+		$data['forced_sex'],
+		$data['engagement_sex'],
+		$data['sex_fear'],
+		$data['bad_treatments'],
+		$data['decide_4me'],
+		$data['isolates_me'],
+		$data['try_isolate'],
+		$data['feel_guilty'],
+		$data['insults_me'],
+		$data['bruises'],
+		$data['be_alert'],
+		$data['denounced'],
+		$data['look_scare'],
+		$data['feel_alone'],
+		$data['can_work'],
+		$data['see_family'],
+		$data['watches_me'],
+		$data['keep_hooked'],
+		$data['regret_guilty'],
+		$data['care_aspect'],
+		$data['have_obey'],
+		$data['gender_equality'],
+		$data['protect_couple'],
+		$data['private_life'],
+		$data['slap_necessary'],
+		$data['abuser_failed'],
+		$data['good_bad'],
+		$data['life_proyect'],
+		$data['without_father'],
+		$data['childrens'],
+		$data['without_me'],
+		$data['love_him'],
+		$data['feel_sorry'],
+		$data['marriage'],
 		$id_user);
 
 	return $result;

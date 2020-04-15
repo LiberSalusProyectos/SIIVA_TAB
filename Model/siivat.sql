@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 14-04-2020 a las 18:06:14
+-- Tiempo de generación: 15-04-2020 a las 16:23:08
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10707,6 +10707,61 @@ CREATE TABLE `familyrecorddata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `genderviolencedata`
+--
+
+CREATE TABLE `genderviolencedata` (
+  `id_data` int(11) NOT NULL,
+  `push_up` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `push_down` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `strike` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `wants` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `useless` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `normal_hit` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `without_reason` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `violent` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `forced_sex` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `engagement_sex` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sex_fear` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `bad_treatments` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `decide_4me` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `isolates_me` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `try_isolate` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `feel_guilty` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `insults_me` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `bruises` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `be_alert` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `denounced` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `look_scare` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `feel_alone` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `can_work` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `see_family` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `watches_me` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `keep_hooked` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `regret_guilty` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `care_aspect` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `have_obey` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `gender_equality` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `protect_couple` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `private_life` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `slap_necessary` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `abuser_failed` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `good_bad` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `life_proyect` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `without_father` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `childrens` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `without_me` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `love_him` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `feel_sorry` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `marriage` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `geriatricdepressiondata`
 --
 
@@ -10727,6 +10782,37 @@ CREATE TABLE `geriatricdepressiondata` (
   `full_energy` tinyint(1) DEFAULT NULL,
   `anxiety` tinyint(1) DEFAULT NULL,
   `economy` tinyint(1) DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `healthcaredata`
+--
+
+CREATE TABLE `healthcaredata` (
+  `id_data` int(14) NOT NULL,
+  `scare` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `confront` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `take_control` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `relapse` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `bad_inside` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `normal` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `personality` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `something_inside` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `professionals` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `competent` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `can_work` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ashamed` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `judge_me` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `can_talk` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `draw_away` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `psychiatric` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `well_mentally` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `mental_illness` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
   `id_patient` int(7) NOT NULL,
   `capturist` int(7) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -11045,9 +11131,21 @@ ALTER TABLE `familyrecorddata`
   ADD PRIMARY KEY (`id_data`) USING BTREE;
 
 --
+-- Indices de la tabla `genderviolencedata`
+--
+ALTER TABLE `genderviolencedata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `geriatricdepressiondata`
 --
 ALTER TABLE `geriatricdepressiondata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
+-- Indices de la tabla `healthcaredata`
+--
+ALTER TABLE `healthcaredata`
   ADD PRIMARY KEY (`id_data`);
 
 --
@@ -11158,9 +11256,21 @@ ALTER TABLE `familyrecorddata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `genderviolencedata`
+--
+ALTER TABLE `genderviolencedata`
+  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `geriatricdepressiondata`
 --
 ALTER TABLE `geriatricdepressiondata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `healthcaredata`
+--
+ALTER TABLE `healthcaredata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --

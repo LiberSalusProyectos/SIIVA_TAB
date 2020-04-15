@@ -118,7 +118,7 @@
                     case 'genderViolence':
                         $sectionName = GENDER_VIOLENCE_NAME;
                         $iconName = "fa-venus-mars";
-                        $table = "younglifestyledata";
+                        $table = "genderviolencedata";
                         $module = "gender_violence.php";
                         break;
 

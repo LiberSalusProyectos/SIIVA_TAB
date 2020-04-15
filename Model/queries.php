@@ -1309,7 +1309,6 @@ function saveHealthCareData_DOM($connection, $method,
 	return $inserted;
 }
 
-
 /**
  * [Función para el almacenado de información dentro de la sección de Signos vitales + Laboratorio]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
@@ -1376,6 +1375,126 @@ function saveVitalSignData_DOM($connection, $method,
 	`prostatic_antigen`		= $prostatic_antigen,
 	`sida`					= $sida,
 	`syphilis`				= $syphilis,
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
+ * [Función para el almacenado de información dentro del Cuestionario para evaluación de violencia de género.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveGenderViolenceData_DOM($connection, $method,
+	$id_patient,
+	$push_up,
+	$push_down,
+	$strike,
+	$wants,
+	$useless,
+	$normal_hit,
+	$without_reason,
+	$violent,
+	$forced_sex,
+	$engagement_sex,
+	$sex_fear,
+	$bad_treatments,
+	$decide_4me,
+	$isolates_me,
+	$try_isolate,
+	$feel_guilty,
+	$insults_me,
+	$bruises,
+	$be_alert,
+	$denounced,
+	$look_scare,
+	$feel_alone,
+	$can_work,
+	$see_family,
+	$watches_me,
+	$keep_hooked,
+	$regret_guilty,
+	$care_aspect,
+	$have_obey,
+	$gender_equality,
+	$protect_couple,
+	$private_life,
+	$slap_necessary,
+	$abuser_failed,
+	$good_bad,
+	$life_proyect,
+	$without_father,
+	$childrens,
+	$without_me,
+	$love_him,
+	$feel_sorry,
+	$marriage,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `genderviolencedata` SET
+	`push_up`			= '$push_up',
+	`push_down`			= '$push_down',
+	`strike`			= '$strike',
+	`wants`				= '$wants',
+	`useless`			= '$useless',
+	`normal_hit`		= '$normal_hit',
+	`without_reason`	= '$without_reason',
+	`violent`			= '$violent',
+	`forced_sex`		= '$forced_sex',
+	`engagement_sex`	= '$engagement_sex',
+	`sex_fear`			= '$sex_fear',
+	`bad_treatments`	= '$bad_treatments',
+	`decide_4me`		= '$decide_4me',
+	`isolates_me`		= '$isolates_me',
+	`try_isolate`		= '$try_isolate',
+	`feel_guilty`		= '$feel_guilty',
+	`insults_me`		= '$insults_me',
+	`bruises`			= '$bruises',
+	`be_alert`			= '$be_alert',
+	`denounced`			= '$denounced',
+	`look_scare`		= '$look_scare',
+	`feel_alone`		= '$feel_alone',
+	`can_work`			= '$can_work',
+	`see_family`		= '$see_family',
+	`watches_me`		= '$watches_me',
+	`keep_hooked`		= '$keep_hooked',
+	`regret_guilty`		= '$regret_guilty',
+	`care_aspect`		= '$care_aspect',
+	`have_obey`			= '$have_obey',
+	`gender_equality`	= '$gender_equality',
+	`protect_couple`	= '$protect_couple',
+	`private_life`		= '$private_life',
+	`slap_necessary`	= '$slap_necessary',
+	`abuser_failed`		= '$abuser_failed',
+	`good_bad`			= '$good_bad',
+	`life_proyect`		= '$life_proyect',
+	`without_father`	= '$without_father',
+	`childrens`			= '$childrens',
+	`without_me`		= '$without_me',
+	`love_him`			= '$love_him',
+	`feel_sorry`		= '$feel_sorry',
+	`marriage`			= '$marriage',
 	`id_patient`		= $id_patient,
 	`created_at` 		= CURRENT_TIMESTAMP,
 	`capturist` 		= $capturist $postQuery";
