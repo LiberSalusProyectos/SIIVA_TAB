@@ -66,6 +66,18 @@
       </div>
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
         <center>
+          <a href="patient_pass.php?m=environment">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-seedling custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo ENVIRONMENT_NAME; ?></h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
           <a href="patient_pass.php?m=geriatricDepression">
             <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
               <span>
@@ -105,7 +117,7 @@
           <a href="patient_pass.php?m=socioCultural">
             <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
               <span>
-                <i class="fas fa-leaf custom-teeth-open-icon icon-behind"></i>
+                <i class="fas fa-comment custom-teeth-open-icon icon-behind"></i>
                 <h2 class="text-white bold-font text-forward2"><?php echo SOCIOCULTURAL_NAME; ?></h2>
               </span>
             </button>

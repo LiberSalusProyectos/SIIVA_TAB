@@ -31,6 +31,13 @@
                         $module = "dass21_scale.php";
                         break;
 
+                    case 'environment':
+                        $sectionName = ENVIRONMENT_NAME;
+                        $iconName = "fa-seedling";
+                        $table = "environmentdata";
+                        $module = "environment.php";
+                        break;
+
                     case 'ets':
                         $sectionName = ETS_NAME;
                         $iconName = "fa-random";
@@ -54,7 +61,7 @@
 
                     case 'socioCultural':
                         $sectionName = SOCIOCULTURAL_NAME;
-                        $iconName = "fa-leaf";
+                        $iconName = "fa-comment";
                         $table = "socioculturaldata";
                         $module = "sociocultural.php";
                         break;

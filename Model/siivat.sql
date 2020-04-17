@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 15-04-2020 a las 16:23:08
+-- Tiempo de generación: 17-04-2020 a las 17:12:15
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10604,6 +10604,180 @@ CREATE TABLE `diabetesdata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `environmentdata`
+--
+
+CREATE TABLE `environmentdata` (
+  `id_data` int(14) NOT NULL,
+  `water_acquisition` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `water_acquisition_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `water_store` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `water_store_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `water_color` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `water_odor` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `water_flavor` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `water_quality_a` tinyint(1) DEFAULT NULL,
+  `water_quality_b` tinyint(1) DEFAULT NULL,
+  `water_quality_c` tinyint(1) DEFAULT NULL,
+  `water_quality_d` tinyint(1) DEFAULT NULL,
+  `water_quality_e` tinyint(1) DEFAULT NULL,
+  `sewage_type` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pollution_react_a` tinyint(1) DEFAULT NULL,
+  `pollution_react_b` tinyint(1) DEFAULT NULL,
+  `pollution_react_c` tinyint(1) DEFAULT NULL,
+  `pollution_react_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `contamination_a` tinyint(1) DEFAULT NULL,
+  `contamination_b` tinyint(1) DEFAULT NULL,
+  `contamination_c` tinyint(1) DEFAULT NULL,
+  `contamination_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `refinery_nearby` tinyint(1) DEFAULT NULL,
+  `pipelines_nearby` tinyint(1) DEFAULT NULL,
+  `health_impact_a` tinyint(1) DEFAULT NULL,
+  `health_impact_b` tinyint(1) DEFAULT NULL,
+  `health_impact_c` tinyint(1) DEFAULT NULL,
+  `dangerous_material_a` tinyint(1) DEFAULT NULL,
+  `dangerous_material_b` tinyint(1) DEFAULT NULL,
+  `dangerous_material_c` tinyint(1) DEFAULT NULL,
+  `dangerous_material_d` tinyint(1) DEFAULT NULL,
+  `dangerous_material_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `radiation_nearby` tinyint(1) DEFAULT NULL,
+  `radiation_nearby_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `burning_waste` tinyint(1) DEFAULT NULL,
+  `burning_waste_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `chemical_inspection` tinyint(1) DEFAULT NULL,
+  `chemical_inspection_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `know_pollutants` tinyint(1) DEFAULT NULL,
+  `know_pollutants_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `garbage_collection` tinyint(1) DEFAULT NULL,
+  `garbage_collection_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `collection_staff` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dumps_nearby` tinyint(1) DEFAULT NULL,
+  `dumps_nearby_number` smallint(1) DEFAULT NULL,
+  `dangerous_residues` tinyint(1) DEFAULT NULL,
+  `dangerous_residues_number` smallint(1) DEFAULT NULL,
+  `separate_trash` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `separate_trash_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `garbage_collection_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `slaughterhouse_nearby` tinyint(1) DEFAULT NULL,
+  `slaughterhouse_nearby_number` smallint(1) DEFAULT NULL,
+  `clandestine_dump` tinyint(1) DEFAULT NULL,
+  `clandestine_dump_number` smallint(1) DEFAULT NULL,
+  `sociocultural_activities` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sociocultural_join` tinyint(1) DEFAULT NULL,
+  `values_a` tinyint(1) DEFAULT NULL,
+  `values_b` tinyint(1) DEFAULT NULL,
+  `values_c` tinyint(1) DEFAULT NULL,
+  `values_d` tinyint(1) DEFAULT NULL,
+  `values_e` tinyint(1) DEFAULT NULL,
+  `values_f` tinyint(1) DEFAULT NULL,
+  `values_g` tinyint(1) DEFAULT NULL,
+  `values_h` tinyint(1) DEFAULT NULL,
+  `values_i` tinyint(1) DEFAULT NULL,
+  `consume_of_a` tinyint(1) DEFAULT NULL,
+  `consume_of_b` tinyint(1) DEFAULT NULL,
+  `consume_of_c` tinyint(1) DEFAULT NULL,
+  `consume_of_d` tinyint(1) DEFAULT NULL,
+  `consume_of_e` tinyint(1) DEFAULT NULL,
+  `work_activity` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `recreational_activities` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `hobby` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `hobby_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `hobby_number` smallint(1) DEFAULT NULL,
+  `can_read` tinyint(1) DEFAULT NULL,
+  `can_write` tinyint(1) DEFAULT NULL,
+  `education_level` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `flood_zone` tinyint(1) DEFAULT NULL,
+  `landslide_area` tinyint(1) DEFAULT NULL,
+  `population` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `number_people` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `number_rooms` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ventilation` tinyint(1) DEFAULT NULL,
+  `house_area` smallint(1) DEFAULT NULL,
+  `hot_water` tinyint(1) DEFAULT NULL,
+  `spotlights` tinyint(1) DEFAULT NULL,
+  `spotlights_number` smallint(1) DEFAULT NULL,
+  `house_type` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `house_materials` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `floor_type` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `humidity_home` tinyint(1) DEFAULT NULL,
+  `pesticides_use` tinyint(1) DEFAULT NULL,
+  `fertilizers_use` tinyint(1) DEFAULT NULL,
+  `know_risk` tinyint(1) DEFAULT NULL,
+  `have_because_a` tinyint(1) DEFAULT NULL,
+  `have_because_b` tinyint(1) DEFAULT NULL,
+  `have_because_c` tinyint(1) DEFAULT NULL,
+  `know_work_risks` tinyint(1) DEFAULT NULL,
+  `animals_a` tinyint(1) DEFAULT NULL,
+  `animals_b` tinyint(1) DEFAULT NULL,
+  `animals_c` tinyint(1) DEFAULT NULL,
+  `animals_d` tinyint(1) DEFAULT NULL,
+  `animals_e` tinyint(1) DEFAULT NULL,
+  `animals_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `vaccinated` tinyint(1) DEFAULT NULL,
+  `same_room` tinyint(1) DEFAULT NULL,
+  `antecedent_fleas` tinyint(1) DEFAULT NULL,
+  `rodents_insects_a` tinyint(1) DEFAULT NULL,
+  `rodents_insects_b` tinyint(1) DEFAULT NULL,
+  `rodents_insects_c` tinyint(1) DEFAULT NULL,
+  `rodents_insects_d` tinyint(1) DEFAULT NULL,
+  `rodents_insects_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `animal_waste` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `mosco_name` tinyint(1) DEFAULT NULL,
+  `mosco_infestation` tinyint(1) DEFAULT NULL,
+  `know_dengue` tinyint(1) DEFAULT NULL,
+  `social_networks` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `suffer_a` tinyint(1) DEFAULT NULL,
+  `suffer_b` tinyint(1) DEFAULT NULL,
+  `suffer_c` tinyint(1) DEFAULT NULL,
+  `know_signs` tinyint(1) DEFAULT NULL,
+  `go_doctor` tinyint(1) DEFAULT NULL,
+  `prevention` tinyint(1) DEFAULT NULL,
+  `basic_sanitation` tinyint(1) DEFAULT NULL,
+  `water_containers` tinyint(1) DEFAULT NULL,
+  `food_infection` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `diarrheal_infection` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `respiratory_infection` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `smoke_supervision` tinyint(1) DEFAULT NULL,
+  `community_health_problems` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `work_health_services` tinyint(1) DEFAULT NULL,
+  `work_type` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `work_water` tinyint(1) DEFAULT NULL,
+  `work_water_a` tinyint(1) DEFAULT NULL,
+  `work_water_b` tinyint(1) DEFAULT NULL,
+  `work_water_c` tinyint(1) DEFAULT NULL,
+  `work_water_d` tinyint(1) DEFAULT NULL,
+  `work_hygiene` tinyint(1) DEFAULT NULL,
+  `work_hygiene_a` tinyint(1) DEFAULT NULL,
+  `work_hygiene_b` tinyint(1) DEFAULT NULL,
+  `dressing_room` tinyint(1) DEFAULT NULL,
+  `dressing_room_a` tinyint(1) DEFAULT NULL,
+  `dressing_room_b` tinyint(1) DEFAULT NULL,
+  `work_exposition_a` tinyint(1) DEFAULT NULL,
+  `work_exposition_b` tinyint(1) DEFAULT NULL,
+  `work_exposition_c` tinyint(1) DEFAULT NULL,
+  `work_exposition_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `work_risk_a` tinyint(1) DEFAULT NULL,
+  `work_risk_b` tinyint(1) DEFAULT NULL,
+  `work_risk_c` tinyint(1) DEFAULT NULL,
+  `work_risk_d` tinyint(1) DEFAULT NULL,
+  `work_risk_desc` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `work_tools` tinyint(1) DEFAULT NULL,
+  `suitable_area` tinyint(1) DEFAULT NULL,
+  `protective_equipment` tinyint(1) DEFAULT NULL,
+  `severe_trauma` tinyint(1) DEFAULT NULL,
+  `psychosocial_support` tinyint(1) DEFAULT NULL,
+  `anxiety_work` tinyint(1) DEFAULT NULL,
+  `sleep_cycle` tinyint(1) DEFAULT NULL,
+  `medical_tests` tinyint(1) DEFAULT NULL,
+  `medical_tests_times` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `etsdata`
 --
 
@@ -11119,6 +11293,12 @@ ALTER TABLE `diabetesdata`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `environmentdata`
+--
+ALTER TABLE `environmentdata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `etsdata`
 --
 ALTER TABLE `etsdata`
@@ -11241,6 +11421,12 @@ ALTER TABLE `dass21data`
 -- AUTO_INCREMENT de la tabla `diabetesdata`
 --
 ALTER TABLE `diabetesdata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `environmentdata`
+--
+ALTER TABLE `environmentdata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
