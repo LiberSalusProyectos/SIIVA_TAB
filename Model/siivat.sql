@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 17-04-2020 a las 17:12:15
+-- Tiempo de generación: 20-04-2020 a las 21:13:19
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10964,6 +10964,75 @@ CREATE TABLE `geriatricdepressiondata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `gynecologydata`
+--
+
+CREATE TABLE `gynecologydata` (
+  `id_data` int(11) NOT NULL,
+  `ferrous_fumarate_a` tinyint(1) DEFAULT NULL,
+  `ferrous_fumarate_b` tinyint(1) DEFAULT NULL,
+  `ferrous_fumarate_c` tinyint(1) DEFAULT NULL,
+  `ferrous_fumarate_d` tinyint(1) DEFAULT NULL,
+  `folic_acid_a` tinyint(1) DEFAULT NULL,
+  `folic_acid_b` tinyint(1) DEFAULT NULL,
+  `folic_acid_c` tinyint(1) DEFAULT NULL,
+  `folic_acid_d` tinyint(1) DEFAULT NULL,
+  `multivitamins_a` tinyint(1) DEFAULT NULL,
+  `multivitamins_b` tinyint(1) DEFAULT NULL,
+  `multivitamins_c` tinyint(1) DEFAULT NULL,
+  `multivitamins_d` tinyint(1) DEFAULT NULL,
+  `hiv_test_a` tinyint(1) DEFAULT NULL,
+  `hiv_test_b` tinyint(1) DEFAULT NULL,
+  `hiv_test_c` tinyint(1) DEFAULT NULL,
+  `hiv_test_d` tinyint(1) DEFAULT NULL,
+  `syphilis_test_a` tinyint(1) DEFAULT NULL,
+  `syphilis_test_b` tinyint(1) DEFAULT NULL,
+  `syphilis_test_c` tinyint(1) DEFAULT NULL,
+  `syphilis_test_d` tinyint(1) DEFAULT NULL,
+  `newborn_care_a` tinyint(1) DEFAULT NULL,
+  `newborn_care_b` tinyint(1) DEFAULT NULL,
+  `newborn_care_c` tinyint(1) DEFAULT NULL,
+  `newborn_care_d` tinyint(1) DEFAULT NULL,
+  `breast_feed_a` tinyint(1) DEFAULT NULL,
+  `breast_feed_b` tinyint(1) DEFAULT NULL,
+  `breast_feed_c` tinyint(1) DEFAULT NULL,
+  `breast_feed_d` tinyint(1) DEFAULT NULL,
+  `get_married` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `children_plan` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `children_current` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `planning_method` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `transporter` tinyint(1) DEFAULT NULL,
+  `relationship` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `transport` tinyint(1) DEFAULT NULL,
+  `vehicle_type` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `medical_service` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `odontology` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fur` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ivsa` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `childbirth` smallint(1) DEFAULT NULL,
+  `caesarean` smallint(1) DEFAULT NULL,
+  `abortion` smallint(1) DEFAULT NULL,
+  `children_live` smallint(1) DEFAULT NULL,
+  `children_dead` smallint(1) DEFAULT NULL,
+  `min_weight` float DEFAULT NULL,
+  `max_weight` float DEFAULT NULL,
+  `self_manual` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `self_image` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `exam_manual` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `exam_image` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `menopausia` smallint(1) DEFAULT NULL,
+  `mammography_date` date DEFAULT NULL,
+  `mammography_result` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `densitometry_date` date DEFAULT NULL,
+  `densitometry_result` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `healthcaredata`
 --
 
@@ -10987,6 +11056,39 @@ CREATE TABLE `healthcaredata` (
   `psychiatric` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
   `well_mentally` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
   `mental_illness` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hopelessdata`
+--
+
+CREATE TABLE `hopelessdata` (
+  `id_data` int(14) NOT NULL,
+  `hope` tinyint(1) DEFAULT NULL,
+  `renounce` tinyint(1) DEFAULT NULL,
+  `relief` tinyint(1) DEFAULT NULL,
+  `imagine` tinyint(1) DEFAULT NULL,
+  `have_time` tinyint(1) DEFAULT NULL,
+  `future` tinyint(1) DEFAULT NULL,
+  `dark_future` tinyint(1) DEFAULT NULL,
+  `expect_good` tinyint(1) DEFAULT NULL,
+  `cant_change` tinyint(1) DEFAULT NULL,
+  `experiences` tinyint(1) DEFAULT NULL,
+  `unpleasant_future` tinyint(1) DEFAULT NULL,
+  `expect_anything` tinyint(1) DEFAULT NULL,
+  `happy_future` tinyint(1) DEFAULT NULL,
+  `things_wrong` tinyint(1) DEFAULT NULL,
+  `expect_future` tinyint(1) DEFAULT NULL,
+  `not_want` tinyint(1) DEFAULT NULL,
+  `satisfaction` tinyint(1) DEFAULT NULL,
+  `uncertain_future` tinyint(1) DEFAULT NULL,
+  `good_times` tinyint(1) DEFAULT NULL,
+  `dont_try` tinyint(1) DEFAULT NULL,
   `id_patient` int(7) NOT NULL,
   `capturist` int(7) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -11323,9 +11425,21 @@ ALTER TABLE `geriatricdepressiondata`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `gynecologydata`
+--
+ALTER TABLE `gynecologydata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `healthcaredata`
 --
 ALTER TABLE `healthcaredata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
+-- Indices de la tabla `hopelessdata`
+--
+ALTER TABLE `hopelessdata`
   ADD PRIMARY KEY (`id_data`);
 
 --
@@ -11454,9 +11568,21 @@ ALTER TABLE `geriatricdepressiondata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `gynecologydata`
+--
+ALTER TABLE `gynecologydata`
+  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `healthcaredata`
 --
 ALTER TABLE `healthcaredata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `hopelessdata`
+--
+ALTER TABLE `hopelessdata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --

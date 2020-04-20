@@ -1596,6 +1596,168 @@ function saveYoungLifestyleData_DOM($connection, $method,
 }
 
 /**
+ * [Función para el almacenado de información dentro de la sección de Atención médica y planificación familiar + antecedentes gineco-obstétricos.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveGynecologyData_DOM($connection, $method,
+	$id_patient,
+	$ferrous_fumarate_a,
+	$ferrous_fumarate_b,
+	$ferrous_fumarate_c,
+	$ferrous_fumarate_d,
+	$folic_acid_a,
+	$folic_acid_b,
+	$folic_acid_c,
+	$folic_acid_d,
+	$multivitamins_a,
+	$multivitamins_b,
+	$multivitamins_c,
+	$multivitamins_d,
+	$hiv_test_a,
+	$hiv_test_b,
+	$hiv_test_c,
+	$hiv_test_d,
+	$syphilis_test_a,
+	$syphilis_test_b,
+	$syphilis_test_c,
+	$syphilis_test_d,
+	$newborn_care_a,
+	$newborn_care_b,
+	$newborn_care_c,
+	$newborn_care_d,
+	$breast_feed_a,
+	$breast_feed_b,
+	$breast_feed_c,
+	$breast_feed_d,
+	$get_married,
+	$children_plan,
+	$children_current,
+	$planning_method,
+	$transporter,
+	$relationship,
+	$transport,
+	$vehicle_type,
+	$medical_service,
+	$odontology,
+	$fur,
+	$ivsa,
+	$childbirth,
+	$caesarean,
+	$abortion,
+	$children_live,
+	$children_dead,
+	$min_weight,
+	$max_weight,
+	$self_manual,
+	$self_image,
+	$exam_manual,
+	$exam_image,
+	$menopausia,
+	$mammography_date,
+	$mammography_result,
+	$densitometry_date,
+	$densitometry_result,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$mmg_frag = '';
+	if ($mammography_date !== ''){
+		$mmg_frag = "`mammography_date` = '$mammography_date'";
+	} else {
+		$mmg_frag = "`mammography_date` = NULL";
+	}
+
+	$dst_frag = '';
+	if ($densitometry_date !== ''){
+		$dst_frag = "`densitometry_date` = '$densitometry_date'";
+	} else {
+		$dst_frag = "`densitometry_date` = NULL";
+	}
+
+	$query .= " `gynecologydata` SET
+	`ferrous_fumarate_a`	= $ferrous_fumarate_a,
+	`ferrous_fumarate_b`	= $ferrous_fumarate_b,
+	`ferrous_fumarate_c`	= $ferrous_fumarate_c,
+	`ferrous_fumarate_d`	= $ferrous_fumarate_d,
+	`folic_acid_a`			= $folic_acid_a,
+	`folic_acid_b`			= $folic_acid_b,
+	`folic_acid_c`			= $folic_acid_c,
+	`folic_acid_d`			= $folic_acid_d,
+	`multivitamins_a`		= $multivitamins_a,
+	`multivitamins_b`		= $multivitamins_b,
+	`multivitamins_c`		= $multivitamins_c,
+	`multivitamins_d`		= $multivitamins_d,
+	`hiv_test_a`			= $hiv_test_a,
+	`hiv_test_b`			= $hiv_test_b,
+	`hiv_test_c`			= $hiv_test_c,
+	`hiv_test_d`			= $hiv_test_d,
+	`syphilis_test_a`		= $syphilis_test_a,
+	`syphilis_test_b`		= $syphilis_test_b,
+	`syphilis_test_c`		= $syphilis_test_c,
+	`syphilis_test_d`		= $syphilis_test_d,
+	`newborn_care_a`		= $newborn_care_a,
+	`newborn_care_b`		= $newborn_care_b,
+	`newborn_care_c`		= $newborn_care_c,
+	`newborn_care_d`		= $newborn_care_d,
+	`breast_feed_a`			= $breast_feed_a,
+	`breast_feed_b`			= $breast_feed_b,
+	`breast_feed_c`			= $breast_feed_c,
+	`breast_feed_d`			= $breast_feed_d,
+	`get_married`			= '$get_married',
+	`children_plan`			= '$children_plan',
+	`children_current`		= '$children_current',
+	`planning_method`		= '$planning_method',
+	`transporter`			= $transporter,
+	`relationship`			= '$relationship',
+	`transport`				= $transport,
+	`vehicle_type`			= '$vehicle_type',
+	`medical_service`		= '$medical_service',
+	`odontology`			= '$odontology',
+	`fur`					= '$fur',
+	`ivsa`					= '$ivsa',
+	`childbirth`			= $childbirth,
+	`caesarean`				= $caesarean,
+	`abortion`				= $abortion,
+	`children_live`			= $children_live,
+	`children_dead`			= $children_dead,
+	`min_weight`			= $min_weight,
+	`max_weight`			= $max_weight,
+	`self_manual`			= '$self_manual',
+	`self_image`			= '$self_image',
+	`exam_manual`			= '$exam_manual',
+	`exam_image`			= '$exam_image',
+	`menopausia`			= '$menopausia',
+	$mmg_frag,
+	`mammography_result`	= '$mammography_result',
+	$dst_frag,
+	`densitometry_result`	= '$densitometry_result',
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
  * [Función para el almacenado de información dentro de la sección de Cuidado de la Salud]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $method      [Selección entre insertar o actualizar]

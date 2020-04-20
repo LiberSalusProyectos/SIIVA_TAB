@@ -108,6 +108,13 @@
                         $module = "young_lifestyle.php";
                         break;
 
+                    case 'gynecology':
+                        $sectionName = GYNECOLOGY_NAME;
+                        $iconName = "fa-venus";
+                        $table = "gynecologydata";
+                        $module = "gynecology.php";
+                        break;
+
                     case 'healthCare':
                         $sectionName = HEALTH_CARE_NAME;
                         $iconName = "fa-user-md";

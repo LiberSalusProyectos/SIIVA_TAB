@@ -13,6 +13,7 @@
 !defined('BABY_LIFESTYLE_NAME') && define('BABY_LIFESTYLE_NAME', 'ESTILO VIDA [1-5] AÑOS');
 !defined('CHILD_LIFESTYLE_NAME') && define('CHILD_LIFESTYLE_NAME', 'ESTILO VIDA [6-12] AÑOS');
 !defined('YOUNG_LIFESTYLE_NAME') && define('YOUNG_LIFESTYLE_NAME', 'ESTILO VIDA [12+] AÑOS');
+!defined('GYNECOLOGY_NAME') && define('GYNECOLOGY_NAME', 'GINECOLOGÍA');
 !defined('HEALTH_CARE_NAME') && define('HEALTH_CARE_NAME', 'CUIDADO DE LA SALUD');
 !defined('VITAL_SIGN_NAME') && define('VITAL_SIGN_NAME', 'SIGNOS VITALES + LAB');
 !defined('GENDER_VIOLENCE_NAME') && define('GENDER_VIOLENCE_NAME', 'VIOLENCIA DE GÉNERO');
@@ -98,6 +99,9 @@ function getModuleData($connection, $module, $id_patient){
 			break;
 		case "youngLifestyle":
 			$table = "younglifestyledata";
+			break;
+		case "gynecology":
+			$table = "gynecologydata";
 			break;
 		case "healthCare":
 			$table = "healthcaredata";
@@ -960,6 +964,79 @@ function saveHealthCareData($connection, $method, $data, $id_user){
 		$data['psychiatric'],
 		$data['well_mentally'],
 		$data['mental_illness'],
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Atención médica y planificación familiar + antecedentes gineco-obstétricos.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveGynecologyData($connection, $method, $data, $id_user){
+
+	$result = saveGynecologyData_DOM($connection, $method,
+		$data['id_patient'],
+		($data['ferrous_fumarate_a']!="" ? 1 : 0),
+		($data['ferrous_fumarate_b']!="" ? 1 : 0),
+		($data['ferrous_fumarate_c']!="" ? 1 : 0),
+		($data['ferrous_fumarate_d']!="" ? 1 : 0),
+		($data['folic_acid_a']!="" ? 1 : 0),
+		($data['folic_acid_b']!="" ? 1 : 0),
+		($data['folic_acid_c']!="" ? 1 : 0),
+		($data['folic_acid_d']!="" ? 1 : 0),
+		($data['multivitamins_a']!="" ? 1 : 0),
+		($data['multivitamins_b']!="" ? 1 : 0),
+		($data['multivitamins_c']!="" ? 1 : 0),
+		($data['multivitamins_d']!="" ? 1 : 0),
+		($data['hiv_test_a']!="" ? 1 : 0),
+		($data['hiv_test_b']!="" ? 1 : 0),
+		($data['hiv_test_c']!="" ? 1 : 0),
+		($data['hiv_test_d']!="" ? 1 : 0),
+		($data['syphilis_test_a']!="" ? 1 : 0),
+		($data['syphilis_test_b']!="" ? 1 : 0),
+		($data['syphilis_test_c']!="" ? 1 : 0),
+		($data['syphilis_test_d']!="" ? 1 : 0),
+		($data['newborn_care_a']!="" ? 1 : 0),
+		($data['newborn_care_b']!="" ? 1 : 0),
+		($data['newborn_care_c']!="" ? 1 : 0),
+		($data['newborn_care_d']!="" ? 1 : 0),
+		($data['breast_feed_a']!="" ? 1 : 0),
+		($data['breast_feed_b']!="" ? 1 : 0),
+		($data['breast_feed_c']!="" ? 1 : 0),
+		($data['breast_feed_d']!="" ? 1 : 0),
+		utf8_decode($data['get_married']),
+		utf8_decode($data['children_plan']),
+		utf8_decode($data['children_current']),
+		utf8_decode($data['planning_method']),
+		($data['transporter']!="" ? 1 : 0),
+		utf8_decode($data['relationship']),
+		($data['transport']!="" ? 1 : 0),
+		utf8_decode($data['vehicle_type']),
+		utf8_decode($data['medical_service']),
+		utf8_decode($data['odontology']),
+		utf8_decode($data['fur']),
+		utf8_decode($data['ivsa']),
+		($data['childbirth']!="" ? $data['childbirth'] : 0),
+		($data['caesarean']!="" ? $data['caesarean'] : 0),
+		($data['abortion']!="" ? $data['abortion'] : 0),
+		($data['children_live']!="" ? $data['children_live'] : 0),
+		($data['children_dead']!="" ? $data['children_dead'] : 0),
+		($data['min_weight']!="" ? $data['min_weight'] : 0),
+		($data['max_weight']!="" ? $data['max_weight'] : 0),
+		utf8_decode($data['self_manual']),
+		utf8_decode($data['self_image']),
+		utf8_decode($data['exam_manual']),
+		utf8_decode($data['exam_image']),
+		($data['menopausia']!="" ? $data['menopausia'] : 0),
+		$data['mammography_date'],
+		utf8_decode($data['mammography_result']),
+		$data['densitometry_date'],
+		utf8_decode($data['densitometry_result']),
 		$id_user);
 
 	return $result;
