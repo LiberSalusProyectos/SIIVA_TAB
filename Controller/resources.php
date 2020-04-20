@@ -16,6 +16,7 @@
 !defined('HEALTH_CARE_NAME') && define('HEALTH_CARE_NAME', 'CUIDADO DE LA SALUD');
 !defined('VITAL_SIGN_NAME') && define('VITAL_SIGN_NAME', 'SIGNOS VITALES + LAB');
 !defined('GENDER_VIOLENCE_NAME') && define('GENDER_VIOLENCE_NAME', 'VIOLENCIA DE GÉNERO');
+!defined('HOPELESS_NAME') && define('HOPELESS_NAME', 'DESESPERANZA DE BECK');
 
 /**
  * [Función para validar las credenciales de acceso al sistema, por cuestión de facilidad se implementó un MD5 sencillo como método de encryptación]
@@ -106,6 +107,9 @@ function getModuleData($connection, $module, $id_patient){
 			break;
 		case "genderViolence":
 			$table = "genderviolencedata";
+			break;
+		case "hopeless":
+			$table = "hopelessdata";
 			break;
 		default:
 			# code...
@@ -1053,6 +1057,43 @@ function saveGenderViolenceData($connection, $method, $data, $id_user){
 		$data['love_him'],
 		$data['feel_sorry'],
 		$data['marriage'],
+		$id_user);
+
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la secciónd de Escala de desesperanza de Beck.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveHopelessData($connection, $method, $data, $id_user){
+
+	$result = saveHopelessData_DOM($connection, $method,
+		$data['id_patient'],
+		($data['hope']!="" ? $data['hope'] : 0),
+		($data['renounce']!="" ? $data['renounce'] : 0),
+		($data['relief']!="" ? $data['relief'] : 0),
+		($data['imagine']!="" ? $data['imagine'] : 0),
+		($data['have_time']!="" ? $data['have_time'] : 0),
+		($data['future']!="" ? $data['future'] : 0),
+		($data['dark_future']!="" ? $data['dark_future'] : 0),
+		($data['expect_good']!="" ? $data['expect_good'] : 0),
+		($data['cant_change']!="" ? $data['cant_change'] : 0),
+		($data['experiences']!="" ? $data['experiences'] : 0),
+		($data['unpleasant_future']!="" ? $data['unpleasant_future'] : 0),
+		($data['expect_anything']!="" ? $data['expect_anything'] : 0),
+		($data['happy_future']!="" ? $data['happy_future'] : 0),
+		($data['things_wrong']!="" ? $data['things_wrong'] : 0),
+		($data['expect_future']!="" ? $data['expect_future'] : 0),
+		($data['not_want']!="" ? $data['not_want'] : 0),
+		($data['satisfaction']!="" ? $data['satisfaction'] : 0),
+		($data['uncertain_future']!="" ? $data['uncertain_future'] : 0),
+		($data['good_times']!="" ? $data['good_times'] : 0),
+		($data['dont_try']!="" ? $data['dont_try'] : 0),
 		$id_user);
 
 	return $result;

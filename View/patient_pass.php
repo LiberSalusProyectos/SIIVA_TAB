@@ -129,6 +129,13 @@
                         $module = "gender_violence.php";
                         break;
 
+                    case 'hopeless':
+                        $sectionName = HOPELESS_NAME;
+                        $iconName = "fa-burn";
+                        $table = "hopelessdata";
+                        $module = "hopeless.php";
+                        break;
+                    
                     defalut:
                         break;
                 }

@@ -1866,6 +1866,82 @@ function saveGenderViolenceData_DOM($connection, $method,
 }
 
 /**
+ * [Función para el almacenado de información dentro de la Escala de desesperanza de Beck.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveHopelessData_DOM($connection, $method,
+	$id_patient,
+	$hope,
+	$renounce,
+	$relief,
+	$imagine,
+	$have_time,
+	$future,
+	$dark_future,
+	$expect_good,
+	$cant_change,
+	$experiences,
+	$unpleasant_future,
+	$expect_anything,
+	$happy_future,
+	$things_wrong,
+	$expect_future,
+	$not_want,
+	$satisfaction,
+	$uncertain_future,
+	$good_times,
+	$dont_try,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `hopelessdata` SET
+	`hope`				= $hope,
+	`renounce`			= $renounce,
+	`relief`			= $relief,
+	`imagine`			= $imagine,
+	`have_time`			= $have_time,
+	`future`			= $future,
+	`dark_future`		= $dark_future,
+	`expect_good`		= $expect_good,
+	`cant_change`		= $cant_change,
+	`experiences`		= $experiences,
+	`unpleasant_future`	= $unpleasant_future,
+	`expect_anything`	= $expect_anything,
+	`happy_future`		= $happy_future,
+	`things_wrong`		= $things_wrong,
+	`expect_future`		= $expect_future,
+	`not_want`			= $not_want,
+	`satisfaction`		= $satisfaction,
+	`uncertain_future`	= $uncertain_future,
+	`good_times`		= $good_times,
+	`dont_try`			= $dont_try,
+	`id_patient`		= $id_patient,
+	`created_at` 		= CURRENT_TIMESTAMP,
+	`capturist` 		= $capturist $postQuery";
+
+	// var_dump($query);
+	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
  * [Función para obtener todos los datos de un usuario, para determinado módulo.]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $module      [Nombre del módulo transmitido por GET]
