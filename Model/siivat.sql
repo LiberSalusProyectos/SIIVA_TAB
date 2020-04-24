@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 20-04-2020 a las 21:13:19
+-- Tiempo de generación: 24-04-2020 a las 17:00:38
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10534,6 +10534,97 @@ CREATE TABLE `childlifestyledata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `childvaccinationdata`
+--
+
+CREATE TABLE `childvaccinationdata` (
+  `id_data` int(14) NOT NULL,
+  `bcg` tinyint(1) DEFAULT NULL,
+  `bcg_date` date DEFAULT NULL,
+  `bcg_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `hepatb1` tinyint(1) DEFAULT NULL,
+  `hepatb1_date` date DEFAULT NULL,
+  `hepatb1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pentavalente1` int(11) DEFAULT NULL,
+  `pentavalente1_date` date DEFAULT NULL,
+  `pentavalente1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `hepatb2` tinyint(1) DEFAULT NULL,
+  `hepatb2_date` date DEFAULT NULL,
+  `hepatb2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `neumoco1` tinyint(1) DEFAULT NULL,
+  `neumoco1_date` date DEFAULT NULL,
+  `neumoco1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rotavirus2do1` tinyint(1) DEFAULT NULL,
+  `rotavirus2do1_date` date DEFAULT NULL,
+  `rotavirus2do1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rotavirus3do1` tinyint(1) DEFAULT NULL,
+  `rotavirus3do1_date` date DEFAULT NULL,
+  `rotavirus3do1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pentavalente2` tinyint(1) DEFAULT NULL,
+  `pentavalente2_date` date DEFAULT NULL,
+  `pentavalente2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `neumoco2` tinyint(1) DEFAULT NULL,
+  `neumoco2_date` date DEFAULT NULL,
+  `neumoco2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rotavirus2do2` tinyint(1) DEFAULT NULL,
+  `rotavirus2do2_date` date DEFAULT NULL,
+  `rotavirus2do2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rotavirus3do2` tinyint(1) DEFAULT NULL,
+  `rotavirus3do2_date` date DEFAULT NULL,
+  `rotavirus3do2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pentavalente3` tinyint(1) DEFAULT NULL,
+  `pentavalente3_date` date DEFAULT NULL,
+  `pentavalente3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `hepatb3` tinyint(1) DEFAULT NULL,
+  `hepatb3_date` date DEFAULT NULL,
+  `hepatb3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza1` tinyint(1) DEFAULT NULL,
+  `influenza1_date` date DEFAULT NULL,
+  `influenza1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rotavirus3do3` tinyint(1) DEFAULT NULL,
+  `rotavirus3do3_date` date DEFAULT NULL,
+  `rotavirus3do3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza2` tinyint(1) DEFAULT NULL,
+  `influenza2_date` date DEFAULT NULL,
+  `influenza2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sarampion1` tinyint(1) DEFAULT NULL,
+  `sarampion1_date` date DEFAULT NULL,
+  `sarampion1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `neumocorev` tinyint(1) DEFAULT NULL,
+  `neumocorev_date` date DEFAULT NULL,
+  `neumocorev_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `pentavalenteref` tinyint(1) DEFAULT NULL,
+  `pentavalenteref_date` date DEFAULT NULL,
+  `pentavalenteref_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza3` tinyint(1) DEFAULT NULL,
+  `influenza3_date` date DEFAULT NULL,
+  `influenza3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza4` tinyint(1) DEFAULT NULL,
+  `influenza4_date` date DEFAULT NULL,
+  `influenza4_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dptref` tinyint(1) DEFAULT NULL,
+  `dptref_date` date DEFAULT NULL,
+  `dptref_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza5` tinyint(1) DEFAULT NULL,
+  `influenza5_date` date DEFAULT NULL,
+  `influenza5_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza6` tinyint(1) DEFAULT NULL,
+  `influenza6_date` date DEFAULT NULL,
+  `influenza6_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sabin` tinyint(1) DEFAULT NULL,
+  `sabin_date` date DEFAULT NULL,
+  `sabin_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sarampion2` tinyint(1) DEFAULT NULL,
+  `sarampion2_date` date DEFAULT NULL,
+  `sarampion2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `dass21data`
 --
 
@@ -10596,6 +10687,76 @@ CREATE TABLE `diabetesdata` (
   `blood_pressure` tinyint(1) DEFAULT NULL,
   `physical_activity` tinyint(1) DEFAULT NULL,
   `weight` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_patient` int(7) NOT NULL,
+  `capturist` int(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `eldervaccinationdata`
+--
+
+CREATE TABLE `eldervaccinationdata` (
+  `id_data` int(14) NOT NULL,
+  `neumoco` tinyint(1) DEFAULT NULL,
+  `neumoco_date` date DEFAULT NULL,
+  `neumoco_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `neumoco1` tinyint(1) DEFAULT NULL,
+  `neumoco1_date` date DEFAULT NULL,
+  `neumoco1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `neumoco2` tinyint(1) DEFAULT NULL,
+  `neumoco2_date` date DEFAULT NULL,
+  `neumoco2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dptc` tinyint(1) DEFAULT NULL,
+  `dptc_date` date DEFAULT NULL,
+  `dptc_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dptc1` tinyint(1) DEFAULT NULL,
+  `dptc1_date` date DEFAULT NULL,
+  `dptc1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dptc2` tinyint(1) DEFAULT NULL,
+  `dptc2_date` date DEFAULT NULL,
+  `dptc2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dpti1` tinyint(1) DEFAULT NULL,
+  `dpti1_date` date DEFAULT NULL,
+  `dpti1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dpti2` tinyint(1) DEFAULT NULL,
+  `dpti2_date` date DEFAULT NULL,
+  `dpti2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `dpti3` tinyint(1) DEFAULT NULL,
+  `dpti3_date` date DEFAULT NULL,
+  `dpti3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza` tinyint(1) DEFAULT NULL,
+  `influenza_date` date DEFAULT NULL,
+  `influenza_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza2` tinyint(1) DEFAULT NULL,
+  `influenza2_date` date DEFAULT NULL,
+  `influenza2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza3` tinyint(1) DEFAULT NULL,
+  `influenza3_date` date DEFAULT NULL,
+  `influenza3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza4` tinyint(1) DEFAULT NULL,
+  `influenza4_date` date DEFAULT NULL,
+  `influenza4_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza5` tinyint(1) DEFAULT NULL,
+  `influenza5_date` date DEFAULT NULL,
+  `influenza5_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza6` tinyint(1) DEFAULT NULL,
+  `influenza6_date` date DEFAULT NULL,
+  `influenza6_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza7_date` date DEFAULT NULL,
+  `influenza7_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza8_date` date DEFAULT NULL,
+  `influenza8_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza9_date` date DEFAULT NULL,
+  `influenza9_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza10_date` date DEFAULT NULL,
+  `influenza10_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza11_date` date DEFAULT NULL,
+  `influenza11_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `influenza12_date` date DEFAULT NULL,
+  `influenza12_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `id_patient` int(7) NOT NULL,
   `capturist` int(7) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -11383,6 +11544,12 @@ ALTER TABLE `childlifestyledata`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `childvaccinationdata`
+--
+ALTER TABLE `childvaccinationdata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
 -- Indices de la tabla `dass21data`
 --
 ALTER TABLE `dass21data`
@@ -11392,6 +11559,12 @@ ALTER TABLE `dass21data`
 -- Indices de la tabla `diabetesdata`
 --
 ALTER TABLE `diabetesdata`
+  ADD PRIMARY KEY (`id_data`);
+
+--
+-- Indices de la tabla `eldervaccinationdata`
+--
+ALTER TABLE `eldervaccinationdata`
   ADD PRIMARY KEY (`id_data`);
 
 --
@@ -11526,6 +11699,12 @@ ALTER TABLE `childlifestyledata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `childvaccinationdata`
+--
+ALTER TABLE `childvaccinationdata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `dass21data`
 --
 ALTER TABLE `dass21data`
@@ -11535,6 +11714,12 @@ ALTER TABLE `dass21data`
 -- AUTO_INCREMENT de la tabla `diabetesdata`
 --
 ALTER TABLE `diabetesdata`
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `eldervaccinationdata`
+--
+ALTER TABLE `eldervaccinationdata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --

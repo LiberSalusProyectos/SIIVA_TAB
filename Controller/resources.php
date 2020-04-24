@@ -18,6 +18,10 @@
 !defined('VITAL_SIGN_NAME') && define('VITAL_SIGN_NAME', 'SIGNOS VITALES + LAB');
 !defined('GENDER_VIOLENCE_NAME') && define('GENDER_VIOLENCE_NAME', 'VIOLENCIA DE GÉNERO');
 !defined('HOPELESS_NAME') && define('HOPELESS_NAME', 'DESESPERANZA DE BECK');
+!defined('CHILD_VACCINATION') && define('CHILD_VACCINATION', 'VACUNACIÓN [0-9] AÑOS');
+!defined('YOUNG_VACCINATION') && define('YOUNG_VACCINATION', 'VACUNACIÓN [10-19] AÑOS');
+!defined('ADULT_VACCINATION') && define('ADULT_VACCINATION', 'VACUNACIÓN [20-59] AÑOS');
+!defined('ELDER_VACCINATION') && define('ELDER_VACCINATION', 'VACUNACIÓN [60+] AÑOS');
 
 /**
  * [Función para validar las credenciales de acceso al sistema, por cuestión de facilidad se implementó un MD5 sencillo como método de encryptación]
@@ -37,6 +41,9 @@ function userAuthentication($connection, $email, $password){
 		$autenticated = true;
 
 		lasConnectionUpdate_DOM($connection, $email, $password);
+
+		ini_set("session.cookie_lifetime","7200");
+		ini_set("session.gc_maxlifetime","7200");
 
 		session_start();
 		$_SESSION['loggedin']  = TRUE;
@@ -114,6 +121,12 @@ function getModuleData($connection, $module, $id_patient){
 			break;
 		case "hopeless":
 			$table = "hopelessdata";
+			break;
+		case "childVaccination":
+			$table = "childvaccinationdata";
+			break;
+		case "elderVaccination":
+			$table = "eldervaccinationdata";
 			break;
 		default:
 			# code...
@@ -1173,6 +1186,173 @@ function saveHopelessData($connection, $method, $data, $id_user){
 		($data['dont_try']!="" ? $data['dont_try'] : 0),
 		$id_user);
 
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Vacunación]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveChildVaccinatonData($connection, $method, $data, $id_user){
+
+	$result = saveChildVaccinatonData_DOM($connection, $method,
+		$data["id_patient"],
+		($data['bcg']!="" ? 1 : 0),
+		$data["bcg_date"],
+		utf8_decode($data['bcg_desc']),
+		($data['hepatb1']!="" ? 1 : 0),
+		$data["hepatb1_date"],
+		utf8_decode($data['hepatb1_desc']),
+		($data['pentavalente1']!="" ? 1 : 0),
+		$data["pentavalente1_date"],
+		utf8_decode($data['pentavalente1_desc']),
+		($data['hepatb2']!="" ? 1 : 0),
+		$data["hepatb2_date"],
+		utf8_decode($data['hepatb2_desc']),
+		($data['neumoco1']!="" ? 1 : 0),
+		$data["neumoco1_date"],
+		utf8_decode($data['neumoco1_desc']),
+		($data['rotavirus2do1']!="" ? 1 : 0),
+		$data["rotavirus2do1_date"],
+		utf8_decode($data['rotavirus2do1_desc']),
+		($data['rotavirus3do1']!="" ? 1 : 0),
+		$data["rotavirus3do1_date"],
+		utf8_decode($data['rotavirus3do1_desc']),
+		($data['pentavalente2']!="" ? 1 : 0),
+		$data["pentavalente2_date"],
+		utf8_decode($data['pentavalente2_desc']),
+		($data['neumoco2']!="" ? 1 : 0),
+		$data["neumoco2_date"],
+		utf8_decode($data['neumoco2_desc']),
+		($data['rotavirus2do2']!="" ? 1 : 0),
+		$data["rotavirus2do2_date"],
+		utf8_decode($data['rotavirus2do2_desc']),
+		($data['rotavirus3do2']!="" ? 1 : 0),
+		$data["rotavirus3do2_date"],
+		utf8_decode($data['rotavirus3do2_desc']),
+		($data['pentavalente3']!="" ? 1 : 0),
+		$data["pentavalente3_date"],
+		utf8_decode($data['pentavalente3_desc']),
+		($data['hepatb3']!="" ? 1 : 0),
+		$data["hepatb3_date"],
+		utf8_decode($data['hepatb3_desc']),
+		($data['influenza1']!="" ? 1 : 0),
+		$data["influenza1_date"],
+		utf8_decode($data['influenza1_desc']),
+		($data['rotavirus3do3']!="" ? 1 : 0),
+		$data["rotavirus3do3_date"],
+		utf8_decode($data['rotavirus3do3_desc']),
+		($data['influenza2']!="" ? 1 : 0),
+		$data["influenza2_date"],
+		utf8_decode($data['influenza2_desc']),
+		($data['sarampion1']!="" ? 1 : 0),
+		$data["sarampion1_date"],
+		utf8_decode($data['sarampion1_desc']),
+		($data['neumocorev']!="" ? 1 : 0),
+		$data["neumocorev_date"],
+		utf8_decode($data['neumocorev_desc']),
+		($data['pentavalenteref']!="" ? 1 : 0),
+		$data["pentavalenteref_date"],
+		utf8_decode($data['pentavalenteref_desc']),
+		($data['influenza3']!="" ? 1 : 0),
+		$data["influenza3_date"],
+		utf8_decode($data['influenza3_desc']),
+		($data['influenza4']!="" ? 1 : 0),
+		$data["influenza4_date"],
+		utf8_decode($data['influenza4_desc']),
+		($data['dptref']!="" ? 1 : 0),
+		$data["dptref_date"],
+		utf8_decode($data['dptref_desc']),
+		($data['influenza5']!="" ? 1 : 0),
+		$data["influenza5_date"],
+		utf8_decode($data['influenza5_desc']),
+		($data['influenza6']!="" ? 1 : 0),
+		$data["influenza6_date"],
+		utf8_decode($data['influenza6_desc']),
+		($data['sabin']!="" ? 1 : 0),
+		$data["sabin_date"],
+		utf8_decode($data['sabin_desc']),
+		($data['sarampion2']!="" ? 1 : 0),
+		$data["sarampion2_date"],
+		utf8_decode($data['sarampion2_desc']),
+	 	$id_user);
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Vacunación]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveElderVaccinatonData($connection, $method, $data, $id_user){
+
+	$result = saveElderVaccinatonData_DOM($connection, $method,
+		$data["id_patient"],
+		($data['neumoco']!="" ? 1 : 0),
+		$data["neumoco_date"],
+		utf8_decode($data['neumoco_desc']),
+		($data['neumoco1']!="" ? 1 : 0),
+		$data["neumoco1_date"],
+		utf8_decode($data['neumoco1_desc']),
+		($data['neumoco2']!="" ? 1 : 0),
+		$data["neumoco2_date"],
+		utf8_decode($data['neumoco2_desc']),
+		($data['dptc']!="" ? 1 : 0),
+		$data["dptc_date"],
+		utf8_decode($data['dptc_desc']),
+		($data['dptc1']!="" ? 1 : 0),
+		$data["dptc1_date"],
+		utf8_decode($data['dptc1_desc']),
+		($data['dptc2']!="" ? 1 : 0),
+		$data["dptc2_date"],
+		utf8_decode($data['dptc2_desc']),
+		($data['dpti1']!="" ? 1 : 0),
+		$data["dpti1_date"],
+		utf8_decode($data['dpti1_desc']),
+		($data['dpti2']!="" ? 1 : 0),
+		$data["dpti2_date"],
+		utf8_decode($data['dpti2_desc']),
+		($data['dpti3']!="" ? 1 : 0),
+		$data["dpti3_date"],
+		utf8_decode($data['dpti3_desc']),
+		($data['influenza']!="" ? 1 : 0),
+		$data["influenza_date"],
+		utf8_decode($data['influenza_desc']),
+		($data['influenza2']!="" ? 1 : 0),
+		$data["influenza2_date"],
+		utf8_decode($data['influenza2_desc']),
+		($data['influenza3']!="" ? 1 : 0),
+		$data["influenza3_date"],
+		utf8_decode($data['influenza3_desc']),
+		($data['influenza4']!="" ? 1 : 0),
+		$data["influenza4_date"],
+		utf8_decode($data['influenza4_desc']),
+		($data['influenza5']!="" ? 1 : 0),
+		$data["influenza5_date"],
+		utf8_decode($data['influenza5_desc']),
+		($data['influenza6']!="" ? 1 : 0),
+		$data["influenza6_date"],
+		utf8_decode($data['influenza6_desc']),
+		$data["influenza7_date"],
+		utf8_decode($data['influenza7_desc']),
+		$data["influenza8_date"],
+		utf8_decode($data['influenza8_desc']),
+		$data["influenza9_date"],
+		utf8_decode($data['influenza9_desc']),
+		$data["influenza10_date"],
+		utf8_decode($data['influenza10_desc']),
+		$data["influenza11_date"],
+		utf8_decode($data['influenza11_desc']),
+		$data["influenza12_date"],
+		utf8_decode($data['influenza12_desc']),
+	 	$id_user);
 	return $result;
 }
 

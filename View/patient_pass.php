@@ -142,6 +142,20 @@
                         $table = "hopelessdata";
                         $module = "hopeless.php";
                         break;
+
+                    case 'childVaccination':
+                        $sectionName = CHILD_VACCINATION;
+                        $iconName = "fa-eye-dropper";
+                        $table = "childvaccinationdata";
+                        $module = "child_vaccination.php";
+                        break;
+
+                    case 'elderVaccination':
+                        $sectionName = ELDER_VACCINATION;
+                        $iconName = "fa-flask";
+                        $table = "eldervaccinationdata";
+                        $module = "elder_vaccination.php";
+                        break;
                     
                     defalut:
                         break;

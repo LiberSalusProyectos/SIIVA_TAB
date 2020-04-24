@@ -1674,20 +1674,6 @@ function saveGynecologyData_DOM($connection, $method,
 		$postQuery = "";
 	}
 
-	$mmg_frag = '';
-	if ($mammography_date !== ''){
-		$mmg_frag = "`mammography_date` = '$mammography_date'";
-	} else {
-		$mmg_frag = "`mammography_date` = NULL";
-	}
-
-	$dst_frag = '';
-	if ($densitometry_date !== ''){
-		$dst_frag = "`densitometry_date` = '$densitometry_date'";
-	} else {
-		$dst_frag = "`densitometry_date` = NULL";
-	}
-
 	$query .= " `gynecologydata` SET
 	`ferrous_fumarate_a`	= $ferrous_fumarate_a,
 	`ferrous_fumarate_b`	= $ferrous_fumarate_b,
@@ -1741,9 +1727,9 @@ function saveGynecologyData_DOM($connection, $method,
 	`exam_manual`			= '$exam_manual',
 	`exam_image`			= '$exam_image',
 	`menopausia`			= '$menopausia',
-	$mmg_frag,
+	`mammography_date` 		= ".($mammography_date !== '' ? "'$mammography_date'" : "NULL").",
 	`mammography_result`	= '$mammography_result',
-	$dst_frag,
+	`densitometry_date` 	= ".($densitometry_date !== '' ? "'$densitometry_date'" : "NULL").",
 	`densitometry_result`	= '$densitometry_result',
 	`id_patient`		= $id_patient,
 	`created_at` 		= CURRENT_TIMESTAMP,
@@ -2097,6 +2083,346 @@ function saveHopelessData_DOM($connection, $method,
 
 	// var_dump($query);
 	// echo $query;
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Vacunación]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveChildVaccinatonData_DOM($connection, $method,
+	$id_patient,
+	$bcg,
+	$bcg_date,
+	$bcg_desc,
+	$hepatb1,
+	$hepatb1_date,
+	$hepatb1_desc,
+	$pentavalente1,
+	$pentavalente1_date,
+	$pentavalente1_desc,
+	$hepatb2,
+	$hepatb2_date,
+	$hepatb2_desc,
+	$neumoco1,
+	$neumoco1_date,
+	$neumoco1_desc,
+	$rotavirus2do1,
+	$rotavirus2do1_date,
+	$rotavirus2do1_desc,
+	$rotavirus3do1,
+	$rotavirus3do1_date,
+	$rotavirus3do1_desc,
+	$pentavalente2,
+	$pentavalente2_date,
+	$pentavalente2_desc,
+	$neumoco2,
+	$neumoco2_date,
+	$neumoco2_desc,
+	$rotavirus2do2,
+	$rotavirus2do2_date,
+	$rotavirus2do2_desc,
+	$rotavirus3do2,
+	$rotavirus3do2_date,
+	$rotavirus3do2_desc,
+	$pentavalente3,
+	$pentavalente3_date,
+	$pentavalente3_desc,
+	$hepatb3,
+	$hepatb3_date,
+	$hepatb3_desc,
+	$influenza1,
+	$influenza1_date,
+	$influenza1_desc,
+	$rotavirus3do3,
+	$rotavirus3do3_date,
+	$rotavirus3do3_desc,
+	$influenza2,
+	$influenza2_date,
+	$influenza2_desc,
+	$sarampion1,
+	$sarampion1_date,
+	$sarampion1_desc,
+	$neumocorev,
+	$neumocorev_date,
+	$neumocorev_desc,
+	$pentavalenteref,
+	$pentavalenteref_date,
+	$pentavalenteref_desc,
+	$influenza3,
+	$influenza3_date,
+	$influenza3_desc,
+	$influenza4,
+	$influenza4_date,
+	$influenza4_desc,
+	$dptref,
+	$dptref_date,
+	$dptref_desc,
+	$influenza5,
+	$influenza5_date,
+	$influenza5_desc,
+	$influenza6,
+	$influenza6_date,
+	$influenza6_desc,
+	$sabin,
+	$sabin_date,
+	$sabin_desc,
+	$sarampion2,
+	$sarampion2_date,
+	$sarampion2_desc,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `childvaccinationdata` SET
+	`id_patient`			= '$id_patient',
+	`bcg` 					= '$bcg',
+	`bcg_date` 				= ".($bcg_date !== '' ? "'$bcg_date'" : "NULL").",
+	`bcg_desc` 				= '$bcg_desc',
+	`hepatb1` 				= '$hepatb1',
+	`hepatb1_date` 			= ".($hepatb1_date !== '' ? "'$hepatb1_date'" : "NULL").",
+	`hepatb1_desc` 			= '$hepatb1_desc',
+	`pentavalente1` 		= '$pentavalente1',
+	`pentavalente1_date` 	= ".($pentavalente1_date !== '' ? "'$pentavalente1_date'" : "NULL").",
+	`pentavalente1_desc` 	= '$pentavalente1_desc',
+	`hepatb2` 				= '$hepatb2',
+	`hepatb2_date` 			= ".($hepatb2_date !== '' ? "'$hepatb2_date'" : "NULL").",
+	`hepatb2_desc` 			= '$hepatb2_desc',
+	`neumoco1` 				= '$neumoco1',
+	`neumoco1_date` 		= ".($neumoco1_date !== '' ? "'$neumoco1_date'" : "NULL").",
+	`neumoco1_desc` 		= '$neumoco1_desc',
+	`rotavirus2do1` 		= '$rotavirus2do1',
+	`rotavirus2do1_date` 	= ".($rotavirus2do1_date !== '' ? "'$rotavirus2do1_date'" : "NULL").",
+	`rotavirus2do1_desc` 	= '$rotavirus2do1_desc',
+	`rotavirus3do1` 		= '$rotavirus3do1',
+	`rotavirus3do1_date` 	= ".($rotavirus3do1_date !== '' ? "'$rotavirus3do1_date'" : "NULL").",
+	`rotavirus3do1_desc` 	= '$rotavirus3do1_desc',
+	`pentavalente2` 		= '$pentavalente2',
+	`pentavalente2_date` 	= ".($pentavalente2_date !== '' ? "'$pentavalente2_date'" : "NULL").",
+	`pentavalente2_desc` 	= '$pentavalente2_desc',
+	`neumoco2` 				= '$neumoco2',
+	`neumoco2_date` 		= ".($neumoco2_date !== '' ? "'$neumoco2_date'" : "NULL").",
+	`neumoco2_desc` 		= '$neumoco2_desc',
+	`rotavirus2do2` 		= '$rotavirus2do2',
+	`rotavirus2do2_date` 	= ".($rotavirus2do2_date !== '' ? "'$rotavirus2do2_date'" : "NULL").",
+	`rotavirus2do2_desc` 	= '$rotavirus2do2_desc',
+	`rotavirus3do2` 		= '$rotavirus3do2',
+	`rotavirus3do2_date` 	= ".($rotavirus3do2_date !== '' ? "'$rotavirus3do2_date'" : "NULL").",
+	`rotavirus3do2_desc` 	= '$rotavirus3do2_desc',
+	`pentavalente3` 		= '$pentavalente3',
+	`pentavalente3_date` 	= ".($pentavalente3_date !== '' ? "'$pentavalente3_date'" : "NULL").",
+	`pentavalente3_desc` 	= '$pentavalente3_desc',
+	`hepatb3` 				= '$hepatb3',
+	`hepatb3_date` 			= ".($hepatb3_date !== '' ? "'$hepatb3_date'" : "NULL").",
+	`hepatb3_desc` 			= '$hepatb3_desc',
+	`influenza1` 			= '$influenza1',
+	`influenza1_date` 		= ".($bcg_date !== '' ? "'$bcg_date'" : "NULL").",
+	`influenza1_desc` 		= '$influenza1_desc',
+	`rotavirus3do3` 		= '$rotavirus3do3',
+	`rotavirus3do3_date` 	= ".($influenza1_date !== '' ? "'$influenza1_date'" : "NULL").",
+	`rotavirus3do3_desc` 	= '$rotavirus3do3_desc',
+	`influenza2` 			= '$influenza2',
+	`influenza2_date` 		= ".($influenza2_date !== '' ? "'$influenza2_date'" : "NULL").",
+	`influenza2_desc` 		= '$influenza2_desc',
+	`sarampion1` 			= '$sarampion1',
+	`sarampion1_date` 		= ".($sarampion1_date !== '' ? "'$sarampion1_date'" : "NULL").",
+	`sarampion1_desc` 		= '$sarampion1_desc',
+	`neumocorev` 			= '$neumocorev',
+	`neumocorev_date` 		= ".($neumocorev_date !== '' ? "'$neumocorev_date'" : "NULL").",
+	`neumocorev_desc` 		= '$neumocorev_desc',
+	`pentavalenteref` 		= '$pentavalenteref',
+	`pentavalenteref_date` 	= ".($pentavalenteref_date !== '' ? "'$pentavalenteref_date'" : "NULL").",
+	`pentavalenteref_desc` 	= '$pentavalenteref_desc',
+	`influenza3` 			= '$influenza3',
+	`influenza3_date` 		= ".($influenza3_date !== '' ? "'$influenza3_date'" : "NULL").",
+	`influenza3_desc` 		= '$influenza3_desc',
+	`influenza4` 			= '$influenza4',
+	`influenza4_date` 		= ".($influenza4_date !== '' ? "'$influenza4_date'" : "NULL").",
+	`influenza4_desc` 		= '$influenza4_desc',
+	`dptref` 				= '$dptref',
+	`dptref_date` 			= ".($dptref_date !== '' ? "'$dptref_date'" : "NULL").",
+	`dptref_desc` 			= '$dptref_desc',
+	`influenza5` 			= '$influenza5',
+	`influenza5_date` 		= ".($influenza5_date !== '' ? "'$influenza5_date'" : "NULL").",
+	`influenza5_desc` 		= '$influenza5_desc',
+	`influenza6` 			= '$influenza6',
+	`influenza6_date` 		= ".($influenza6_date !== '' ? "'$influenza6_date'" : "NULL").",
+	`influenza6_desc` 		= '$influenza6_desc',
+	`sabin` 				= '$sabin',
+	`sabin_date` 			= ".($sabin_date !== '' ? "'$sabin_date'" : "NULL").",
+	`sabin_desc` 			= '$sabin_desc',
+	`sarampion2` 			= '$sarampion2',
+	`sarampion2_date` 		= ".($sarampion2_date !== '' ? "'$sarampion2_date'" : "NULL").",
+	`sarampion2_desc` 		= '$sarampion2_desc',
+	`created_at`		= CURRENT_TIMESTAMP,
+	`capturist`			= $capturist $postQuery";
+
+	// var_dump($query);
+
+	$inserted = mysqli_query($connection, $query);
+
+	return $inserted;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Vacunación]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveElderVaccinatonData_DOM($connection, $method,
+	$id_patient,
+	$neumoco,
+	$neumoco_date,
+	$neumoco_desc,
+	$neumoco1,
+	$neumoco1_date,
+	$neumoco1_desc,
+	$neumoco2,
+	$neumoco2_date,
+	$neumoco2_desc,
+	$dptc,
+	$dptc_date,
+	$dptc_desc,
+	$dptc1,
+	$dptc1_date,
+	$dptc1_desc,
+	$dptc2,
+	$dptc2_date,
+	$dptc2_desc,
+	$dpti1,
+	$dpti1_date,
+	$dpti1_desc,
+	$dpti2,
+	$dpti2_date,
+	$dpti2_desc,
+	$dpti3,
+	$dpti3_date,
+	$dpti3_desc,
+	$influenza,
+	$influenza_date,
+	$influenza_desc,
+	$influenza2,
+	$influenza2_date,
+	$influenza2_desc,
+	$influenza3,
+	$influenza3_date,
+	$influenza3_desc,
+	$influenza4,
+	$influenza4_date,
+	$influenza4_desc,
+	$influenza5,
+	$influenza5_date,
+	$influenza5_desc,
+	$influenza6,
+	$influenza6_date,
+	$influenza6_desc,
+	$influenza7_date,
+	$influenza7_desc,
+	$influenza8_date,
+	$influenza8_desc,
+	$influenza9_date,
+	$influenza9_desc,
+	$influenza10_date,
+	$influenza10_desc,
+	$influenza11_date,
+	$influenza11_desc,
+	$influenza12_date,
+	$influenza12_desc,
+	$capturist){
+
+	$query = "";
+	$postQuery = "";
+
+	if ($method=="UPDATE") {
+		$query = "UPDATE";
+		$postQuery = "WHERE `id_patient` = $id_patient;";
+	}else{
+		$query = "INSERT";
+		$postQuery = "";
+	}
+
+	$query .= " `eldervaccinationdata` SET
+	`id_patient`			= '$id_patient',
+	`neumoco` 				= '$neumoco',
+	`neumoco_date` 			= ".($neumoco_date !== '' ? "'$neumoco_date'" : "NULL").",
+	`neumoco_desc` 			= '$neumoco_desc',
+	`neumoco1` 				= '$neumoco1',
+	`neumoco1_date` 		= ".($neumoco1_date !== '' ? "'$neumoco1_date'" : "NULL").",
+	`neumoco1_desc` 		= '$neumoco1_desc',
+	`neumoco2` 				= '$neumoco2',
+	`neumoco2_date` 		= ".($neumoco2_date !== '' ? "'$neumoco2_date'" : "NULL").",
+	`neumoco2_desc` 		= '$neumoco2_desc',
+	`dptc` 					= '$dptc',
+	`dptc_date` 			= ".($dptc_date !== '' ? "'$dptc_date'" : "NULL").",
+	`dptc_desc` 			= '$dptc_desc',
+	`dptc1` 				= '$dptc1',
+	`dptc1_date` 			= ".($dptc1_date !== '' ? "'$dptc1_date'" : "NULL").",
+	`dptc1_desc` 			= '$dptc1_desc',
+	`dptc2` 				= '$dptc2',
+	`dptc2_date` 			= ".($dptc2_date !== '' ? "'$dptc2_date'" : "NULL").",
+	`dptc2_desc` 			= '$dptc2_desc',
+	`dpti1` 				= '$dpti1',
+	`dpti1_date` 			= ".($dpti1_date !== '' ? "'$dpti1_date'" : "NULL").",
+	`dpti1_desc` 			= '$dpti1_desc',
+	`dpti2` 				= '$dpti2',
+	`dpti2_date` 			= ".($dpti2_date !== '' ? "'$dpti2_date'" : "NULL").",
+	`dpti2_desc` 			= '$dpti2_desc',
+	`dpti3` 				= '$dpti3',
+	`dpti3_date` 			= ".($dpti3_date !== '' ? "'$dpti3_date'" : "NULL").",
+	`dpti3_desc` 			= '$dpti3_desc',
+	`influenza` 			= '$influenza',
+	`influenza_date` 		= ".($influenza_date !== '' ? "'$influenza_date'" : "NULL").",
+	`influenza_desc` 		= '$influenza_desc',
+	`influenza2` 			= '$influenza2',
+	`influenza2_date` 		= ".($influenza2_date !== '' ? "'$influenza2_date'" : "NULL").",
+	`influenza2_desc` 		= '$influenza2_desc',
+	`influenza3` 			= '$influenza3',
+	`influenza3_date` 		= ".($influenza3_date !== '' ? "'$influenza3_date'" : "NULL").",
+	`influenza3_desc` 		= '$influenza3_desc',
+	`influenza4` 			= '$influenza4',
+	`influenza4_date` 		= ".($influenza4_date !== '' ? "'$influenza4_date'" : "NULL").",
+	`influenza4_desc` 		= '$influenza4_desc',
+	`influenza5` 			= '$influenza5',
+	`influenza5_date` 		= ".($influenza5_date !== '' ? "'$influenza5_date'" : "NULL").",
+	`influenza5_desc` 		= '$influenza5_desc',
+	`influenza6` 			= '$influenza6',
+	`influenza6_date` 		= ".($influenza6_date !== '' ? "'$influenza6_date'" : "NULL").",
+	`influenza6_desc` 		= '$influenza6_desc',
+	`influenza7_date` 		= ".($influenza7_date !== '' ? "'$influenza7_date'" : "NULL").",
+	`influenza7_desc` 		= '$influenza7_desc',
+	`influenza8_date` 		= ".($influenza8_date !== '' ? "'$influenza8_date'" : "NULL").",
+	`influenza8_desc` 		= '$influenza8_desc',
+	`influenza9_date` 		= ".($influenza9_date !== '' ? "'$influenza9_date'" : "NULL").",
+	`influenza9_desc` 		= '$influenza9_desc',
+	`influenza10_date` 		= ".($influenza10_date !== '' ? "'$influenza10_date'" : "NULL").",
+	`influenza10_desc` 		= '$influenza10_desc',
+	`influenza11_date` 		= ".($influenza11_date !== '' ? "'$influenza11_date'" : "NULL").",
+	`influenza11_desc` 		= '$influenza11_desc',
+	`influenza12_date` 		= ".($influenza12_date !== '' ? "'$influenza12_date'" : "NULL").",
+	`influenza12_desc` 		= '$influenza12_desc',
+	`created_at`		= CURRENT_TIMESTAMP,
+	`capturist`			= $capturist $postQuery";
+
+	// var_dump($query);
 
 	$inserted = mysqli_query($connection, $query);
 

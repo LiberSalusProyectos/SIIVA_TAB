@@ -256,6 +256,54 @@
           </a>
         </center>
       </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
+          <a href="patient_pass.php?m=childVaccination">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-eye-dropper custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo CHILD_VACCINATION; ?></h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
+          <a href="patient_pass.php?m=childVaccination">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-syringe custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo YOUNG_VACCINATION; ?></h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
+          <a href="patient_pass.php?m=childVaccination">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-vial custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo ADULT_VACCINATION; ?></h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
+          <a href="patient_pass.php?m=elderVaccination">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-flask custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2"><?php echo ELDER_VACCINATION; ?></h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
     </div>
   </div>
 </body>
