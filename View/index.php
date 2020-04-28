@@ -270,7 +270,7 @@
       </div>
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
         <center>
-          <a href="patient_pass.php?m=childVaccination">
+          <a href="patient_pass.php?m=youngVaccination">
             <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
               <span>
                 <i class="fas fa-syringe custom-teeth-open-icon icon-behind"></i>
@@ -282,7 +282,7 @@
       </div>
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
         <center>
-          <a href="patient_pass.php?m=childVaccination">
+          <a href="patient_pass.php?m=adultVaccination">
             <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
               <span>
                 <i class="fas fa-vial custom-teeth-open-icon icon-behind"></i>

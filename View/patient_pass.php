@@ -149,6 +149,20 @@
                         $table = "childvaccinationdata";
                         $module = "child_vaccination.php";
                         break;
+                    
+                    case 'youngVaccination':
+                        $sectionName = YOUNG_VACCINATION;
+                        $iconName = "fa-syringe";
+                        $table = "youngvaccinationdata";
+                        $module = "young_vaccination.php";
+                        break;
+                    
+                    case 'adultVaccination':
+                        $sectionName = ADULT_VACCINATION;
+                        $iconName = "fa-syringe";
+                        $table = "adultvaccinationdata";
+                        $module = "adult_vaccination.php";
+                        break;
 
                     case 'elderVaccination':
                         $sectionName = ELDER_VACCINATION;

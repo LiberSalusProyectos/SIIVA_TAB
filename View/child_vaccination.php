@@ -329,7 +329,7 @@
             <div class="row text-center">
                 <div class="col-12 col-sm-12 p-2 border-head">
                     <span class="text-royal-blue bold-font custom-form-label-element">
-                        Esquema Básico de Vacunación del Niño
+                        Esquema Básico de Vacunación
                     </span>
                 </div>
             </div>
@@ -399,10 +399,12 @@
                 <div class="col-5 col-sm-5 col-md-4 col-lg-2 border-headmid"></div>
                 <div id="rotavirus3do1" class="col-7 col-sm-7 col-md-8 col-lg-10 p-2 border-mid <?php if($result[0]['rotavirus3do1']=='1') { echo 'bg-rotavirus'; } else { echo 'bg-gray';} ?>">
                     <span class="ml-4">ROTAVIRUS 3 dosis. (Primera)</span>
-                    <div id="rotavirus3do1_" <?php if($result[0]['rotavirus3do1']!='1') { echo 'style="display: none;"'; } ?> class="mt-2">
-                        <input type="checkbox" <?php if($result[0]['rotavirus3do1']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="rotavirus3do1">
-                        <input placeholder="Fecha de vacunación" name="rotavirus3do1_date" value="<?php echo $result[0]["rotavirus3do1_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
-                        <input type="text" class="form-control custom-input mt-1" name="rotavirus3do1_desc" value="<?php echo utf8_encode($result[0]["rotavirus3do1_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                    <div class="row h-100 text-center">
+                        <div id="rotavirus3do1_" <?php if($result[0]['rotavirus3do1']!='1') { echo 'style="display: none;"'; } ?> class="offset-md-3 col-md-6 mt-2">
+                            <input type="checkbox" <?php if($result[0]['rotavirus3do1']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="rotavirus3do1">
+                            <input placeholder="Fecha de vacunación" name="rotavirus3do1_date" value="<?php echo $result[0]["rotavirus3do1_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
+                            <input type="text" class="form-control custom-input mt-1" name="rotavirus3do1_desc" value="<?php echo utf8_encode($result[0]["rotavirus3do1_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -495,10 +497,12 @@
                 </div>
                 <div id="influenza2" class="col-7 col-sm-7 col-md-8 col-lg-10 p-2 border-mid <?php if($result[0]['influenza2']=='1') { echo 'bg-influenza'; } else { echo 'bg-gray';} ?>">
                     <span class="ml-4">INFLUENZA (Segunda)</span>
-                    <div id="influenza2_" <?php if($result[0]['influenza2']!='1') { echo 'style="display: none;"'; } ?> class="mt-2">
-                        <input type="checkbox" <?php if($result[0]['influenza2']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="influenza2">
-                        <input placeholder="Fecha de vacunación" name="influenza2_date" value="<?php echo $result[0]["influenza2_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
-                        <input type="text" class="form-control custom-input mt-1" name="influenza2_desc" value="<?php echo utf8_encode($result[0]["influenza2_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                    <div class="row h-100 text-center">
+                        <div id="influenza2_" <?php if($result[0]['influenza2']!='1') { echo 'style="display: none;"'; } ?> class="offset-md-3 col-md-6 mt-2">
+                            <input type="checkbox" <?php if($result[0]['influenza2']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="influenza2">
+                            <input placeholder="Fecha de vacunación" name="influenza2_date" value="<?php echo $result[0]["influenza2_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
+                            <input type="text" class="form-control custom-input mt-1" name="influenza2_desc" value="<?php echo utf8_encode($result[0]["influenza2_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -532,10 +536,12 @@
                 </div>
                 <div id="pentavalenteref" class="col-7 col-sm-7 col-md-8 col-lg-10 p-2 border-mid <?php if($result[0]['pentavalenteref']=='1') { echo 'bg-pentav'; } else { echo 'bg-gray';} ?>">
                     <span class="ml-4">PENTAVALENTE ACECULAR (Refuerzo)</span>
-                    <div id="pentavalenteref_" <?php if($result[0]['pentavalenteref']!='1') { echo 'style="display: none;"'; } ?> class="mt-2">
-                        <input type="checkbox" <?php if($result[0]['pentavalenteref']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="pentavalenteref">
-                        <input placeholder="Fecha de vacunación" name="pentavalenteref_date" value="<?php echo $result[0]["pentavalenteref_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
-                        <input type="text" class="form-control custom-input mt-1" name="pentavalenteref_desc" value="<?php echo utf8_encode($result[0]["pentavalenteref_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                    <div class="row h-100 text-center">
+                        <div id="pentavalenteref_" <?php if($result[0]['pentavalenteref']!='1') { echo 'style="display: none;"'; } ?> class="offset-md-3 col-md-6 mt-2">
+                            <input type="checkbox" <?php if($result[0]['pentavalenteref']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="pentavalenteref">
+                            <input placeholder="Fecha de vacunación" name="pentavalenteref_date" value="<?php echo $result[0]["pentavalenteref_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
+                            <input type="text" class="form-control custom-input mt-1" name="pentavalenteref_desc" value="<?php echo utf8_encode($result[0]["pentavalenteref_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -546,10 +552,12 @@
                 </div>
                 <div id="influenza3" class="col-7 col-sm-7 col-md-8 col-lg-10 p-2 border-mid <?php if($result[0]['influenza3']=='1') { echo 'bg-influenza'; } else { echo 'bg-gray';} ?>">
                     <span class="ml-4">INFLUENZA (Refuerzo anual)</span>
-                    <div id="influenza3_" <?php if($result[0]['influenza3']!='1') { echo 'style="display: none;"'; } ?> class="mt-2">
-                        <input type="checkbox" <?php if($result[0]['influenza3']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="influenza3">
-                        <input placeholder="Fecha de vacunación" name="influenza3_date" value="<?php echo $result[0]["influenza3_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
-                        <input type="text" class="form-control custom-input mt-1" name="influenza3_desc" value="<?php echo utf8_encode($result[0]["influenza3_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                    <div class="row h-100 text-center">
+                        <div id="influenza3_" <?php if($result[0]['influenza3']!='1') { echo 'style="display: none;"'; } ?> class="offset-md-3 col-md-6 mt-2">
+                            <input type="checkbox" <?php if($result[0]['influenza3']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="influenza3">
+                            <input placeholder="Fecha de vacunación" name="influenza3_date" value="<?php echo $result[0]["influenza3_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
+                            <input type="text" class="form-control custom-input mt-1" name="influenza3_desc" value="<?php echo utf8_encode($result[0]["influenza3_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -560,10 +568,12 @@
                 </div>
                 <div id="influenza4" class="col-7 col-sm-7 col-md-8 col-lg-10 p-2 border-mid <?php if($result[0]['influenza4']=='1') { echo 'bg-influenza'; } else { echo 'bg-gray';} ?>">
                     <span class="ml-4">INFLUENZA (Refuerzo anual)</span>
-                    <div id="influenza4_" <?php if($result[0]['influenza4']!='1') { echo 'style="display: none;"'; } ?> class="mt-2">
-                        <input type="checkbox" <?php if($result[0]['influenza4']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="influenza4">
-                        <input placeholder="Fecha de vacunación" name="influenza4_date" value="<?php echo $result[0]["influenza4_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
-                        <input type="text" class="form-control custom-input mt-1" name="influenza4_desc" value="<?php echo utf8_encode($result[0]["influenza4_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                    <div class="row h-100 text-center">
+                        <div id="influenza4_" <?php if($result[0]['influenza4']!='1') { echo 'style="display: none;"'; } ?> class="offset-md-3 col-md-6 mt-2">
+                            <input type="checkbox" <?php if($result[0]['influenza4']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="influenza4">
+                            <input placeholder="Fecha de vacunación" name="influenza4_date" value="<?php echo $result[0]["influenza4_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
+                            <input type="text" class="form-control custom-input mt-1" name="influenza4_desc" value="<?php echo utf8_encode($result[0]["influenza4_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -620,10 +630,12 @@
                 </div>
                 <div id="sarampion2" class="col-7 col-sm-7 col-md-8 col-lg-10 p-2 border-end <?php if($result[0]['sarampion2']=='1') { echo 'bg-sarampion'; } else { echo 'bg-gray';} ?>">
                     <span class="ml-4">SRP (Refuerzo)</span>
-                    <div id="sarampion2_" <?php if($result[0]['sarampion2']!='1') { echo 'style="display: none;"'; } ?> class="mt-2">
-                        <input type="checkbox" <?php if($result[0]['sarampion2']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="sarampion2">
-                        <input placeholder="Fecha de vacunación" name="sarampion2_date" value="<?php echo $result[0]["sarampion2_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
-                        <input type="text" class="form-control custom-input mt-1" name="sarampion2_desc" value="<?php echo utf8_encode($result[0]["sarampion2_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                    <div class="row h-100 text-center">
+                        <div id="sarampion2_" <?php if($result[0]['sarampion2']!='1') { echo 'style="display: none;"'; } ?> class="offset-md-3 col-md-6 mt-2">
+                            <input type="checkbox" <?php if($result[0]['sarampion2']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="sarampion2">
+                            <input placeholder="Fecha de vacunación" name="sarampion2_date" value="<?php echo $result[0]["sarampion2_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
+                            <input type="text" class="form-control custom-input mt-1" name="sarampion2_desc" value="<?php echo utf8_encode($result[0]["sarampion2_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                        </div>
                     </div>
                 </div>
             </div>

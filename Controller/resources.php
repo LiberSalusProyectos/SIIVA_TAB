@@ -125,6 +125,12 @@ function getModuleData($connection, $module, $id_patient){
 		case "childVaccination":
 			$table = "childvaccinationdata";
 			break;
+		case "youngVaccination":
+			$table = "youngvaccinationdata";
+			break;
+		case "adultVaccination":
+			$table = "adultvaccinationdata";
+			break;
 		case "elderVaccination":
 			$table = "eldervaccinationdata";
 			break;
@@ -1279,6 +1285,162 @@ function saveChildVaccinatonData($connection, $method, $data, $id_user){
 		($data['sarampion2']!="" ? 1 : 0),
 		$data["sarampion2_date"],
 		utf8_decode($data['sarampion2_desc']),
+	 	$id_user);
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Vacunación]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveYoungVaccinatonData($connection, $method, $data, $id_user){
+
+	$result = saveYoungVaccinatonData_DOM($connection, $method,
+		$data["id_patient"],
+		($data['hepatb']!="" ? 1 : 0),
+		$data["hepatb_date"],
+		utf8_decode($data['hepatb_desc']),
+		($data['hepatb2']!="" ? 1 : 0),
+		$data["hepatb2_date"],
+		utf8_decode($data['hepatb2_desc']),
+		($data['dptc']!="" ? 1 : 0),
+		$data["dptc_date"],
+		utf8_decode($data['dptc_desc']),
+		($data['dpti1']!="" ? 1 : 0),
+		$data["dpti1_date"],
+		utf8_decode($data['dpti1_desc']),
+		($data['dpti2']!="" ? 1 : 0),
+		$data["dpti2_date"],
+		utf8_decode($data['dpti2_desc']),
+		($data['dpti3']!="" ? 1 : 0),
+		$data["dpti3_date"],
+		utf8_decode($data['dpti3_desc']),
+		($data['dptp']!="" ? 1 : 0),
+		$data["dptp_date"],
+		utf8_decode($data['dptp_desc']),
+		($data['influenzap']!="" ? 1 : 0),
+		$data["influenzap_date"],
+		utf8_decode($data['influenzap_desc']),
+		($data['influenza']!="" ? 1 : 0),
+		$data["influenza_date"],
+		utf8_decode($data['influenza_desc']),
+		($data['influenza2']!="" ? 1 : 0),
+		$data["influenza2_date"],
+		utf8_decode($data['influenza2_desc']),
+		($data['influenza3']!="" ? 1 : 0),
+		$data["influenza3_date"],
+		utf8_decode($data['influenza3_desc']),
+		($data['influenza4']!="" ? 1 : 0),
+		$data["influenza4_date"],
+		utf8_decode($data['influenza4_desc']),
+		($data['influenza5']!="" ? 1 : 0),
+		$data["influenza5_date"],
+		utf8_decode($data['influenza5_desc']),
+		($data['influenza6']!="" ? 1 : 0),
+		$data["influenza6_date"],
+		utf8_decode($data['influenza6_desc']),
+		$data["influenza7_date"],
+		utf8_decode($data['influenza7_desc']),
+		$data["influenza8_date"],
+		utf8_decode($data['influenza8_desc']),
+		($data['sarampion']!="" ? 1 : 0),
+		$data["sarampion_date"],
+		utf8_decode($data['sarampion_desc']),
+		($data['sarampionsa1']!="" ? 1 : 0),
+		$data["sarampionsa1_date"],
+		utf8_decode($data['sarampionsa1_desc']),
+		($data['sarampionsa2']!="" ? 1 : 0),
+		$data["sarampionsa2_date"],
+		utf8_decode($data['sarampionsa2_desc']),
+		($data['vph']!="" ? 1 : 0),
+		$data["vph_date"],
+		utf8_decode($data['vph_desc']),
+		($data['vph2']!="" ? 1 : 0),
+		$data["vph2_date"],
+		utf8_decode($data['vph2_desc']),
+	 	$id_user);
+	return $result;
+}
+
+/**
+ * [Función para el almacenado de información dentro de la sección de Vacunación]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $method      [Selección entre insertar o actualizar]
+ * @param  [string] $data        [Información a ser guardada/actualizada]
+ * @param  [int] $id_user    	 [ID del usuario en cuestión]
+ * @return [bool]             	 [Resultado de la inserción/actualización]
+ */
+function saveAdultVaccinatonData($connection, $method, $data, $id_user){
+
+	$result = saveAdultVaccinatonData_DOM($connection, $method,
+		$data["id_patient"],
+		($data['sarampion']!="" ? 1 : 0),
+		$data["sarampion_date"],
+		utf8_decode($data['sarampion_desc']),
+		($data['sarampionsa1']!="" ? 1 : 0),
+		$data["sarampionsa1_date"],
+		utf8_decode($data['sarampionsa1_desc']),
+		($data['sarampionsa2']!="" ? 1 : 0),
+		$data["sarampionsa2_date"],
+		utf8_decode($data['sarampionsa2_desc']),
+		($data['dptc']!="" ? 1 : 0),
+		$data["dptc_date"],
+		utf8_decode($data['dptc_desc']),
+		($data['dptc1']!="" ? 1 : 0),
+		$data["dptc1_date"],
+		utf8_decode($data['dptc1_desc']),
+		($data['dptc2']!="" ? 1 : 0),
+		$data["dptc2_date"],
+		utf8_decode($data['dptc2_desc']),
+		($data['dpti1']!="" ? 1 : 0),
+		$data["dpti1_date"],
+		utf8_decode($data['dpti1_desc']),
+		($data['dpti2']!="" ? 1 : 0),
+		$data["dpti2_date"],
+		utf8_decode($data['dpti2_desc']),
+		($data['dpti3']!="" ? 1 : 0),
+		$data["dpti3_date"],
+		utf8_decode($data['dpti3_desc']),
+		($data['dptp']!="" ? 1 : 0),
+		$data["dptp_date"],
+		utf8_decode($data['dptp_desc']),
+		($data['influenzap']!="" ? 1 : 0),
+		$data["influenzap_date"],
+		utf8_decode($data['influenzap_desc']),
+		($data['influenza']!="" ? 1 : 0),
+		$data["influenza_date"],
+		utf8_decode($data['influenza_desc']),
+		($data['influenza2']!="" ? 1 : 0),
+		$data["influenza2_date"],
+		utf8_decode($data['influenza2_desc']),
+		($data['influenza3']!="" ? 1 : 0),
+		$data["influenza3_date"],
+		utf8_decode($data['influenza3_desc']),
+		($data['influenza4']!="" ? 1 : 0),
+		$data["influenza4_date"],
+		utf8_decode($data['influenza4_desc']),
+		($data['influenza5']!="" ? 1 : 0),
+		$data["influenza5_date"],
+		utf8_decode($data['influenza5_desc']),
+		($data['influenza6']!="" ? 1 : 0),
+		$data["influenza6_date"],
+		utf8_decode($data['influenza6_desc']),
+		$data["influenza7_date"],
+		utf8_decode($data['influenza7_desc']),
+		$data["influenza8_date"],
+		utf8_decode($data['influenza8_desc']),
+		$data["influenza9_date"],
+		utf8_decode($data['influenza9_desc']),
+		$data["influenza10_date"],
+		utf8_decode($data['influenza10_desc']),
+		$data["influenza11_date"],
+		utf8_decode($data['influenza11_desc']),
+		$data["influenza12_date"],
+		utf8_decode($data['influenza12_desc']),
 	 	$id_user);
 	return $result;
 }

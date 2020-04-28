@@ -607,7 +607,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label text-royal-blue regular-font">Fecha</label>
                             <div class="col-sm-9">
-                                <input value="<?php echo $result[0]["mammography_date"]; ?>" class="form-control custom-input date" name="mammography_date" />
+                                <input value="<?php echo $result[0]["mammography_date"]; ?>" class="form-control custom-input date" name="mammography_date" autocomplete="off" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -625,7 +625,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label text-royal-blue regular-font">Fecha</label>
                             <div class="col-sm-9">
-                                <input value="<?php echo $result[0]["densitometry_date"]; ?>" class="form-control custom-input date" name="densitometry_date" />
+                                <input value="<?php echo $result[0]["densitometry_date"]; ?>" class="form-control custom-input date" name="densitometry_date" autocomplete="off" />
                             </div>
                         </div>
                         <div class="form-group row">
