@@ -1,6 +1,6 @@
 <?php
 //include_once("../../../Model/queries.php");
-include_once("../../../../../../../../Controller/resources.php");
+//include_once("../../../../../../../../Controller/resources.php");
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -12,8 +12,11 @@ $spreadsheet = IOFactory::load($inputFileName);
 $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
 
 $limiteSuperior = sizeof($sheetData);
+echo "<pre>";
+var_dump($sheetData);
+echo "</pre>";
 
-//$limiteSuperior = 22;
+$limiteSuperior = 5;
 
 $fila=0;
 $inicio = 2;

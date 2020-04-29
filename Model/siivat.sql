@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2020 a las 20:57:01
+-- Tiempo de generación: 29-04-2020 a las 22:14:47
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -1939,7 +1939,17 @@ INSERT INTO `basicpatientdata` (`id`, `affiliationNumber`, `affiliationNumber_d`
 (5, '0', '0', '/', 0, 'NO', 'JOSE DE LA CRUZ', NULL, 'CERINO', NULL, 'SANCHEZ', NULL, NULL, 66, 1954, NULL, NULL, 'MASCULINO ', NULL, '', NULL, 1, '0', '', 'OBRERO MUNDIAL', NULL, '103', NULL, '', NULL, 'JESUS GARCIA', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'PROSTATA, HIPERPLACIA PROSTETICA BENIGNO ', 'CUIDADOR', 'CASA', '', 'L-V M', 0, 0, '2020-04-29 18:52:24'),
 (6, '0', '0', '/', 0, 'NO', 'MARIBEL ', NULL, 'SANCHEZ', NULL, 'LOPEZ', NULL, NULL, 37, 1983, NULL, NULL, 'FEMENINO', NULL, '', NULL, 1, '0', '', 'OBRERO MUNDIAL', NULL, '103', NULL, '', NULL, 'JESUS GARCIA', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'TIROIDE', 'CUIDADOR', 'CASA', '', 'L-V M', 0, 0, '2020-04-29 18:52:24'),
 (7, '0', '0', '/', 0, 'NO', 'TRINIDAD ', NULL, 'PALENQUE', NULL, 'DE LA CRUZ', NULL, NULL, 45, 1975, NULL, NULL, 'FEMENINO', NULL, '', NULL, 1, '0', '', 'OBRERO MUNDIAL', NULL, '103', NULL, '', NULL, 'JESUS GARCIA', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'GASTRITIS, CIRCULATORIO Y QUISTE MAMARIO', 'CUIDADOR', 'CASA', '', 'L-V M', 0, 0, '2020-04-29 18:52:24'),
-(8, '1', '1', '/A', 1, 'SI', 'DAVID', NULL, 'ALVADO', NULL, 'RODAS', NULL, '0000-00-00', 51, 1969, NULL, NULL, 'MASCULINO ', NULL, 'TRABAJADOR', NULL, 2, '1', '9933735122', 'TINTO', NULL, '', NULL, 'VERDE VALLE', NULL, 'GAVIOTAS SUR', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'NINGUNA', 'TEC. EN MANTENIMIENTO', 'MANTENIMIENTO', 'DIAS FESTIVOS Y FINES DE SEMANA', 'S M', 0, 0, '2020-04-29 18:52:24');
+(8, '1', '1', '/A', 1, 'SI', 'DAVID', NULL, 'ALVADO', NULL, 'RODAS', NULL, '0000-00-00', 51, 1969, NULL, NULL, 'MASCULINO ', NULL, 'TRABAJADOR', NULL, 2, '1', '9933735122', 'TINTO', NULL, '', NULL, 'VERDE VALLE', NULL, 'GAVIOTAS SUR', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'NINGUNA', 'TEC. EN MANTENIMIENTO', 'MANTENIMIENTO', 'DIAS FESTIVOS Y FINES DE SEMANA', 'S M', 0, 0, '2020-04-29 18:52:24'),
+(9, '0', '0', '/E', 0, 'SI', 'ISABEL', NULL, 'PEREZ', NULL, 'PEREZ', NULL, '0000-00-00', 55, 1965, NULL, NULL, 'FEMENINO', NULL, 'CONYUGE', NULL, 2, '0', '', 'TINTO, SECTOR VALLE VERDE', NULL, '', NULL, '', NULL, 'GAVIOTAS SUR', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'HIPERTENSION ARTERIAL', '', '', '', 'S M', 0, 0, '2020-04-29 19:21:29'),
+(10, '', '', '/H', 0, 'NO ', 'FLOR MARIA ', NULL, 'ARIAS ', NULL, 'MARTINEZ ', NULL, NULL, 26, 1994, NULL, NULL, 'FEMENINO', NULL, 'HIJA', NULL, 4, '', '', 'CALLE FAISAN ', NULL, '223', NULL, '', NULL, 'MANUEL SILVA ', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'NINGUNA ', 'ESTUDIANTE ', 'ESTUDIANTE ', '', 'L-V V', 0, 0, '2020-04-29 19:21:29'),
+(11, '', '', '/A', 1, 'SI', 'MARCELA', NULL, 'ARIAS', NULL, 'FLORES', NULL, NULL, 47, 1973, NULL, NULL, 'FEMENINO', NULL, 'TRABAJADOR', NULL, 3, '', '9932636019', 'PRINCIPAL', NULL, '', NULL, '', NULL, 'IXTACOMITAN', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, '', 'ENFERMERA GENERAL', 'CEMI', 'FINES DE SEMANA', 'L-V M', 0, 0, '2020-04-29 19:21:29'),
+(12, '', '', '/H', 0, 'SI ', 'ANGELES RUBICEL ', NULL, 'ZAPATA ', NULL, 'ARIAS ', NULL, NULL, 11, 2009, NULL, NULL, 'FEMENINO', NULL, 'HIJA', NULL, 5, '', '', 'CALLE LAGUNA MECOACAN ', NULL, '', NULL, '', NULL, 'LA MANGA III', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'NINGUNA ', 'ESTUDIANTE PRIMARIA ', 'ESTUDIANTE ', 'MATUTINO ', 'L-V V', 0, 0, '2020-04-29 19:21:29'),
+(13, '', '', '/0', 0, 'SI', 'ASUNCIÓN', NULL, 'GARCÍA', NULL, 'VILLEGAS', NULL, NULL, 50, 1970, NULL, NULL, 'MASCULINO', NULL, 'CONYUGE', NULL, 3, '', '', 'PRINCIPAL', NULL, '', NULL, '', NULL, 'IXTACOMITAN', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'HIPERTENSIÓN', '', 'CEMI', 'FINES DE SEMANA', 'L-V M', 0, 0, '2020-04-29 19:21:29'),
+(14, '', '', '/H', 0, 'NO', 'EVELIN', NULL, 'GARCÍA', NULL, 'ARIAS', NULL, NULL, 20, 2000, NULL, NULL, 'FEMENINO', NULL, 'HIJA', NULL, 3, '', '', 'PRINCIPAL', NULL, '', NULL, '', NULL, 'IXTACOMITAN', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, '', '', '', 'MATUTINO', 'L-V M', 0, 0, '2020-04-29 19:21:29'),
+(15, '', '', '/', 0, 'SI', 'NAIROBI', NULL, 'ALVAREZ ', NULL, 'TORRES', NULL, NULL, 18, 2002, NULL, NULL, 'FEMENINO', NULL, '', NULL, 6, '', '', 'BRISAS', NULL, '', NULL, '108', NULL, 'VISTA ALEGRE', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'NINGUNA', 'ESTUDIANTE', '', '', 'S V', 0, 0, '2020-04-29 19:21:29'),
+(16, '', '', '/H', 0, '(NODICE)', 'RAQUEL', NULL, 'ALVAREZ', NULL, 'ZETINA', NULL, NULL, 0, 2020, NULL, NULL, 'FEMENINO', NULL, 'HIJA', NULL, 6, '', '', 'BRISAS', NULL, '', NULL, '108', NULL, 'VISTA ALEGRE', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'NINGUNA', '', '', '', 'S V', 0, 0, '2020-04-29 19:21:29'),
+(17, '', '', '/', 0, 'SI', 'VALERIA', NULL, 'ZETINA', NULL, 'PÉREZ', NULL, NULL, 23, 1997, NULL, NULL, 'FEMENINO', NULL, '', NULL, 6, '', '', 'BRISAS', NULL, '', NULL, '108', NULL, 'VISTA ALEGRE', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'COLELITIASIS', 'LABORES DEL HOGAR', 'LABORES DEL HOGAR', 'TURNO COMPLETO', 'S V', 0, 0, '2020-04-29 19:21:29'),
+(18, '', '', '/A', 1, 'SI', 'MAYRA VIRIGINIA', NULL, 'ARIAS ', NULL, 'DAMASCO', NULL, '0000-00-00', 40, 1980, NULL, NULL, 'FEMENINO', NULL, 'TRABAJADOR', NULL, 7, '', '9931768540', 'MALECON LEANDRO ROVIROSA WADE', NULL, '475-B', NULL, '', NULL, 'GAVIOTAS NORTE', NULL, 'CENTRO', NULL, 0, NULL, 'TABASCO', NULL, NULL, 'NINGUNA ', 'ASISTENTE EDUCATIVO', 'CENDI V', 'MATUTINO', 'L-V V', 0, 0, '2020-04-29 19:21:29');
 
 -- --------------------------------------------------------
 
@@ -7156,6 +7166,51 @@ CREATE TABLE `socioculturaldata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `updatedata`
+--
+
+CREATE TABLE `updatedata` (
+  `id_data` int(7) NOT NULL,
+  `section_name` text,
+  `row_number` int(7) DEFAULT NULL,
+  `found_number` int(7) DEFAULT NULL,
+  `fail_number` int(7) DEFAULT NULL,
+  `success_number` int(7) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `updatedata`
+--
+
+INSERT INTO `updatedata` (`id_data`, `section_name`, `row_number`, `found_number`, `fail_number`, `success_number`, `status`, `last_update`) VALUES
+(1, 'Antecedentes Familiares.', 1111, 1000, 999, 1, NULL, NULL),
+(2, 'Hoja de administración familiar de DASS-21.', NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'Encuesta medio ambiente.', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Escala abreviada de depresión geriátrica de Yesavage.', NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'Escala abreviada de sobre carga del cuidador de Zarit.', NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'Enfermedades de transmisión sexual de acuerdo a edad, sexo y orientación sexual.', NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 'Cuestionario para conocer el contexto socio-cultural.', NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 'Tamizaje de diabetes mellitus.', NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'Prevención, Tamizaje, Detección y Control de Hipertensión Arterial Sistémica.', NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'Formulario para conocer el estilo de vida personal de [0-1] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 'Formulario para conocer el estilo de vida personal de [6-12] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'Formulario para conocer el estilo de vida personal de [12+] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'Formulario para conocer el estilo de vida personal de [1-5] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 'Atención médica y planificación familiar + antecedentes gineco-obstétricos.', NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 'PBIQ - Cuestionario de creencias personales.', NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 'Signos vitales / somatometría + Estudios de laboratorio.', NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'Cuestionario para evaluación de violencia de género.', NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 'Esquema de vacunación de [0-9] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(19, 'Esquema de vacunación de [10-19] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(20, 'Esquema de vacunación de [20-59] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(21, 'Esquema de vacunación de [60+] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(22, 'Escala de desesperanza de Beck.', NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -7173,7 +7228,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombre`, `email`, `password`, `lastLogin`, `id_role`) VALUES
-(1, 'prueba', 'proyectos.software@libersalus.com', '22b75d6007e06f4a959d1b1d69b4c4bd', '2020-01-24 01:43:17', 1),
+(1, 'prueba', 'proyectos.software@libersalus.com', '22b75d6007e06f4a959d1b1d69b4c4bd', '2020-04-29 19:22:10', 1),
 (6, 'test', 'desarrollo.tabasco@libersalus.com', '098f6bcd4621d373cade4e832627b4f6', '2020-03-23 23:21:28', 4);
 
 -- --------------------------------------------------------
@@ -7585,7 +7640,7 @@ ALTER TABLE `basicfamilydata`
 -- AUTO_INCREMENT de la tabla `basicpatientdata`
 --
 ALTER TABLE `basicpatientdata`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `basicpatientdata_s`
