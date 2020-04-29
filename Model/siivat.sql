@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 28-04-2020 a las 17:24:22
+-- Tiempo de generación: 28-04-2020 a las 21:26:11
 -- Versión del servidor: 5.7.29
 -- Versión de PHP: 7.4.1
 
@@ -10693,6 +10693,9 @@ CREATE TABLE `childvaccinationdata` (
   `sarampion2` tinyint(1) DEFAULT NULL,
   `sarampion2_date` date DEFAULT NULL,
   `sarampion2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sarampion3` tinyint(1) DEFAULT NULL,
+  `sarampion3_date` date DEFAULT NULL,
+  `sarampion3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `id_patient` int(7) NOT NULL,
   `capturist` int(7) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

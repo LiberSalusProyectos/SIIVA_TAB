@@ -1285,6 +1285,9 @@ function saveChildVaccinatonData($connection, $method, $data, $id_user){
 		($data['sarampion2']!="" ? 1 : 0),
 		$data["sarampion2_date"],
 		utf8_decode($data['sarampion2_desc']),
+		($data['sarampion3']!="" ? 1 : 0),
+		$data["sarampion3_date"],
+		utf8_decode($data['sarampion3_desc']),
 	 	$id_user);
 	return $result;
 }

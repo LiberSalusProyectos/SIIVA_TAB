@@ -275,6 +275,15 @@
                 return !checked;
             })
         })
+        jQuery('#sarampion3').click(function(e){
+            if(jQuery(e.target).is('input')) return;
+            jQuery('#sarampion3').toggleClass('bg-gray')
+            jQuery('#sarampion3').toggleClass('bg-sarampion')
+            jQuery('#sarampion3_').toggle()
+            jQuery('input[name="sarampion3"]').prop('checked', function(_, checked) {
+                return !checked;
+            })
+        })
 
         var date_input = $('.date'); //our date input has the name "date"
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
@@ -625,16 +634,32 @@
             </div>
 
             <div class="row">
-                <div class="col-5 col-sm-5 col-md-4 col-lg-2 p-2 border-full">
+                <div class="col-5 col-sm-5 col-md-4 col-lg-2 p-2 border-head">
                     <span class="text-royal-blue bold-font">72 Meses(6 Años)</span>
                 </div>
-                <div id="sarampion2" class="col-7 col-sm-7 col-md-8 col-lg-10 p-2 border-end <?php if($result[0]['sarampion2']=='1') { echo 'bg-sarampion'; } else { echo 'bg-gray';} ?>">
+                <div id="sarampion2" class="col-7 col-sm-7 col-md-8 col-lg-10 p-2 border-mid <?php if($result[0]['sarampion2']=='1') { echo 'bg-sarampion'; } else { echo 'bg-gray';} ?>">
                     <span class="ml-4">SRP (Refuerzo)</span>
                     <div class="row h-100 text-center">
                         <div id="sarampion2_" <?php if($result[0]['sarampion2']!='1') { echo 'style="display: none;"'; } ?> class="offset-md-3 col-md-6 mt-2">
                             <input type="checkbox" <?php if($result[0]['sarampion2']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="sarampion2">
                             <input placeholder="Fecha de vacunación" name="sarampion2_date" value="<?php echo $result[0]["sarampion2_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
                             <input type="text" class="form-control custom-input mt-1" name="sarampion2_desc" value="<?php echo utf8_encode($result[0]["sarampion2_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-5 col-sm-5 col-md-4 col-lg-2 p-2 border-full">
+                    <span class="text-royal-blue bold-font">Otros</span>
+                </div>
+                <div id="sarampion3" class="col-7 col-sm-7 col-md-8 col-lg-10 p-2 border-end <?php if($result[0]['sarampion3']=='1') { echo 'bg-sarampion'; } else { echo 'bg-gray';} ?>">
+                    <span class="ml-4">SR (Adicionales)</span>
+                    <div class="row h-100 text-center">
+                        <div id="sarampion3_" <?php if($result[0]['sarampion3']!='1') { echo 'style="display: none;"'; } ?> class="offset-md-3 col-md-6 mt-2">
+                            <input type="checkbox" <?php if($result[0]['sarampion3']=='1') { echo 'checked="checked"'; } ?> style="display: none;" name="sarampion3">
+                            <input placeholder="Fecha de vacunación" name="sarampion3_date" value="<?php echo $result[0]["sarampion3_date"]; ?>" class="form-control custom-input date" autocomplete="off" />
+                            <input type="text" class="form-control custom-input mt-1" name="sarampion3_desc" value="<?php echo utf8_encode($result[0]["sarampion3_desc"]); ?>" placeholder="Efectos adversos" autocomplete="off" />
                         </div>
                     </div>
                 </div>

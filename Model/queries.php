@@ -2177,6 +2177,9 @@ function saveChildVaccinatonData_DOM($connection, $method,
 	$sarampion2,
 	$sarampion2_date,
 	$sarampion2_desc,
+	$sarampion3,
+	$sarampion3_date,
+	$sarampion3_desc,
 	$capturist){
 
 	$query = "";
@@ -2270,6 +2273,9 @@ function saveChildVaccinatonData_DOM($connection, $method,
 	`sarampion2` 			= '$sarampion2',
 	`sarampion2_date` 		= ".($sarampion2_date !== '' ? "'$sarampion2_date'" : "NULL").",
 	`sarampion2_desc` 		= '$sarampion2_desc',
+	`sarampion3` 			= '$sarampion3',
+	`sarampion3_date` 		= ".($sarampion3_date !== '' ? "'$sarampion3_date'" : "NULL").",
+	`sarampion3_desc` 		= '$sarampion3_desc',
 	`created_at`		= CURRENT_TIMESTAMP,
 	`capturist`			= $capturist $postQuery";
 
