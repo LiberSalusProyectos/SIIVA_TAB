@@ -3960,4 +3960,21 @@ function getDetailByTownshipData_DOM($connection, $municipio){
 	    return $resultado;
 	}
 }
+
+
+function getDetailUpdateData_DOM ($connection){
+	$query = "SELECT * FROM `updatedata`";
+
+	$resultado = array();
+
+	if ($result = mysqli_query($connection, $query)) {
+	    while ($row = $result->fetch_assoc()) {
+			$resultado[] = $row;
+		}
+	    return $resultado;
+	}
+}
+
+
+
  ?>

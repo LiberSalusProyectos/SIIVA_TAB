@@ -41,3 +41,5 @@
 		<link rel="stylesheet" href="View/assets/css/bootstrap-datepicker3.css" />
 		
 		<script type="text/javascript" src="View/assets/js/bootstrap-datepicker.es.min.js"></script>
+
+		<script src="View/assets/js/typed.js@2.0.11"></script>

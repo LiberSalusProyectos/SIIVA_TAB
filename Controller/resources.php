@@ -1617,4 +1617,12 @@ function getDetailByTownshipData($connection){
 
 	return $result;
 }
+
+function getDetailUpdateData($connection){
+	$result = getDetailUpdateData_DOM($connection, $search);
+
+	return $result;
+}
+
+
  ?>
