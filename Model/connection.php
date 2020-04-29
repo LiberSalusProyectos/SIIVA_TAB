@@ -8,10 +8,10 @@
 	error_reporting(E_ALL & ~E_NOTICE); //Mostrar errores PHP
 
 
-	$servername = "localhost";
+	$servername = "db";
 	$db 		= "siivat";
-	$username 	= "root";
-	$password	= "";
+	$username 	= "siivat";
+	$password	= "siivat";
 
 
 	$linkDB = mysqli_connect($servername, $username, $password, $db);
