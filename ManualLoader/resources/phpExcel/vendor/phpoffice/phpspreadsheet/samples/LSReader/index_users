@@ -1,0 +1,55 @@
+1	idÍndice
+2	affiliationNumber
+3	affiliationNumber_d
+4	affiliate
+5	affiliatesNumber
+
+6	name
+7	name_
+8	firstLastName
+9	firstLastName_
+10	secondLastName
+
+11	secondLastName_
+12	birthdate
+13	age
+14	birthYear
+15	curp
+
+16	salusId
+17	genre
+18	genre_
+19	familyRole
+20	familyRole_
+
+21	familyID
+22	familiyReference
+23	phone_number
+24	calle
+25	calle_
+
+26	no_ext
+27	no_ext_
+28	no_int
+29	no_int_
+30	colonia
+
+31	colonia_
+32	municipio
+33	municipio_
+34	codigo_postal
+35	codigo_postal_
+
+36	estado
+37	address_reference
+38	family_atmosphere
+39	health_problems
+40	occupation
+
+41	workPlace
+42	workShift
+43	visitAvailability
+44	workPermit
+45	capturist
+
+46	updated_at

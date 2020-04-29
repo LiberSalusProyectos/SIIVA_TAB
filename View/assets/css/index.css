@@ -997,7 +997,7 @@ p.instructions-paragraph {
     #bootstrap_overrides .container-fluid {
         /* background-color: #f00; */
     }
-} 
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
@@ -1012,4 +1012,48 @@ p.instructions-paragraph {
 
 .section-title {
       text-transform: uppercase;
+}
+
+
+
+.tabla-general tbody tr td, .tabla-general tbody tr th{
+    font-family: Century Gothic;
+}
+
+.tabla-general tbody tr th {
+    font-weight: initial;
+}
+
+.date-style {
+    font-family: monospace;
+    text-transform: uppercase;
+    font-size: smaller;
+}
+
+.estado-actualizacion {
+    display: block;
+    font-size: medium;
+    margin: 0;
+}
+
+.lista-detalle {
+    font-size: small;
+    margin: 0;
+}
+
+label.estado-actualizado {
+    color: #28a745;
+}
+
+.tabla-general tbody tr td, .tabla-general tbody tr th td {
+    min-width: 250px;
+}
+/*
+.tabla-general tbody tr td, .tabla-general tbody tr th td.function-block div.etapas label {
+    font-size: 11px;
+}*/
+
+div.etapas label {
+    font-size: 11px;
+    white-space: break-spaces;
 }
