@@ -7,6 +7,8 @@ include 'resources/phpExcel/vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
+include_once("Controller/resources.php");
+
 if($_FILES["select_excel"]["name"] != '')
 {
  $allowed_extension = array('xls', 'xlsx');

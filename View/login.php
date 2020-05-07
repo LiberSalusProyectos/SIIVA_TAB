@@ -6,8 +6,11 @@ if (isset($_POST) && sizeof($_POST)>0) {
 
 	if ($result) {
 		switch ($_SESSION['id_role']) {
+			case 1:
+				header('Location: admin.php'); exit;
+				break;
 			case 4:
-				header('Location: user_home.php'); exit;
+				header('Location: user.php'); exit;
 				break;
 			default:
 				# code...

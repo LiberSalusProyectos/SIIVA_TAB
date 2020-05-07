@@ -30,14 +30,14 @@
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="user.php">HOME</a>
+                    <a class="nav-link" href="admin.php">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="medicionesCompletadas.php">MEDICIONES COMPLETADAS</a>
+                    <a class="nav-link" href="loads.php">CARGA MANUAL DE DATOS</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="medicionesMunicipio.php">MEDICIONES POR MUNICIPIO</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php">CERRAR SESIÓN</a>
                 </li>
