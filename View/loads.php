@@ -111,7 +111,7 @@
                   <th scope="row" class="text-center"><?php echo $i+1; ?></th>
                   <td>
                     <?php echo utf8_encode($updateData[$i]["section_name"]); ?>
-                    <input type="file" name="select_excel" required />
+                    <input type="file" name="select_excel" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
                     <input type="hidden" name="id" value="<?php echo $i; ?>">
                   </td>
                   <!-- <td>
