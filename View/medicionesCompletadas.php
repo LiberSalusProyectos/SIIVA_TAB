@@ -1,9 +1,9 @@
-<?php include_once("Controller/resources.php"); ?>
+<?php include_once("user_auth.php"); include_once("Controller/resources.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php include("header_references_auth.php");
+    <?php include("header_references.php");
     if (sizeof($_POST)>0) {
       if(isset($_POST["search"])){
         $search = $_POST["search"];

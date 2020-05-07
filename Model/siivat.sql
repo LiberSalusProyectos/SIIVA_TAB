@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 07-05-2020 a las 15:22:58
+-- Tiempo de generación: 07-05-2020 a las 16:19:19
 -- Versión del servidor: 5.7.30
 -- Versión de PHP: 7.4.5
 
@@ -7228,7 +7228,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nombre`, `email`, `password`, `lastLogin`, `id_role`) VALUES
 (1, 'prueba', 'proyectos.software@libersalus.com', '22b75d6007e06f4a959d1b1d69b4c4bd', '2020-04-29 19:22:10', 3),
-(6, 'test', 'desarrollo.tabasco@libersalus.com', '098f6bcd4621d373cade4e832627b4f6', '2020-03-23 23:21:28', 4),
+(6, 'test', 'desarrollo.tabasco@libersalus.com', '098f6bcd4621d373cade4e832627b4f6', '2020-03-23 23:21:28', 2),
 (7, 'admin', 'admin.tabasco@libersalus.com', '21232f297a57a5a743894a0e4a801fc3', '2020-05-07 15:20:27', 1);
 
 -- --------------------------------------------------------

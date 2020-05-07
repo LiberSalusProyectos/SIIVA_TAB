@@ -1,8 +1,8 @@
-<?php include_once("Controller/resources.php"); ?>
+<?php include_once("admin_auth.php"); include_once("Controller/resources.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php include("header_references_auth.php");?>
+    <?php include("header_references.php");?>
     <style>
 
     </style>

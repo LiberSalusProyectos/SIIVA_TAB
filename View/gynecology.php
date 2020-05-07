@@ -1,14 +1,9 @@
-<?php include_once("Controller/resources.php"); ?>
+<?php include_once("index_auth.php"); include_once("Controller/resources.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php include("header_references_auth.php");
-
-    if ($_SESSION['id_role'] > 3) {
-        header('Location: error.php');
-        exit();
-    }
+    <?php include("header_references.php");
 
     // $_SESSION["id_user"] = 1;
     //var_dump($_SESSION);

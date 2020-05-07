@@ -1,8 +1,9 @@
+<?php include_once("admin_auth.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
-    <?php include("header_references_auth.php");?>
+    <?php include("header_references.php");?>
   </head>
 <style>
   .rdy {

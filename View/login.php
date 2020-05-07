@@ -9,11 +9,13 @@ if (isset($_POST) && sizeof($_POST)>0) {
 			case 1:
 				header('Location: admin.php'); exit;
 				break;
-			case 4:
+			case 2:
+				header('Location: user.php'); exit;
+				break;
+			case 3:
 				header('Location: user.php'); exit;
 				break;
 			default:
-				# code...
 				header('Location: index.php'); exit;
 				break;
 		}

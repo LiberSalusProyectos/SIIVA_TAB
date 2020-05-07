@@ -2,7 +2,20 @@
 <html lang="en">
 
   <head>
-    <?php include("header_references_auth.php");?>
+    <?php include("header_references.php");
+      session_start();
+      switch($_SESSION['id_role']){
+        case 1:
+          $home = "admin.php";
+          break;
+        case 2:
+          $home = "user.php";
+          break;
+        default:
+          $home = "index.php";
+          break;
+      }
+    ?>
   </head>
 <style>
   .rdy {
@@ -21,10 +34,10 @@
 
     <div class="row custom-vertical-padding">
       <div class="offset-0 offset-md-2 offset-sm-2 offset-lg-3 col-12 col-sm-8 col-md-8 col-lg-6 text-center">
-        <h1>Prohibido</h1>
-        <h4>Usted no tiene permiso para acceder a está direccion.</h4>
+        <h1><i class="fas fa-lock"></i> PROHIBIDO</h1>
+        <p>Usted no tiene permisos para acceder a está página.</p>
         <br>
-        <a href="user.php">Llevame al inicio</a>
+        <a href="<?php echo $home; ?>">Ir al inicio</a>
       </div>
     </div>
   </div>
