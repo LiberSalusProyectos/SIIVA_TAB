@@ -42,8 +42,13 @@ function userAuthentication($connection, $email, $password){
 
 		lasConnectionUpdate_DOM($connection, $email, $password);
 
-		ini_set("session.cookie_lifetime","7200");
-		ini_set("session.gc_maxlifetime","7200");
+		ini_set("session.cookie_lifetime", 7200);
+		ini_set("session.gc_maxlifetime", 7200);
+		ini_set("display_errors", 1);
+		ini_set("session.use_cookies", 1);
+		setlocale(LC_ALL, "es_ES");
+	
+		error_reporting(E_ALL & ~E_NOTICE); //Mostrar errores PHP
 
 		session_start();
 		$_SESSION['loggedin']  = TRUE;

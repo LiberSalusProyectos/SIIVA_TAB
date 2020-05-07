@@ -13,7 +13,7 @@ if (isset($_POST) && sizeof($_POST)>0) {
 				header('Location: user.php'); exit;
 				break;
 			case 3:
-				header('Location: user.php'); exit;
+				header('Location: index.php'); exit;
 				break;
 			default:
 				header('Location: index.php'); exit;
