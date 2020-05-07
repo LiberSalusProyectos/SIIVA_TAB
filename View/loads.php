@@ -59,7 +59,7 @@
           <form action="register_patient.php" method="POST">
             <button class="btn my-2 my-sm-0 custom-btn-identify" type="submit">
               <span>
-                <i class="fas fa-user-friends custom-identify-icon icon-behind"></i>
+                <i class="fas fa-cloud-upload-alt custom-identify-icon icon-behind"></i>
                 <h4 class="text-white bold-font text-forward">CARGA MANUAL DE DATOS</h4>
               </span>
             </button>
