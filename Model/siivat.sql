@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 29-04-2020 a las 22:14:47
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.3
+-- Servidor: db
+-- Tiempo de generación: 07-05-2020 a las 15:22:58
+-- Versión del servidor: 5.7.30
+-- Versión de PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -7228,8 +7227,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nombre`, `email`, `password`, `lastLogin`, `id_role`) VALUES
-(1, 'prueba', 'proyectos.software@libersalus.com', '22b75d6007e06f4a959d1b1d69b4c4bd', '2020-04-29 19:22:10', 1),
-(6, 'test', 'desarrollo.tabasco@libersalus.com', '098f6bcd4621d373cade4e832627b4f6', '2020-03-23 23:21:28', 4);
+(1, 'prueba', 'proyectos.software@libersalus.com', '22b75d6007e06f4a959d1b1d69b4c4bd', '2020-04-29 19:22:10', 3),
+(6, 'test', 'desarrollo.tabasco@libersalus.com', '098f6bcd4621d373cade4e832627b4f6', '2020-03-23 23:21:28', 4),
+(7, 'admin', 'admin.tabasco@libersalus.com', '21232f297a57a5a743894a0e4a801fc3', '2020-05-07 15:20:27', 1);
 
 -- --------------------------------------------------------
 
@@ -7754,7 +7754,7 @@ ALTER TABLE `socioculturaldata`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `vitalsigndata`
