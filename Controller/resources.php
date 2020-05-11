@@ -478,21 +478,21 @@ function saveGeriatricDepressionData($connection, $method, $data, $id_user){
 
 	$result = saveGeriatricDepressionData_DOM($connection, $method,
 		$data['id_patient'],
-		($data['satisfied']!="" ? $data['satisfied'] : 0),
-		($data['giveup_hobby']!="" ? $data['giveup_hobby'] : 0),
-		($data['empty_life']!="" ? $data['empty_life'] : 0),
-		($data['boredom']!="" ? $data['boredom'] : 0),
-		($data['optimism']!="" ? $data['optimism'] : 0),
-		($data['fear']!="" ? $data['fear'] : 0),
-		($data['happiness']!="" ? $data['happiness'] : 0),
-		($data['abandonment']!="" ? $data['abandonment'] : 0),
-		($data['at_home']!="" ? $data['at_home'] : 0),
-		($data['memory_loss']!="" ? $data['memory_loss'] : 0),
-		($data['love_forlife']!="" ? $data['love_forlife'] : 0),
-		($data['start_difficult']!="" ? $data['start_difficult'] : 0),
-		($data['full_energy']!="" ? $data['full_energy'] : 0),
-		($data['anxiety']!="" ? $data['anxiety'] : 0),
-		($data['economy']!="" ? $data['economy'] : 0),
+		($data['satisfied']!="" ? $data['satisfied'] : 'NULL'),
+		($data['giveup_hobby']!="" ? $data['giveup_hobby'] : 'NULL'),
+		($data['empty_life']!="" ? $data['empty_life'] : 'NULL'),
+		($data['boredom']!="" ? $data['boredom'] : 'NULL'),
+		($data['optimism']!="" ? $data['optimism'] : 'NULL'),
+		($data['fear']!="" ? $data['fear'] : 'NULL'),
+		($data['happiness']!="" ? $data['happiness'] : 'NULL'),
+		($data['abandonment']!="" ? $data['abandonment'] : 'NULL'),
+		($data['at_home']!="" ? $data['at_home'] : 'NULL'),
+		($data['memory_loss']!="" ? $data['memory_loss'] : 'NULL'),
+		($data['love_forlife']!="" ? $data['love_forlife'] : 'NULL'),
+		($data['start_difficult']!="" ? $data['start_difficult'] : 'NULL'),
+		($data['full_energy']!="" ? $data['full_energy'] : 'NULL'),
+		($data['anxiety']!="" ? $data['anxiety'] : 'NULL'),
+		($data['economy']!="" ? $data['economy'] : 'NULL'),
 		$id_user);
 
 	return $result;
@@ -1527,6 +1527,29 @@ function saveElderVaccinatonData($connection, $method, $data, $id_user){
 }
 
 /**
+ * [Función para actualizar la la tabla de cargas "updatedata".]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [int] $row_number  [Número total de registros recorridos]
+ * @param  [int] $found_number  [Número de registros encontrados]
+ * @param  [int] $fail_number  [Número de registros fallidos]
+ * @param  [int] $success_number  [Número de registros completados]
+ * @param  [string] $status  [Cadena de texto con el estado actual de la carga]
+ * @return [bool]             	 [Estado de la consulta]
+ */
+function saveUpdateData($connection, $id_data, $row_number, $found_number, $fail_number, $success_number, $status){
+
+	$result = saveUpdateData_DOM($connection,
+		$id_data,
+		$row_number,
+		$found_number,
+		$fail_number,
+		$success_number,
+		$status);
+
+	return $result;
+}
+
+/**
  * [Función para obtener los datos completos de un paciente]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $table       [Nombre de la tabla en la DB]
@@ -1628,6 +1651,5 @@ function getDetailUpdateData($connection){
 
 	return $result;
 }
-
 
  ?>

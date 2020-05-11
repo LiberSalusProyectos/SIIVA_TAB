@@ -2754,6 +2754,32 @@ function saveElderVaccinatonData_DOM($connection, $method,
 }
 
 /**
+ * [Función para actualizar la la tabla de cargas "updatedata".]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [int] $row_number  [Número total de registros recorridos]
+ * @param  [int] $found_number  [Número de registros encontrados]
+ * @param  [int] $fail_number  [Número de registros fallidos]
+ * @param  [int] $succes_number  [Número de registros completados]
+ * @param  [string] $status  [Cadena de texto con el estado actual de la carga]
+ * @return [bool]             	 [Estado de la consulta]
+ */
+function saveUpdateData_DOM($connection, $id_data, $row_number, $found_number, $fail_number, $success_number, $status){
+
+	$query = "UPDATE `updatedata` SET
+	 `last_update` = CURRENT_TIMESTAMP,
+	 `row_number` = $row_number,
+	 `found_number` = $found_number,
+	 `fail_number` = $fail_number,
+	 `success_number` = $success_number,
+	 `status` = $status
+	 WHERE `id_data` = $id_data";
+
+	$updated = mysqli_query($connection, $query);
+
+	return $updated;
+}
+
+/**
  * [Función para obtener todos los datos de un usuario, para determinado módulo.]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $module      [Nombre del módulo transmitido por GET]

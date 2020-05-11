@@ -10,7 +10,7 @@
       $(document).ready(function(){
         $(":file").filestyle({
           placeholder: "Selecciona un archivo de Excel",
-          htmlIcon: '<span class="fas fa-file-excel"></span>',
+          htmlIcon: '<span class="fas fa-file"></span>',
           text: " Buscar...",
           btnClass: "btn-secondary"
         });
@@ -19,24 +19,39 @@
           event.preventDefault();
 
           const data = new FormData(this);
-          const element = $('button[name$="'+data.get('id')+'"]')
+          const element = $('button[name$="'+data.get('id_data')+'"]')
+          const msg_div = $('#message_'+data.get('id_data'))
       
           element.prop("disabled", true);
           // add spinner to button
           element.html(
             `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...`
           );
+
+          msg_div.html(
+            `<label class="text-info">Cargando datos del archivo.</label>`
+          )
       
           $.ajax({
-            url:"api/upload.php",
+            url:"upload.php",
             method:"POST",
             data:data,
             contentType:false,
             cache:false,
             processData:false,
-            success:function(data){
+            success:function(resp){
+              var data = JSON.parse(resp);
               element.prop("disabled", false);
               // add spinner to button
+              if(data.success){
+                msg_div.html(
+                  '<label class="text-primary">' + data.message + '</label>'
+                )
+              } else {
+                msg_div.html(
+                  '<label class="text-danger">' + data.message + '</label>'
+                )
+              }
               element.html(
                 `Actualizar`
               );
@@ -105,14 +120,15 @@
               </tr>
             </thead>
             <tbody>
-              <?php for ($i=0; $i < sizeof($updateData); $i++) { ?>
+              <?php foreach ($updateData as $key=>$update) { ?>
                 <tr>
                 <form method="post" name="load_excel_form" enctype="multipart/form-data">
-                  <th scope="row" class="text-center"><?php echo $i+1; ?></th>
-                  <td>
+                  <th scope="row" class="text-center" width="10%"><?php echo $update['id_data']; ?></th>
+                  <td width="40%">
                     <?php echo utf8_encode($updateData[$i]["section_name"]); ?>
                     <input type="file" name="select_excel" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
-                    <input type="hidden" name="id" value="<?php echo $i; ?>">
+                    <input type="hidden" name="id_data" value="<?php echo $update['id_data']; ?>">
+                    <label class="text-secondary"><?php echo utf8_encode($update['section_name']); ?></label>
                   </td>
                   <!-- <td>
                     <ul class="lista-detalle">
@@ -121,7 +137,7 @@
                       <li>Registros no hallados: <label><?php echo $updateData[$i]["success_number"]; ?></label> </li>
                     </ul>
                   </td> -->
-                  <td class="text-center estado-label">
+                  <td class="text-center estado-label" width="20%">
                     <?php
   
                     switch ($updateData[$i]["last_update"]) {
@@ -139,28 +155,18 @@
                     <label class="estado-actualizacion <?php echo($status_class); ?>"><?php echo $label_class; ?></label>
                     <label class="date-style"><?php echo $updateData[$i]["last_update"]; ?></label>
                   </td>
-                  <td class="text-center function-block">
+                  <td class="text-center function-block" width="30%">
                     <div class="etapas etapa_00">
                       <!-- <button class="btn btn-success update_js" data-id="<?php echo($updateData[$i]["id_data"]); ?>">
                         Actualizar
                       </button> -->
-                      <button type="submit" name="<?php echo $i; ?>" class="btn btn-success">
+                      <button type="submit" name="<?php echo $update['id_data']; ?>" class="btn btn-success">
                         Actualizar
                       </button>
                     </div>
-                    <div class="etapas etapa_01">
-                      <label id="typed<?php echo($updateData[$i]["id_data"]); ?>">Cargando datos del archivo</label>
+                    <div id="message_<?php echo $update['id_data']; ?>" class="etapas">
+                      <?php echo "<span> </span>"; ?>
                     </div>
-                    <div class="etapas etapa_02">
-                      <label id="sumary<?php echo($updateData[$i]["id_data"]); ?>"></label>
-                    </div>
-                    <div class="etapas etapa_03">
-                      <label id="load<?php echo($updateData[$i]["id_data"]); ?>"></label>
-                    </div>
-                    <div class="etapas etapa_04">
-                      <label id="update<?php echo($updateData[$i]["id_data"]); ?>"></label>
-                    </div>
-  
                   </td>
                 </form>
                 </tr>
