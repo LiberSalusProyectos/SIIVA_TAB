@@ -138,22 +138,8 @@
                     </ul>
                   </td> -->
                   <td class="text-center estado-label" width="20%">
-                    <?php
-  
-                    switch ($updateData[$i]["last_update"]) {
-                      case '1':
-                        $status_class = "estado-actualizado";
-                        $label_class = "Actualizado";
-                        break;
-  
-                      default:
-                        $status_class = "estado-no-actualizado";
-                        $label_class = "Por actualizar";
-                        break;
-                    }
-                    ?>
-                    <label class="estado-actualizacion <?php echo($status_class); ?>"><?php echo $label_class; ?></label>
-                    <label class="date-style"><?php echo $updateData[$i]["last_update"]; ?></label>
+                    <label class="estado-actualizacion estado-no-actualizado">Por actualizar</label>
+                    <!-- <label class="date-style"><?php echo $updateData[$i]["last_update"]; ?></label> -->
                   </td>
                   <td class="text-center function-block" width="30%">
                     <div class="etapas etapa_00">
