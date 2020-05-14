@@ -1,6 +1,8 @@
 <?php
 include_once('connection.php');
 
+!defined('AES_PASSWORD') && define('AES_PASSWORD', 'L1b3r#$%2020');
+
 /**
  * [Función para el almacenado de información dentro de la sección de Antecedentes Familiares]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
@@ -652,7 +654,7 @@ function saveGeriatricDepressionData_DOM($connection, $method,
 
 	$inserted = mysqli_query($connection, $query);
 
-	return $inserted;
+	return mysqli_insert_id($connection);
 }
 
 /**
@@ -2754,14 +2756,40 @@ function saveElderVaccinatonData_DOM($connection, $method,
 }
 
 /**
+ * [Función para insertar en la tabla de carga de formularios.]
+ * @param  [mysqlC] $connection  			[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $name  					[Nombre]
+ * @param  [string] $first_lastname  		[Apellido materno]
+ * @param  [string] $second_lastname  		[Apellido paterno]
+ * @return [bool]							[Estado de la consulta]
+ */
+function searchPatientByName_DOM($connection, $name, $first_lastname, $second_lastname ){
+
+	$query = "SELECT id FROM `basicpatientdata_s`
+	 WHERE `name` = '$name'
+	 AND `firstLastName` = '$first_lastname'
+	 AND `secondLastName` = '$second_lastname'";
+
+	$resultado = array();
+
+	if ($result = mysqli_query($connection, $query)) {
+	    while ($row = $result->fetch_assoc()) {
+				$resultado[] = $row;
+		}
+	    return $resultado;
+	}
+}
+
+/**
  * [Función para actualizar la la tabla de cargas "updatedata".]
- * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
- * @param  [int] $row_number  [Número total de registros recorridos]
- * @param  [int] $found_number  [Número de registros encontrados]
- * @param  [int] $fail_number  [Número de registros fallidos]
- * @param  [int] $succes_number  [Número de registros completados]
- * @param  [string] $status  [Cadena de texto con el estado actual de la carga]
- * @return [bool]             	 [Estado de la consulta]
+ * @param  [mysqlC] $connection		[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [int] $id_data    	 	[ID de la tabla "updatedata"]
+ * @param  [int] $row_number  		[Número total de registros recorridos]
+ * @param  [int] $found_number  	[Número de registros encontrados]
+ * @param  [int] $fail_number  		[Número de registros fallidos]
+ * @param  [int] $succes_number  	[Número de registros completados]
+ * @param  [string] $status  		[Cadena de texto con el estado actual de la carga]
+ * @return [bool]             	 	[Estado de la consulta]
  */
 function saveUpdateData_DOM($connection, $id_data, $row_number, $found_number, $fail_number, $success_number, $status){
 
@@ -2773,6 +2801,39 @@ function saveUpdateData_DOM($connection, $id_data, $row_number, $found_number, $
 	 `success_number` = $success_number,
 	 `status` = $status
 	 WHERE `id_data` = $id_data";
+
+	$updated = mysqli_query($connection, $query);
+
+	return $updated;
+}
+
+/**
+ * [Función para insertar en la tabla de carga de formularios.]
+ * @param  [mysqlC] $connection  			[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [int] $id_form  					[ID correspondiente al formulario en la tabla "updatedada" ]
+ * @param  [int] $id_data  					[ID correspondiente al registro insertado en la tabla del formulario]
+ * @param  [bool] $is_match  				[Representa si el paciente fue encontrado y el registro esta completo]
+ * @param  [int] $invoice  					[Folio interno]
+ * @param  [string] $affiliation_number  	[Número de afiliación]
+ * @param  [string] $name  					[Nombre]
+ * @param  [string] $first_lastname  		[Apellido materno]
+ * @param  [string] $second_lastname  		[Apellido paterno]
+ * @param  [string] $gender  				[Género]
+ * @return [bool]							[Estado de la consulta]
+ */
+function saveLoadData_DOM($connection, $id_form, $id_data, $is_match, $invoice, $affiliation_number, $name, $first_lastname, $second_lastname, $gender ){
+
+	$query = "INSERT `loaddata` SET
+	 `id_form` = $id_form,
+	 `id_data` = $id_data,
+	 `is_match` = $is_match,
+	 `invoice` = $invoice,
+	 `affiliationNumber` = '$affiliation_number',
+	 `name` = hex(aes_encrypt('$name', '".AES_PASSWORD."')),
+	 `firstLastName` = hex(aes_encrypt('$first_lastname', '".AES_PASSWORD."')),
+	 `secondLastName` = hex(aes_encrypt('$second_lastname', '".AES_PASSWORD."')),
+	 `gender` = '$gender',
+	 `created` = CURRENT_TIMESTAMP";
 
 	$updated = mysqli_query($connection, $query);
 

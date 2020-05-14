@@ -1527,14 +1527,33 @@ function saveElderVaccinatonData($connection, $method, $data, $id_user){
 }
 
 /**
+ * [Función para validar las credenciales de acceso al sistema, por cuestión de facilidad se implementó un MD5 sencillo como método de encryptación]
+ * @param  [mysqlC] $connection  			[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $data        			[Información a ser guardada/actualizada]
+ * @return [bool]             	 			[Resultado de la comparación entre credenciales]
+ */
+function searchPatientByName($connection, $data){
+
+	$id = 0;
+	$result = searchPatientByName_DOM($connection, $data['name'], $data['first_lastname'], $data['second_lastname']);
+
+	if (sizeof($result)>0) {
+		$id = $result[0]["id"];
+	}
+
+	return $id;
+}
+
+/**
  * [Función para actualizar la la tabla de cargas "updatedata".]
- * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
- * @param  [int] $row_number  [Número total de registros recorridos]
- * @param  [int] $found_number  [Número de registros encontrados]
- * @param  [int] $fail_number  [Número de registros fallidos]
- * @param  [int] $success_number  [Número de registros completados]
- * @param  [string] $status  [Cadena de texto con el estado actual de la carga]
- * @return [bool]             	 [Estado de la consulta]
+ * @param  [mysqlC] $connection  	[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [int] $id_data    	 	[ID de la tabla "updatedata"]
+ * @param  [int] $row_number  		[Número total de registros recorridos]
+ * @param  [int] $found_number  	[Número de registros encontrados]
+ * @param  [int] $fail_number  		[Número de registros fallidos]
+ * @param  [int] $success_number  	[Número de registros completados]
+ * @param  [string] $status  		[Cadena de texto con el estado actual de la carga]
+ * @return [bool]             	 	[Estado de la consulta]
  */
 function saveUpdateData($connection, $id_data, $row_number, $found_number, $fail_number, $success_number, $status){
 
@@ -1545,6 +1564,32 @@ function saveUpdateData($connection, $id_data, $row_number, $found_number, $fail
 		$fail_number,
 		$success_number,
 		$status);
+
+	return $result;
+}
+
+/**
+ * [Función para insertar en la tabla de carga de formularios.]
+ * @param  [mysqlC] $connection  	[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [int] $id_form  			[ID correspondiente al formulario en la tabla "updatedada" ]
+ * @param  [int] $id_data  			[ID correspondiente al registro insertado en la tabla del formulario]
+ * @param  [bool] $is_match  		[Representa si el paciente fue encontrado y el registro esta completo]
+ * @param  [string] $data        	[Información a ser guardada/actualizada]
+ * @return [bool]             	 	[Estado de la consulta]
+ */
+function saveLoadData($connection, $id_form, $id_data, $is_match, $data){
+
+	$result = saveLoadData_DOM($connection,
+		$id_form,
+		$id_data,
+		$is_match,
+		$data["invoice"],
+		$data["affiliation_number"],
+		$data["name"],
+		$data["first_lastname"],
+		$data["second_lastname"],
+		$data["gender"]
+	);
 
 	return $result;
 }

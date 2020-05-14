@@ -31,7 +31,17 @@ if($_FILES["select_excel"]["name"] != ''){
             if($key>2){
               if(trim($row[2]) !== '' && trim($row[3]) !== ''){
                 $data = array();
-                $data['id_patient'] = -1;
+
+                $data['invoice'] = trim($row[0]);
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
                 $data['satisfied'] = trim($row[6]) !== '' ? (substr($row[6], 0, 1) == 'a' ? '1' : '0' ) : NULL;
                 $data['giveup_hobby'] = trim($row[7]) !== '' ? (substr($row[7], 0, 1) == 'a' ? '1' : '0' ) : NULL;
                 $data['empty_life'] = trim($row[8]) !== '' ? (substr($row[8], 0, 1) == 'a' ? '1' : '0' ) : NULL;
@@ -48,7 +58,9 @@ if($_FILES["select_excel"]["name"] != ''){
                 $data['anxiety'] = trim($row[19]) !== '' ? (substr($row[19], 0, 1) == 'a' ? '1' : '0' ) : NULL;
                 $data['economy'] = trim($row[20]) !== '' ? (substr($row[20], 0, 1) == 'a' ? '1' : '0' ) : NULL;
                 
-                saveGeriatricDepressionData($linkDB, "INSERT", $data, 0);
+                $insert_id = saveGeriatricDepressionData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
                 ++$row_count;
               }
             }

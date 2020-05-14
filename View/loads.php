@@ -21,6 +21,7 @@
           const data = new FormData(this);
           const element = $('button[name$="'+data.get('id_data')+'"]')
           const msg_div = $('#message_'+data.get('id_data'))
+          const stat_div = $('#status_'+data.get('id_data'))
       
           element.prop("disabled", true);
           // add spinner to button
@@ -46,6 +47,9 @@
               if(data.success){
                 msg_div.html(
                   '<label class="text-primary">' + data.message + '</label>'
+                )
+                stat_div.html(
+                  '<label class="estado-actualizacion estado-actualizado">Actualizado</label><label class="date-style">Hace un momento</label>'
                 )
               } else {
                 msg_div.html(
@@ -137,8 +141,22 @@
                     </ul>
                   </td> -->
                   <td class="text-center estado-label" width="20%">
-                    <label class="estado-actualizacion estado-no-actualizado">Por actualizar</label>
-                    <!-- <label class="date-style"><?php echo $updateData[$i]["last_update"]; ?></label> -->
+                    <?php
+                      switch ($update["status"]) {
+                        case '1':
+                          $status_class = "estado-actualizado";
+                          $label_class = "Actualizado";
+                          break;
+                        default:
+                          $status_class = "estado-no-actualizado";
+                          $label_class = "Por actualizar";
+                          break;
+                      }
+                    ?>
+                    <div id="status_<?php echo $update['id_data']; ?>">
+                      <label class="estado-actualizacion <?php echo($status_class); ?>"><?php echo $label_class; ?></label>
+                      <label class="date-style"><?php echo $update["last_update"]; ?></label>
+                    </div>
                   </td>
                   <td class="text-center function-block" width="30%">
                     <div class="etapas etapa_00">
@@ -149,9 +167,7 @@
                         Actualizar
                       </button>
                     </div>
-                    <div id="message_<?php echo $update['id_data']; ?>" class="etapas">
-                      <?php echo "<span> </span>"; ?>
-                    </div>
+                    <div id="message_<?php echo $update['id_data']; ?>" class="etapas"></div>
                   </td>
                 </form>
                 </tr>

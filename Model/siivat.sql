@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 07-05-2020 a las 16:19:19
+-- Tiempo de generación: 14-05-2020 a las 18:27:40
 -- Versión del servidor: 5.7.30
 -- Versión de PHP: 7.4.5
 
@@ -7117,6 +7117,26 @@ CREATE TABLE `hypertensiondata` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `loaddata`
+--
+
+CREATE TABLE `loaddata` (
+  `id` int(14) NOT NULL,
+  `id_form` int(14) NOT NULL,
+  `id_data` int(14) NOT NULL,
+  `is_match` tinyint(1) NOT NULL,
+  `invoice` int(7) NOT NULL,
+  `affiliationNumber` varchar(14) COLLATE utf8_spanish_ci NOT NULL,
+  `name` varchar(120) COLLATE utf8_spanish_ci NOT NULL,
+  `firstLastName` varchar(120) COLLATE utf8_spanish_ci NOT NULL,
+  `secondLastName` varchar(120) COLLATE utf8_spanish_ci NOT NULL,
+  `gender` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -7187,7 +7207,7 @@ INSERT INTO `updatedata` (`id_data`, `section_name`, `row_number`, `found_number
 (1, 'Antecedentes Familiares.', 1111, 1000, 999, 1, NULL, NULL),
 (2, 'Hoja de administración familiar de DASS-21.', NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 'Encuesta medio ambiente.', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Escala abreviada de depresión geriátrica de Yesavage.', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Escala abreviada de depresión geriátrica de Yesavage.', 73, 0, 0, 73, 1, '2020-05-12 22:19:56'),
 (5, 'Escala abreviada de sobre carga del cuidador de Zarit.', NULL, NULL, NULL, NULL, NULL, NULL),
 (6, 'Enfermedades de transmisión sexual de acuerdo a edad, sexo y orientación sexual.', NULL, NULL, NULL, NULL, NULL, NULL),
 (7, 'Cuestionario para conocer el contexto socio-cultural.', NULL, NULL, NULL, NULL, NULL, NULL),
@@ -7572,6 +7592,12 @@ ALTER TABLE `hypertensiondata`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `loaddata`
+--
+ALTER TABLE `loaddata`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -7737,6 +7763,12 @@ ALTER TABLE `hopelessdata`
 --
 ALTER TABLE `hypertensiondata`
   MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `loaddata`
+--
+ALTER TABLE `loaddata`
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
