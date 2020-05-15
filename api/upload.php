@@ -26,8 +26,36 @@ if($_FILES["select_excel"]["name"] != ''){
       $linkDB->autocommit(false);
       switch($id_data){
         case 4:
+          $update = true;
           $row_count=0;
           foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== '¿Está básicamente satisfecho con su vida?' ||
+                  trim($row[7]) !== '¿Ha renunciado a muchas de sus actividades y pasatiempos?' ||
+                  trim($row[8]) !== '¿Siente que su vida está vacía?' ||
+                  trim($row[9]) !== '¿Se encuentra a menudo aburrido?' ||
+                  trim($row[10]) !== '¿Se encuentra alegre y optimista, con buen ánimo casi todo el tiempo?' ||
+                  trim($row[11]) !== '¿Teme que le vaya a pasar algo malo?' ||
+                  trim($row[12]) !== '¿Se siente feliz, contento la mayor parte del tiempo?' ||
+                  trim($row[13]) !== '¿Se siente a menudo desamparado, desvalido, indeciso?' ||
+                  trim($row[14]) !== '¿Prefiere quedarse en casa que acaso salir y hacer cosas nuevas?' ||
+                  trim($row[15]) !== '¿Le da la impresión de que tiene más fallos de memoria que los demás?' ||
+                  trim($row[16]) !== '¿Cree que es agradable estar vivo?' ||
+                  trim($row[17]) !== '¿Se le hace duro empezar nuevos proyectos?' ||
+                  trim($row[18]) !== '¿Se siente lleno de energía?' ||
+                  trim($row[19]) !== '¿Siente que su situación es angustiosa, desesperada?' ||
+                  trim($row[20]) !== '¿Cree que la mayoría de la gente vive económicamente mejor que usted?'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
             if($key>2){
               if(trim($row[2]) !== '' && trim($row[3]) !== ''){
                 $data = array();
@@ -65,8 +93,10 @@ if($_FILES["select_excel"]["name"] != ''){
               }
             }
           }
-          saveUpdateData($linkDB, $id_data, $row_count, 0, 0, $row_count, 1);
-          $linkDB->commit();
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, 0, 0, $row_count, 1);
+            $linkDB->commit();
+          }
           break;
         default:
           $response->success = false;

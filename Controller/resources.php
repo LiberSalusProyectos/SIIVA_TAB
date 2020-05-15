@@ -1572,6 +1572,28 @@ function saveUpdateData($connection, $id_data, $row_number, $found_number, $fail
  * [Función para insertar en la tabla de carga de formularios.]
  * @param  [mysqlC] $connection  	[Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [int] $id_form  			[ID correspondiente al formulario en la tabla "updatedada" ]
+ * @return [bool]					[Estado de la consulta]
+ */
+function resetFormData($connection, $id_form){
+
+	$table='';
+	switch($id_form){
+		case 4:
+			$table='geriatricdepressiondata';
+			break;
+		default:
+			break;
+	}
+
+	$result = resetFormData_DOM($connection, $id_form, $table);
+
+	return $result;
+}
+
+/**
+ * [Función para insertar en la tabla de carga de formularios.]
+ * @param  [mysqlC] $connection  	[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [int] $id_form  			[ID correspondiente al formulario en la tabla "updatedada" ]
  * @param  [int] $id_data  			[ID correspondiente al registro insertado en la tabla del formulario]
  * @param  [bool] $is_match  		[Representa si el paciente fue encontrado y el registro esta completo]
  * @param  [string] $data        	[Información a ser guardada/actualizada]

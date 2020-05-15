@@ -2809,6 +2809,24 @@ function saveUpdateData_DOM($connection, $id_data, $row_number, $found_number, $
 
 /**
  * [Función para insertar en la tabla de carga de formularios.]
+ * @param  [mysqlC] $connection  	[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [int] $id_form  			[ID correspondiente al formulario en la tabla "updatedada" ]
+ * @param  [string] $table       	[Nombre de la tabla en la DB]
+ * @return [bool]					[Estado de la consulta]
+ */
+function resetFormData_DOM($connection, $id_form, $table){
+
+	$tquery = "TRUNCATE `".$table."`";
+	$dquery = "DELETE FROM `loaddata` WHERE `id_form` = $id_form";
+
+	$updated = mysqli_query($connection, $tquery);
+	$updated = mysqli_query($connection, $dquery);
+
+	return $updated;
+}
+
+/**
+ * [Función para insertar en la tabla de carga de formularios.]
  * @param  [mysqlC] $connection  			[Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [int] $id_form  					[ID correspondiente al formulario en la tabla "updatedada" ]
  * @param  [int] $id_data  					[ID correspondiente al registro insertado en la tabla del formulario]
