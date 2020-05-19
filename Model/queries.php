@@ -2765,10 +2765,10 @@ function saveElderVaccinatonData_DOM($connection, $method,
  */
 function searchPatientByName_DOM($connection, $name, $first_lastname, $second_lastname ){
 
-	$query = "SELECT id FROM `basicpatientdata_s`
-	 WHERE `name` = '$name'
-	 AND `firstLastName` = '$first_lastname'
-	 AND `secondLastName` = '$second_lastname'";
+	$query = "SELECT id FROM `basicpatientdata`
+	 WHERE aes_decrypt(unhex(`name`), '".AES_PASSWORD."') = '$name'
+	 AND aes_decrypt(unhex(`firstLastName`), '".AES_PASSWORD."') = '$first_lastname'
+	 AND aes_decrypt(unhex(`secondLastName`), '".AES_PASSWORD."') = '$second_lastname'";
 
 	$resultado = array();
 
@@ -2906,7 +2906,12 @@ function bulkInsertPatientData_DOM($connection, $data ){
  * @return [array]             	 [Información relacionada con el paciente.]
  */
 function getModuleData_DOM($connection, $table, $id_patient){
-	$query = "SELECT * FROM `basicpatientdata` LEFT JOIN `".$table."` ON basicpatientdata.id = ".$table.".id_patient WHERE basicpatientdata.id = ".$id_patient." ORDER BY id ASC LIMIT 10";
+	$query = "SELECT 
+	aes_decrypt(unhex(basicpatientdata.name), '".AES_PASSWORD."') as `name`,
+	aes_decrypt(unhex(basicpatientdata.firstLastName), '".AES_PASSWORD."') as `firstLastName`,
+	aes_decrypt(unhex(basicpatientdata.secondLastName), '".AES_PASSWORD."') as `secondLastName`,
+	".$table.".*
+	FROM `basicpatientdata` LEFT JOIN `".$table."` ON basicpatientdata.id = ".$table.".id_patient WHERE basicpatientdata.id = ".$id_patient." ORDER BY id ASC LIMIT 10";
 
 	// echo $query;
 
@@ -2933,7 +2938,14 @@ function listPatientsAnswered_DOM($connection, $table, $search){
 		$search_part = " WHERE CONCAT(basicpatientdata.affiliationNumber, ' ', UPPER(basicpatientdata.firstLastName), ' ', UPPER(basicpatientdata.secondLastName), ' ', UPPER(basicpatientdata.name)) LIKE '%".strtoupper($search)."%'";
 	}
 
-	$query = "SELECT * FROM `basicpatientdata` INNER JOIN `".$table."` ON basicpatientdata.id = ".$table.".id_patient".$search_part." ORDER BY `created_at` DESC LIMIT 10";
+	$query = "SELECT 
+	basicpatientdata.id,
+	basicpatientdata.affiliationNumber,
+	aes_decrypt(unhex(basicpatientdata.name), '".AES_PASSWORD."') as `name`,
+	aes_decrypt(unhex(basicpatientdata.firstLastName), '".AES_PASSWORD."') as `firstLastName`,
+	aes_decrypt(unhex(basicpatientdata.secondLastName), '".AES_PASSWORD."') as `secondLastName`,
+	".$table.".*
+	FROM `basicpatientdata` INNER JOIN `".$table."` ON basicpatientdata.id = ".$table.".id_patient".$search_part." ORDER BY `created_at` DESC LIMIT 10";
 
 	// echo $query;
 
@@ -2960,7 +2972,14 @@ function listPatientsPending_DOM($connection, $table, $search){
 		$search_part = " AND CONCAT(basicpatientdata.affiliationNumber, ' ', UPPER(basicpatientdata.firstLastName), ' ', UPPER(basicpatientdata.secondLastName), ' ', UPPER(basicpatientdata.name)) LIKE '%".strtoupper($search)."%'";
 	}
 
-	$query = "SELECT * FROM `basicpatientdata` LEFT JOIN `".$table."` ON basicpatientdata.id = ".$table.".id_patient WHERE ".$table.".id_data IS NULL".$search_part." ORDER BY id ASC LIMIT 10";
+	$query = "SELECT 
+	basicpatientdata.id,
+	basicpatientdata.affiliationNumber,
+	aes_decrypt(unhex(basicpatientdata.name), '".AES_PASSWORD."') as `name`,
+	aes_decrypt(unhex(basicpatientdata.firstLastName), '".AES_PASSWORD."') as `firstLastName`,
+	aes_decrypt(unhex(basicpatientdata.secondLastName), '".AES_PASSWORD."') as `secondLastName`,
+	".$table.".*
+	FROM `basicpatientdata` LEFT JOIN `".$table."` ON basicpatientdata.id = ".$table.".id_patient WHERE ".$table.".id_data IS NULL".$search_part." ORDER BY id ASC LIMIT 10";
 
 	// echo $query;
 
