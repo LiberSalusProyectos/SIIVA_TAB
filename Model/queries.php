@@ -2859,6 +2859,46 @@ function saveLoadData_DOM($connection, $id_form, $id_data, $is_match, $invoice, 
 }
 
 /**
+ * [Función para insertar multiples registros en la tabla de pacientes.]
+ * @param  [mysqlC] $connection  	[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [array] $data  			[Array con los datos de los pacientes a insertar]
+ * @return [bool]					[Estado de la consulta]
+ */
+function bulkInsertPatientData_DOM($connection, $data ){
+
+	$query = "INSERT INTO `basicpatientdata` (`affiliationNumber`, `affiliate`, `affiliatesNumber`,
+				`name`, `firstLastName`, `secondLastName`, `birthdate`, `age`, `genre`, `familyRole`,
+				`familyID`, `calle`, `no_ext`, `no_int`, `colonia`, `municipio`, `codigo_postal`,
+				`estado`, `visitAvailability`, `workPermit`, `capturist`, `updated_at`) VALUES ";
+	$keys = array_keys($data);
+	foreach ($data as $key=>$element){
+		if ($key === end($keys)) {
+			$query .= "('$element->n_affiliation', ".($element->relationship == 'TRABAJADOR' ? 1 : 0).", '', 
+				hex(aes_encrypt('$element->name', '".AES_PASSWORD."')), hex(aes_encrypt('$element->first_lastname', '".AES_PASSWORD."')), 
+				hex(aes_encrypt('$element->second_lastname', '".AES_PASSWORD."')), 
+				".($element->birthdate !== '' ? "'".date('Y-m-d', strtotime($element->birthdate))."'" : "NULL").", '$element->age', 
+				'$element->gender', '$element->relationship', '$element->invoice', '$element->calle', '$element->no_ext', '$element->no_int', 
+				'$element->colonia', '$element->municipio', ".($element->codigo_postal !== '' ? $element->codigo_postal : "NULL" ).", 
+				'$element->estado', '$element->visit', ".($element->permission == '' || $element->permission == 'NO' ? 0 : 1).", 1, CURRENT_TIMESTAMP); ";
+		} else {
+			$query .= "('$element->n_affiliation', ".($element->relationship == 'TRABAJADOR' ? 1 : 0).", '', 
+				hex(aes_encrypt('$element->name', '".AES_PASSWORD."')), hex(aes_encrypt('$element->first_lastname', '".AES_PASSWORD."')), 
+				hex(aes_encrypt('$element->second_lastname', '".AES_PASSWORD."')), 
+				".($element->birthdate !== '' ? "'".date('Y-m-d', strtotime($element->birthdate))."'" : "NULL").", '$element->age', 
+				'$element->gender', '$element->relationship', '$element->invoice', '$element->calle', '$element->no_ext', '$element->no_int', 
+				'$element->colonia', '$element->municipio', ".($element->codigo_postal !== '' ? $element->codigo_postal : "NULL" ).", 
+				'$element->estado', '$element->visit', ".($element->permission == '' || $element->permission == 'NO' ? 0 : 1).", 1, CURRENT_TIMESTAMP), ";
+		}
+	}
+
+	// echo $query;
+
+	$updated = mysqli_query($connection, $query);
+
+	return $updated;
+}
+
+/**
  * [Función para obtener todos los datos de un usuario, para determinado módulo.]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
  * @param  [string] $module      [Nombre del módulo transmitido por GET]
@@ -2985,9 +3025,9 @@ function lasConnectionUpdate_DOM($connection, $email, $password){
 function getPatientData_DOM($connection, $search){
 	$query = "SELECT
 	`id`,
-	CASE `name_` WHEN '' THEN `name` ELSE COALESCE(`name_`, `name`) END as `name`,
-	CASE `firstLastName_` WHEN '' THEN `firstLastName` ELSE COALESCE(`firstLastName_`, `firstLastName`) END as `firstLastName`,
-	CASE `secondLastName_` WHEN '' THEN `secondLastName` ELSE COALESCE(`secondLastName_`, `secondLastName`) END as `secondLastName`,
+	aes_decrypt(unhex(CASE `name_` WHEN '' THEN `name` ELSE COALESCE(`name_`, `name`) END), '".AES_PASSWORD."') as `name`,
+	aes_decrypt(unhex(CASE `firstLastName_` WHEN '' THEN `firstLastName` ELSE COALESCE(`firstLastName_`, `firstLastName`) END), '".AES_PASSWORD."') as `firstLastName`,
+	aes_decrypt(unhex(CASE `secondLastName_` WHEN '' THEN `secondLastName` ELSE COALESCE(`secondLastName_`, `secondLastName`) END), '".AES_PASSWORD."') as `secondLastName`,
 	`affiliationNumber`,
 	`birthdate`,
 	`age`,
@@ -3005,7 +3045,7 @@ function getPatientData_DOM($connection, $search){
 	`address_reference`,
 	`family_atmosphere`,
 	`health_problems`
-	FROM `basicpatientdata` WHERE `affiliationNumber` = ".$search." ORDER BY affiliate DESC";
+	FROM `basicpatientdata` WHERE `familyID` = (SELECT familyID FROM `basicpatientdata` WHERE affiliationNumber = ".$search." LIMIT 1) ORDER BY affiliate DESC";
 
 	$resultado = array();
 
@@ -3065,9 +3105,9 @@ function updaetePatientData_DOM($connection,
 
 	$query = "UPDATE `basicpatientdata` SET
 		`curp` = '$curp',
-		`name_` = '$name',
-		`firstLastName_` = '$firstLastName',
-		`secondLastName_` = '$secondLastName',
+		`name_` = hex(aes_encrypt('$name', '".AES_PASSWORD."')),
+	 	`firstLastName_` = hex(aes_encrypt('$firstLastName', '".AES_PASSWORD."')),
+	 	`secondLastName_` = hex(aes_encrypt('$secondLastName', '".AES_PASSWORD."')),
 		$birthdate_frag,
 		`genre_` = '$genre',
 		`phone_number` = '$phone_number',
@@ -3111,9 +3151,9 @@ function updaetePatientData_DOM($connection,
 		if (isset($id)) {
 			$query_dep = "UPDATE `basicpatientdata` SET
 			`curp` = '$curp',
-			`name_` = '$name',
-			`firstLastName_` = '$firstLastName',
-			`secondLastName_` = '$secondLastName',
+			`name_` = hex(aes_encrypt('$name', '".AES_PASSWORD."')),
+	 		`firstLastName_` = hex(aes_encrypt('$firstLastName', '".AES_PASSWORD."')),
+	 		`secondLastName_` = hex(aes_encrypt('$secondLastName', '".AES_PASSWORD."')),
 			$birthdate_frag,
 			`genre_` = '$genre',
 			`familyRole_` = '$familyRole',
@@ -3123,9 +3163,9 @@ function updaetePatientData_DOM($connection,
 			$query_dep = "INSERT `basicpatientdata` SET
 			`affiliationNumber` = '$affiliationNumber',
 			`curp` = '$curp',
-			`name` = '$name',
-			`firstLastName` = '$firstLastName',
-			`secondLastName` = '$secondLastName',
+			`name` = hex(aes_encrypt('$name', '".AES_PASSWORD."')),
+	 		`firstLastName` = hex(aes_encrypt('$firstLastName', '".AES_PASSWORD."')),
+	 		`secondLastName` = hex(aes_encrypt('$secondLastName', '".AES_PASSWORD."')),
 			$birthdate_frag,
 			`genre` = '$genre',
 			`familyRole` = '$familyRole',

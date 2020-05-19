@@ -25,6 +25,78 @@ if($_FILES["select_excel"]["name"] != ''){
     try {
       $linkDB->autocommit(false);
       switch($id_data){
+        case 0:
+          $update = true;
+          $ins_count = 0;
+          $data = array();
+          $keys = array_keys($sheetData);
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if (trim($row[0]) !== 'FOLIO' ||
+                  trim($row[1]) !== 'N° DE AFILIACIÓN (1)' ||
+                  trim($row[2]) !== 'N° DE AFILIACIÓN' ||
+                  trim($row[3]) !== 'VISITA' ||
+                  trim($row[4]) !== 'PERMISO' ||
+                  trim($row[5]) !== 'NOMBRE (S)' ||
+                  trim($row[6]) !== 'PRIMER APELLIDO' ||
+                  trim($row[7]) !== 'SEGUNDO APELLIDO' ||
+                  trim($row[8]) !== 'FECHA  DE NACIMIENTO' ||
+                  trim($row[9]) !== 'EDAD' ||
+                  trim($row[10]) !== 'GENERO' ||
+                  trim($row[11]) !== 'PARENTESCO' ||
+                  trim($row[12]) !== 'CALLE' ||
+                  trim($row[13]) !== 'N° EXTERIOR' ||
+                  trim($row[14]) !== 'N° INTERIOR' ||
+                  trim($row[15]) !== 'COLONIA' ||
+                  trim($row[16]) !== 'MUNICIPIO' ||
+                  trim($row[17]) !== 'CODIGO POSTAL' ||
+                  trim($row[18]) !== 'ESTADO'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>107){
+              if(trim($row[5]) !== '' && trim($row[6]) !== '' && trim($row[9]) !== ''){
+                $element = new stdClass();
+                $element->invoice = trim($row[0]);
+                $element->n_affiliation = trim($row[1]);
+                $element->n_affiliation_d = trim($row[2]);
+                $element->visit = trim($row[3]);
+                $element->permission = trim($row[4]);
+                $element->name = trim($row[5]);
+                $element->first_lastname = trim($row[6]);
+                $element->second_lastname = trim($row[7]);
+                $element->birthdate = trim($row[8]);
+                $element->age = trim($row[9]);
+                $element->gender = trim($row[10]);
+                $element->relationship = trim($row[11]);
+                $element->calle = trim($row[12]);
+                $element->num_ext = trim($row[13]);
+                $element->num_int = trim($row[14]);
+                $element->colonia = trim($row[15]);
+                $element->municipip = trim($row[16]);
+                $element->codigo_postal = trim($row[17]);
+                $element->estado = trim($row[18]);
+                array_push($data, $element);
+              }
+              if ($key === end($keys)) {
+                // En la ultima iteración se insertan datos restantes
+                bulkInsertPatientData($linkDB, $data);
+                $linkDB->commit();
+              }
+              if (sizeof($data) === 50) {
+                // Mandamos a insertar datos de 50 registros y reiniciamos la variable
+                bulkInsertPatientData($linkDB, $data);
+                $data = array();
+              }
+            }
+          }
+          break;
         case 4:
           $update = true;
           $row_count=0;

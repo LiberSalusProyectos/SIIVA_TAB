@@ -40,6 +40,7 @@
             contentType:false,
             cache:false,
             processData:false,
+            timeout: 10000,
             success:function(resp){
               var data = JSON.parse(resp);
               element.prop("disabled", false);
@@ -83,6 +84,47 @@
               </span>
             </button>
           </form>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-1 text-center">
+        <span class="text-royal-blue bold-font custom-form-label-element">
+          Carga de pacientes
+        </span>
+      </div>
+
+      <div class="row">
+        <div class="offset-sm-1 col-sm-10">
+          <table class="table">
+            <tbody>
+                <tr>
+                <form method="post" name="load_excel_form" enctype="multipart/form-data">
+                  <th scope="row" class="text-center" width="10%"></th>
+                  <td width="40%">
+                    <input type="file" name="select_excel" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
+                    <input type="hidden" name="id_data" value="0">
+                  </td>
+                  <td class="text-center estado-label" width="20%">
+                    <div id="status_0">
+                      <!-- <label class="estado-actualizacion <?php echo($status_class); ?>">Por actualizar</label>
+                      <label class="date-style"><?php echo $update["last_update"]; ?></label> -->
+                    </div>
+                  </td>
+                  <td class="text-center function-block" width="30%">
+                    <div class="etapas etapa_00">
+                      <!-- <button class="btn btn-success update_js" data-id="<?php echo($updateData[$i]["id_data"]); ?>">
+                        Actualizar
+                      </button> -->
+                      <button type="submit" name="0" class="btn btn-success">
+                        Actualizar
+                      </button>
+                    </div>
+                    <div id="message_0" class="etapas"></div>
+                  </td>
+                </form>
+                </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -172,11 +214,6 @@
                 </form>
                 </tr>
               <?php } ?>
-              <tr>
-                <td>
-                  <!--label id="typed2">Cargando datos del archivo</label><label class="puntos_suspensivos">.</label-->
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>

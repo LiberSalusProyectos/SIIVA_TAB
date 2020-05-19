@@ -16,7 +16,7 @@
         $updated = updatePatientData($linkDB, $_POST, $_SESSION["id_user"]);
 
         if ($updated) {
-          header('Location: home.php'); exit;
+          header('Location: index.php'); exit;
         }
         // echo "<pre>";
         // var_dump($_POST);

@@ -1578,6 +1578,9 @@ function resetFormData($connection, $id_form){
 
 	$table='';
 	switch($id_form){
+		case 0:
+			$table='basicpatientdata';
+			break;
 		case 4:
 			$table='geriatricdepressiondata';
 			break;
@@ -1612,6 +1615,19 @@ function saveLoadData($connection, $id_form, $id_data, $is_match, $data){
 		$data["second_lastname"],
 		$data["gender"]
 	);
+
+	return $result;
+}
+
+/**
+ * [Función para insertar pacientes por carga masiva.]
+ * @param  [mysqlC] $connection  	[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [array] $data    	 	[Array con los datos a insertar en la base]
+ * @return [bool]             	 	[Estado de la consulta]
+ */
+function bulkInsertPatientData($connection, $data){
+
+	$result = bulkInsertPatientData_DOM($connection, $data);
 
 	return $result;
 }
