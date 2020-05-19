@@ -2935,7 +2935,11 @@ function getModuleData_DOM($connection, $table, $id_patient){
 function listPatientsAnswered_DOM($connection, $table, $search){
 	$search_part = "";
 	if ($search !== ""){
-		$search_part = " WHERE CONCAT(basicpatientdata.affiliationNumber, ' ', UPPER(basicpatientdata.firstLastName), ' ', UPPER(basicpatientdata.secondLastName), ' ', UPPER(basicpatientdata.name)) LIKE '%".strtoupper($search)."%'";
+		$search_part = " AND CONCAT(basicpatientdata.affiliationNumber, ' ', 
+			UPPER(aes_decrypt(unhex(basicpatientdata.firstLastName), '".AES_PASSWORD."')), ' ', 
+			UPPER(aes_decrypt(unhex(basicpatientdata.secondLastName), '".AES_PASSWORD."')), ' ', 
+			UPPER(aes_decrypt(unhex(basicpatientdata.name), '".AES_PASSWORD."'))
+			) LIKE '%".strtoupper($search)."%'";
 	}
 
 	$query = "SELECT 
@@ -2969,7 +2973,11 @@ function listPatientsAnswered_DOM($connection, $table, $search){
 function listPatientsPending_DOM($connection, $table, $search){
 	$search_part = "";
 	if ($search !== ""){
-		$search_part = " AND CONCAT(basicpatientdata.affiliationNumber, ' ', UPPER(basicpatientdata.firstLastName), ' ', UPPER(basicpatientdata.secondLastName), ' ', UPPER(basicpatientdata.name)) LIKE '%".strtoupper($search)."%'";
+		$search_part = " AND CONCAT(basicpatientdata.affiliationNumber, ' ', 
+			UPPER(aes_decrypt(unhex(basicpatientdata.firstLastName), '".AES_PASSWORD."')), ' ', 
+			UPPER(aes_decrypt(unhex(basicpatientdata.secondLastName), '".AES_PASSWORD."')), ' ', 
+			UPPER(aes_decrypt(unhex(basicpatientdata.name), '".AES_PASSWORD."'))
+			) LIKE '%".strtoupper($search)."%'";
 	}
 
 	$query = "SELECT 
