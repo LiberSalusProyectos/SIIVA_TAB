@@ -174,7 +174,7 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
-        case 5:
+        case 6:
           $update = true;
           $row_count=0;
           $found_count=0;
@@ -256,7 +256,7 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
-        case 6:
+        case 7:
           $update = true;
           $row_count=0;
           $found_count=0;
@@ -332,7 +332,7 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
-        case 7:
+        case 8:
           $update = true;
           $row_count=0;
           $found_count=0;
