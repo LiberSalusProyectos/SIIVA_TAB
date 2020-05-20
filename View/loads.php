@@ -40,7 +40,7 @@
             contentType:false,
             cache:false,
             processData:false,
-            timeout: 10000,
+            timeout: 60000,
             success:function(resp){
               var data = JSON.parse(resp);
               element.prop("disabled", false);

@@ -96,7 +96,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label class="container regular-font text-royal-blue">Hombre
-                                        <input type="radio" name="gender" <?php if ($result[0]["gender"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                                        <input type="radio" name="genre" <?php if ($result[0]["genre"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                                         <span class="radiomark"></span>
                                     </label>
                                 </div>
@@ -104,7 +104,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label class="container regular-font text-royal-blue">Mujer
-                                        <input type="radio" name="gender" <?php if ($result[0]["gender"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                                        <input type="radio" name="genre" <?php if ($result[0]["genre"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                                         <span class="radiomark"></span>
                                     </label>
                                 </div>
@@ -112,7 +112,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label class="container regular-font text-royal-blue">No Binario
-                                        <input type="radio" name="gender" <?php if ($result[0]["gender"]=="d")  { echo 'checked="true"'; } ?> value="c" />
+                                        <input type="radio" name="genre" <?php if ($result[0]["genre"]=="d")  { echo 'checked="true"'; } ?> value="c" />
                                         <span class="radiomark"></span>
                                     </label>
                                 </div>
@@ -129,7 +129,7 @@
                             <strong>1. </strong>¿A que edad inicio su vida sexual?
                         </span>
                     </div>
-                    <input type="number" name="starts_activity" value="<?php echo $result[0]['starts_activity']; ?>" class="form-control custom-input" min="1" max="100" />
+                    <input type="text" name="starts_activity" value="<?php echo $result[0]['starts_activity']; ?>" class="form-control custom-input" />
                 </div>
             </div>
             
@@ -151,7 +151,7 @@
                             <strong>3. </strong>No. de parejas sexuales
                         </span>
                     </div>
-                    <input type="number" name="couples" value="<?php echo $result[0]['couples']; ?>" class="form-control custom-input" min="1" max="100" />
+                    <input type="text" name="couples" value="<?php echo $result[0]['couples']; ?>" class="form-control custom-input" />
                 </div>
             </div>
             

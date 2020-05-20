@@ -534,24 +534,24 @@ function saveETSData($connection, $method, $data, $id_user){
 
 	$result = saveETSData_DOM($connection, $method,
 		$data['id_patient'],
-		$data['gender'],
-		($data['starts_activity']!="" ? $data['starts_activity'] : 0),
+		$data['genre'],
+		utf8_decode($data['starts_activity']),
 		utf8_decode($data['sexual_orientation']),
-		($data['couples']!="" ? $data['couples'] : 0),
-		($data['safe_sex']!="" ? $data['safe_sex'] : 0),
-		($data['contraceptives']!="" ? $data['contraceptives'] : 0),
-		($data['condom']!="" ? $data['condom'] : 0),
-		($data['intercourse']!="" ? $data['intercourse'] : 0),
-		($data['ets_exposed']!="" ? $data['ets_exposed'] : 0),
-		($data['medical_treatment']!="" ? $data['medical_treatment'] : 0),
-		($data['vih_test']!="" ? $data['vih_test'] : 0),
-		($data['pap_smear']!="" ? $data['pap_smear'] : 0),
+		utf8_decode($data['couples']),
+		($data['safe_sex']!="" ? $data['safe_sex'] : 'NULL'),
+		($data['contraceptives']!="" ? $data['contraceptives'] : 'NULL'),
+		($data['condom']!="" ? $data['condom'] : 'NULL'),
+		($data['intercourse']!="" ? $data['intercourse'] : 'NULL'),
+		($data['ets_exposed']!="" ? $data['ets_exposed'] : 'NULL'),
+		($data['medical_treatment']!="" ? $data['medical_treatment'] : 'NULL'),
+		($data['vih_test']!="" ? $data['vih_test'] : 'NULL'),
+		($data['pap_smear']!="" ? $data['pap_smear'] : 'NULL'),
 		utf8_decode($data['pap_smear_result']),
 		utf8_decode($data['knowledge']),
-		($data['ways_transmit']!="" ? $data['ways_transmit'] : 0),
-		($data['talks']!="" ? $data['talks'] : 0),
-		($data['vih_symptom']!="" ? $data['vih_symptom'] : 0),
-		($data['vih_clinic']!="" ? $data['vih_clinic'] : 0),
+		($data['ways_transmit']!="" ? $data['ways_transmit'] : 'NULL'),
+		($data['talks']!="" ? $data['talks'] : 'NULL'),
+		($data['vih_symptom']!="" ? $data['vih_symptom'] : 'NULL'),
+		($data['vih_clinic']!="" ? $data['vih_clinic'] : 'NULL'),
 		$id_user);
 
 	return $result;
@@ -569,20 +569,20 @@ function saveSocioculturalData($connection, $method, $data, $id_user){
 
 	$result = saveSocioculturalData_DOM($connection, $method,
 		$data['id_patient'],
-		$data['decisions'],
-		$data['harmony'],
-		$data['responsibility'],
-		$data['sweetie'],
-		$data['point_blank'],
-		$data['defects'],
-		$data['experience'],
-		$data['support'],
-		$data['tasks'],
-		$data['habits'],
-		$data['converse'],
-		$data['look_help'],
-		$data['respect'],
-		$data['show_affection'],
+		($data['decisions']!="" ? "'".$data['decisions']."'" : 'NULL'),
+		($data['harmony']!="" ? "'".$data['harmony']."'" : 'NULL'),
+		($data['responsibility']!="" ? "'".$data['responsibility']."'" : 'NULL'),
+		($data['sweetie']!="" ? "'".$data['sweetie']."'" : 'NULL'),
+		($data['point_blank']!="" ? "'".$data['point_blank']."'" : 'NULL'),
+		($data['defects']!="" ? "'".$data['defects']."'" : 'NULL'),
+		($data['experience']!="" ? "'".$data['experience']."'" : 'NULL'),
+		($data['support']!="" ? "'".$data['support']."'" : 'NULL'),
+		($data['tasks']!="" ? "'".$data['tasks']."'" : 'NULL'),
+		($data['habits']!="" ? "'".$data['habits']."'" : 'NULL'),
+		($data['converse']!="" ? "'".$data['converse']."'" : 'NULL'),
+		($data['look_help']!="" ? "'".$data['look_help']."'" : 'NULL'),
+		($data['respect']!="" ? "'".$data['respect']."'" : 'NULL'),
+		($data['show_affection']!="" ? "'".$data['show_affection']."'" : 'NULL'),
 		$id_user);
 
 	return $result;
@@ -600,29 +600,29 @@ function saveDiabetesData($connection, $method, $data, $id_user){
 
 	$result = saveDiabetesData_DOM($connection, $method,
 		$data['id_patient'],
-		($data['suffer_from']!="" ? $data['suffer_from'] : 0),
-		($data['thirsty']!="" ? $data['thirsty'] : 0),
-		($data['urinate']!="" ? $data['urinate'] : 0),
-		($data['lose_weight']!="" ? $data['lose_weight'] : 0),
-		($data['over_eat']!="" ? $data['over_eat'] : 0),
-		($data['glucose_check']!="" ? $data['glucose_check'] : 0),
-		$data['medical_times'],
-		$data['treatment'],
-		$data['feel_bad'],
-		$data['check_foot'],
-		$data['vision_changes'],
-		$data['healing_problems'],
-		$data['proper_diet'],
-		$data['weight_changes'],
-		$data['medical_control'],
-		($data['naturist']!="" ? $data['naturist'] : 0),
-		$data['age'],
-		$data['gender'],
-		($data['gestational_diabetes']!="" ? $data['gestational_diabetes'] : 0),
-		($data['family']!="" ? $data['family'] : 0),
-		($data['blood_pressure']!="" ? $data['blood_pressure'] : 0),
-		($data['physical_activity']!="" ? $data['physical_activity'] : 0),
-		$data['weight'],
+		($data['suffer_from']!="" ? $data['suffer_from'] : 'NULL'),
+		($data['thirsty']!="" ? $data['thirsty'] : 'NULL'),
+		($data['urinate']!="" ? $data['urinate'] : 'NULL'),
+		($data['lose_weight']!="" ? $data['lose_weight'] : 'NULL'),
+		($data['over_eat']!="" ? $data['over_eat'] : 'NULL'),
+		($data['glucose_check']!="" ? $data['glucose_check'] : 'NULL'),
+		($data['medical_times']!="" ? "'".$data['medical_times']."'" : 'NULL'),
+		($data['treatment']!="" ? "'".$data['treatment']."'" : 'NULL'),
+		($data['feel_bad']!="" ? "'".$data['feel_bad']."'" : 'NULL'),
+		($data['check_foot']!="" ? "'".$data['check_foot']."'" : 'NULL'),
+		($data['vision_changes']!="" ? "'".$data['vision_changes']."'" : 'NULL'),
+		($data['healing_problems']!="" ? "'".$data['healing_problems']."'" : 'NULL'),
+		($data['proper_diet']!="" ? "'".$data['proper_diet']."'" : 'NULL'),
+		($data['weight_changes']!="" ? "'".$data['weight_changes']."'" : 'NULL'),
+		($data['medical_control']!="" ? "'".$data['medical_control']."'" : 'NULL'),
+		($data['naturist']!="" ? $data['naturist'] : 'NULL'),
+		($data['age']!="" ? "'".$data['age']."'" : 'NULL'),
+		($data['gender']!="" ? "'".$data['gender']."'" : 'NULL'),
+		($data['gestational_diabetes']!="" ? $data['gestational_diabetes'] : 'NULL'),
+		($data['family']!="" ? $data['family'] : 'NULL'),
+		($data['blood_pressure']!="" ? $data['blood_pressure'] : 'NULL'),
+		($data['physical_activity']!="" ? $data['physical_activity'] : 'NULL'),
+		($data['weight']!="" ? "'".$data['weight']."'" : 'NULL'),
 		$id_user);
 
 	return $result;
@@ -1583,6 +1583,15 @@ function resetFormData($connection, $id_form){
 			break;
 		case 4:
 			$table='geriatricdepressiondata';
+			break;
+		case 5:
+			$table='etsdata';
+			break;
+		case 6:
+			$table='socioculturaldata';
+			break;
+		case 7:
+			$table='diabetesdata';
 			break;
 		default:
 			break;
