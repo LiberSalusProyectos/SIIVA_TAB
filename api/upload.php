@@ -174,6 +174,67 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
+        case 5:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== '¿Siente usted que a causas del tiempo que gasta con su familiar/paciente, ya no tiene tiempo para usted mismo?' ||
+                  trim($row[7]) !== '¿Se seinte estresado(a) al tener que cuidar a su familiar/paciente y tener ademas que atender otras responsabilidades? (por ejemplo, con su familia o en el trabajo)' ||
+                  trim($row[8]) !== '¿Crees que la situacion actual afecta a su relacion con amigos u otros miembros de su familia de una forma negativa?' ||
+                  trim($row[9]) !== '¿Se seinte agotada(o) cuando tiene que estar junto a su familiar/paciente?' ||
+                  trim($row[10]) !== '¿Siente usted que su salud se ha visto afectada por tener que cuidar a su familiar/paciente?' ||
+                  trim($row[11]) !== '¿Siente que ha perdido el control sobre su vida desde que la enfermedad de su familiar/paciente se manifesto?' ||
+                  trim($row[12]) !== 'En general ¿se siente muy sobre cargada(o) al tener que cuidar de su familiar/paciente?'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['own_time'] = trim($row[6]) !== '' ? substr($row[6], 0, 1) : NULL;
+                $data['stressed'] = trim($row[7]) !== '' ? substr($row[7], 0, 1) : NULL;
+                $data['relationship'] = trim($row[8]) !== '' ? substr($row[8], 0, 1) : NULL;
+                $data['exhausted'] = trim($row[9]) !== '' ? substr($row[9], 0, 1) : NULL;
+                $data['healthy'] = trim($row[10]) !== '' ? substr($row[10], 0, 1) : NULL;
+                $data['control_life'] = trim($row[11]) !== '' ? substr($row[11], 0, 1) : NULL;
+                $data['overloaded'] = trim($row[12]) !== '' ? substr($row[12], 0, 1) : NULL;
+                
+                $insert_id = saveZarittScaleData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
         case 6:
           $update = true;
           $row_count=0;

@@ -688,13 +688,13 @@ function saveZarittScaleData_DOM($connection, $method,
 	}
 
 	$query .= " `zarittscaledata` SET
-	`own_time`			= '$own_time',
-	`stressed`			= '$stressed',
-	`relationship`		= '$relationship',
-	`exhausted`			= '$exhausted',
-	`healthy`			= '$healthy',
-	`control_life`		= '$control_life',
-	`overloaded`		= '$overloaded',
+	`own_time`			= $own_time,
+	`stressed`			= $stressed,
+	`relationship`		= $relationship,
+	`exhausted`			= $exhausted,
+	`healthy`			= $healthy,
+	`control_life`		= $control_life,
+	`overloaded`		= $overloaded,
 	`id_patient`		= $id_patient,
 	`created_at` 		= CURRENT_TIMESTAMP,
 	`capturist` 		= $capturist $postQuery";

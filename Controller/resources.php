@@ -510,13 +510,13 @@ function saveZarittScaleData($connection, $method, $data, $id_user){
 
 	$result = saveZarittScaleData_DOM($connection, $method,
 		$data['id_patient'],
-		$data['own_time'],
-		$data['stressed'],
-		$data['relationship'],
-		$data['exhausted'],
-		$data['healthy'],
-		$data['control_life'],
-		$data['overloaded'],
+		($data['own_time']!="" ? "'".$data['own_time']."'" : 'NULL'),
+		($data['stressed']!="" ? "'".$data['stressed']."'" : 'NULL'),
+		($data['relationship']!="" ? "'".$data['relationship']."'" : 'NULL'),
+		($data['exhausted']!="" ? "'".$data['exhausted']."'" : 'NULL'),
+		($data['healthy']!="" ? "'".$data['healthy']."'" : 'NULL'),
+		($data['control_life']!="" ? "'".$data['control_life']."'" : 'NULL'),
+		($data['overloaded']!="" ? "'".$data['overloaded']."'" : 'NULL'),
 		$id_user);
 
 	return $result;
