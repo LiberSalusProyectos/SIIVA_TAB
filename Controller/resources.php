@@ -1588,13 +1588,19 @@ function resetFormData($connection, $id_form){
 			$table='geriatricdepressiondata';
 			break;
 		case 5:
-			$table='etsdata';
+			$table='zarittscaledata';
 			break;
 		case 6:
-			$table='socioculturaldata';
+			$table='etsdata';
 			break;
 		case 7:
+			$table='socioculturaldata';
+			break;
+		case 8:
 			$table='diabetesdata';
+			break;
+		case 9:
+			$table='hypertensiondata';
 			break;
 		default:
 			break;
