@@ -262,27 +262,27 @@ function saveDass21Data($connection, $method, $data, $id_user){
 
 	$result = saveDass21Data_DOM($connection, $method,
 		$data['id_patient'],
-		$data['relax'],
-		$data['dry_mouth'],
-		$data['positive_feelings'],
-		$data['breathe'],
-		$data['initiative'],
-		$data['exaggerate'],
-		$data['tingling_hands'],
-		$data['worried'],
-		$data['concerned'],
-		$data['be_down'],
-		$data['agitate'],
-		$data['relax_difficult'],
-		$data['depression'],
-		$data['intolerance'],
-		$data['panic'],
-		$data['enthusiasm'],
-		$data['selfsteem'],
-		$data['irritable'],
-		$data['feel_agitated'],
-		$data['fear'],
-		$data['meaningless_life'],
+		($data['relax']!="" ? "'".$data['relax']."'" : 'NULL'),
+		($data['dry_mouth']!="" ? "'".$data['dry_mouth']."'" : 'NULL'),
+		($data['positive_feelings']!="" ? "'".$data['positive_feelings']."'" : 'NULL'),
+		($data['breathe']!="" ? "'".$data['breathe']."'" : 'NULL'),
+		($data['initiative']!="" ? "'".$data['initiative']."'" : 'NULL'),
+		($data['exaggerate']!="" ? "'".$data['exaggerate']."'" : 'NULL'),
+		($data['tingling_hands']!="" ? "'".$data['tingling_hands']."'" : 'NULL'),
+		($data['worried']!="" ? "'".$data['worried']."'" : 'NULL'),
+		($data['concerned']!="" ? "'".$data['concerned']."'" : 'NULL'),
+		($data['be_down']!="" ? "'".$data['be_down']."'" : 'NULL'),
+		($data['agitate']!="" ? "'".$data['agitate']."'" : 'NULL'),
+		($data['relax_difficult']!="" ? "'".$data['relax_difficult']."'" : 'NULL'),
+		($data['depression']!="" ? "'".$data['depression']."'" : 'NULL'),
+		($data['intolerance']!="" ? "'".$data['intolerance']."'" : 'NULL'),
+		($data['panic']!="" ? "'".$data['panic']."'" : 'NULL'),
+		($data['enthusiasm']!="" ? "'".$data['enthusiasm']."'" : 'NULL'),
+		($data['selfsteem']!="" ? "'".$data['selfsteem']."'" : 'NULL'),
+		($data['irritable']!="" ? "'".$data['irritable']."'" : 'NULL'),
+		($data['feel_agitated']!="" ? "'".$data['feel_agitated']."'" : 'NULL'),
+		($data['fear']!="" ? "'".$data['fear']."'" : 'NULL'),
+		($data['meaningless_life']!="" ? "'".$data['meaningless_life']."'" : 'NULL'),
 		$id_user);
 
 	return $result;
@@ -1580,6 +1580,9 @@ function resetFormData($connection, $id_form){
 	switch($id_form){
 		case 0:
 			$table='basicpatientdata';
+			break;
+		case 2:
+			$table='dass21data';
 			break;
 		case 4:
 			$table='geriatricdepressiondata';

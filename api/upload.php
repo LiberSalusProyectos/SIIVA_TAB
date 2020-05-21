@@ -97,6 +97,99 @@ if($_FILES["select_excel"]["name"] != ''){
             }
           }
           break;
+        case 2:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== 'Le costó mucho relajarse.' ||
+                  trim($row[7]) !== 'Ha tenido la boca seca constantemente.' ||
+                  trim($row[8]) !== 'Ha notado dificultad para sentir sentimientos positivos.' ||
+                  trim($row[9]) !== 'Se le hizo difícil respirar.' ||
+                  trim($row[10]) !== 'Se le hizo difícil tomar la iniciativa para hacer cosas.' ||
+                  trim($row[11]) !== 'Reaccionó exageradamente en ciertas situaciones.' ||
+                  trim($row[12]) !== 'Sintió que sus manos temblaban.' ||
+                  trim($row[13]) !== 'Se ha sentido muy intranquilo.' ||
+                  trim($row[14]) !== 'Ha estado preocupado por situaciones en las que podía sentir pánico o en las que podría hacer el ridículo.' ||
+                  trim($row[15]) !== 'Sintió que no tenía nada porqué vivir.' ||
+                  trim($row[16]) !== 'Ha notado que se agita.' ||
+                  trim($row[17]) !== 'Se le hizo difícil relajarse.' ||
+                  trim($row[18]) !== 'Se ha sentido triste y deprimido.' ||
+                  trim($row[19]) !== 'Estuvo intolerante con lo que lo distrajera de lo que estaba haciendo.' ||
+                  trim($row[20]) !== 'Sintió que estuvo a punto de entrar en pánico.' ||
+                  trim($row[21]) !== 'No se puede entusiasmar por nada.' ||
+                  trim($row[22]) !== 'Sintió que valía muy poco como persona.' ||
+                  trim($row[23]) !== 'Sintió que ha estado muy irritable.' ||
+                  trim($row[24]) !== 'Se sintió agitado a pesar de no haber hecho esfuerzo físico.' ||
+                  trim($row[25]) !== 'Tuvo miedo sin razón.' ||
+                  trim($row[26]) !== 'Sintió que la vida no tiene ningún sentido.'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $fields = array('relax', 'dry_mouth', 'positive_feelings', 'breathe', 'initiative', 'exaggerate', 'tingling_hands', 'worried',
+                 'concerned', 'be_down', 'agitate', 'relax_difficult', 'depression', 'intolerance', 'panic', 'enthusiasm', 'selfsteem',
+                 'irritable', 'feel_agitated', 'fear', 'meaningless_life');
+
+                foreach($fields as $key=>$field){
+                  $index = $key+6;
+                  switch(substr($row[$index], 0, 1)){
+                    case '0':
+                      $value = 'a';
+                      break;
+                    case '1':
+                      $value = 'b';
+                      break;
+                    case '2':
+                      $value = 'c';
+                      break;
+                    case '3':
+                      $value = 'd';
+                      break;
+                    default:
+                      $value = NULL;
+                      break;
+                  }
+                  $data[$field] = $value;
+                }
+                
+                $insert_id = saveDass21Data($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
         case 4:
           $update = true;
           $row_count=0;
