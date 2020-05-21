@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 20-05-2020 a las 18:13:44
+-- Tiempo de generación: 21-05-2020 a las 21:20:54
 -- Versión del servidor: 5.7.30
 -- Versión de PHP: 7.4.5
 
@@ -10346,6 +10346,17 @@ CREATE TABLE `bornlifestyledata` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `bornlifestyledata`
+--
+
+INSERT INTO `bornlifestyledata` (`id_data`, `consultations`, `pregnancy_complication`, `pregnancy_resolution`, `pregnancy_resolution_desc`, `pregnancy_duration`, `baby_weight`, `lactation_type`, `lactation_desc`, `lactation_duration`, `baby_allergy`, `tamiz_neonatal`, `tamiz_neonatal_desc`, `table_one`, `table_two`, `table_three`, `table_four`, `table_five`, `table_six`, `table_seven`, `table_eight`, `table_nine`, `table_ten`, `table_eleven`, `table_twelve`, `table_thirteen`, `table_fourteen`, `table_fifteen`, `table_sixteen`, `id_patient`, `capturist`, `created_at`) VALUES
+(1, 'c', NULL, 'b', NULL, 'b', 'b', 'b', NULL, 'a', 'a', 'a', 'NEGATIVO', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'c', -1, 1, '2020-05-21 21:16:14'),
+(2, 'd', NULL, 'b', 'PORQUE EL BEBÉ VENIA TRANSVERSAL', 'b', 'b', 'b', NULL, 'c', NULL, 'a', NULL, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b', 'b', 'b', -1, 1, '2020-05-21 21:16:14'),
+(3, 'a', NULL, 'b', 'PROGRAMADA', 'b', 'b', 'b', NULL, NULL, NULL, 'a', 'NORMAL', 'a', 'a', 'a', 'a', 'a', 'b', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b', 595, 1, '2020-05-21 21:16:14'),
+(4, 'd', 'a', 'b', NULL, 'b', 'b', 'c', NULL, NULL, NULL, 'a', NULL, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b', 'a', 'a', -1, 1, '2020-05-21 21:16:14'),
+(5, 'a', NULL, 'b', 'MECONIO', 'c', 'b', 'a', NULL, 'b', NULL, 'a', 'NORMAL', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b', 'a', 'b', 'b', -1, 1, '2020-05-21 21:16:14');
+
 -- --------------------------------------------------------
 
 --
@@ -11249,42 +11260,43 @@ CREATE TABLE `socioculturaldata` (
 
 CREATE TABLE `updatedata` (
   `id_data` int(7) NOT NULL,
-  `section_name` text,
+  `num_form` varchar(5) CHARACTER SET latin1 DEFAULT NULL,
+  `section_name` text CHARACTER SET latin1,
   `row_number` int(7) DEFAULT NULL,
   `found_number` int(7) DEFAULT NULL,
   `fail_number` int(7) DEFAULT NULL,
   `success_number` int(7) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `updatedata`
 --
 
-INSERT INTO `updatedata` (`id_data`, `section_name`, `row_number`, `found_number`, `fail_number`, `success_number`, `status`, `last_update`) VALUES
-(1, 'Antecedentes Familiares.', NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'Hoja de administración familiar de DASS-21.', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Encuesta medio ambiente.', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Escala abreviada de depresión geriátrica de Yesavage.', NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'Escala abreviada de sobre carga del cuidador de Zarit.', NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'Enfermedades de transmisión sexual de acuerdo a edad, sexo y orientación sexual.', NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'Cuestionario para conocer el contexto socio-cultural.', NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 'Tamizaje de diabetes mellitus.', NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'Prevención, Tamizaje, Detección y Control de Hipertensión Arterial Sistémica.', NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 'Formulario para conocer el estilo de vida personal de [0-1] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 'Formulario para conocer el estilo de vida personal de [6-12] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(12, 'Formulario para conocer el estilo de vida personal de [12+] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(13, 'Formulario para conocer el estilo de vida personal de [1-5] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 'Atención médica y planificación familiar + antecedentes gineco-obstétricos.', NULL, NULL, NULL, NULL, NULL, NULL),
-(15, 'PBIQ - Cuestionario de creencias personales.', NULL, NULL, NULL, NULL, NULL, NULL),
-(16, 'Signos vitales / somatometría + Estudios de laboratorio.', NULL, NULL, NULL, NULL, NULL, NULL),
-(17, 'Cuestionario para evaluación de violencia de género.', NULL, NULL, NULL, NULL, NULL, NULL),
-(18, 'Esquema de vacunación de [0-9] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(19, 'Esquema de vacunación de [10-19] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(20, 'Esquema de vacunación de [20-59] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(21, 'Esquema de vacunación de [60+] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(22, 'Escala de desesperanza de Beck.', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `updatedata` (`id_data`, `num_form`, `section_name`, `row_number`, `found_number`, `fail_number`, `success_number`, `status`, `last_update`) VALUES
+(1, '1', 'Antecedentes Familiares.', NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '2', 'Hoja de administración familiar de DASS-21.', 814, 360, 0, 814, 1, '2020-05-21 16:28:06'),
+(3, '3', 'Encuesta medio ambiente.', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, '4', 'Escala abreviada de depresión geriátrica de Yesavage.', NULL, NULL, NULL, NULL, NULL, NULL),
+(5, '4.1', 'Escala abreviada de sobre carga del cuidador de Zarit.', 30, 14, 0, 30, 1, '2020-05-20 20:05:15'),
+(6, '5', 'Enfermedades de transmisión sexual de acuerdo a edad, sexo y orientación sexual.', NULL, NULL, NULL, NULL, NULL, NULL),
+(7, '6', 'Cuestionario para conocer el contexto socio-cultural.', NULL, NULL, NULL, NULL, NULL, NULL),
+(8, '7', 'Tamizaje de diabetes mellitus.', NULL, NULL, NULL, NULL, NULL, NULL),
+(9, '8', 'Prevención, Tamizaje, Detección y Control de Hipertensión Arterial Sistémica.', 863, 365, 0, 863, 1, '2020-05-21 17:36:51'),
+(10, '9', 'Formulario para conocer el estilo de vida personal de [0-1] años.', 5, 1, 0, 5, 1, '2020-05-21 21:16:14'),
+(11, '10', 'Formulario para conocer el estilo de vida personal de [6-12] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(12, '11', 'Formulario para conocer el estilo de vida personal de [12+] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(13, '12', 'Formulario para conocer el estilo de vida personal de [1-5] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(14, '13', 'Atención médica y planificación familiar + antecedentes gineco-obstétricos.', NULL, NULL, NULL, NULL, NULL, NULL),
+(15, '14', 'PBIQ - Cuestionario de creencias personales.', NULL, NULL, NULL, NULL, NULL, NULL),
+(16, '15', 'Signos vitales / somatometría + Estudios de laboratorio.', NULL, NULL, NULL, NULL, NULL, NULL),
+(17, '16', 'Cuestionario para evaluación de violencia de género.', NULL, NULL, NULL, NULL, NULL, NULL),
+(18, '17', 'Esquema de vacunación de [0-9] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(19, '18', 'Esquema de vacunación de [10-19] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(20, '19', 'Esquema de vacunación de [20-59] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(21, '20', 'Esquema de vacunación de [60+] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(22, '21', 'Escala de desesperanza de Beck.', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -11294,12 +11306,12 @@ INSERT INTO `updatedata` (`id_data`, `section_name`, `row_number`, `found_number
 
 CREATE TABLE `users` (
   `id` int(7) NOT NULL,
-  `nombre` varchar(20) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `password` varchar(50) NOT NULL,
+  `nombre` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `password` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
   `lastLogin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_role` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -11669,6 +11681,12 @@ ALTER TABLE `socioculturaldata`
   ADD PRIMARY KEY (`id_data`);
 
 --
+-- Indices de la tabla `updatedata`
+--
+ALTER TABLE `updatedata`
+  ADD UNIQUE KEY `PRIMARY_KEY` (`id_data`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -11737,7 +11755,7 @@ ALTER TABLE `basicpatientdata_s`
 -- AUTO_INCREMENT de la tabla `bornlifestyledata`
 --
 ALTER TABLE `bornlifestyledata`
-  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `childlifestyledata`
