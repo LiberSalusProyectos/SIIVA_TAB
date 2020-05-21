@@ -679,6 +679,196 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
+        case 9:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== 'He sufrido un ataque al corazón' ||
+                  trim($row[7]) !== 'Tengo o tuve familiares directos con problemas de la presión' ||
+                  trim($row[8]) !== 'Con que frecuencia consumes dos o más de las siguientes bebidas: Cerveza (33 centilitros, 5% alcohol), licor (4.5 centilitros, 40% alcohol), vino (15 centilitros, 15% alcohol), etc.' ||
+                  trim($row[9]) !== 'Cuantos cigarrillos consumo durante el día' ||
+                  trim($row[10]) !== 'Me he realizado estudios de sangre para saber mis niveles de colesterol y triglicéridos' ||
+                  trim($row[11]) !== 'Me estreso durante el día' ||
+                  trim($row[12]) !== 'Estoy pendiente de mi nutrición y peso corporal' ||
+                  trim($row[13]) !== 'Camino, corro o realizo algún otro ejercicio por más de 20min al día' ||
+                  trim($row[14]) !== 'Acudo a consulta con el médico para saber mis niveles de presión arterial' ||
+                  trim($row[15]) !== 'He notado zumbido en los oídos' ||
+                  trim($row[16]) !== 'Noto destellos de luz al mirar a mi alrededor' ||
+                  trim($row[17]) !== 'Últimamente tengo dolores de cabeza constantes' ||
+                  trim($row[18]) !== 'Suelo medir mi presión arterial por las mañanas o por las tardes' ||
+                  trim($row[19]) !== 'He sentido dolor en mi pecho (Agitación, sensación de presión, dificultad para respirar)' ||
+                  trim($row[20]) !== 'Cuando subo o bajo escaleras me cuesta trabajo respirar' ||
+                  trim($row[21]) !== 'Tengo dificultades para recordar cosas' ||
+                  trim($row[22]) !== 'Me realizo exámenes de sangre para ver el estado de mis riñones' ||
+                  trim($row[23]) !== 'Me he realizado una evaluación de mi vista' ||
+                  trim($row[24]) !== 'Acudo con regularidad al médico' ||
+                  trim($row[25]) !== 'Tomo mi medicamento según las indicaciones del médico' ||
+                  trim($row[26]) !== 'Llevo una dieta adecuada a mi enfermedad' ||
+                  trim($row[27]) !== '¿Dónde acudo a mis consultas de control?'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['heart_attack'] = trim($row[6]) !== '' ? (substr($row[6], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['family'] = trim($row[7]) !== '' ? (substr($row[7], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['alcoholic_drinks'] = trim($row[8]) !== '' ? substr($row[8], 0, 1) : NULL;
+                $data['smoke'] = trim($row[9]) !== '' ? substr($row[9], 0, 1) : NULL;
+                $data['blood_test'] = trim($row[10]) !== '' ? substr($row[10], 0, 1) : NULL;
+                $data['stress'] = trim($row[11]) !== '' ? substr($row[11], 0, 1) : NULL;
+                $data['nutrition'] = trim($row[12]) !== '' ? substr($row[12], 0, 1) : NULL;
+                $data['physical_activity'] = trim($row[13]) !== '' ? substr($row[13], 0, 1) : NULL;
+                $data['medical_consult'] = trim($row[14]) !== '' ? substr($row[14], 0, 1) : NULL;
+                $data['ringing_ears'] = trim($row[15]) !== '' ? substr($row[15], 0, 1) : NULL;
+                $data['flashes'] = trim($row[16]) !== '' ? substr($row[16], 0, 1) : NULL;
+                $data['headache'] = trim($row[17]) !== '' ? substr($row[17], 0, 1) : NULL;
+                $data['pression_check'] = trim($row[18]) !== '' ? substr($row[18], 0, 1) : NULL;
+                $data['chest_pain'] = trim($row[19]) !== '' ? substr($row[19], 0, 1) : NULL;
+                $data['difficulty_breathing'] = trim($row[20]) !== '' ? substr($row[20], 0, 1) : NULL;
+                $data['forget_things'] = trim($row[21]) !== '' ? substr($row[21], 0, 1) : NULL;
+                $data['kidney_test'] = trim($row[22]) !== '' ? substr($row[22], 0, 1) : NULL;
+                $data['vision_test'] = trim($row[23]) !== '' ? substr($row[23], 0, 1) : NULL;
+                $data['medical_visit'] = trim($row[24]) !== '' ? substr($row[24], 0, 1) : NULL;
+                $data['treatment'] = trim($row[25]) !== '' ? substr($row[25], 0, 1) : NULL;
+                $data['diet'] = trim($row[26]) !== '' ? substr($row[26], 0, 1) : NULL;
+                $data['medical_place'] = trim($row[27]) !== '' ? substr($row[27], 0, 1) : NULL;
+                
+                $insert_id = saveHypertensionData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
+        case 10:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== 'A cuentas consultas acudió durante su control prenatal.' ||
+                  trim($row[7]) !== 'Presento alguna complicación durante su embarazo' ||
+                  trim($row[8]) !== 'Tipo de resolución del embarazo' ||
+                  trim($row[9]) !== 'Mencione el motivo de la cesárea' ||
+                  trim($row[10]) !== 'Cuanto duro su embarazo' ||
+                  trim($row[11]) !== 'Cual fue el peso de su hijo al nacer en gramos' ||
+                  trim($row[12]) !== 'Que tipo de lactancia tuvo su bebe' ||
+                  trim($row[13]) !== 'Menciona la fórmula' ||
+                  trim($row[14]) !== 'En caso de lactancia materna exclusiva, cuanto tiempo duro la etapa' ||
+                  trim($row[15]) !== 'En caso de presentar alergia seleccione y especifique cual' ||
+                  trim($row[16]) !== 'Se realizó tamiz neonatal' ||
+                  trim($row[17]) !== 'Mencione el resultado' ||
+                  trim($row[18]) !== '1 MES' ||
+                  trim($row[20]) !== '2 MESES' ||
+                  trim($row[22]) !== '3 MESES' ||
+                  trim($row[23]) !== '4 MESES' ||
+                  trim($row[24]) !== '5 MESES' ||
+                  trim($row[25]) !== '6 MESES' ||
+                  trim($row[27]) !== '7 MESES' ||
+                  trim($row[29]) !== '8 MESES' ||
+                  trim($row[30]) !== '9 MESES' ||
+                  trim($row[31]) !== '10 MESES' ||
+                  trim($row[32]) !== '11 MESES' ||
+                  trim($row[33]) !== '12 MESES'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['consultations'] = trim($row[6]) !== '' ? substr($row[6], 0, 1) : NULL;
+                $data['pregnancy_complication'] = trim($row[7]) !== '' ? substr($row[7], 0, 1) : NULL;
+                $data['pregnancy_resolution'] = trim($row[8]) !== '' ? substr($row[8], 0, 1) : NULL;
+                $data['pregnancy_resolution_desc'] = trim($row[9]) !== '' ? $row[9] : NULL;
+                $data['pregnancy_duration'] = trim($row[10]) !== '' ? substr($row[10], 0, 1) : NULL;
+                $data['baby_weight'] = trim($row[11]) !== '' ? substr($row[11], 0, 1) : NULL;
+                $data['lactation_type'] = trim($row[12]) !== '' ? substr($row[12], 0, 1) : NULL;
+                $data['lactation_desc'] = trim($row[13]) !== '' ? $row[13] : NULL;
+                $data['lactation_duration'] = trim($row[14]) !== '' ? substr($row[14], 0, 1) : NULL;
+                $data['baby_allergy'] = trim($row[15]) !== '' ? substr($row[15], 0, 1) : NULL;
+                $data['tamiz_neonatal'] = trim($row[16]) !== '' ? substr($row[16], 0, 1) : NULL;
+                $data['tamiz_neonatal_desc'] = trim($row[17]) !== '' ? $row[17] : NULL;
+                $data['table_one'] = trim($row[18]) !== '' ? substr($row[18], 0, 1) : NULL;
+                $data['table_two'] = trim($row[19]) !== '' ? substr($row[19], 0, 1) : NULL;
+                $data['table_three'] = trim($row[20]) !== '' ? substr($row[20], 0, 1) : NULL;
+                $data['table_four'] = trim($row[21]) !== '' ? substr($row[21], 0, 1) : NULL;
+                $data['table_five'] = trim($row[22]) !== '' ? substr($row[22], 0, 1) : NULL;
+                $data['table_six'] = trim($row[23]) !== '' ? substr($row[23], 0, 1) : NULL;
+                $data['table_seven'] = trim($row[24]) !== '' ? substr($row[24], 0, 1) : NULL;
+                $data['table_eight'] = trim($row[25]) !== '' ? substr($row[25], 0, 1) : NULL;
+                $data['table_nine'] = trim($row[26]) !== '' ? substr($row[26], 0, 1) : NULL;
+                $data['table_ten'] = trim($row[27]) !== '' ? substr($row[27], 0, 1) : NULL;
+                $data['table_eleven'] = trim($row[28]) !== '' ? substr($row[28], 0, 1) : NULL;
+                $data['table_twelve'] = trim($row[29]) !== '' ? substr($row[29], 0, 1) : NULL;
+                $data['table_thirteen'] = trim($row[30]) !== '' ? substr($row[30], 0, 1) : NULL;
+                $data['table_fourteen'] = trim($row[31]) !== '' ? substr($row[31], 0, 1) : NULL;
+                $data['table_fifteen'] = trim($row[32]) !== '' ? substr($row[32], 0, 1) : NULL;
+                $data['table_sixteen'] = trim($row[33]) !== '' ? substr($row[33], 0, 1) : NULL;
+                
+                $insert_id = saveBornLifestyleData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
         default:
           $response->success = false;
           $response->message = 'Modulo no configurado para carga.';

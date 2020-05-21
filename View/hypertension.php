@@ -199,7 +199,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                        <label class="container regular-font text-royal-blue">a) Nunca
+                        <label class="container regular-font text-royal-blue">a) 0
                             <input type="radio" name="smoke" <?php if ($result[0]["smoke"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                             <span class="radiomark"></span>
                         </label>
@@ -207,7 +207,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                        <label class="container regular-font text-royal-blue">b) Una o dos veces al mes
+                        <label class="container regular-font text-royal-blue">b) 1
                             <input type="radio" name="smoke" <?php if ($result[0]["smoke"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                             <span class="radiomark"></span>
                         </label>
@@ -215,7 +215,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                        <label class="container regular-font text-royal-blue">c) Una vez a la semana
+                        <label class="container regular-font text-royal-blue">c) 5
                             <input type="radio" name="smoke" <?php if ($result[0]["smoke"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                             <span class="radiomark"></span>
                         </label>
@@ -223,7 +223,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                        <label class="container regular-font text-royal-blue">d) 2 o más veces a la semana
+                        <label class="container regular-font text-royal-blue">d) 10
                             <input type="radio" name="smoke" <?php if ($result[0]["smoke"]=="d")  { echo 'checked="true"'; } ?> value="d" />
                             <span class="radiomark"></span>
                         </label>
@@ -231,7 +231,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                        <label class="container regular-font text-royal-blue">e) Diario
+                        <label class="container regular-font text-royal-blue">e) 20 o más
                             <input type="radio" name="smoke" <?php if ($result[0]["smoke"]=="e")  { echo 'checked="true"'; } ?> value="e" />
                             <span class="radiomark"></span>
                         </label>

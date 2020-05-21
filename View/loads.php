@@ -169,7 +169,7 @@
               <?php foreach ($updateData as $key=>$update) { ?>
                 <tr>
                 <form method="post" name="load_excel_form" enctype="multipart/form-data">
-                  <th scope="row" class="text-center" width="10%"><?php echo $update['id_data']; ?></th>
+                  <th scope="row" class="text-center" width="10%"><?php echo $update['num_form']; ?></th>
                   <td width="40%">
                     <input type="file" name="select_excel" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required />
                     <input type="hidden" name="id_data" value="<?php echo $update['id_data']; ?>">
