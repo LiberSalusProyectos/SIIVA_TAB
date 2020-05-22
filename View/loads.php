@@ -19,7 +19,7 @@
           event.preventDefault();
 
           const data = new FormData(this);
-          const element = $('button[name$="'+data.get('id_data')+'"]')
+          const element = $('button[name$="btn_'+data.get('id_data')+'"]')
           const msg_div = $('#message_'+data.get('id_data'))
           const stat_div = $('#status_'+data.get('id_data'))
       
@@ -115,7 +115,7 @@
                       <!-- <button class="btn btn-success update_js" data-id="<?php echo($updateData[$i]["id_data"]); ?>">
                         Actualizar
                       </button> -->
-                      <button type="submit" name="0" class="btn btn-success">
+                      <button type="submit" name="btn_0" class="btn btn-success">
                         Actualizar
                       </button>
                     </div>
@@ -205,7 +205,7 @@
                       <!-- <button class="btn btn-success update_js" data-id="<?php echo($updateData[$i]["id_data"]); ?>">
                         Actualizar
                       </button> -->
-                      <button type="submit" name="<?php echo $update['id_data']; ?>" class="btn btn-success">
+                      <button type="submit" name="<?php echo 'btn_'.$update['id_data']; ?>" class="btn btn-success">
                         Actualizar
                       </button>
                     </div>
