@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 21-05-2020 a las 21:20:54
+-- Tiempo de generación: 22-05-2020 a las 19:15:43
 -- Versión del servidor: 5.7.30
 -- Versión de PHP: 7.4.5
 
@@ -10346,17 +10346,6 @@ CREATE TABLE `bornlifestyledata` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `bornlifestyledata`
---
-
-INSERT INTO `bornlifestyledata` (`id_data`, `consultations`, `pregnancy_complication`, `pregnancy_resolution`, `pregnancy_resolution_desc`, `pregnancy_duration`, `baby_weight`, `lactation_type`, `lactation_desc`, `lactation_duration`, `baby_allergy`, `tamiz_neonatal`, `tamiz_neonatal_desc`, `table_one`, `table_two`, `table_three`, `table_four`, `table_five`, `table_six`, `table_seven`, `table_eight`, `table_nine`, `table_ten`, `table_eleven`, `table_twelve`, `table_thirteen`, `table_fourteen`, `table_fifteen`, `table_sixteen`, `id_patient`, `capturist`, `created_at`) VALUES
-(1, 'c', NULL, 'b', NULL, 'b', 'b', 'b', NULL, 'a', 'a', 'a', 'NEGATIVO', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'c', -1, 1, '2020-05-21 21:16:14'),
-(2, 'd', NULL, 'b', 'PORQUE EL BEBÉ VENIA TRANSVERSAL', 'b', 'b', 'b', NULL, 'c', NULL, 'a', NULL, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b', 'b', 'b', -1, 1, '2020-05-21 21:16:14'),
-(3, 'a', NULL, 'b', 'PROGRAMADA', 'b', 'b', 'b', NULL, NULL, NULL, 'a', 'NORMAL', 'a', 'a', 'a', 'a', 'a', 'b', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b', 595, 1, '2020-05-21 21:16:14'),
-(4, 'd', 'a', 'b', NULL, 'b', 'b', 'c', NULL, NULL, NULL, 'a', NULL, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b', 'a', 'a', -1, 1, '2020-05-21 21:16:14'),
-(5, 'a', NULL, 'b', 'MECONIO', 'c', 'b', 'a', NULL, 'b', NULL, 'a', 'NORMAL', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'b', 'a', 'b', 'b', -1, 1, '2020-05-21 21:16:14');
-
 -- --------------------------------------------------------
 
 --
@@ -10882,7 +10871,7 @@ CREATE TABLE `familyrecorddata` (
   `heart_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
   `asthma` tinyint(1) DEFAULT NULL,
   `obesity` tinyint(1) DEFAULT NULL,
-  `dyslipidemia` tinyint(1) DEFAULT NULL,
+  `dyslipidemia` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
   `breast_cancer` tinyint(1) DEFAULT NULL,
   `cervical_cancer` tinyint(1) DEFAULT NULL,
   `prostate_cancer` tinyint(1) DEFAULT NULL,
@@ -10925,7 +10914,7 @@ CREATE TABLE `familyrecorddata` (
   `genetic_other` tinyint(1) DEFAULT NULL,
   `genetic_other_desc` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
   `other_diseases` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `death_age` tinyint(4) DEFAULT NULL,
+  `death_age` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
   `death_cause` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
   `observations` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `id_patient` int(7) NOT NULL,
@@ -11200,6 +11189,8 @@ CREATE TABLE `loaddata` (
   `name` varchar(120) COLLATE utf8_spanish_ci DEFAULT NULL,
   `firstLastName` varchar(120) COLLATE utf8_spanish_ci DEFAULT NULL,
   `secondLastName` varchar(120) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `relationship` varchar(35) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `occupation` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `gender` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -11275,8 +11266,8 @@ CREATE TABLE `updatedata` (
 --
 
 INSERT INTO `updatedata` (`id_data`, `num_form`, `section_name`, `row_number`, `found_number`, `fail_number`, `success_number`, `status`, `last_update`) VALUES
-(1, '1', 'Antecedentes Familiares.', NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '2', 'Hoja de administración familiar de DASS-21.', 814, 360, 0, 814, 1, '2020-05-21 16:28:06'),
+(1, '1', 'Antecedentes Familiares.', 1386, 289, 0, 1386, 1, '2020-05-22 19:14:46'),
+(2, '2', 'Hoja de administración familiar de DASS-21.', 814, 360, 0, 814, 1, '2020-05-22 18:03:52'),
 (3, '3', 'Encuesta medio ambiente.', NULL, NULL, NULL, NULL, NULL, NULL),
 (4, '4', 'Escala abreviada de depresión geriátrica de Yesavage.', NULL, NULL, NULL, NULL, NULL, NULL),
 (5, '4.1', 'Escala abreviada de sobre carga del cuidador de Zarit.', 30, 14, 0, 30, 1, '2020-05-20 20:05:15'),
@@ -11755,7 +11746,7 @@ ALTER TABLE `basicpatientdata_s`
 -- AUTO_INCREMENT de la tabla `bornlifestyledata`
 --
 ALTER TABLE `bornlifestyledata`
-  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_data` int(14) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `childlifestyledata`

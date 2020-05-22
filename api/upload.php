@@ -97,6 +97,148 @@ if($_FILES["select_excel"]["name"] != ''){
             }
           }
           break;
+        case 1:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'PARENTESCO' || 
+                  trim($row[6]) !== 'LUGAR DE NACIMIENTO' ||
+                  trim($row[8]) !== 'SEXO' ||
+                  trim($row[9]) !== 'LUGAR DE RESIDENCIA' ||
+                  trim($row[23]) !== 'OCUPACIÓN' ||
+                  trim($row[24]) !== 'HIPERTENSIÓN ARTERIAL' ||
+                  trim($row[25]) !== 'DIABETES MELLITUS' ||
+                  trim($row[26]) !== 'CARDIOPATÍAS' ||
+                  trim($row[30]) !== 'ASMA' ||
+                  trim($row[31]) !== 'OBESIDAD' ||
+                  trim($row[32]) !== 'DISLIPIDEMIA' || //Cambia de booleano a opción multiple
+                  trim($row[33]) !== 'CÁNCER' ||
+                  trim($row[38]) !== 'ENFERMEDADES PSIQUIÁTRICAS' ||
+                  trim($row[42]) !== 'ENFERMEDADES OCULARES' ||
+                  trim($row[46]) !== 'ENFERMEDADES ENDÓCRINAS' ||
+                  trim($row[50]) !== 'ENFERMEDADES GINECO-OBSTÉTRICAS' ||
+                  trim($row[54]) !== 'ENFERMEDADES NEUROLÓGICAS' ||
+                  trim($row[58]) !== 'ENFERMEDADES INFECTO-CONTAGIOSAS' ||
+                  trim($row[62]) !== 'ENFERMEDADES GENÉTICAS' ||
+                  trim($row[66]) !== 'OTRAS ENFERMEDADES' ||
+                  trim($row[67]) !== 'EDAD DE FALLECIMIENTO' || //Cambia de numerico a texto abierto
+                  trim($row[68]) !== 'CAUSA DE MUERTE' ||
+                  trim($row[69]) !== 'OBSERVACIONES'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['relationship'] = trim($row[5]) !== '' ? trim($row[5]) : NULL;
+                $data['occupation'] = trim($row[23]) !== '' ? trim($row[23]) : NULL;
+                $data['gender'] = trim($row[8]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['birth_state'] = trim($row[6]) !== '' ? $row[6] : NULL;
+                $data['birth_place'] = trim($row[7]) !== '' ? $row[7] : NULL;
+                $data['residence_place'] = trim($row[14]) !== '' ? $row[14] : NULL;
+                $data['residence_state'] = trim($row[15]) !== '' ? $row[15] : NULL;
+
+                $data['hypertension'] = trim($row[24]) !== '' ? (substr($row[24], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['diabetes'] = trim($row[25]) !== '' ? (substr($row[25], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+
+                $data['heart_attack'] = trim($row[26]) !== '' ? (substr($row[26], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['cardiac_arrhythmia'] = trim($row[27]) !== '' ? (substr($row[27], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['heart_failure'] = trim($row[28]) !== '' ? (substr($row[28], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['heart_other'] = trim($row[29]) !== '' ? '1' : NULL;
+                $data['heart_other_desc'] = trim($row[29]) !== '' ? $row[29] : NULL;
+
+                $data['asthma'] = trim($row[30]) !== '' ? (substr($row[30], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['obesity'] = trim($row[31]) !== '' ? (substr($row[31], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['dyslipidemia'] = trim($row[32]) !== '' ? strtolower(substr($row[32], 0, 1)) : NULL;
+
+                $data['breast_cancer'] = trim($row[33]) !== '' ? (substr($row[33], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['cervical_cancer'] = trim($row[34]) !== '' ? (substr($row[34], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['prostate_cancer'] = trim($row[35]) !== '' ? (substr($row[35], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['leukemia'] = trim($row[36]) !== '' ? (substr($row[36], 0, 1) == 'X' ? '1' : '0' ) : NULL; //Falta agregar este campo
+                $data['cancer_other'] = trim($row[37]) !== '' ? '1' : NULL;
+                $data['cancer_other_desc'] = trim($row[37]) !== '' ? $row[37] : NULL;
+
+                $data['anxiety_depression'] = trim($row[38]) !== '' ? (substr($row[38], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['eating_disorders'] = trim($row[39]) !== '' ? (substr($row[39], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['schizophrenia'] = trim($row[40]) !== '' ? (substr($row[40], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['psychiatric_other'] = trim($row[41]) !== '' ? '1' : NULL;
+                $data['psychiatric_other_desc'] = trim($row[41]) !== '' ? $row[41] : NULL;
+
+                $data['glaucoma'] = trim($row[42]) !== '' ? (substr($row[42], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['ametropia'] = trim($row[43]) !== '' ? (substr($row[43], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['waterfalls'] = trim($row[44]) !== '' ? (substr($row[44], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['eye_other'] = trim($row[45]) !== '' ? '1' : NULL;
+                $data['eye_other_desc'] = trim($row[45]) !== '' ? $row[45] : NULL;
+
+                $data['hyperthyroidism'] = trim($row[46]) !== '' ? (substr($row[46], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['hypothyroidism'] = trim($row[47]) !== '' ? (substr($row[47], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['cushing'] = trim($row[48]) !== '' ? (substr($row[48], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['endocrine_other'] = trim($row[49]) !== '' ? '1' : NULL;
+                $data['endocrine_other_desc'] = trim($row[49]) !== '' ? $row[49] : NULL;
+
+                $data['preeclampsia'] = trim($row[50]) !== '' ? (substr($row[50], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['cystic_ovary'] = trim($row[51]) !== '' ? (substr($row[51], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['gestational_diabetes'] = trim($row[52]) !== '' ? (substr($row[52], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['gynecological_other'] = trim($row[53]) !== '' ? '1' : NULL;
+                $data['gynecological_other_desc'] = trim($row[53]) !== '' ? $row[53] : NULL;
+
+                $data['parkinson'] = trim($row[54]) !== '' ? (substr($row[54], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['epilepsy'] = trim($row[55]) !== '' ? (substr($row[55], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['alzheimer'] = trim($row[56]) !== '' ? (substr($row[56], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['neurological_other'] = trim($row[57]) !== '' ? '1' : NULL;
+                $data['neurological_other_desc'] = trim($row[57]) !== '' ? $row[57] : NULL;
+
+                $data['tuberculosis'] = trim($row[58]) !== '' ? (substr($row[58], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['sida'] = trim($row[59]) !== '' ? (substr($row[59], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['syphilis'] = trim($row[60]) !== '' ? (substr($row[60], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['infectious_other'] = trim($row[61]) !== '' ? '1' : NULL;
+                $data['infectious_other_desc'] = trim($row[61]) !== '' ? $row[61] : NULL;
+
+                $data['down_syndrome'] = trim($row[62]) !== '' ? (substr($row[62], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['cretinism_acromegaly'] = trim($row[63]) !== '' ? (substr($row[63], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['hemophilia'] = trim($row[64]) !== '' ? (substr($row[64], 0, 1) == 'X' ? '1' : '0' ) : NULL;
+                $data['genetic_other'] = trim($row[65]) !== '' ? '1' : NULL;
+                $data['genetic_other_desc'] = trim($row[65]) !== '' ? $row[65] : NULL;
+
+                $data['other_diseases'] = trim($row[15]) !== '' ? $row[15] : NULL;
+                $data['death_age'] = trim($row[15]) !== '' ? $row[15] : NULL;
+                $data['death_cause'] = trim($row[15]) !== '' ? $row[15] : NULL;
+                $data['observations'] = trim($row[15]) !== '' ? $row[15] : NULL;
+                
+                $insert_id = saveFamilyRecordData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
         case 2:
           $update = true;
           $row_count=0;

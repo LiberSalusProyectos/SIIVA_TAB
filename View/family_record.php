@@ -205,12 +205,37 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label class="checktainer text-royal-blue bold-font">Dislipidemia
-                                <input type="checkbox" <?php if ($result[0]["dyslipidemia"]!=0)  { echo 'checked="true"'; } ?> name="dyslipidemia" />
-                                <span class="checkmark"></span>
-                            </label>
+                    <div class="col-12 col-sm-12 col-lg-12 col-xl-6 mb-2">
+                        <span class="instructions-paragraph regular-font text-royal-blue">
+                            <strong>Dislepidemia</strong>
+                        </span>
+                    </div>
+                    <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="container regular-font text-royal-blue">Triglicéridos alto
+                                        <input type="radio" name="dyslipidemia" <?php if ($result[0]["dyslipidemia"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                                        <span class="radiomark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="container regular-font text-royal-blue">Colesterol alto
+                                        <input type="radio" name="dyslipidemia" <?php if ($result[0]["dyslipidemia"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                                        <span class="radiomark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="container regular-font text-royal-blue">Mixto (colesterol y triglicéridos alto)
+                                        <input type="radio" name="dyslipidemia" <?php if ($result[0]["dyslipidemia"]=="d")  { echo 'checked="true"'; } ?> value="c" />
+                                        <span class="radiomark"></span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -609,7 +634,7 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <label for="death_age" class="text-royal-blue bold-font float-left custom-form-label-element">5) Edad de fallecimiento</label>
-                            <input type="number" class="form-control custom-input" name="death_age" value="<?php echo utf8_encode($result[0]["death_age"]); ?>" min="0" />
+                            <input type="text" class="form-control custom-input" name="death_age" value="<?php echo utf8_encode($result[0]["death_age"]); ?>" />
                         </div>
                     </div>
 
