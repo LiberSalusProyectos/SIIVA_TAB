@@ -1011,6 +1011,150 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
+        case 11:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== '¿Normalmente a la semana, el niño consume algún alimento al levantarse?' ||
+                  trim($row[7]) !== '¿A la semana, con qué frecuencia consume alimentos como embutidos, enlatados y refrigerados?' ||
+                  trim($row[8]) !== 'El número de veces que consume alimentos al día:' ||
+                  trim($row[9]) !== 'Frecuentemente consume alimentos hechos fuera de casa' ||
+                  trim($row[10]) !== 'Durante las comidas en casa acostumbra a consumir alimentos fritos (Antojitos)' ||
+                  trim($row[11]) !== 'Respeta el horario establecido para las comidas' ||
+                  trim($row[12]) !== 'Considero que la dieta del niño es balanceada' ||
+                  trim($row[20]) !== 'El niño realiza actividades físicas de recreo como caminar, nadar, jugar futbol o ciclismo de 20 a 30min en la semana' ||
+                  trim($row[21]) !== 'La frecuencia con la que hace actividad física a la semana' ||
+                  trim($row[22]) !== 'Le interesa el deporte y es un niño activo' ||
+                  trim($row[23]) !== 'El número de veces que acudo a servicios médicos para valoración del niño' ||
+                  trim($row[24]) !== 'Reviso físicamente al niño en busca de cambios en su cuerpo' ||
+                  trim($row[25]) !== 'Le realizo exámenes médicos de rutina (biometría hemática, examen general de orina, entre otros)' ||
+                  trim($row[26]) !== 'Acudo a servicios con el dentista para valoración de salud bucal en el niño' ||
+                  trim($row[27]) !== '¿Has acudido con él a consulta con psicología?' ||
+                  trim($row[28]) !== '¿Y nutrición?' ||
+                  trim($row[29]) !== 'Cuando se enferma, yo le doy tratamiento previo a la visita del médico' ||
+                  trim($row[30]) !== 'Durante el último año ¿el niño se enfermó?' ||
+                  trim($row[31]) !== 'Busco información confiable sobre cuidados de la salud infantil (Revistas, programas de salud, conferencias o exposiciones)' ||
+                  trim($row[32]) !== 'Le pregunto a otro médico u otra opción cuando no estoy de acuerdo con el' ||
+                  trim($row[33]) !== 'El niño ríe y habla con un timbre de voz alto' ||
+                  trim($row[34]) !== 'El niño es callado o retraído la mayoría de las veces' ||
+                  trim($row[35]) !== 'Tiene dificultad para relacionarse con las demás personas' ||
+                  trim($row[36]) !== 'Llora ante cualquier estimulo externo' ||
+                  trim($row[37]) !== 'Prefiere estar solo' ||
+                  trim($row[38]) !== 'El número de veces que se baña al día el niño' ||
+                  trim($row[39]) !== 'Acostumbra a lavarse las manos antes de comer o después de ir al baño' ||
+                  trim($row[40]) !== 'La frecuencia con la que se lava los dientes es' ||
+                  trim($row[41]) !== 'Hace uso de hilo dental bajo la supervisión de un adulto' ||
+                  trim($row[42]) !== 'El niño cambia de ropa interior diario' ||
+                  trim($row[43]) !== 'En el ultimo mes, le he cortado las uñas de las manos y de los pies al niño' ||
+                  trim($row[44]) !== 'Las toallas que el niño ocupa son limpias cada vez que se baña' ||
+                  trim($row[45]) !== 'Tiene diagnóstico de algún trastorno de aprendizaje o desarrollo' ||
+                  trim($row[46]) !== 'Presenta adecuado rendimiento escolar' ||
+                  trim($row[47]) !== 'Se relaciona con sus compañeros' ||
+                  trim($row[48]) !== '¿Ha notado si se cae mucho al caminar o correr?' ||
+                  trim($row[49]) !== '¿Ha presentado problemas de visión?' ||
+                  trim($row[50]) !== '¿Se acerca mucho al televisor y/o al cuaderno?' ||
+                  trim($row[51]) !== 'Presenta dolor de cabeza al realizar sus tareas y/o estímulos visuales' ||
+                  trim($row[52]) !== 'Se le dificulta retener información' ||
+                  trim($row[53]) !== 'Frecuentemente se le dificulta quedarse quieto' ||
+                  trim($row[54]) !== 'Se le dificulta pronunciar algunas palabras' ||
+                  trim($row[55]) !== 'Invierte letras o números similares (7 F, P 9, d b, etc.)' ||
+                  trim($row[56]) !== 'Frecuentemente deja actividades inconclusas' ||
+                  trim($row[57]) !== 'Frecuentemente se le dificulta seguir órdenes'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['wake_food'] = trim($row[6]) !== '' ? substr($row[6], 0, 1) : NULL;
+                $data['sausages'] = trim($row[7]) !== '' ? substr($row[7], 0, 1) : NULL;
+                $data['food_times'] = trim($row[8]) !== '' ? substr($row[8], 0, 1) : NULL;
+                $data['fast_food'] = trim($row[9]) !== '' ? substr($row[9], 0, 1) : NULL;
+                $data['fatty_food'] = trim($row[10]) !== '' ? substr($row[10], 0, 1) : NULL;
+                $data['mealtime'] = trim($row[11]) !== '' ? substr($row[11], 0, 1) : NULL;
+                $data['balanced_diet'] = trim($row[12]) !== '' ? substr($row[12], 0, 1) : NULL;
+                $data['dairy_products'] = trim($row[13]) !== '' ? $row[13] : NULL;
+                $data['meats'] = trim($row[14]) !== '' ? substr($row[14], 0, 1) : NULL;
+                $data['tubers'] = trim($row[15]) !== '' ? substr($row[15], 0, 1) : NULL;
+                $data['vegetables'] = trim($row[16]) !== '' ? substr($row[16], 0, 1) : NULL;
+                $data['fruits'] = trim($row[17]) !== '' ? $row[17] : NULL;
+                $data['cereals'] = trim($row[18]) !== '' ? substr($row[18], 0, 1) : NULL;
+                $data['snacks'] = trim($row[19]) !== '' ? substr($row[19], 0, 1) : NULL;
+                $data['exercise'] = trim($row[20]) !== '' ? substr($row[20], 0, 1) : NULL;
+                $data['exercise_times'] = trim($row[21]) !== '' ? substr($row[21], 0, 1) : NULL;
+                $data['sport_active'] = trim($row[22]) !== '' ? substr($row[22], 0, 1) : NULL;
+                $data['medical_times'] = trim($row[23]) !== '' ? substr($row[23], 0, 1) : NULL;
+                $data['kid_review'] = trim($row[24]) !== '' ? substr($row[24], 0, 1) : NULL;
+                $data['medical_exams'] = trim($row[25]) !== '' ? substr($row[25], 0, 1) : NULL;
+                $data['dentist'] = trim($row[26]) !== '' ? substr($row[26], 0, 1) : NULL;
+                $data['psychology'] = trim($row[27]) !== '' ? substr($row[27], 0, 1) : NULL;
+                $data['nutrition'] = trim($row[28]) !== '' ? substr($row[28], 0, 1) : NULL;
+                $data['previous_treatment'] = trim($row[29]) !== '' ? substr($row[29], 0, 1) : NULL;
+                $data['diseases'] = trim($row[30]) !== '' ? substr($row[30], 0, 1) : NULL;
+                $data['childcare'] = trim($row[31]) !== '' ? substr($row[31], 0, 1) : NULL;
+                $data['second_opinion'] = trim($row[32]) !== '' ? substr($row[32], 0, 1) : NULL;
+                $data['restless'] = trim($row[33]) !== '' ? substr($row[33], 0, 1) : NULL;
+                $data['quiet'] = trim($row[34]) !== '' ? substr($row[34], 0, 1) : NULL;
+                $data['difficulty_relating'] = trim($row[35]) !== '' ? substr($row[35], 0, 1) : NULL;
+                $data['weeping'] = trim($row[36]) !== '' ? substr($row[36], 0, 1) : NULL;
+                $data['alone_prefer'] = trim($row[37]) !== '' ? substr($row[37], 0, 1) : NULL;
+                $data['bath_times'] = trim($row[38]) !== '' ? substr($row[38], 0, 1) : NULL;
+                $data['handwashing'] = trim($row[39]) !== '' ? substr($row[39], 0, 1) : NULL;
+                $data['brush_teeth'] = trim($row[40]) !== '' ? substr($row[40], 0, 1) : NULL;
+                $data['floss_use'] = trim($row[41]) !== '' ? substr($row[41], 0, 1) : NULL;
+                $data['underwear'] = trim($row[42]) !== '' ? substr($row[42], 0, 1) : NULL;
+                $data['nails_cut'] = trim($row[43]) !== '' ? substr($row[43], 0, 1) : NULL;
+                $data['bath_towel'] = trim($row[44]) !== '' ? substr($row[44], 0, 1) : NULL;
+                $data['diagnostic_disorder'] = trim($row[45]) !== '' ? substr($row[45], 0, 1) : NULL;
+                $data['school_perform'] = trim($row[46]) !== '' ? substr($row[46], 0, 1) : NULL;
+                $data['relates'] = trim($row[47]) !== '' ? substr($row[47], 0, 1) : NULL;
+                $data['stumbles'] = trim($row[48]) !== '' ? substr($row[48], 0, 1) : NULL;
+                $data['vision_problems'] = trim($row[49]) !== '' ? substr($row[49], 0, 1) : NULL;
+                $data['approximate'] = trim($row[50]) !== '' ? substr($row[50], 0, 1) : NULL;
+                $data['headache'] = trim($row[51]) !== '' ? substr($row[51], 0, 1) : NULL;
+                $data['difficult_learn'] = trim($row[52]) !== '' ? substr($row[52], 0, 1) : NULL;
+                $data['frequent_restless'] = trim($row[53]) !== '' ? substr($row[53], 0, 1) : NULL;
+                $data['difficult_pronounce'] = trim($row[54]) !== '' ? substr($row[54], 0, 1) : NULL;
+                $data['letter_invert'] = trim($row[55]) !== '' ? substr($row[55], 0, 1) : NULL;
+                $data['unfinished_activities'] = trim($row[56]) !== '' ? substr($row[56], 0, 1) : NULL;
+                $data['naughty'] = trim($row[57]) !== '' ? substr($row[57], 0, 1) : NULL;
+                
+                $insert_id = saveChildLifestyleData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
         default:
           $response->success = false;
           $response->message = 'Modulo no configurado para carga.';
