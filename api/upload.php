@@ -1095,12 +1095,12 @@ if($_FILES["select_excel"]["name"] != ''){
                 $data['mealtime'] = trim($row[11]) !== '' ? substr($row[11], 0, 1) : NULL;
                 $data['balanced_diet'] = trim($row[12]) !== '' ? substr($row[12], 0, 1) : NULL;
                 $data['dairy_products'] = trim($row[13]) !== '' ? $row[13] : NULL;
-                $data['meats'] = trim($row[14]) !== '' ? substr($row[14], 0, 1) : NULL;
-                $data['tubers'] = trim($row[15]) !== '' ? substr($row[15], 0, 1) : NULL;
-                $data['vegetables'] = trim($row[16]) !== '' ? substr($row[16], 0, 1) : NULL;
+                $data['meats'] = trim($row[14]) !== '' ? $row[14] : NULL;
+                $data['tubers'] = trim($row[15]) !== '' ? $row[15] : NULL;
+                $data['vegetables'] = trim($row[16]) !== '' ? $row[16] : NULL;
                 $data['fruits'] = trim($row[17]) !== '' ? $row[17] : NULL;
-                $data['cereals'] = trim($row[18]) !== '' ? substr($row[18], 0, 1) : NULL;
-                $data['snacks'] = trim($row[19]) !== '' ? substr($row[19], 0, 1) : NULL;
+                $data['cereals'] = trim($row[18]) !== '' ? $row[18] : NULL;
+                $data['snacks'] = trim($row[19]) !== '' ? $row[19] : NULL;
                 $data['exercise'] = trim($row[20]) !== '' ? substr($row[20], 0, 1) : NULL;
                 $data['exercise_times'] = trim($row[21]) !== '' ? substr($row[21], 0, 1) : NULL;
                 $data['sport_active'] = trim($row[22]) !== '' ? substr($row[22], 0, 1) : NULL;
@@ -1141,6 +1141,440 @@ if($_FILES["select_excel"]["name"] != ''){
                 $data['naughty'] = trim($row[57]) !== '' ? substr($row[57], 0, 1) : NULL;
                 
                 $insert_id = saveChildLifestyleData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
+        case 12:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== '¿Normalmente a la semana, consumo algún alimento al levantarme?' ||
+                  trim($row[7]) !== '¿Normalmente a la semana con qué frecuencia consumo alimentos con conservadores artificiales?' ||
+                  trim($row[8]) !== 'El número de veces que consumo alimentos al día:' ||
+                  trim($row[9]) !== 'Frecuentemente consumo alimentos hechos fuera de casa' ||
+                  trim($row[10]) !== 'Durante las comidas en casa acostumbro consumir alimentos fritos (Antojitos)' ||
+                  trim($row[11]) !== 'Respeto el horario establecido para las comidas' ||
+                  trim($row[12]) !== 'Continúo comiendo después de quedar satisfecho' ||
+                  trim($row[13]) !== 'Considero que mi dieta es balanceada' ||
+                  trim($row[14]) !== 'Como para sentirme bien o tranquilizarme' ||
+                  trim($row[15]) !== 'Cuando compro alimentos reviso las etiquetas en los alimentos para conocer sus ingredientes' ||
+                  trim($row[16]) !== 'ALIMENTACIÓN. Ordena en orden de frecuencia los grupos alimenticios en su dieta del 1 al 7 en los recuadros.' ||
+                  trim($row[23]) !== 'Realizo actividades físicas de recreo como caminar, nadar, jugar futbol o ciclismo de 20 a 30min en la semana' ||
+                  trim($row[24]) !== 'La frecuencia con la que hago actividad física a la semana' ||
+                  trim($row[25]) !== 'Si realizas ejercicio, consideras que el tiempo invertido es el suficiente' ||
+                  trim($row[26]) !== 'El número de veces que acudo a servicios médicos' ||
+                  trim($row[27]) !== 'Autoexploro físicamente mi cuerpo para detectar cambios' ||
+                  trim($row[28]) !== 'Me realizo exámenes médicos de rutina (biometría hemática, examen general de orina, química sanguínea, perfil de lípidos, entre otros)' ||
+                  trim($row[29]) !== '¿Con que frecuencia te checas la presión arterial?' ||
+                  trim($row[30]) !== 'Acudo a servicios con el dentista' ||
+                  trim($row[31]) !== '¿Has acudido a consulta con psicología?' ||
+                  trim($row[32]) !== '¿Y nutrición?' ||
+                  trim($row[33]) !== 'Cuando me enfermo me automedico' ||
+                  trim($row[34]) !== 'Durante el último año ¿usted se enfermó?' ||
+                  trim($row[35]) !== 'Busco información confiable sobre cuidados de la salud (Revistas, programas de salud, conferencias o exposiciones)' ||
+                  trim($row[36]) !== 'Le pregunto a otro médico u otra opción cuando no estoy de acuerdo con el' ||
+                  trim($row[37]) !== 'Me tomo mi tiempo para relajarme' ||
+                  trim($row[38]) !== 'Soy consciente de las causas que me producen estrés o ansiedad' ||
+                  trim($row[39]) !== 'Durante el día siento que el estrés afecta mis actividades cotidianas' ||
+                  trim($row[40]) !== 'Utilizo técnicas o métodos para controlar el estrés' ||
+                  trim($row[41]) !== 'Tengo una persona con quien me siento en confianza para hablar' ||
+                  trim($row[42]) !== 'Me siento solo a pesar de estar acompañado' ||
+                  trim($row[43]) !== 'Tengo dificultad para relacionarme con las demás personas' ||
+                  trim($row[44]) !== 'Critico a los demás por sus éxitos' ||
+                  trim($row[45]) !== 'Evito dar opiniones por temor al rechazo, burlo o que otras personas me ignoren' ||
+                  trim($row[46]) !== 'Me gusta expresar afecto a personas cercanas a mi' ||
+                  trim($row[47]) !== 'Me gusta recibir muestras de afecto de personas cercanas a mi' ||
+                  trim($row[48]) !== 'Prefiero trabajar solo' ||
+                  trim($row[49]) !== 'Me quiero a mí mismo' ||
+                  trim($row[50]) !== 'Considero que mi vida tiene un propósito' ||
+                  trim($row[51]) !== 'Soy entusiasta y optimista sobre aspectos de mi vida' ||
+                  trim($row[52]) !== 'Tengo metas a largo plazo' ||
+                  trim($row[53]) !== 'Soy realista en las metas que me propongo' ||
+                  trim($row[54]) !== 'En el último año, considero que he cumplido mis metas' ||
+                  trim($row[55]) !== 'Soy consciente de mis capacidades y debilidades personales' ||
+                  trim($row[56]) !== 'Considero que mis errores me han hecho crecer como persona' ||
+                  trim($row[57]) !== 'Durante la semana dedico tiempo a actividades de recreación' ||
+                  trim($row[58]) !== 'Cuando decides quedarte en casa a escuchar música, ver televisión o jugar videojuegos, ¿Cuántas horas al día le dedica a estas actividades?' ||
+                  trim($row[59]) !== 'Durante la semana consumo alcohol (Cerveza, licor, vino, vodka)' ||
+                  trim($row[60]) !== 'Durante la semana consumo tabaco (Cigarro, pipa, masticable, cigarro electrónico)' ||
+                  trim($row[61]) !== 'Durante la semana dedico tiempo para realizar actividades recreativas con la familia' ||
+                  trim($row[62]) !== 'En el último mes, duermo por lo regular' ||
+                  trim($row[63]) !== 'En el último mes, tengo problemas para dormir dentro de la primera hora después de acostarme' ||
+                  trim($row[64]) !== 'En el último mes, me despierto durante la noche o madrugada' ||
+                  trim($row[65]) !== 'En el último mes, me siento cansado o somnoliento durante el día' ||
+                  trim($row[66]) !== 'En el último mes, me he despertado durante la noche por no poder respirar bien' ||
+                  trim($row[67]) !== 'En el último mes, me han dicho que toso o ronco intensamente mientras duermo' ||
+                  trim($row[68]) !== 'En el último mes, he tenido pesadillas o "malos sueños"' ||
+                  trim($row[69]) !== 'En el último mes, por la noche siento que mis propios pensamientos no me dejan dormir' ||
+                  trim($row[70]) !== 'En el último mes, tomo medicamentos u otras sustancias o remedios para poder dormir' ||
+                  trim($row[71]) !== 'Consumo café, bebidas energéticas, tabaco o hago ejercicio después de las 19:00 (7pm) horas' ||
+                  trim($row[72]) !== 'El número de veces que me baño al día' ||
+                  trim($row[73]) !== 'Acostumbro lavarme las manos antes de comer o después de ir al baño' ||
+                  trim($row[74]) !== 'La frecuencia con la que me lavo los dientes es' ||
+                  trim($row[75]) !== 'Hago uso de hilo dental' ||
+                  trim($row[76]) !== 'Cambio el cepillo de dientes que uso' ||
+                  trim($row[77]) !== 'Acostumbro a usar desodorante natural y/o artificial' ||
+                  trim($row[78]) !== 'Tiendo a cambiar mi ropa interior' ||
+                  trim($row[79]) !== 'En el ultimo mes, me he cortado las uñas de las manos y de los pies' ||
+                  trim($row[80]) !== 'Cambio regularmente la toalla que uso'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['wake_food'] = trim($row[6]) !== '' ? substr($row[6], 0, 1) : NULL;
+                $data['chemical_food'] = trim($row[7]) !== '' ? substr($row[7], 0, 1) : NULL;
+                $data['food_times'] = trim($row[8]) !== '' ? substr($row[8], 0, 1) : NULL;
+                $data['fast_food'] = trim($row[9]) !== '' ? substr($row[9], 0, 1) : NULL;
+                $data['fatty_food'] = trim($row[10]) !== '' ? substr($row[10], 0, 1) : NULL;
+                $data['mealtime'] = trim($row[11]) !== '' ? substr($row[11], 0, 1) : NULL;
+                $data['overeat'] = trim($row[12]) !== '' ? substr($row[12], 0, 1) : NULL;
+                $data['balanced_diet'] = trim($row[13]) !== '' ? substr($row[13], 0, 1) : NULL;
+                $data['eat_pleasure'] = trim($row[14]) !== '' ? substr($row[14], 0, 1) : NULL;
+                $data['check_labels'] = trim($row[15]) !== '' ? substr($row[15], 0, 1) : NULL;
+                $data['dairy_products'] = trim($row[16]) !== '' ? $row[16] : NULL;
+                $data['meats'] = trim($row[17]) !== '' ? $row[17] : NULL;
+                $data['tubers'] = trim($row[18]) !== '' ? $row[18] : NULL;
+                $data['vegetables'] = trim($row[19]) !== '' ? $row[19] : NULL;
+                $data['fruits'] = trim($row[20]) !== '' ? $row[20] : NULL;
+                $data['cereals'] = trim($row[21]) !== '' ? $row[21] : NULL;
+                $data['snacks'] = trim($row[22]) !== '' ? $row[22] : NULL;
+                $data['exercise'] = trim($row[23]) !== '' ? substr($row[23], 0, 1) : NULL;
+                $data['exercise_times'] = trim($row[24]) !== '' ? substr($row[24], 0, 1) : NULL;
+                $data['sport_active'] = trim($row[25]) !== '' ? substr($row[25], 0, 1) : NULL;
+                $data['medical_times'] = trim($row[26]) !== '' ? substr($row[26], 0, 1) : NULL;
+                $data['body_explore'] = trim($row[27]) !== '' ? substr($row[27], 0, 1) : NULL;
+                $data['medical_exams'] = trim($row[28]) !== '' ? substr($row[28], 0, 1) : NULL;
+                $data['blood_pressure'] = trim($row[29]) !== '' ? substr($row[29], 0, 1) : NULL;
+                $data['dentist'] = trim($row[30]) !== '' ? substr($row[30], 0, 1) : NULL;
+                $data['psychology'] = trim($row[31]) !== '' ? substr($row[31], 0, 1) : NULL;
+                $data['nutrition '] = trim($row[32]) !== '' ? substr($row[32], 0, 1) : NULL;
+                $data['self_medicate'] = trim($row[33]) !== '' ? substr($row[33], 0, 1) : NULL;
+                $data['diseases'] = trim($row[34]) !== '' ? substr($row[34], 0, 1) : NULL;
+                $data['search_information'] = trim($row[35]) !== '' ? substr($row[35], 0, 1) : NULL;
+                $data['second_opinion'] = trim($row[36]) !== '' ? substr($row[36], 0, 1) : NULL;
+                $data['relax_time'] = trim($row[37]) !== '' ? substr($row[37], 0, 1) : NULL;
+                $data['stress_causes'] = trim($row[38]) !== '' ? substr($row[38], 0, 1) : NULL;
+                $data['stress_impact'] = trim($row[39]) !== '' ? substr($row[39], 0, 1) : NULL;
+                $data['stress_control_methods'] = trim($row[40]) !== '' ? substr($row[40], 0, 1) : NULL;
+                $data['confident'] = trim($row[41]) !== '' ? substr($row[41], 0, 1) : NULL;
+                $data['feeling_alone'] = trim($row[42]) !== '' ? substr($row[42], 0, 1) : NULL;
+                $data['difficulty_relating'] = trim($row[43]) !== '' ? substr($row[43], 0, 1) : NULL;
+                $data['criticize'] = trim($row[44]) !== '' ? substr($row[44], 0, 1) : NULL;
+                $data['no_opinion'] = trim($row[45]) !== '' ? substr($row[45], 0, 1) : NULL;
+                $data['tofeel_affection'] = trim($row[46]) !== '' ? substr($row[46], 0, 1) : NULL;
+                $data['affection_taste'] = trim($row[47]) !== '' ? substr($row[47], 0, 1) : NULL;
+                $data['alone_prefer'] = trim($row[48]) !== '' ? substr($row[48], 0, 1) : NULL;
+                $data['love_me'] = trim($row[49]) !== '' ? substr($row[49], 0, 1) : NULL;
+                $data['purpose_life'] = trim($row[50]) !== '' ? substr($row[50], 0, 1) : NULL;
+                $data['enthusiast'] = trim($row[51]) !== '' ? substr($row[51], 0, 1) : NULL;
+                $data['long_term_goals'] = trim($row[52]) !== '' ? substr($row[52], 0, 1) : NULL;
+                $data['realistic_goals'] = trim($row[53]) !== '' ? substr($row[53], 0, 1) : NULL;
+                $data['fulfilled_goals'] = trim($row[54]) !== '' ? substr($row[54], 0, 1) : NULL;
+                $data['capacity_debility'] = trim($row[55]) !== '' ? substr($row[55], 0, 1) : NULL;
+                $data['mistakes'] = trim($row[56]) !== '' ? substr($row[56], 0, 1) : NULL;
+                $data['recreation'] = trim($row[57]) !== '' ? substr($row[57], 0, 1) : NULL;
+                $data['entertainment_time'] = trim($row[58]) !== '' ? substr($row[58], 0, 1) : NULL;
+                $data['alcohol'] = trim($row[59]) !== '' ? substr($row[59], 0, 1) : NULL;
+                $data['cigar'] = trim($row[60]) !== '' ? substr($row[60], 0, 1) : NULL;
+                $data['recreational_activities'] = trim($row[61]) !== '' ? substr($row[61], 0, 1) : NULL;
+                $data['time_sleep'] = trim($row[62]) !== '' ? substr($row[62], 0, 1) : NULL;
+                $data['insomnia'] = trim($row[63]) !== '' ? substr($row[63], 0, 1) : NULL;
+                $data['wake_midnight'] = trim($row[64]) !== '' ? substr($row[64], 0, 1) : NULL;
+                $data['drowsiness'] = trim($row[65]) !== '' ? substr($row[65], 0, 1) : NULL;
+                $data['shortness_breath'] = trim($row[66]) !== '' ? substr($row[66], 0, 1) : NULL;
+                $data['cough_snore'] = trim($row[67]) !== '' ? substr($row[67], 0, 1) : NULL;
+                $data['nightmare'] = trim($row[68]) !== '' ? substr($row[68], 0, 1) : NULL;
+                $data['thoughts'] = trim($row[69]) !== '' ? substr($row[69], 0, 1) : NULL;
+                $data['sleeping_pills'] = trim($row[70]) !== '' ? substr($row[70], 0, 1) : NULL;
+                $data['energy_drink'] = trim($row[71]) !== '' ? substr($row[71], 0, 1) : NULL;
+                $data['bath_times'] = trim($row[72]) !== '' ? substr($row[72], 0, 1) : NULL;
+                $data['handwashing'] = trim($row[73]) !== '' ? substr($row[73], 0, 1) : NULL;
+                $data['brush_teeth'] = trim($row[74]) !== '' ? substr($row[74], 0, 1) : NULL;
+                $data['floss_use'] = trim($row[75]) !== '' ? substr($row[75], 0, 1) : NULL;
+                $data['toothbrush'] = trim($row[76]) !== '' ? substr($row[76], 0, 1) : NULL;
+                $data['deodorant'] = trim($row[77]) !== '' ? substr($row[77], 0, 1) : NULL;
+                $data['underwear'] = trim($row[78]) !== '' ? substr($row[78], 0, 1) : NULL;
+                $data['nails_cut'] = trim($row[79]) !== '' ? substr($row[79], 0, 1) : NULL;
+                $data['bath_towel'] = trim($row[80]) !== '' ? substr($row[80], 0, 1) : NULL;
+                
+                $insert_id = saveYoungLifestyleData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
+        case 13:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== '¿A la semana, el niño cuantas veces consume algún alimento al levantarse?' ||
+                  trim($row[7]) !== '¿A la semana, cuantas veces consume alimentos con conservadores artificiales?' ||
+                  trim($row[8]) !== 'El número de veces que consume alimentos al día:' ||
+                  trim($row[9]) !== 'A la semana el niño, ¿cuantas veces come fuera de casa?' ||
+                  trim($row[10]) !== '¿Durante las comidas en casa el niño acostumbra a consumir alimentos fritos?' ||
+                  trim($row[11]) !== 'Respetan el horario establecido para las comidas?' ||
+                  trim($row[12]) !== '¿El niño continua comiendo después de quedar satisfecho?' ||
+                  trim($row[13]) !== '¿Considero que la dieta del niño es balanceada?' ||
+                  trim($row[14]) !== 'A la semana, ¿cuantas veces consume frutas y verduras?' ||
+                  trim($row[15]) !== 'la semana, ¿cuantas veces consume carnes (pollo, cerdo, res)' ||
+                  trim($row[16]) !== 'ALIMENTACIÓN. Ordena en orden de frecuencia los grupos alimenticios en la dieta del niño del 1 al 7 en los recuadros, donde 1 sea el grupo más frecuente y 7 sea el grupo menos frecuente' ||
+                  trim($row[23]) !== '¿Acudió a estimulación temprana?' ||
+                  trim($row[24]) !== 'A la semana, ¿Realiza alguna actividad física con duración mínima de 20 a 30 min?' ||
+                  trim($row[25]) !== 'A la semana, ¿Cuántas veces realiza actividad física?' ||
+                  trim($row[26]) !== 'Si realiza ejercicio, consideras que el tiempo invertido es el suficiente' ||
+                  trim($row[27]) !== 'Número de veces que acudo a servicios médicos con el niño:' ||
+                  trim($row[28]) !== '¿Exploro fisicamente al niño para detectar cambios?' ||
+                  trim($row[29]) !== 'Le realizo exámenes médicos de rutina para saber como esta de salud  (biometría hemática, exámen general de orina, entre otros)' ||
+                  trim($row[30]) !== 'Acudo al servico de Odontologia con el niño para limpieza o algun otro tratamiento?' ||
+                  trim($row[31]) !== '¿Has acudido alguna vez a consulta de nutrición con el?' ||
+                  trim($row[32]) !== '¿Has acudido alguna vez a consulta de psicología con el?' ||
+                  trim($row[33]) !== '¿Cuando se enferma el niño yo le doy medicamentos?' ||
+                  trim($row[34]) !== 'Durante el último año ¿El niño se enfermó…?' ||
+                  trim($row[35]) !== 'Busco información confiable sobre cuidados de la salud del niño (Revistas, programas de salud, conferencias o exposiciones)' ||
+                  trim($row[36]) !== 'Le pregunto  a otro médico u otra opción cuando no estoy de acuerdo con el' ||
+                  trim($row[37]) !== 'Cuando algo le preocupa al niño, abiertamente el expresa lo que siente?' ||
+                  trim($row[38]) !== 'El niño habla y ríe fuertemente' ||
+                  trim($row[39]) !== 'El niño juega con otros niños' ||
+                  trim($row[40]) !== 'El niño es retraido' ||
+                  trim($row[41]) !== 'Le gusta compartir con su familia' ||
+                  trim($row[42]) !== 'Suele estas de mal humor' ||
+                  trim($row[43]) !== 'Prefiere trabajar solo en las actividades escolares (si aplica)' ||
+                  trim($row[44]) !== '1 AÑO' ||
+                  trim($row[47]) !== '2 AÑOS' ||
+                  trim($row[52]) !== '3 AÑOS' ||
+                  trim($row[56]) !== '4 AÑOS' ||
+                  trim($row[67]) !== 'El número de veces que el niño recibe baño al día' ||
+                  trim($row[68]) !== 'Acostumbro lavarle las manos antes de comer o después de ir al baño' ||
+                  trim($row[69]) !== 'La frecuencia con la que le lavo los dientes es' ||
+                  trim($row[70]) !== 'Haco uso de hilo dental' ||
+                  trim($row[71]) !== '¿Hago el cambio del cepillo de dientes del niño cada 6 meses?' ||
+                  trim($row[72]) !== '¿Cambio regularmente la toalla que usa el niño?'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['wake_food'] = trim($row[6]) !== '' ? substr($row[6], 0, 1) : NULL;
+                $data['chemical_food'] = trim($row[7]) !== '' ? substr($row[7], 0, 1) : NULL;
+                $data['food_times'] = trim($row[8]) !== '' ? substr($row[8], 0, 1) : NULL;
+                $data['fast_food'] = trim($row[9]) !== '' ? substr($row[9], 0, 1) : NULL;
+                $data['fatty_food'] = trim($row[10]) !== '' ? substr($row[10], 0, 1) : NULL;
+                $data['mealtime'] = trim($row[11]) !== '' ? substr($row[11], 0, 1) : NULL;
+                $data['overeat'] = trim($row[12]) !== '' ? substr($row[12], 0, 1) : NULL;
+                $data['balanced_diet'] = trim($row[13]) !== '' ? substr($row[13], 0, 1) : NULL;
+                $data['fruit_diet'] = trim($row[14]) !== '' ? substr($row[14], 0, 1) : NULL;
+                $data['meat_diet'] = trim($row[15]) !== '' ? substr($row[15], 0, 1) : NULL;
+                $data['dairy_products'] = trim($row[16]) !== '' ? $row[16] : NULL;
+                $data['meats'] = trim($row[17]) !== '' ? $row[17] : NULL;
+                $data['tubers'] = trim($row[18]) !== '' ? $row[18] : NULL;
+                $data['vegetables'] = trim($row[19]) !== '' ? $row[19] : NULL;
+                $data['fruits'] = trim($row[20]) !== '' ? $row[20] : NULL;
+                $data['cereals'] = trim($row[21]) !== '' ? $row[21] : NULL;
+                $data['snacks'] = trim($row[22]) !== '' ? $row[22] : NULL;
+                $data['early_stimulation'] = trim($row[23]) !== '' ? substr($row[23], 0, 1) : NULL;
+                $data['exercise'] = trim($row[24]) !== '' ? substr($row[24], 0, 1) : NULL;
+                $data['exercise_times'] = trim($row[25]) !== '' ? substr($row[25], 0, 1) : NULL;
+                $data['sport_active'] = trim($row[26]) !== '' ? substr($row[26], 0, 1) : NULL;
+                $data['medical_times'] = trim($row[27]) !== '' ? substr($row[27], 0, 1) : NULL;
+                $data['kid_review'] = trim($row[28]) !== '' ? substr($row[28], 0, 1) : NULL;
+                $data['medical_exams'] = trim($row[29]) !== '' ? substr($row[29], 0, 1) : NULL;
+                $data['dentist'] = trim($row[30]) !== '' ? substr($row[30], 0, 1) : NULL;
+                $data['nutrition'] = trim($row[31]) !== '' ? substr($row[31], 0, 1) : NULL;
+                $data['psychology'] = trim($row[32]) !== '' ? substr($row[32], 0, 1) : NULL;
+                $data['previous_treatment'] = trim($row[33]) !== '' ? substr($row[33], 0, 1) : NULL;
+                $data['diseases'] = trim($row[34]) !== '' ? substr($row[34], 0, 1) : NULL;
+                $data['childcare'] = trim($row[35]) !== '' ? substr($row[35], 0, 1) : NULL;
+                $data['second_opinion'] = trim($row[36]) !== '' ? substr($row[36], 0, 1) : NULL;
+                $data['say_feelings'] = trim($row[37]) !== '' ? substr($row[37], 0, 1) : NULL;
+                $data['speak_louder'] = trim($row[38]) !== '' ? substr($row[38], 0, 1) : NULL;
+                $data['play'] = trim($row[39]) !== '' ? substr($row[39], 0, 1) : NULL;
+                $data['withdrawn'] = trim($row[40]) !== '' ? substr($row[40], 0, 1) : NULL;
+                $data['share_family'] = trim($row[41]) !== '' ? substr($row[41], 0, 1) : NULL;
+                $data['moodiness'] = trim($row[42]) !== '' ? substr($row[42], 0, 1) : NULL;
+                $data['work_alone'] = trim($row[43]) !== '' ? substr($row[43], 0, 1) : NULL;
+                $data['table_one'] = trim($row[44]) !== '' ? substr($row[44], 0, 1) : NULL;
+                $data['table_two'] = trim($row[45]) !== '' ? substr($row[45], 0, 1) : NULL;
+                $data['table_three'] = trim($row[46]) !== '' ? substr($row[46], 0, 1) : NULL;
+                $data['table_four'] = trim($row[47]) !== '' ? substr($row[47], 0, 1) : NULL;
+                $data['table_five'] = trim($row[48]) !== '' ? substr($row[48], 0, 1) : NULL;
+                $data['table_six'] = trim($row[49]) !== '' ? substr($row[49], 0, 1) : NULL;
+                $data['table_seven'] = trim($row[50]) !== '' ? substr($row[50], 0, 1) : NULL;
+                $data['table_eight'] = trim($row[51]) !== '' ? substr($row[51], 0, 1) : NULL;
+                $data['table_nine'] = trim($row[52]) !== '' ? substr($row[52], 0, 1) : NULL;
+                $data['table_ten'] = trim($row[53]) !== '' ? substr($row[53], 0, 1) : NULL;
+                $data['table_eleven'] = trim($row[54]) !== '' ? substr($row[54], 0, 1) : NULL;
+                $data['table_twelve'] = trim($row[55]) !== '' ? substr($row[55], 0, 1) : NULL;
+                $data['table_thirteen'] = trim($row[56]) !== '' ? substr($row[56], 0, 1) : NULL;
+                $data['table_fourteen'] = trim($row[57]) !== '' ? substr($row[57], 0, 1) : NULL;
+                $data['table_fifteen'] = trim($row[58]) !== '' ? substr($row[58], 0, 1) : NULL;
+                $data['table_sixteen'] = trim($row[59]) !== '' ? substr($row[59], 0, 1) : NULL;
+                $data['table_seventeen'] = trim($row[60]) !== '' ? substr($row[60], 0, 1) : NULL;
+                $data['table_eighteen'] = trim($row[61]) !== '' ? substr($row[61], 0, 1) : NULL;
+                $data['table_nineteen'] = trim($row[62]) !== '' ? substr($row[62], 0, 1) : NULL;
+                $data['table_twenty'] = trim($row[63]) !== '' ? substr($row[63], 0, 1) : NULL;
+                $data['table_twentyone'] = trim($row[64]) !== '' ? substr($row[64], 0, 1) : NULL;
+                $data['table_twentytwo'] = trim($row[65]) !== '' ? substr($row[65], 0, 1) : NULL;
+                $data['table_twentythree'] = trim($row[66]) !== '' ? substr($row[66], 0, 1) : NULL;
+                $data['bath_times'] = trim($row[67]) !== '' ? substr($row[67], 0, 1) : NULL;
+                $data['handwashing'] = trim($row[68]) !== '' ? substr($row[68], 0, 1) : NULL;
+                $data['brush_teeth'] = trim($row[69]) !== '' ? substr($row[69], 0, 1) : NULL;
+                $data['floss_use'] = trim($row[70]) !== '' ? substr($row[70], 0, 1) : NULL;
+                $data['toothbrush'] = trim($row[71]) !== '' ? substr($row[71], 0, 1) : NULL;
+                $data['bath_towel'] = trim($row[72]) !== '' ? substr($row[72], 0, 1) : NULL;
+                
+                $insert_id = saveBabyLifestyleData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
+        case 22:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== '1. Espero el futuro con esperanza y entusiasmo' ||
+                  trim($row[7]) !== '2. Puedo darme por vencido, renunciar, ya que no puedo hacer mejor las cosas por mí mismo' ||
+                  trim($row[8]) !== '3. Cuando las cosas van mal me alivia saber que las cosas no pueden permanecer tiempo así' ||
+                  trim($row[9]) !== '4. No puedo imaginar cómo será mi vida en 10 años' ||
+                  trim($row[10]) !== '5. Tengo bastante tiempo para poder hacer las cosas que quisiera poder hacer' ||
+                  trim($row[11]) !== '6. En el futuro, espero conseguir lo que me pueda interesar' ||
+                  trim($row[12]) !== '7. Mi futuro me parece oscuro' ||
+                  trim($row[13]) !== '8. Espero más cosas buenas de la vida que lo que la gente suele conseguir por término medio' ||
+                  trim($row[14]) !== '9. No logro hacer que las cosas cambien, y no existen razones para creer que pueda en el futuro' ||
+                  trim($row[15]) !== '10. Mis pasadas experiencias me han preparado bien para mi futuro' ||
+                  trim($row[16]) !== '11. Todo lo que puedo ver por delante de mí es más desagradable que agradable' ||
+                  trim($row[17]) !== '12. No espero conseguir lo que realmente deseo' ||
+                  trim($row[18]) !== '13. Cuando miro hacia el futuro, espero que seré más feliz de lo que soy ahora' ||
+                  trim($row[19]) !== '14. Las cosas no marchan como yo quisiera' ||
+                  trim($row[20]) !== '15. Tengo una gran confianza en el futuro' ||
+                  trim($row[21]) !== '16. Nunca consigo lo que deseo, por lo que es absurdo desear cualquier cosa' ||
+                  trim($row[22]) !== '17. Es muy improbable que pueda lograr una satisfacción real en el futuro' ||
+                  trim($row[23]) !== '18. El futuro me parece vago e incierto' ||
+                  trim($row[24]) !== '19. Espero más bien épocas buenas que malas' ||
+                  trim($row[25]) !== '20. No merece la pena que intente conseguir algo que desee, porque probablemente no lo lograré'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['hope'] = trim($row[6]) !== '' ? (substr($row[6], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['renounce'] = trim($row[7]) !== '' ? (substr($row[7], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['relief'] = trim($row[8]) !== '' ? (substr($row[8], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['imagine'] = trim($row[9]) !== '' ? (substr($row[9], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['have_time'] = trim($row[10]) !== '' ? (substr($row[10], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['future'] = trim($row[11]) !== '' ? (substr($row[11], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['dark_future'] = trim($row[12]) !== '' ? (substr($row[12], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['expect_good'] = trim($row[13]) !== '' ? (substr($row[13], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['cant_change'] = trim($row[14]) !== '' ? (substr($row[14], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['experiences'] = trim($row[15]) !== '' ? (substr($row[15], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['unpleasant_future'] = trim($row[16]) !== '' ? (substr($row[16], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['expect_anything'] = trim($row[17]) !== '' ? (substr($row[17], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['happy_future'] = trim($row[18]) !== '' ? (substr($row[18], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['things_wrong'] = trim($row[19]) !== '' ? (substr($row[19], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['expect_future'] = trim($row[20]) !== '' ? (substr($row[20], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['not_want'] = trim($row[21]) !== '' ? (substr($row[21], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['satisfaction'] = trim($row[22]) !== '' ? (substr($row[22], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['uncertain_future'] = trim($row[23]) !== '' ? (substr($row[23], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['good_times'] = trim($row[24]) !== '' ? (substr($row[24], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['dont_try'] = trim($row[25]) !== '' ? (substr($row[25], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                
+                $insert_id = saveHopelessData($linkDB, "INSERT", $data, 1);
                 saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
 
                 ++$row_count;
