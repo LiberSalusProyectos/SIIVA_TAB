@@ -1502,6 +1502,209 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
+        case 15:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== '1 Me asusta mi enfermedad.' ||
+                  trim($row[7]) !== '2 Se me hace difícil enfrentarme con mis actuales síntomas.' ||
+                  trim($row[8]) !== '3 Soy incapaz de controlar mi enfermedad.' ||
+                  trim($row[9]) !== '4 Si tengo una recaída, no puedo hacer nada para evitarlo.' ||
+                  trim($row[10]) !== '5 Siempre ha existido algo malo en mí como persona (que ha causado esta enfermedad).' ||
+                  trim($row[11]) !== '6 Yo soy esencialmente normal: mi enfermedad es como cualquier otra.' ||
+                  trim($row[12]) !== '7 Hay algo en mi personalidad que causa mi enfermedad.' ||
+                  trim($row[13]) !== '8 Hay algo en mí que es responsable de mi enfermedad.' ||
+                  trim($row[14]) !== '9 Siempre necesitaré los cuidados de un equipo de profesionales.' ||
+                  trim($row[15]) !== '10 Soy capaz de muy pocas cosas como consecuencia de mi enfermedad.' ||
+                  trim($row[16]) !== '11 Mi enfermedad es demasiado delicada como para dejar de trabajar o mantener un trabajo.' ||
+                  trim($row[17]) !== '12 Estoy avergonzado por mi enfermedad.' ||
+                  trim($row[18]) !== '13 Me juzgan por mi enfermedad.' ||
+                  trim($row[19]) !== '14 Puedo hablar a la mayoría de la gente sobre mi enfermedad.' ||
+                  trim($row[20]) !== '15 La sociedad necesita mantener apartada a la gente, que como yo tiene esta enfermedad' ||
+                  trim($row[21]) !== '16 La gente como yo debe de ser controlada por servicios psiquiátricos.' ||
+                  trim($row[22]) !== '17 Yo siempre he estado mentalmente bien.' ||
+                  trim($row[23]) !== '18 Yo siempre he tenido una enfermedad mental.'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['scare'] = trim($row[6]) !== '' ? substr($row[6], 0, 1) : NULL;
+                $data['confront'] = trim($row[7]) !== '' ? substr($row[7], 0, 1) : NULL;
+                $data['take_control'] = trim($row[8]) !== '' ? substr($row[8], 0, 1) : NULL;
+                $data['relapse'] = trim($row[9]) !== '' ? substr($row[9], 0, 1) : NULL;
+                $data['bad_inside'] = trim($row[10]) !== '' ? substr($row[10], 0, 1) : NULL;
+                $data['normal'] = trim($row[11]) !== '' ? substr($row[11], 0, 1) : NULL;
+                $data['personality'] = trim($row[12]) !== '' ? substr($row[12], 0, 1) : NULL;
+                $data['something_inside'] = trim($row[13]) !== '' ? substr($row[13], 0, 1) : NULL;
+                $data['professionals'] = trim($row[14]) !== '' ? substr($row[14], 0, 1) : NULL;
+                $data['competent'] = trim($row[15]) !== '' ? substr($row[15], 0, 1) : NULL;
+                $data['can_work'] = trim($row[16]) !== '' ? substr($row[16], 0, 1) : NULL;
+                $data['ashamed'] = trim($row[17]) !== '' ? substr($row[17], 0, 1) : NULL;
+                $data['judge_me'] = trim($row[18]) !== '' ? substr($row[18], 0, 1) : NULL;
+                $data['can_talk'] = trim($row[19]) !== '' ? substr($row[19], 0, 1) : NULL;
+                $data['draw_away'] = trim($row[20]) !== '' ? substr($row[20], 0, 1) : NULL;
+                $data['psychiatric'] = trim($row[21]) !== '' ? substr($row[21], 0, 1) : NULL;
+                $data['well_mentally'] = trim($row[22]) !== '' ? substr($row[22], 0, 1) : NULL;
+                $data['mental_illness'] = trim($row[23]) !== '' ? substr($row[23], 0, 1) : NULL;
+                
+                $insert_id = saveHealthCareData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
+        case 17:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== '1 Considero violencia el hecho de que me empujen aunque no me caiga.' ||
+                  trim($row[7]) !== '2 Considero violencia el hecho de que me empujen si caigo.' ||
+                  trim($row[8]) !== '3 Sólo es violencia cuando te golpean mucho.' ||
+                  trim($row[9]) !== '4 Quien te quiere no puede pegarte.' ||
+                  trim($row[10]) !== '5 Me siento inútil cuando me golpean.' ||
+                  trim($row[11]) !== '6 Me parece normal que mi pareja me pegue si no le hace caso.' ||
+                  trim($row[12]) !== '7 Me ha golpeado sin motivo aparente.' ||
+                  trim($row[13]) !== '8 Antes de vivir conmigo, yo sabía que mi pareja había pegado a sus parejas anteriores.' ||
+                  trim($row[14]) !== '9 He tenido relaciones sexuales con mi pareja por la fuerza.' ||
+                  trim($row[15]) !== '10 Accedo a tener relaciones sexuales con mi pareja para evitar los malos tratos.' ||
+                  trim($row[16]) !== '11 Tengo relaciones sexuales con mi pareja por miedo.' ||
+                  trim($row[17]) !== '12 Considero que hay malos tratos aunque no me ponga una mano encima.' ||
+                  trim($row[18]) !== '13 Él decide por mí.' ||
+                  trim($row[19]) !== '14 Ha conseguido aislarme de mis amigos.' ||
+                  trim($row[20]) !== '15 Ha intentado aislarme de mi familia.' ||
+                  trim($row[21]) !== '16 Me siento culpable de lo que pasa.' ||
+                  trim($row[22]) !== '17 Me insulta en cualquier lugar.' ||
+                  trim($row[23]) !== '18 Trato de ocultar los motivos de mis “moretones”.' ||
+                  trim($row[24]) !== '19 Siempre estoy en alerta.' ||
+                  trim($row[25]) !== '20 Lo he denunciado.' ||
+                  trim($row[26]) !== '21 Me asusta la manera en que me mira.' ||
+                  trim($row[27]) !== '22 Me siento sola.' ||
+                  trim($row[28]) !== '23 Puedo estudiar/trabajar fuera de casa.' ||
+                  trim($row[29]) !== '24 Me impide ver a mi familia.' ||
+                  trim($row[30]) !== '25 Vigila lo que hago.' ||
+                  trim($row[31]) !== '26 Creo que sigo “enganchada” a mi marido.' ||
+                  trim($row[32]) !== '27 Me siento culpable cuando mi marido se arrepiente.' ||
+                  trim($row[33]) !== '27 Me siento culpable cuando mi marido se arrepiente.' ||
+                  trim($row[34]) !== '29 Yo creo que la mujer tiene que obedecer.' ||
+                  trim($row[35]) !== '30 Yo creo que las mujeres somos iguales que los hombres.' ||
+                  trim($row[36]) !== '31 Yo creo que las mujeres no llaman a la policía porque protegen a sus maridos.' ||
+                  trim($row[37]) !== '32 Yo creo que lo que ocurren en la familia es privado.' ||
+                  trim($row[38]) !== '33 Yo creo que las bofetadas pueden ser necesarias.' ||
+                  trim($row[39]) !== '34 Yo creo que los maltratadores son personas fracasadas.' ||
+                  trim($row[40]) !== '35 Yo creo que cuando te casas es para lo bueno y lo malo.' ||
+                  trim($row[41]) !== '36 Yo creo que soy capaz de realizar un proyecto de vida futuro y por mi cuenta.' ||
+                  trim($row[42]) !== '37 Yo creo que un/a hijo/a sin padre se desarrolla completamente.' ||
+                  trim($row[43]) !== '38 Yo creo que hay que aguantar el maltrato por los hijos.' ||
+                  trim($row[44]) !== '39 Yo creo que mi marido no puede vivir sin mí.' ||
+                  trim($row[45]) !== '40 Yo creo que no lo abandono porque lo quiero.' ||
+                  trim($row[46]) !== '41 Yo creo que no lo abandono aunque me pegue porque me da pena.' ||
+                  trim($row[47]) !== '42 Yo creo que la esposa tiene que aguantar lo que sea por el matrimonio.'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $fields = array('push_up', 'push_down', 'strike', 'wants', 'useless', 'normal_hit', 'without_reason', 'violent',
+                  'forced_sex', 'engagement_sex', 'sex_fear', 'bad_treatments', 'decide_4me', 'isolates_me', 'try_isolate', 'feel_guilty', 'insults_me',
+                  'bruises', 'be_alert', 'denounced', 'look_scare', 'feel_alone', 'can_work', 'see_family', 'watches_me', 'keep_hooked', 'regret_guilty',
+                  'care_aspect', 'have_obey', 'gender_equality', 'protect_couple', 'private_life', 'slap_necessary', 'abuser_failed', 'good_bad',
+                  'life_proyect', 'without_father', 'childrens', 'without_me', 'love_him', 'feel_sorry', 'marriage'
+                );
+
+                foreach($fields as $key=>$field){
+                  $index = $key+6;
+                  switch(substr($row[$index], 0, 1)){
+                    case '0':
+                      $value = 'a';
+                      break;
+                    case '1':
+                      $value = 'b';
+                      break;
+                    case '2':
+                      $value = 'c';
+                      break;
+                    case '3':
+                      $value = 'd';
+                      break;
+                    case '4':
+                      $value = 'e';
+                      break;
+                    default:
+                      $value = NULL;
+                      break;
+                  }
+                  $data[$field] = $value;
+                }
+                
+                $insert_id = saveGenderViolenceData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
         case 22:
           $update = true;
           $row_count=0;
