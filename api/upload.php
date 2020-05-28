@@ -1792,6 +1792,324 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
+        case 18:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || $row[3] !== 'APELLIDO PATERNO'
+                  || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || $row[6] !== 'EDAD' ||
+                  trim($row[7]) !== 'FECHA DE NACIMIENTO' ||
+                  trim($row[10]) !== 'BCG  (Tuberculosis)' ||
+                  trim($row[14]) !== 'Hepatitis B (Hepatitis B)' ||
+                  trim($row[26]) !== 'Pentavalente acelular DPaT + VPI + Hib (Difteria, Tosferina, Tétanos, Poliomielitis e infecciones por Haemophilus influenzae b)' ||
+                  trim($row[42]) !== 'DPT (Difteria, Tosferina y Tétanos)' ||
+                  trim($row[46]) !== 'Rotavirus (Diarrea por Rotavirus)' ||
+                  trim($row[58]) !== 'Neumocócica conjugada (Infecciones por neumococo)' ||
+                  trim($row[70]) !== 'Influenza (Influenza)' ||
+                  trim($row[86]) !== 'SRP (Sarampión, Rubéola y Parotiditis)' ||
+                  trim($row[94]) !== 'Sabin (Poliomelitis)' ||
+                  trim($row[98]) !== 'SR (Sarampión y Rubéola)'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+                $data['age'] = trim($row[6]) !== '' ? trim($row[6]) : NULL;
+                $data['birthdate'] = trim($row[7]) !== '' && trim($row[8]) !== '' && trim($row[9]) !== '' ? get2Date($row[9], $row[8], $row[7]) : NULL;
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['bcg'] = trim($row[12]) !== '' || trim($row[11]) !== '' || trim($row[10]) !== '' ? '1' : '';
+                $data['bcg_date'] = trim($row[12]) !== '' && trim($row[11]) !== '' && trim($row[10]) !== '' ? get2Date($row[12], $row[11], $row[10]) : '';
+                $data['bcg_desc'] = trim($row[13]) !== '' ? trim($row[13]) : '';
+
+                $data['hepatb1'] = trim($row[16]) !== '' || trim($row[15]) !== '' || trim($row[14]) !== '' ? '1' : '';
+                $data['hepatb1_date'] = trim($row[16]) !== '' && trim($row[15]) !== '' && trim($row[14]) !== '' ? get2Date($row[16], $row[15], $row[14]) : '';
+                $data['hepatb1_desc'] = trim($row[17]) !== '' ? trim($row[17]) : '';
+
+                $data['hepatb2'] = trim($row[20]) !== '' || trim($row[19]) !== '' || trim($row[18]) !== '' ? '1' : '';
+                $data['hepatb2_date'] = trim($row[20]) !== '' && trim($row[19]) !== '' && trim($row[18]) !== '' ? get2Date($row[20], $row[19], $row[18]) : '';
+                $data['hepatb3_desc'] = trim($row[21]) !== '' ? trim($row[21]) : '';
+
+                $data['hepatb3'] = trim($row[24]) !== '' || trim($row[23]) !== '' || trim($row[22]) !== '' ? '1' : '';
+                $data['hepatb3_date'] = trim($row[24]) !== '' && trim($row[23]) !== '' && trim($row[22]) !== '' ? get2Date($row[24], $row[23], $row[22]) : '';
+                $data['hepatb3_desc'] = trim($row[25]) !== '' ? trim($row[25]) : '';
+
+                $data['pentavalente1'] = trim($row[28]) !== '' || trim($row[27]) !== '' || trim($row[26]) !== '' ? '1' : '';
+                $data['pentavalente1_date'] = trim($row[28]) !== '' && trim($row[27]) !== '' && trim($row[26]) !== '' ? get2Date($row[28], $row[27], $row[26]) : '';
+                $data['pentavalente1_desc'] = trim($row[29]) !== '' ? trim($row[29]) : '';
+
+                $data['pentavalente2'] = trim($row[32]) !== '' || trim($row[31]) !== '' || trim($row[30]) !== '' ? '1' : '';
+                $data['pentavalente2_date'] = trim($row[32]) !== '' && trim($row[31]) !== '' && trim($row[30]) !== '' ? get2Date($row[32], $row[31], $row[30]) : '';
+                $data['pentavalente2_desc'] = trim($row[33]) !== '' ? trim($row[33]) : '';
+
+                $data['pentavalente3'] = trim($row[36]) !== '' || trim($row[35]) !== '' || trim($row[34]) !== '' ? '1' : '';
+                $data['pentavalente3_date'] = trim($row[36]) !== '' && trim($row[35]) !== '' && trim($row[34]) !== '' ? get2Date($row[36], $row[35], $row[34]) : '';
+                $data['pentavalente3_desc'] = trim($row[37]) !== '' ? trim($row[37]) : '';
+
+                $data['pentavalenteref'] = trim($row[40]) !== '' || trim($row[39]) !== '' || trim($row[38]) !== '' ? '1' : '';
+                $data['pentavalenteref_date'] = trim($row[40]) !== '' && trim($row[39]) !== '' && trim($row[38]) !== '' ? get2Date($row[40], $row[39], $row[38]) : '';
+                $data['pentavalenteref_desc'] = trim($row[41]) !== '' ? trim($row[41]) : '';
+
+                $data['dptref'] = trim($row[44]) !== '' || trim($row[43]) !== '' || trim($row[42]) !== '' ? '1' : '';
+                $data['dptref_date'] = trim($row[44]) !== '' && trim($row[43]) !== '' && trim($row[42]) !== '' ? get2Date($row[44], $row[43], $row[42]) : '';
+                $data['dptref_desc'] = trim($row[45]) !== '' ? trim($row[45]) : '';
+
+                $data['rotavirus1'] = trim($row[48]) !== '' || trim($row[47]) !== '' || trim($row[46]) !== '' ? '1' : '';
+                $data['rotavirus1_date'] = trim($row[48]) !== '' && trim($row[47]) !== '' && trim($row[46]) !== '' ? get2Date($row[48], $row[47], $row[46]) : '';
+                $data['rotavirus1_desc'] = trim($row[49]) !== '' ? trim($row[49]) : '';
+
+                $data['rotavirus2'] = trim($row[52]) !== '' || trim($row[51]) !== '' || trim($row[50]) !== '' ? '1' : '';
+                $data['rotavirus2_date'] = trim($row[52]) !== '' && trim($row[51]) !== '' && trim($row[50]) !== '' ? get2Date($row[52], $row[51], $row[50]) : '';
+                $data['rotavirus2_desc'] = trim($row[53]) !== '' ? trim($row[53]) : '';
+
+                $data['rotavirus3'] = trim($row[56]) !== '' || trim($row[55]) !== '' || trim($row[54]) !== '' ? '1' : '';
+                $data['rotavirus3_date'] = trim($row[56]) !== '' && trim($row[55]) !== '' && trim($row[54]) !== '' ? get2Date($row[56], $row[55], $row[54]) : '';
+                $data['rotavirus3_desc'] = trim($row[57]) !== '' ? trim($row[57]) : '';
+
+                $data['neumoco1'] = trim($row[60]) !== '' || trim($row[59]) !== '' || trim($row[58]) !== '' ? '1' : '';
+                $data['neumoco1_date'] = trim($row[60]) !== '' && trim($row[59]) !== '' && trim($row[58]) !== '' ? get2Date($row[60], $row[59], $row[58]) : '';
+                $data['neumoco1_desc'] = trim($row[61]) !== '' ? trim($row[61]) : '';
+
+                $data['neumoco2'] = trim($row[64]) !== '' || trim($row[63]) !== '' || trim($row[62]) !== '' ? '1' : '';
+                $data['neumoco2_date'] = trim($row[64]) !== '' && trim($row[63]) !== '' && trim($row[62]) !== '' ? get2Date($row[64], $row[63], $row[62]) : '';
+                $data['neumoco2_desc'] = trim($row[65]) !== '' ? trim($row[65]) : '';
+
+                $data['neumocorev'] = trim($row[68]) !== '' || trim($row[67]) !== '' || trim($row[66]) !== '' ? '1' : '';
+                $data['neumocorev_date'] = trim($row[68]) !== '' && trim($row[67]) !== '' && trim($row[66]) !== '' ? get2Date($row[68], $row[67], $row[66]) : '';
+                $data['neumocorev_desc'] = trim($row[69]) !== '' ? trim($row[69]) : '';
+
+                $data['influenza1'] = trim($row[72]) !== '' || trim($row[71]) !== '' || trim($row[70]) !== '' ? '1' : '';
+                $data['influenza1_date'] = trim($row[72]) !== '' && trim($row[71]) !== '' && trim($row[70]) !== '' ? get2Date($row[72], $row[71], $row[70]) : '';
+                $data['influenza1_desc'] = trim($row[73]) !== '' ? trim($row[73]) : '';
+
+                $data['influenza2'] = trim($row[76]) !== '' || trim($row[75]) !== '' || trim($row[74]) !== '' ? '1' : '';
+                $data['influenza2_date'] = trim($row[76]) !== '' && trim($row[75]) !== '' && trim($row[74]) !== '' ? get2Date($row[76], $row[75], $row[74]) : '';
+                $data['influenza2_desc'] = trim($row[77]) !== '' ? trim($row[77]) : '';
+
+                $data['influenza3'] = trim($row[80]) !== '' || trim($row[79]) !== '' || trim($row[78]) !== '' ? '1' : '';
+                $data['influenza3_date'] = trim($row[80]) !== '' && trim($row[79]) !== '' && trim($row[78]) !== '' ? get2Date($row[80], $row[79], $row[78]) : '';
+                $data['influenza3_desc'] = trim($row[81]) !== '' ? trim($row[81]) : '';
+
+                $data['influenza4'] = trim($row[84]) !== '' || trim($row[83]) !== '' || trim($row[82]) !== '' ? '1' : '';
+                $data['influenza4_date'] = trim($row[84]) !== '' && trim($row[83]) !== '' && trim($row[82]) !== '' ? get2Date($row[84], $row[83], $row[82]) : '';
+                $data['influenza4_desc'] = trim($row[85]) !== '' ? trim($row[85]) : '';
+
+                $data['influenza5'] = '0';
+                $data['influenza5_date'] = '';
+                $data['influenza5_desc'] = '';
+
+                $data['influenza6'] = '0';
+                $data['influenza6_date'] = '';
+                $data['influenza6_desc'] = '';
+
+                $data['sarampion1'] = trim($row[88]) !== '' || trim($row[87]) !== '' || trim($row[86]) !== '' ? '1' : '';
+                $data['sarampion1_date'] = trim($row[88]) !== '' && trim($row[87]) !== '' && trim($row[86]) !== '' ? get2Date($row[88], $row[87], $row[86]) : '';
+                $data['sarampion1_desc'] = trim($row[89]) !== '' ? trim($row[89]) : '';
+
+                $data['sarampion2'] = trim($row[92]) !== '' || trim($row[91]) !== '' || trim($row[90]) !== '' ? '1' : '';
+                $data['sarampion2_date'] = trim($row[92]) !== '' && trim($row[91]) !== '' && trim($row[90]) !== '' ? get2Date($row[92], $row[91], $row[90]) : '';
+                $data['sarampion2_desc'] = trim($row[93]) !== '' ? trim($row[93]) : '';
+
+                $data['sabin'] = trim($row[96]) !== '' || trim($row[95]) !== '' || trim($row[94]) !== '' ? '1' : '';
+                $data['sabin_date'] = trim($row[96]) !== '' && trim($row[95]) !== '' && trim($row[94]) !== '' ? get2Date($row[96], $row[95], $row[94]) : '';
+                $data['sabin_desc'] = trim($row[97]) !== '' ? trim($row[97]) : '';
+
+                $data['sarampion3'] = trim($row[100]) !== '' || trim($row[99]) !== '' || trim($row[98]) !== '' ? '1' : '';
+                $data['sarampion3_date'] = trim($row[100]) !== '' && trim($row[99]) !== '' && trim($row[98]) !== '' ? get2Date($row[100], $row[99], $row[98]) : '';
+                $data['sarampion3_desc'] = trim($row[101]) !== '' ? trim($row[101]) : '';
+
+                $insert_id = saveChildVaccinatonData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
+        case 19:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || $row[3] !== 'APELLIDO PATERNO'
+                  || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || $row[6] !== 'EDAD' ||
+                  trim($row[7]) !== 'FECHA DE NACIMIENTO' ||
+                  trim($row[10]) !== 'BCG  (Tuberculosis)' ||
+                  trim($row[14]) !== 'Hepatitis B (Hepatitis B)' ||
+                  trim($row[26]) !== 'Pentavalente acelular DPaT + VPI + Hib (Difteria, Tosferina, Tétanos, Poliomielitis e infecciones por Haemophilus influenzae b)' ||
+                  trim($row[42]) !== 'DPT (Difteria, Tosferina y Tétanos)' ||
+                  trim($row[46]) !== 'Rotavirus (Diarrea por Rotavirus)' ||
+                  trim($row[58]) !== 'Neumocócica conjugada (Infecciones por neumococo)' ||
+                  trim($row[70]) !== 'Influenza (Influenza)' ||
+                  trim($row[86]) !== 'SRP (Sarampión, Rubéola y Parotiditis)' ||
+                  trim($row[94]) !== 'Sabin (Poliomelitis)' ||
+                  trim($row[98]) !== 'SR (Sarampión y Rubéola)'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+                $data['age'] = trim($row[6]) !== '' ? trim($row[6]) : NULL;
+                $data['birthdate'] = trim($row[7]) !== '' && trim($row[8]) !== '' && trim($row[9]) !== '' ? get2Date($row[9], $row[8], $row[7]) : NULL;
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['bcg'] = trim($row[12]) !== '' || trim($row[11]) !== '' || trim($row[10]) !== '' ? '1' : '';
+                $data['bcg_date'] = trim($row[12]) !== '' && trim($row[11]) !== '' && trim($row[10]) !== '' ? get2Date($row[12], $row[11], $row[10]) : '';
+                $data['bcg_desc'] = trim($row[13]) !== '' ? trim($row[13]) : '';
+
+                $data['hepatb1'] = trim($row[16]) !== '' || trim($row[15]) !== '' || trim($row[14]) !== '' ? '1' : '';
+                $data['hepatb1_date'] = trim($row[16]) !== '' && trim($row[15]) !== '' && trim($row[14]) !== '' ? get2Date($row[16], $row[15], $row[14]) : '';
+                $data['hepatb1_desc'] = trim($row[17]) !== '' ? trim($row[17]) : '';
+
+                $data['hepatb2'] = trim($row[20]) !== '' || trim($row[19]) !== '' || trim($row[18]) !== '' ? '1' : '';
+                $data['hepatb2_date'] = trim($row[20]) !== '' && trim($row[19]) !== '' && trim($row[18]) !== '' ? get2Date($row[20], $row[19], $row[18]) : '';
+                $data['hepatb3_desc'] = trim($row[21]) !== '' ? trim($row[21]) : '';
+
+                $data['hepatb3'] = trim($row[24]) !== '' || trim($row[23]) !== '' || trim($row[22]) !== '' ? '1' : '';
+                $data['hepatb3_date'] = trim($row[24]) !== '' && trim($row[23]) !== '' && trim($row[22]) !== '' ? get2Date($row[24], $row[23], $row[22]) : '';
+                $data['hepatb3_desc'] = trim($row[25]) !== '' ? trim($row[25]) : '';
+
+                $data['pentavalente1'] = trim($row[28]) !== '' || trim($row[27]) !== '' || trim($row[26]) !== '' ? '1' : '';
+                $data['pentavalente1_date'] = trim($row[28]) !== '' && trim($row[27]) !== '' && trim($row[26]) !== '' ? get2Date($row[28], $row[27], $row[26]) : '';
+                $data['pentavalente1_desc'] = trim($row[29]) !== '' ? trim($row[29]) : '';
+
+                $data['pentavalente2'] = trim($row[32]) !== '' || trim($row[31]) !== '' || trim($row[30]) !== '' ? '1' : '';
+                $data['pentavalente2_date'] = trim($row[32]) !== '' && trim($row[31]) !== '' && trim($row[30]) !== '' ? get2Date($row[32], $row[31], $row[30]) : '';
+                $data['pentavalente2_desc'] = trim($row[33]) !== '' ? trim($row[33]) : '';
+
+                $data['pentavalente3'] = trim($row[36]) !== '' || trim($row[35]) !== '' || trim($row[34]) !== '' ? '1' : '';
+                $data['pentavalente3_date'] = trim($row[36]) !== '' && trim($row[35]) !== '' && trim($row[34]) !== '' ? get2Date($row[36], $row[35], $row[34]) : '';
+                $data['pentavalente3_desc'] = trim($row[37]) !== '' ? trim($row[37]) : '';
+
+                $data['pentavalenteref'] = trim($row[40]) !== '' || trim($row[39]) !== '' || trim($row[38]) !== '' ? '1' : '';
+                $data['pentavalenteref_date'] = trim($row[40]) !== '' && trim($row[39]) !== '' && trim($row[38]) !== '' ? get2Date($row[40], $row[39], $row[38]) : '';
+                $data['pentavalenteref_desc'] = trim($row[41]) !== '' ? trim($row[41]) : '';
+
+                $data['dptref'] = trim($row[44]) !== '' || trim($row[43]) !== '' || trim($row[42]) !== '' ? '1' : '';
+                $data['dptref_date'] = trim($row[44]) !== '' && trim($row[43]) !== '' && trim($row[42]) !== '' ? get2Date($row[44], $row[43], $row[42]) : '';
+                $data['dptref_desc'] = trim($row[45]) !== '' ? trim($row[45]) : '';
+
+                $data['rotavirus1'] = trim($row[48]) !== '' || trim($row[47]) !== '' || trim($row[46]) !== '' ? '1' : '';
+                $data['rotavirus1_date'] = trim($row[48]) !== '' && trim($row[47]) !== '' && trim($row[46]) !== '' ? get2Date($row[48], $row[47], $row[46]) : '';
+                $data['rotavirus1_desc'] = trim($row[49]) !== '' ? trim($row[49]) : '';
+
+                $data['rotavirus2'] = trim($row[52]) !== '' || trim($row[51]) !== '' || trim($row[50]) !== '' ? '1' : '';
+                $data['rotavirus2_date'] = trim($row[52]) !== '' && trim($row[51]) !== '' && trim($row[50]) !== '' ? get2Date($row[52], $row[51], $row[50]) : '';
+                $data['rotavirus2_desc'] = trim($row[53]) !== '' ? trim($row[53]) : '';
+
+                $data['rotavirus3'] = trim($row[56]) !== '' || trim($row[55]) !== '' || trim($row[54]) !== '' ? '1' : '';
+                $data['rotavirus3_date'] = trim($row[56]) !== '' && trim($row[55]) !== '' && trim($row[54]) !== '' ? get2Date($row[56], $row[55], $row[54]) : '';
+                $data['rotavirus3_desc'] = trim($row[57]) !== '' ? trim($row[57]) : '';
+
+                $data['neumoco1'] = trim($row[60]) !== '' || trim($row[59]) !== '' || trim($row[58]) !== '' ? '1' : '';
+                $data['neumoco1_date'] = trim($row[60]) !== '' && trim($row[59]) !== '' && trim($row[58]) !== '' ? get2Date($row[60], $row[59], $row[58]) : '';
+                $data['neumoco1_desc'] = trim($row[61]) !== '' ? trim($row[61]) : '';
+
+                $data['neumoco2'] = trim($row[64]) !== '' || trim($row[63]) !== '' || trim($row[62]) !== '' ? '1' : '';
+                $data['neumoco2_date'] = trim($row[64]) !== '' && trim($row[63]) !== '' && trim($row[62]) !== '' ? get2Date($row[64], $row[63], $row[62]) : '';
+                $data['neumoco2_desc'] = trim($row[65]) !== '' ? trim($row[65]) : '';
+
+                $data['neumocorev'] = trim($row[68]) !== '' || trim($row[67]) !== '' || trim($row[66]) !== '' ? '1' : '';
+                $data['neumocorev_date'] = trim($row[68]) !== '' && trim($row[67]) !== '' && trim($row[66]) !== '' ? get2Date($row[68], $row[67], $row[66]) : '';
+                $data['neumocorev_desc'] = trim($row[69]) !== '' ? trim($row[69]) : '';
+
+                $data['influenza1'] = trim($row[72]) !== '' || trim($row[71]) !== '' || trim($row[70]) !== '' ? '1' : '';
+                $data['influenza1_date'] = trim($row[72]) !== '' && trim($row[71]) !== '' && trim($row[70]) !== '' ? get2Date($row[72], $row[71], $row[70]) : '';
+                $data['influenza1_desc'] = trim($row[73]) !== '' ? trim($row[73]) : '';
+
+                $data['influenza2'] = trim($row[76]) !== '' || trim($row[75]) !== '' || trim($row[74]) !== '' ? '1' : '';
+                $data['influenza2_date'] = trim($row[76]) !== '' && trim($row[75]) !== '' && trim($row[74]) !== '' ? get2Date($row[76], $row[75], $row[74]) : '';
+                $data['influenza2_desc'] = trim($row[77]) !== '' ? trim($row[77]) : '';
+
+                $data['influenza3'] = trim($row[80]) !== '' || trim($row[79]) !== '' || trim($row[78]) !== '' ? '1' : '';
+                $data['influenza3_date'] = trim($row[80]) !== '' && trim($row[79]) !== '' && trim($row[78]) !== '' ? get2Date($row[80], $row[79], $row[78]) : '';
+                $data['influenza3_desc'] = trim($row[81]) !== '' ? trim($row[81]) : '';
+
+                $data['influenza4'] = trim($row[84]) !== '' || trim($row[83]) !== '' || trim($row[82]) !== '' ? '1' : '';
+                $data['influenza4_date'] = trim($row[84]) !== '' && trim($row[83]) !== '' && trim($row[82]) !== '' ? get2Date($row[84], $row[83], $row[82]) : '';
+                $data['influenza4_desc'] = trim($row[85]) !== '' ? trim($row[85]) : '';
+
+                $data['influenza5'] = '0';
+                $data['influenza5_date'] = '';
+                $data['influenza5_desc'] = '';
+
+                $data['influenza6'] = '0';
+                $data['influenza6_date'] = '';
+                $data['influenza6_desc'] = '';
+
+                $data['sarampion1'] = trim($row[88]) !== '' || trim($row[87]) !== '' || trim($row[86]) !== '' ? '1' : '';
+                $data['sarampion1_date'] = trim($row[88]) !== '' && trim($row[87]) !== '' && trim($row[86]) !== '' ? get2Date($row[88], $row[87], $row[86]) : '';
+                $data['sarampion1_desc'] = trim($row[89]) !== '' ? trim($row[89]) : '';
+
+                $data['sarampion2'] = trim($row[92]) !== '' || trim($row[91]) !== '' || trim($row[90]) !== '' ? '1' : '';
+                $data['sarampion2_date'] = trim($row[92]) !== '' && trim($row[91]) !== '' && trim($row[90]) !== '' ? get2Date($row[92], $row[91], $row[90]) : '';
+                $data['sarampion2_desc'] = trim($row[93]) !== '' ? trim($row[93]) : '';
+
+                $data['sabin'] = trim($row[96]) !== '' || trim($row[95]) !== '' || trim($row[94]) !== '' ? '1' : '';
+                $data['sabin_date'] = trim($row[96]) !== '' && trim($row[95]) !== '' && trim($row[94]) !== '' ? get2Date($row[96], $row[95], $row[94]) : '';
+                $data['sabin_desc'] = trim($row[97]) !== '' ? trim($row[97]) : '';
+
+                $data['sarampion3'] = trim($row[100]) !== '' || trim($row[99]) !== '' || trim($row[98]) !== '' ? '1' : '';
+                $data['sarampion3_date'] = trim($row[100]) !== '' && trim($row[99]) !== '' && trim($row[98]) !== '' ? get2Date($row[100], $row[99], $row[98]) : '';
+                $data['sarampion3_desc'] = trim($row[101]) !== '' ? trim($row[101]) : '';
+
+                $insert_id = saveChildVaccinatonData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
         default:
           $response->success = false;
           $response->message = 'Modulo no configurado para carga.';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 22-05-2020 a las 19:15:43
+-- Tiempo de generación: 28-05-2020 a las 19:10:30
 -- Versión del servidor: 5.7.30
 -- Versión de PHP: 7.4.5
 
@@ -1931,7 +1931,7 @@ CREATE TABLE `basicpatientdata` (
 --
 
 INSERT INTO `basicpatientdata` (`id`, `affiliationNumber`, `affiliationNumber_d`, `autoAffiliationNumber`, `affiliate`, `affiliatesNumber`, `name`, `name_`, `firstLastName`, `firstLastName_`, `secondLastName`, `secondLastName_`, `birthdate`, `age`, `birthYear`, `curp`, `salusId`, `genre`, `genre_`, `familyRole`, `familyRole_`, `familyID`, `familiyReference`, `phone_number`, `calle`, `calle_`, `no_ext`, `no_ext_`, `no_int`, `no_int_`, `colonia`, `colonia_`, `municipio`, `municipio_`, `codigo_postal`, `codigo_postal_`, `estado`, `address_reference`, `family_atmosphere`, `health_problems`, `occupation`, `workPlace`, `workShift`, `visitAvailability`, `workPermit`, `capturist`, `updated_at`) VALUES
-(1, '0', NULL, NULL, 0, '', '1A58F022BF25C0D630F45F20922635D2C8C9A99EB7B6F5A300BAB4685AB0ADE3', NULL, '12B9A9C70EB2CC516A1916AD3252505E', NULL, 'C8C9A99EB7B6F5A300BAB4685AB0ADE3', NULL, NULL, 43, NULL, NULL, NULL, 'FEMENINO', NULL, 'CONYUGE', NULL, 37, NULL, NULL, 'VILLAHERMOSA-FRONTERA', NULL, '', NULL, '', NULL, 'LOMAS DE OCUILTZAPOTLAN I', NULL, '', NULL, 86270, NULL, 'TABASCO', NULL, NULL, NULL, NULL, NULL, NULL, 'S M', 0, 1, '2020-05-19 15:37:20'),
+(1, '0', NULL, NULL, 0, '', '1A58F022BF25C0D630F45F20922635D2C8C9A99EB7B6F5A300BAB4685AB0ADE3', NULL, '12B9A9C70EB2CC516A1916AD3252505E', NULL, 'C8C9A99EB7B6F5A300BAB4685AB0ADE3', NULL, NULL, 43, NULL, NULL, NULL, 'FEMENINO', NULL, 'CONYUGE', NULL, 37, NULL, NULL, 'VILLAHERMOSA-FRONTERA', NULL, '', NULL, '', NULL, 'LOMAS DE OCUILTZAPOTLAN I', NULL, '', NULL, 86270, NULL, 'TABASCO', NULL, NULL, NULL, NULL, NULL, NULL, 'S M', 0, 1, '2020-05-27 17:51:15'),
 (2, '0', NULL, NULL, 0, '', '5E835C07D2B63D11E4C882113CCCE07C', NULL, '4C2F07C9C98F9224A3430DC2DC52A15C', NULL, '12B9A9C70EB2CC516A1916AD3252505E', NULL, NULL, 22, NULL, NULL, NULL, 'FEMENINO', NULL, 'HIJA', NULL, 37, NULL, NULL, 'VILLAHERMOSA-FRONTERA', NULL, '', NULL, '', NULL, 'LOMAS DE OCUILTZAPOTLAN I', NULL, '', NULL, 86270, NULL, 'TABASCO', NULL, NULL, NULL, NULL, NULL, NULL, 'S M', 0, 1, '2020-05-19 15:37:20'),
 (3, '0', NULL, NULL, 0, '', 'B3A549C99CB09357CBF9A9C5C27221FE', NULL, '4C2F07C9C98F9224A3430DC2DC52A15C', NULL, '12B9A9C70EB2CC516A1916AD3252505E', NULL, NULL, 18, NULL, NULL, NULL, 'FEMENINO', NULL, 'HIJA', NULL, 37, NULL, NULL, 'VILLAHERMOSA-FRONTERA', NULL, '', NULL, '', NULL, 'LOMAS DE OCUILTZAPOTLAN I', NULL, '', NULL, 86270, NULL, 'TABASCO', NULL, NULL, NULL, NULL, NULL, NULL, 'S M', 0, 1, '2020-05-19 15:37:20'),
 (4, '0', NULL, NULL, 0, '', '5659023373C026D69ABBBB02E5D8E565B008F7C4D8649A4A219D50593151A4DB', NULL, '4C2F07C9C98F9224A3430DC2DC52A15C', NULL, '12B9A9C70EB2CC516A1916AD3252505E', NULL, NULL, 12, NULL, NULL, NULL, 'FEMENINO', NULL, 'HIJA', NULL, 37, NULL, NULL, 'VILLAHERMOSA-FRONTERA', NULL, '', NULL, '', NULL, 'LOMAS DE OCUILTZAPOTLAN I', NULL, '', NULL, 86270, NULL, 'TABASCO', NULL, NULL, NULL, NULL, NULL, NULL, 'S M', 0, 1, '2020-05-19 15:37:20'),
@@ -10434,24 +10434,18 @@ CREATE TABLE `childvaccinationdata` (
   `neumoco1` tinyint(1) DEFAULT NULL,
   `neumoco1_date` date DEFAULT NULL,
   `neumoco1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `rotavirus2do1` tinyint(1) DEFAULT NULL,
-  `rotavirus2do1_date` date DEFAULT NULL,
-  `rotavirus2do1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `rotavirus3do1` tinyint(1) DEFAULT NULL,
-  `rotavirus3do1_date` date DEFAULT NULL,
-  `rotavirus3do1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rotavirus1` tinyint(1) DEFAULT NULL,
+  `rotavirus1_date` date DEFAULT NULL,
+  `rotavirus1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `pentavalente2` tinyint(1) DEFAULT NULL,
   `pentavalente2_date` date DEFAULT NULL,
   `pentavalente2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `neumoco2` tinyint(1) DEFAULT NULL,
   `neumoco2_date` date DEFAULT NULL,
   `neumoco2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `rotavirus2do2` tinyint(1) DEFAULT NULL,
-  `rotavirus2do2_date` date DEFAULT NULL,
-  `rotavirus2do2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `rotavirus3do2` tinyint(1) DEFAULT NULL,
-  `rotavirus3do2_date` date DEFAULT NULL,
-  `rotavirus3do2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rotavirus2` tinyint(1) DEFAULT NULL,
+  `rotavirus2_date` date DEFAULT NULL,
+  `rotavirus2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `pentavalente3` tinyint(1) DEFAULT NULL,
   `pentavalente3_date` date DEFAULT NULL,
   `pentavalente3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -10461,9 +10455,9 @@ CREATE TABLE `childvaccinationdata` (
   `influenza1` tinyint(1) DEFAULT NULL,
   `influenza1_date` date DEFAULT NULL,
   `influenza1_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `rotavirus3do3` tinyint(1) DEFAULT NULL,
-  `rotavirus3do3_date` date DEFAULT NULL,
-  `rotavirus3do3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rotavirus3` tinyint(1) DEFAULT NULL,
+  `rotavirus3_date` date DEFAULT NULL,
+  `rotavirus3_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `influenza2` tinyint(1) DEFAULT NULL,
   `influenza2_date` date DEFAULT NULL,
   `influenza2_desc` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -11192,6 +11186,8 @@ CREATE TABLE `loaddata` (
   `relationship` varchar(35) COLLATE utf8_spanish_ci DEFAULT NULL,
   `occupation` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `gender` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `age` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `birthdate` date DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -11266,7 +11262,7 @@ CREATE TABLE `updatedata` (
 --
 
 INSERT INTO `updatedata` (`id_data`, `num_form`, `section_name`, `row_number`, `found_number`, `fail_number`, `success_number`, `status`, `last_update`) VALUES
-(1, '1', 'Antecedentes Familiares.', 1386, 289, 0, 1386, 1, '2020-05-22 19:14:46'),
+(1, '1', 'Antecedentes Familiares.', 1386, 289, 0, 1386, 1, '2020-05-22 19:47:40'),
 (2, '2', 'Hoja de administración familiar de DASS-21.', 814, 360, 0, 814, 1, '2020-05-22 18:03:52'),
 (3, '3', 'Encuesta medio ambiente.', NULL, NULL, NULL, NULL, NULL, NULL),
 (4, '4', 'Escala abreviada de depresión geriátrica de Yesavage.', NULL, NULL, NULL, NULL, NULL, NULL),
@@ -11276,18 +11272,18 @@ INSERT INTO `updatedata` (`id_data`, `num_form`, `section_name`, `row_number`, `
 (8, '7', 'Tamizaje de diabetes mellitus.', NULL, NULL, NULL, NULL, NULL, NULL),
 (9, '8', 'Prevención, Tamizaje, Detección y Control de Hipertensión Arterial Sistémica.', 863, 365, 0, 863, 1, '2020-05-21 17:36:51'),
 (10, '9', 'Formulario para conocer el estilo de vida personal de [0-1] años.', 5, 1, 0, 5, 1, '2020-05-21 21:16:14'),
-(11, '10', 'Formulario para conocer el estilo de vida personal de [6-12] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(12, '11', 'Formulario para conocer el estilo de vida personal de [12+] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(13, '12', 'Formulario para conocer el estilo de vida personal de [1-5] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(11, '10', 'Formulario para conocer el estilo de vida personal de [6-12] años.', 132, 56, 0, 132, 1, '2020-05-22 22:43:58'),
+(12, '11', 'Formulario para conocer el estilo de vida personal de [12+] años.', 1021, 431, 0, 1021, 1, '2020-05-25 16:49:26'),
+(13, '12', 'Formulario para conocer el estilo de vida personal de [1-5] años.', 55, 14, 0, 55, 1, '2020-05-25 21:23:03'),
 (14, '13', 'Atención médica y planificación familiar + antecedentes gineco-obstétricos.', NULL, NULL, NULL, NULL, NULL, NULL),
-(15, '14', 'PBIQ - Cuestionario de creencias personales.', NULL, NULL, NULL, NULL, NULL, NULL),
+(15, '14', 'PBIQ - Cuestionario de creencias personales.', 193, 89, 0, 193, 1, '2020-05-26 16:44:21'),
 (16, '15', 'Signos vitales / somatometría + Estudios de laboratorio.', NULL, NULL, NULL, NULL, NULL, NULL),
-(17, '16', 'Cuestionario para evaluación de violencia de género.', NULL, NULL, NULL, NULL, NULL, NULL),
-(18, '17', 'Esquema de vacunación de [0-9] años.', NULL, NULL, NULL, NULL, NULL, NULL),
+(17, '16', 'Cuestionario para evaluación de violencia de género.', 677, 294, 0, 677, 1, '2020-05-26 21:43:14'),
+(18, '17', 'Esquema de vacunación de [0-9] años.', 90, 27, 0, 90, 1, '2020-05-28 19:09:23'),
 (19, '18', 'Esquema de vacunación de [10-19] años.', NULL, NULL, NULL, NULL, NULL, NULL),
 (20, '19', 'Esquema de vacunación de [20-59] años.', NULL, NULL, NULL, NULL, NULL, NULL),
 (21, '20', 'Esquema de vacunación de [60+] años.', NULL, NULL, NULL, NULL, NULL, NULL),
-(22, '21', 'Escala de desesperanza de Beck.', NULL, NULL, NULL, NULL, NULL, NULL);
+(22, '21', 'Escala de desesperanza de Beck.', 93, 27, 0, 93, 1, '2020-05-25 22:18:57');
 
 -- --------------------------------------------------------
 

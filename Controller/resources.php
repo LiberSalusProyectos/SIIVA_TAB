@@ -1228,24 +1228,18 @@ function saveChildVaccinatonData($connection, $method, $data, $id_user){
 		($data['neumoco1']!="" ? 1 : 0),
 		$data["neumoco1_date"],
 		utf8_decode($data['neumoco1_desc']),
-		($data['rotavirus2do1']!="" ? 1 : 0),
-		$data["rotavirus2do1_date"],
-		utf8_decode($data['rotavirus2do1_desc']),
-		($data['rotavirus3do1']!="" ? 1 : 0),
-		$data["rotavirus3do1_date"],
-		utf8_decode($data['rotavirus3do1_desc']),
+		($data['rotavirus1']!="" ? 1 : 0),
+		$data["rotavirus1_date"],
+		utf8_decode($data['rotavirus1_desc']),
 		($data['pentavalente2']!="" ? 1 : 0),
 		$data["pentavalente2_date"],
 		utf8_decode($data['pentavalente2_desc']),
 		($data['neumoco2']!="" ? 1 : 0),
 		$data["neumoco2_date"],
 		utf8_decode($data['neumoco2_desc']),
-		($data['rotavirus2do2']!="" ? 1 : 0),
-		$data["rotavirus2do2_date"],
-		utf8_decode($data['rotavirus2do2_desc']),
-		($data['rotavirus3do2']!="" ? 1 : 0),
-		$data["rotavirus3do2_date"],
-		utf8_decode($data['rotavirus3do2_desc']),
+		($data['rotavirus2']!="" ? 1 : 0),
+		$data["rotavirus2_date"],
+		utf8_decode($data['rotavirus2_desc']),
 		($data['pentavalente3']!="" ? 1 : 0),
 		$data["pentavalente3_date"],
 		utf8_decode($data['pentavalente3_desc']),
@@ -1255,9 +1249,9 @@ function saveChildVaccinatonData($connection, $method, $data, $id_user){
 		($data['influenza1']!="" ? 1 : 0),
 		$data["influenza1_date"],
 		utf8_decode($data['influenza1_desc']),
-		($data['rotavirus3do3']!="" ? 1 : 0),
-		$data["rotavirus3do3_date"],
-		utf8_decode($data['rotavirus3do3_desc']),
+		($data['rotavirus3']!="" ? 1 : 0),
+		$data["rotavirus3_date"],
+		utf8_decode($data['rotavirus3_desc']),
 		($data['influenza2']!="" ? 1 : 0),
 		$data["influenza2_date"],
 		utf8_decode($data['influenza2_desc']),
@@ -1624,6 +1618,18 @@ function resetFormData($connection, $id_form){
 		case 17:
 			$table='genderviolencedata';
 			break;
+		case 18:
+			$table='childvaccinationdata';
+			break;
+		case 19:
+			$table='youngvaccinationdata';
+			break;
+		case 20:
+			$table='adultvaccinationdata';
+			break;
+		case 21:
+			$table='eldervaccinationdata';
+			break;
 		case 22:
 			$table='hopelessdata';
 			break;
@@ -1658,6 +1664,8 @@ function saveLoadData($connection, $id_form, $id_data, $is_match, $data){
 		$data["second_lastname"],
 		($data['relationship']!="" ? "'".utf8_decode($data['relationship'])."'" : 'NULL'),
 		($data['occupation']!="" ? "'".utf8_decode($data['occupation'])."'" : 'NULL'),
+		($data['age']!="" ? "'".utf8_decode($data['age'])."'" : 'NULL'),
+		($data['birthdate']!="" ? "'".$data['birthdate']."'" : 'NULL'),
 		$data["gender"]
 	);
 
@@ -1778,6 +1786,13 @@ function getDetailUpdateData($connection){
 	$result = getDetailUpdateData_DOM($connection);
 
 	return $result;
+}
+
+function get2Date($y, $m, $d){
+	if (!checkdate($d, $m, $y)){
+		--$d;
+	}
+	return sprintf("%s-%s-%s", $y, $m, $d);
 }
 
  ?>
