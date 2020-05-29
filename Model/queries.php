@@ -2440,6 +2440,10 @@ function saveYoungVaccinatonData_DOM($connection, $method,
 
 	$inserted = mysqli_query($connection, $query);
 
+	// if(!$inserted){
+	// 	echo $query;
+	// }
+	
 	return $inserted;
 }
 
@@ -2600,6 +2604,10 @@ function saveAdultVaccinatonData_DOM($connection, $method,
 	// var_dump($query);
 
 	$inserted = mysqli_query($connection, $query);
+
+	if(!$inserted){
+		echo $query;
+	}
 
 	return $inserted;
 }
