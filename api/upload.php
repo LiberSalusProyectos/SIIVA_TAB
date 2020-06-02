@@ -332,6 +332,300 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
+        case 3:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== 'El origen de la captación del agua proviene de:' ||
+                  trim($row[8]) !== '¿De qué forma es almacenada el agua que usas en casa?' ||
+                  trim($row[10]) !== '¿El agua en tu casa es incolora, indolora e insabora?' ||
+                  trim($row[13]) !== 'La medición de la cloración del agua es:' ||
+                  trim($row[18]) !== '¿Cuáles es el tipo de aguas residuales en tu casa?' ||
+                  trim($row[19]) !== 'La contaminación atmosférica química en el aire, ¿te causa?' ||
+                  trim($row[21]) !== '¿Cuentas con alguna de las siguientes formas de contaminación física?' ||
+                  trim($row[23]) !== '¿Sabes de la existencia de refinerías de PEMEX u otros, cerca de tu casa?' ||
+                  trim($row[24]) !== '¿Sabes de la existencia de gasoductos de PEMEX u otros, cerca de tu casa?' ||
+                  trim($row[25]) !== '¿Sabes de alguna repercusión en la salud a causa de esto?' ||
+                  trim($row[28]) !== '¿Sabes si cerca de tu casa transportan material peligroso?' ||
+                  trim($row[30]) !== '¿Sabes de la existencia de generadores de radiación cerca de tu casa?' ||
+                  trim($row[32]) !== '¿Se realiza quema de productos o residuos peligrosos cerca de tu casa?' ||
+                  trim($row[34]) !== '¿Sabes si existe vigilancia de la contaminación química?' ||
+                  trim($row[36]) !== '¿Conoces los contaminantes que te rodean?' ||
+                  trim($row[38]) !== '¿Existe recolección de basura en tu casa?' ||
+                  trim($row[39]) !== '¿Quién es el personal encargado de la recolección de basura?' ||
+                  trim($row[40]) !== '¿Sabes si existen vertederos de basura cerca de tu casa y cuantos?' ||
+                  trim($row[42]) !== '¿Sabes si existen vertederos de residuos peligrosos cerca de tu casa y cuantos?' ||
+                  trim($row[44]) !== '¿Cómo es la separación en la recolección de basura en tu casa?' ||
+                  trim($row[46]) !== '¿Cuántas veces por semana se realiza la recolección de basura?' ||
+                  trim($row[47]) !== '¿Sabes de la existencia de mataderos cerca de tu casa y cuantos?' ||
+                  trim($row[49]) !== '¿Sabes de la existencia de vertederos de basura clandestinos cerca de tu casa y cuantos?' ||
+                  trim($row[51]) !== '¿Con qué frecuencia acuden a las actividades socioculturales de la comunidad?' ||
+                  trim($row[52]) !== '¿Estaría dispuesto a participar en las actividades socioculturales?' ||
+                  trim($row[53]) !== 'De los siguientes valores, elije 3 que describan a tu familia' ||
+                  trim($row[56]) !== '¿Realizas consumo de?' ||
+                  trim($row[57]) !== '¿Cuál es tu actividad laboral?' ||
+                  trim($row[58]) !== '¿Qué tipos de actividades recreativas realizas?' ||
+                  trim($row[62]) !== '¿Sabe leer?' ||
+                  trim($row[63]) !== '¿Sabe escribir?' ||
+                  trim($row[64]) !== '¿Cuál es su nivel educativo?' ||
+                  trim($row[65]) !== '¿La casa donde vives se encuentra en una zona inundable?' ||
+                  trim($row[66]) !== '¿La casa donde vives se encuentra en una zona de deslizamientos?' ||
+                  trim($row[67]) !== '¿Vives en un medio?' ||
+                  trim($row[68]) !== '¿Cuántas personas viven en tu casa?' ||
+                  trim($row[69]) !== '¿Cuántas habitaciones hay en tu casa?' ||
+                  trim($row[70]) !== '¿Cuentas con ventilación directa?' ||
+                  trim($row[71]) !== '¿Cuántos metros cuadrados tiene tu casa?' ||
+                  trim($row[72]) !== '¿Cuenta con agua caliente?' ||
+                  trim($row[73]) !== '¿Cuántos focos tiene en casa?' ||
+                  trim($row[75]) !== '¿La casa donde vive es?' ||
+                  trim($row[76]) !== '¿La casa donde vives está hecha de materiales?' ||
+                  trim($row[77]) !== '¿El suelo en su casa es de?' ||
+                  trim($row[78]) !== '¿Existe mucha humedad en tu casa?' ||
+                  trim($row[79]) !== '¿Existe el uso de plaguicidas en casa?' ||
+                  trim($row[80]) !== '¿Existe el uso de fertilizantes en casa?' ||
+                  trim($row[81]) !== '¿Conoce los riesgos a la exposición de estos?' ||
+                  trim($row[82]) !== '¿A presentado a causa de la exposición?' ||
+                  trim($row[85]) !== '¿Está informado de los riesgos sanitarios de su actividad laboral?' ||
+                  trim($row[86]) !== '¿Con que animales convive?' ||
+                  trim($row[91]) !== '¿Están vacunados los animales en su casa?' ||
+                  trim($row[92]) !== '¿Duermen en la misma habitación?' ||
+                  trim($row[93]) !== '¿Existe antecedente de pulgas?' ||
+                  trim($row[94]) !== '¿Con que roedores o insectos tiene contacto?' ||
+                  trim($row[98]) !== '¿Cómo realiza el control de residuos de los animales en casa?' ||
+                  trim($row[99]) !== '¿Conoce el nombre del mosco que transmite dengue, chinkungunya y zika?' ||
+                  trim($row[100]) !== '¿Afirma la existencia de muchos moscos en su casa?' ||
+                  trim($row[101]) !== '¿Sabe usted que es el dengue, chinkungunya, zika?' ||
+                  trim($row[102]) !== '¿Ha escuchado en redes sociales información con respecto al tema?' ||
+                  trim($row[103]) !== '¿Han padecido en casa alguna de estas enfermedades?' ||
+                  trim($row[106]) !== '¿Conoce los síntomas y signos de estas enfermedades?' ||
+                  trim($row[107]) !== '¿Cree importante acudir al médico en sospecha de algunas de estas enfermedades?' ||
+                  trim($row[108]) !== '¿Conoce que acciones en promoción a la salud le pueden ayudar a prevenir estas enfermedades?' ||
+                  trim($row[109]) !== '¿Sabe que es el saneamiento básico en el hogar?' ||
+                  trim($row[110]) !== '¿Tiene recipientes que contengan agua dentro o fuera de su casa?' ||
+                  trim($row[111]) !== '¿Cuántas infecciones alimenticias has padecido en el año?' ||
+                  trim($row[112]) !== '¿Cuántas infecciones diarreicas has padecido en el año?' ||
+                  trim($row[113]) !== '¿Cuántas infecciones respiratorias has padecido en el año?' ||
+                  trim($row[114]) !== '¿Sabes si existe control y vigilancia de la emisión y extracción de gases y humo?' ||
+                  trim($row[115]) !== '¿Cuáles son los principales problemas de salud en su comunidad y cuantos casos existen?' ||
+                  trim($row[116]) !== '¿Tiene acceso a servicios de salud en su trabajo y de qué tipo es?' ||
+                  trim($row[118]) !== '¿Tiene facilidades para el consumo de agua en su trabajo?' ||
+                  trim($row[123]) !== '¿Tiene facilidades de higiene en el trabajo?' ||
+                  trim($row[126]) !== '¿Tiene facilidades de vestimenta en el trabajo?' ||
+                  trim($row[129]) !== '¿En su trabajo tiene exposición?' ||
+                  trim($row[131]) !== '¿Qué riesgos presenta en su trabajo?' ||
+                  trim($row[133]) !== '¿Cuenta con las herramientas necesarias para realizar el trabajo?' ||
+                  trim($row[134]) !== '¿El área es la adecuada para realizar el trabajo?' ||
+                  trim($row[135]) !== '¿Tiene facilidades para el uso de equipos de protección?' ||
+                  trim($row[136]) !== '¿Ha presentado acontecimientos traumáticos severos?' ||
+                  trim($row[137]) !== '¿Tiene apoyo psicosocial?' ||
+                  trim($row[138]) !== '¿Padece ansiedad en su trabajo?' ||
+                  trim($row[139]) !== '¿Se ve afectado el ciclo del sueño a causa de tu trabajo?' ||
+                  trim($row[140]) !== '¿Le realizan exámenes médicos?'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['water_acquisition'] = trim($row[6]) !== '' ? strtolower(substr($row[6], 0, 1)) : NULL;
+                $data['water_acquisition_desc'] = trim($row[7]) !== '' ? $row[7] : NULL;
+                $data['water_store'] = trim($row[8]) !== '' ? strtolower(substr($row[8], 0, 1)) : NULL;
+                $data['water_store_desc'] = trim($row[9]) !== '' ? $row[9] : NULL;
+                $data['water_color'] = trim($row[10]) !== '' ? $row[10] : NULL;
+                $data['water_odor'] = trim($row[11]) !== '' ? $row[11] : NULL;
+                $data['water_flavor'] = trim($row[12]) !== '' ? $row[12] : NULL;
+                $data['water_quality_a'] = trim($row[13]) !== '' ? (substr($row[13], 0, 1) == 'X' ? '1' : NULL ) : NULL;
+                $data['water_quality_b'] = trim($row[14]) !== '' ? (substr($row[14], 0, 1) == 'X' ? '1' : NULL ) : NULL;
+                $data['water_quality_c'] = trim($row[15]) !== '' ? (substr($row[15], 0, 1) == 'X' ? '1' : NULL ) : NULL;
+                $data['water_quality_d'] = trim($row[16]) !== '' ? (substr($row[16], 0, 1) == 'X' ? '1' : NULL ) : NULL;
+                $data['water_quality_e'] = trim($row[17]) !== '' ? (substr($row[17], 0, 1) == 'X' ? '1' : NULL ) : NULL;
+                $data['sewage_type'] = trim($row[18]) !== '' ? strtolower(substr($row[18], 0, 1)) : NULL;
+                $data['pollution_react'] = trim($row[19]) !== '' ? strtolower(substr($row[19], 0, 1)) : NULL;
+                $data['pollution_react_desc'] = trim($row[20]) !== '' ? $row[20] : NULL;
+                $data['contamination'] = trim($row[21]) !== '' ? strtolower(substr($row[21], 0, 1)) : NULL;
+                $data['contamination_desc'] = trim($row[22]) !== '' ? $row[22] : NULL;
+                $data['refinery_nearby'] = trim($row[23]) !== '' ? (substr($row[23], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['pipelines_nearby'] = trim($row[24]) !== '' ? (substr($row[24], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['health_impact_a'] = trim($row[25]) !== '' ? (substr($row[25], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['health_impact_b'] = trim($row[26]) !== '' ? (substr($row[26], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['health_impact_c'] = trim($row[27]) !== '' ? (substr($row[27], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['dangerous_material'] = trim($row[28]) !== '' ? strtolower(substr($row[28], 0, 1)) : NULL;
+                $data['dangerous_material_desc'] = trim($row[29]) !== '' ? $row[29] : NULL;
+                $data['radiation_nearby'] = trim($row[30]) !== '' ? (substr($row[30], 0, 1) == 'b' ? '0' : '1' ) : NULL;
+                $data['radiation_nearby_desc'] = trim($row[31]) !== '' ? $row[31] : NULL;
+                $data['burning_waste'] = trim($row[32]) !== '' ? (substr($row[32], 0, 1) == 'b' ? '0' : '1' ) : NULL;
+                $data['burning_waste_desc'] = trim($row[33]) !== '' ? $row[33] : NULL;
+                $data['chemical_inspection'] = trim($row[34]) !== '' ? (substr($row[34], 0, 1) == 'b' ? '0' : '1' ) : NULL;
+                $data['chemical_inspection_desc'] = trim($row[35]) !== '' ? $row[35] : NULL;
+                $data['know_pollutants'] = trim($row[36]) !== '' ? (substr($row[36], 0, 1) == 'b' ? '0' : '1' ) : NULL;
+                $data['know_pollutants_desc'] = trim($row[37]) !== '' ? $row[37] : NULL;
+                $data['garbage_collection'] = trim($row[38]) !== '' ? (substr($row[38], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['garbage_collection_desc'] = NULL;
+                $data['collection_staff'] = trim($row[39]) !== '' ? strtolower(substr($row[39], 0, 1)) : NULL;
+                $data['dumps_nearby'] = trim($row[40]) !== '' ? (substr($row[40], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['dumps_nearby_number'] = is_numeric(trim($row[41])) ? $row[41] : NULL;
+                $data['dangerous_residues'] = trim($row[42]) !== '' ? (substr($row[42], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['dangerous_residues_number'] = is_numeric(trim($row[43])) ? $row[43] : NULL;
+                $data['separate_trash'] = trim($row[44]) !== '' ? strtolower(substr($row[44], 0, 1)) : NULL;
+                $data['separate_trash_desc'] = trim($row[45]) !== '' ? $row[45] : NULL;
+                $data['garbage_collection_times'] = trim($row[46]) !== '' ? strtolower(substr($row[46], 0, 1)) : NULL;
+                $data['slaughterhouse_nearby'] = trim($row[47]) !== '' ? (substr($row[47], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['slaughterhouse_nearby_number'] = is_numeric(trim($row[48])) ? $row[48] : NULL;
+                $data['clandestine_dump'] = trim($row[49]) !== '' ? (substr($row[49], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['clandestine_dump_number'] = is_numeric(trim($row[50])) ? $row[50] : NULL;
+                $data['sociocultural_activities'] = trim($row[51]) !== '' ? strtolower(substr($row[51], 0, 1)) : NULL;
+                $data['sociocultural_join'] = trim($row[52]) !== '' ? (substr($row[52], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                
+                // Pendiente los valores y consumo de 
+                $data['values_a'] = (substr($row[53], 0, 1) == 'a' || substr($row[54], 0, 1) == 'a' || substr($row[55], 0, 1) == 'a') ? '1' : NULL;
+                $data['values_b'] = (substr($row[53], 0, 1) == 'b' || substr($row[54], 0, 1) == 'b' || substr($row[55], 0, 1) == 'b') ? '1' : NULL;
+                $data['values_c'] = (substr($row[53], 0, 1) == 'c' || substr($row[54], 0, 1) == 'c' || substr($row[55], 0, 1) == 'c') ? '1' : NULL;
+                $data['values_d'] = (substr($row[53], 0, 1) == 'd' || substr($row[54], 0, 1) == 'd' || substr($row[55], 0, 1) == 'd') ? '1' : NULL;
+                $data['values_e'] = (substr($row[53], 0, 1) == 'e' || substr($row[54], 0, 1) == 'e' || substr($row[55], 0, 1) == 'e') ? '1' : NULL;
+                $data['values_f'] = (substr($row[53], 0, 1) == 'f' || substr($row[54], 0, 1) == 'f' || substr($row[55], 0, 1) == 'f') ? '1' : NULL;
+                $data['values_g'] = (substr($row[53], 0, 1) == 'g' || substr($row[54], 0, 1) == 'g' || substr($row[55], 0, 1) == 'g') ? '1' : NULL;
+                $data['values_h'] = (substr($row[53], 0, 1) == 'h' || substr($row[54], 0, 1) == 'h' || substr($row[55], 0, 1) == 'h') ? '1' : NULL;
+                $data['values_i'] = (substr($row[53], 0, 1) == 'i' || substr($row[54], 0, 1) == 'i' || substr($row[55], 0, 1) == 'i') ? '1' : NULL;
+
+                $data['consume_of_a'] = substr($row[54], 0, 1) == 'a' ? '1' : NULL;
+                $data['consume_of_b'] = substr($row[54], 0, 1) == 'b' ? '1' : NULL;
+                $data['consume_of_c'] = substr($row[54], 0, 1) == 'c' ? '1' : NULL;
+                $data['consume_of_d'] = substr($row[54], 0, 1) == 'd' ? '1' : NULL;
+                $data['consume_of_e'] = substr($row[54], 0, 1) == 'e' ? '1' : NULL;
+
+                $data['work_activity'] = trim($row[57]) !== '' ? $row[57] : NULL;
+                $data['recreational_activities'] = trim($row[58]) !== '' ? $row[58] : NULL;
+                $data['hobby'] = trim($row[59]) !== '' ? strtolower(substr($row[59], 0, 1)) : NULL;
+                $data['hobby_desc'] = trim($row[60]) !== '' ? $row[60] : NULL;
+                $data['hobby_number'] = trim($row[61]) !== '' ? $row[61] : '';
+                $data['can_read'] = trim($row[62]) !== '' ? (substr($row[62], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['can_write'] = trim($row[63]) !== '' ? (substr($row[63], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['education_level'] = trim($row[64]) !== '' ? strtolower(substr($row[64], 0, 1)) : NULL;
+                $data['flood_zone'] = trim($row[65]) !== '' ? (substr($row[65], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['landslide_area'] = trim($row[66]) !== '' ? (substr($row[66], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['population'] = trim($row[67]) !== '' ? strtolower(substr($row[67], 0, 1)) : NULL;
+                $data['number_people'] = trim($row[68]) !== '' ? strtolower(substr($row[68], 0, 1)) : NULL;
+                $data['number_rooms'] = trim($row[69]) !== '' ? strtolower(substr($row[69], 0, 1)) : NULL;
+                $data['ventilation'] = trim($row[70]) !== '' ? (substr($row[70], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['house_area'] = trim($row[71]) !== '' ? $row[71] : NULL;
+                $data['hot_water'] = trim($row[72]) !== '' ? (substr($row[72], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['spotlights'] = trim($row[73]) !== '' ? (substr($row[73], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['spotlights_number'] = trim($row[74]) !== '' ? $row[74] : NULL;
+                $data['house_type'] = trim($row[75]) !== '' ? strtolower(substr($row[75], 0, 1)) : NULL;
+                $data['house_materials'] = trim($row[76]) !== '' ? strtolower(substr($row[76], 0, 1)) : NULL;
+                $data['floor_type'] = trim($row[77]) !== '' ? strtolower(substr($row[77], 0, 1)) : NULL;
+                $data['humidity_home'] = trim($row[78]) !== '' ? (substr($row[78], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['pesticides_use'] = trim($row[79]) !== '' ? (substr($row[79], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['fertilizers_use'] = trim($row[80]) !== '' ? (substr($row[80], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['know_risk'] = trim($row[81]) !== '' ? (substr($row[81], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['have_because_a'] = trim($row[82]) !== '' ? (substr($row[82], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['have_because_b'] = trim($row[83]) !== '' ? (substr($row[83], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['have_because_c'] = trim($row[84]) !== '' ? (substr($row[84], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['know_work_risks'] = trim($row[85]) !== '' ? (substr($row[85], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['animals_a'] = trim($row[86]) !== '' ? (substr($row[86], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['animals_b'] = trim($row[87]) !== '' ? (substr($row[87], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['animals_c'] = trim($row[88]) !== '' ? (substr($row[88], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['animals_d'] = trim($row[89]) !== '' ? (substr($row[89], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['animals_e'] = trim($row[90]) !== '' ? '1' : NULL;
+                $data['animals_desc'] = trim($row[90]) !== '' ? $row[90] : NULL;
+                $data['vaccinated'] = trim($row[91]) !== '' ? (substr($row[91], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['same_room'] = trim($row[92]) !== '' ? (substr($row[92], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['antecedent_fleas'] = trim($row[93]) !== '' ? (substr($row[93], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['rodents_insects_a'] = trim($row[94]) !== '' ? (substr($row[94], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['rodents_insects_b'] = trim($row[95]) !== '' ? (substr($row[95], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['rodents_insects_c'] = trim($row[96]) !== '' ? (substr($row[96], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['rodents_insects_d'] = trim($row[97]) !== '' ? '1' : NULL;
+                $data['rodents_insects_desc'] = trim($row[97]) !== '' ? $row[97] : NULL;
+                $data['animal_waste'] = trim($row[98]) !== '' ? strtolower(substr($row[98], 0, 1)) : NULL;
+                $data['mosco_name'] = trim($row[99]) !== '' ? (substr($row[99], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['mosco_infestation'] = trim($row[100]) !== '' ? (substr($row[100], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['know_dengue'] = trim($row[101]) !== '' ? (substr($row[101], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['social_networks'] = trim($row[102]) !== '' ? strtolower(substr($row[102], 0, 1)) : NULL;
+                $data['suffer_a'] = trim($row[103]) !== '' ? (substr($row[103], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['suffer_b'] = trim($row[104]) !== '' ? (substr($row[104], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['suffer_c'] = trim($row[105]) !== '' ? (substr($row[105], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['know_signs'] = trim($row[106]) !== '' ? (substr($row[106], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['go_doctor'] = trim($row[107]) !== '' ? (substr($row[107], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['prevention'] = trim($row[108]) !== '' ? (substr($row[108], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['basic_sanitation'] = trim($row[109]) !== '' ? (substr($row[109], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['water_containers'] = trim($row[110]) !== '' ? (substr($row[110], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['food_infection'] = trim($row[111]) !== '' ? strtolower(substr($row[111], 0, 1)) : NULL;
+                $data['diarrheal_infection'] = trim($row[112]) !== '' ? strtolower(substr($row[112], 0, 1)) : NULL;
+                $data['respiratory_infection'] = trim($row[113]) !== '' ? strtolower(substr($row[113], 0, 1)) : NULL;
+                $data['smoke_supervision'] = trim($row[114]) !== '' ? (substr($row[114], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['community_health_problems'] = trim($row[115]) !== '' ? $row[115] : NULL;
+                $data['work_health_services'] = trim($row[116]) !== '' ? (substr($row[116], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['work_type'] = trim($row[117]) !== '' ? (substr($row[117], 0, 1) == 'c' ? 'a' : 'b' ) : NULL;
+                $data['work_water'] = trim($row[118]) !== '' ? (substr($row[118], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['work_water_a'] = trim($row[119]) !== '' ? (substr($row[119], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['work_water_b'] = trim($row[120]) !== '' ? (substr($row[120], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['work_water_c'] = trim($row[121]) !== '' ? (substr($row[121], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['work_water_d'] = trim($row[122]) !== '' ? (substr($row[122], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['work_hygiene'] = trim($row[123]) !== '' ? (substr($row[123], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['work_hygiene_a'] = trim($row[124]) !== '' ? (substr($row[124], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['work_hygiene_b'] = trim($row[125]) !== '' ? (substr($row[125], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['dressing_room'] = trim($row[126]) !== '' ? (substr($row[126], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['dressing_room_a'] = trim($row[127]) !== '' ? (substr($row[127], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['dressing_room_b'] = trim($row[128]) !== '' ? (substr($row[128], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+
+                //Falta expocision en trabajo y riesgos
+                $data['work_exposition_a'] = substr($row[129], 0, 1) == 'a' ? '1' : NULL;
+                $data['work_exposition_b'] = substr($row[129], 0, 1) == 'b' ? '1' : NULL;
+                $data['work_exposition_c'] = substr($row[129], 0, 1) == 'c' ? '1' : NULL;
+                $data['work_exposition_desc'] = trim($row[130]) !== '' ? $row[130] : NULL;
+
+                $data['work_risk_a'] = substr($row[131], 0, 1) == 'a' ? '1' : NULL;
+                $data['work_risk_b'] = substr($row[131], 0, 1) == 'b' ? '1' : NULL;
+                $data['work_risk_c'] = substr($row[131], 0, 1) == 'c' ? '1' : NULL;
+                $data['work_risk_d'] = substr($row[131], 0, 1) == 'd' ? '1' : NULL;
+                $data['work_risk_desc'] = trim($row[132]) !== '' ? $row[132] : NULL;
+
+                $data['work_tools'] = trim($row[133]) !== '' ? (substr($row[133], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['suitable_area'] = trim($row[134]) !== '' ? (substr($row[134], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['protective_equipment'] = trim($row[135]) !== '' ? (substr($row[135], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['severe_trauma'] = trim($row[136]) !== '' ? (substr($row[136], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['psychosocial_support'] = trim($row[137]) !== '' ? (substr($row[137], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['anxiety_work'] = trim($row[138]) !== '' ? (substr($row[138], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['sleep_cycle'] = trim($row[139]) !== '' ? (substr($row[139], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['medical_tests'] = trim($row[140]) !== '' ? (substr($row[140], 0, 1) == 'a' ? '1' : '0' ) : NULL;
+                $data['medical_tests_times'] = trim($row[141]) !== '' ? strtolower(substr($row[141], 0, 1)) : NULL;
+
+                $insert_id = saveEnvironmentData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
         case 4:
           $update = true;
           $row_count=0;

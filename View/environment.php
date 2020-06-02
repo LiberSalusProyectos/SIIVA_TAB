@@ -291,25 +291,25 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">a) Irritación de ojos
-                                <input type="checkbox" <?php if ($result[0]["pollution_react_a"]!=0)  { echo 'checked="true"'; } ?> name="pollution_react_a" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">a) Irritación de ojos
+                                <input type="radio" <?php if ($result[0]["pollution_react"]=="c")  { echo 'checked="true"'; } ?> name="pollution_react" value="a" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">b) Problemas respiratorios
-                                <input type="checkbox" <?php if ($result[0]["pollution_react_b"]!=0)  { echo 'checked="true"'; } ?> name="pollution_react_b" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">b) Problemas respiratorios
+                                <input type="radio" <?php if ($result[0]["pollution_react"]=="b")  { echo 'checked="true"'; } ?> name="pollution_react" value="b" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">c) Otras:
-                                <input type="checkbox" <?php if ($result[0]["pollution_react_c"]!=0)  { echo 'checked="true"'; } ?> name="pollution_react_c" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">c) Otras:
+                                <input type="radio" <?php if ($result[0]["pollution_react"]=="c")  { echo 'checked="true"'; } ?> name="pollution_react" value="c" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
@@ -330,25 +330,25 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">a) Ruido
-                                <input type="checkbox" <?php if ($result[0]["contamination_a"]!=0)  { echo 'checked="true"'; } ?> name="contamination_a" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">a) Ruido
+                                <input type="radio" <?php if ($result[0]["contamination"]=='c')  { echo 'checked="true"'; } ?> name="contamination" value="a" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">b) Vibraciones
-                                <input type="checkbox" <?php if ($result[0]["contamination_b"]!=0)  { echo 'checked="true"'; } ?> name="contamination_b" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">b) Vibraciones
+                                <input type="radio" <?php if ($result[0]["contamination"]=='b')  { echo 'checked="true"'; } ?> name="contamination" value="b" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">c) Otras:
-                                <input type="checkbox" <?php if ($result[0]["contamination_c"]!=0)  { echo 'checked="true"'; } ?> name="contamination_c" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">c) Otras:
+                                <input type="radio" <?php if ($result[0]["contamination"]=='c')  { echo 'checked="true"'; } ?> name="contamination" value="c" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
@@ -455,33 +455,33 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">a) Gas
-                                <input type="checkbox" <?php if ($result[0]["dangerous_material_a"]!=0)  { echo 'checked="true"'; } ?> name="dangerous_material_a" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">a) Gas
+                                <input type="radio" <?php if ($result[0]["dangerous_material"]=="a")  { echo 'checked="true"'; } ?> name="dangerous_material" value="a" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">b) Gasolina
-                                <input type="checkbox" <?php if ($result[0]["dangerous_material_b"]!=0)  { echo 'checked="true"'; } ?> name="dangerous_material_b" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">b) Gasolina
+                                <input type="radio" <?php if ($result[0]["dangerous_material"]=="b")  { echo 'checked="true"'; } ?> name="dangerous_material" value="b" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">c) Residuos Industriales
-                                <input type="checkbox" <?php if ($result[0]["dangerous_material_c"]!=0)  { echo 'checked="true"'; } ?> name="dangerous_material_c" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">c) Residuos Industriales
+                                <input type="radio" <?php if ($result[0]["dangerous_material"]=="c")  { echo 'checked="true"'; } ?> name="dangerous_material" value="c" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="checktainer text-royal-blue regular-font">d) Otro
-                                <input type="checkbox" <?php if ($result[0]["dangerous_material_d"]!=0)  { echo 'checked="true"'; } ?> name="dangerous_material_d" />
-                                <span class="checkmark"></span>
+                            <label class="container text-royal-blue regular-font">d) Otro
+                                <input type="radio" <?php if ($result[0]["dangerous_material"]=="d")  { echo 'checked="true"'; } ?> name="dangerous_material" value="d" />
+                                <span class="radiomark"></span>
                             </label>
                         </div>
                     </div>
@@ -1171,7 +1171,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <input type="number" class="form-control custom-input" name="hobby_number" value="<?php echo utf8_encode($result[0]["hobby_number"]); ?>" placeholder="¿Cuanto tiempo en horas?" min="0" />
+                            <input type="text" class="form-control custom-input" name="hobby_number" value="<?php echo utf8_encode($result[0]["hobby_number"]); ?>" placeholder="¿Cuanto tiempo?" />
                         </div>
                     </div>
                 </div>
@@ -1492,7 +1492,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input type="number" class="form-control custom-input" name="house_area" value="<?php echo utf8_encode($result[0]["house_area"]); ?>" min="0" />
+                            <input type="text" class="form-control custom-input" name="house_area" value="<?php echo utf8_encode($result[0]["house_area"]); ?>" />
                         </div>
                     </div>
                 </div>
@@ -1549,7 +1549,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
-                            <input type="number" class="form-control custom-input" name="spotlights_number" value="<?php echo utf8_encode($result[0]["spotlights_number"]); ?>" placeholder="Número de focos" min="0" />
+                            <input type="text" class="form-control custom-input" name="spotlights_number" value="<?php echo utf8_encode($result[0]["spotlights_number"]); ?>" placeholder="Número de focos" />
                         </div>
                     </div>
                 </div>

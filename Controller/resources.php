@@ -314,23 +314,16 @@ function saveEnvironmentData($connection, $method, $data, $id_user){
 		($data['water_quality_d']!="" ? 1 : 0),
 		($data['water_quality_e']!="" ? 1 : 0),
 		$data['sewage_type'],
-		($data['pollution_react_a']!="" ? 1 : 0),
-		($data['pollution_react_b']!="" ? 1 : 0),
-		($data['pollution_react_c']!="" ? 1 : 0),
+		$data['pollution_react'],
 		utf8_decode($data['pollution_react_desc']),
-		($data['contamination_a']!="" ? 1 : 0),
-		($data['contamination_b']!="" ? 1 : 0),
-		($data['contamination_c']!="" ? 1 : 0),
+		$data['contamination'],
 		utf8_decode($data['contamination_desc']),
 		($data['refinery_nearby']!="" ? $data['refinery_nearby'] : 0),
 		($data['pipelines_nearby']!="" ? $data['pipelines_nearby'] : 0),
 		($data['health_impact_a']!="" ? 1 : 0),
 		($data['health_impact_b']!="" ? 1 : 0),
 		($data['health_impact_c']!="" ? 1 : 0),
-		($data['dangerous_material_a']!="" ? 1 : 0),
-		($data['dangerous_material_b']!="" ? 1 : 0),
-		($data['dangerous_material_c']!="" ? 1 : 0),
-		($data['dangerous_material_d']!="" ? 1 : 0),
+		$data['dangerous_material'],
 		utf8_decode($data['dangerous_material_desc']),
 		($data['radiation_nearby']!="" ? $data['radiation_nearby'] : 0),
 		utf8_decode($data['radiation_nearby_desc']),
@@ -374,7 +367,7 @@ function saveEnvironmentData($connection, $method, $data, $id_user){
 		utf8_decode($data['recreational_activities']),
 		$data['hobby'],
 		utf8_decode($data['hobby_desc']),
-		($data['hobby_number']!="" ? $data['hobby_number'] : 0),
+		utf8_decode($data['hobby_number']),
 		($data['can_read']!="" ? $data['can_read'] : 0),
 		($data['can_write']!="" ? $data['can_write'] : 0),
 		$data['education_level'],
@@ -384,10 +377,10 @@ function saveEnvironmentData($connection, $method, $data, $id_user){
 		$data['number_people'],
 		$data['number_rooms'],
 		($data['ventilation']!="" ? $data['ventilation'] : 0),
-		($data['house_area']!="" ? $data['house_area'] : 0),
+		utf8_decode($data['house_area']),
 		($data['hot_water']!="" ? $data['hot_water'] : 0),
 		($data['spotlights']!="" ? $data['spotlights'] : 0),
-		($data['spotlights_number']!="" ? $data['spotlights_number'] : 0),
+		utf8_decode($data['spotlights_number']),
 		$data['house_type'],
 		$data['house_materials'],
 		$data['floor_type'],
@@ -1582,6 +1575,9 @@ function resetFormData($connection, $id_form){
 		case 2:
 			$table='dass21data';
 			break;
+		case 2:
+			$table='environmentdata';
+			break;
 		case 4:
 			$table='geriatricdepressiondata';
 			break;
@@ -1789,10 +1785,20 @@ function getDetailUpdateData($connection){
 }
 
 function get2Date($y, $m, $d){
-	if (!checkdate($d, $m, $y)){
-		--$d;
+	$response = NULL;
+	if (checkdate($d, $m, $y)){
+		$response = sprintf("%s-%s-%s", $y, $m, $d);
+	} else {
+		if (is_numeric($d) && is_numeric($m) && is_numeric($y)){
+			if ($d<32 && $m<13 && strlen($y)==4){
+				--$d;
+				if (checkdate($d, $m, $y)){
+					$response = sprintf("%s-%s-%s", $y, $m, $d);
+				}
+			}
+		}
 	}
-	return sprintf("%s-%s-%s", $y, $m, $d);
+	return $response;
 }
 
  ?>
