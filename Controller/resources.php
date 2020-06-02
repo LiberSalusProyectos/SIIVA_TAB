@@ -1785,7 +1785,7 @@ function getDetailUpdateData($connection){
 }
 
 function get2Date($y, $m, $d){
-	$response = NULL;
+	$response = '';
 	if (checkdate($d, $m, $y)){
 		$response = sprintf("%s-%s-%s", $y, $m, $d);
 	} else {
