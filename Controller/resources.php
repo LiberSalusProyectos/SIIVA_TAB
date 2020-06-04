@@ -1027,7 +1027,6 @@ function saveGynecologyData($connection, $method, $data, $id_user){
 		($data['breast_feed_b']!="" ? $data['breast_feed_b'] : 'NULL'),
 		($data['breast_feed_c']!="" ? $data['breast_feed_c'] : 'NULL'),
 		($data['breast_feed_d']!="" ? $data['breast_feed_d'] : 'NULL'),
-		($data['heart_rate']!="" ? $data['heart_rate'] : 'NULL'),
 		($data['get_married']!="" ? "'".utf8_decode($data['get_married'])."'" : 'NULL'),
 		($data['children_plan']!="" ? "'".utf8_decode($data['children_plan'])."'" : 'NULL'),
 		($data['children_current']!="" ? "'".utf8_decode($data['children_current'])."'" : 'NULL'),

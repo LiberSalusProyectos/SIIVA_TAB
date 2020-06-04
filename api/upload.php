@@ -1828,8 +1828,8 @@ if($_FILES["select_excel"]["name"] != ''){
                   trim($row[51]) !== 'PESO AL NACER DE HIJO DE' || //Continuar apartir de aqui
                   trim($row[53]) !== 'AUTOEXPLORACIÓN MAMARIA' ||
                   trim($row[55]) !== 'EXPLORACION MAMARIA EN UNIDAD DE SALUD' ||
-                  trim($row[60]) !== 'MASTOGRAFIA' ||
-                  trim($row[64]) !== 'DENSITOMETRIA:'
+                  trim($row[58]) !== 'MASTOGRAFIA' ||
+                  trim($row[62]) !== 'DENSITOMETRIA:'
               ){
                 $update = false;
                 $response->success = false;
