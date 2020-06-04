@@ -154,6 +154,10 @@ function saveFamilyRecordData_DOM($connection, $method,
 
 	$inserted = mysqli_query($connection, $query);
 
+	if(!$inserted){
+		echo $query;
+	}
+
 	return $inserted;
 }
 
