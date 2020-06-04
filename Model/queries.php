@@ -1701,18 +1701,18 @@ function saveGynecologyData_DOM($connection, $method,
 	`breast_feed_b`			= $breast_feed_b,
 	`breast_feed_c`			= $breast_feed_c,
 	`breast_feed_d`			= $breast_feed_d,
-	`get_married`			= '$get_married',
-	`children_plan`			= '$children_plan',
-	`children_current`		= '$children_current',
-	`planning_method`		= '$planning_method',
+	`get_married`			= $get_married,
+	`children_plan`			= $children_plan,
+	`children_current`		= $children_current,
+	`planning_method`		= $planning_method,
 	`transporter`			= $transporter,
-	`relationship`			= '$relationship',
+	`relationship`			= $relationship,
 	`transport`				= $transport,
-	`vehicle_type`			= '$vehicle_type',
-	`medical_service`		= '$medical_service',
-	`odontology`			= '$odontology',
-	`fur`					= '$fur',
-	`ivsa`					= '$ivsa',
+	`vehicle_type`			= $vehicle_type',
+	`medical_service`		= $medical_service',
+	`odontology`			= $odontology',
+	`fur`					= $fur',
+	`ivsa`					= $ivsa',
 	`childbirth`			= $childbirth,
 	`caesarean`				= $caesarean,
 	`abortion`				= $abortion,
@@ -1720,15 +1720,15 @@ function saveGynecologyData_DOM($connection, $method,
 	`children_dead`			= $children_dead,
 	`min_weight`			= $min_weight,
 	`max_weight`			= $max_weight,
-	`self_manual`			= '$self_manual',
-	`self_image`			= '$self_image',
-	`exam_manual`			= '$exam_manual',
-	`exam_image`			= '$exam_image',
-	`menopausia`			= '$menopausia',
-	`mammography_date` 		= ".($mammography_date !== '' ? "'$mammography_date'" : "NULL").",
-	`mammography_result`	= '$mammography_result',
-	`densitometry_date` 	= ".($densitometry_date !== '' ? "'$densitometry_date'" : "NULL").",
-	`densitometry_result`	= '$densitometry_result',
+	`self_manual`			= $self_manual,
+	`self_image`			= $self_image,
+	`exam_manual`			= $exam_manual,
+	`exam_image`			= $exam_image,
+	`menopausia`			= $menopausia,
+	`mammography_date` 		= $mammography_date,
+	`mammography_result`	= $mammography_resul,
+	`densitometry_date` 	= $densitometry_date,
+	`densitometry_result`	= $densitometry_result,
 	`id_patient`		= $id_patient,
 	`created_at` 		= CURRENT_TIMESTAMP,
 	`capturist` 		= $capturist $postQuery";
@@ -1858,7 +1858,7 @@ function saveVitalSignData_DOM($connection, $method,
 	}
 
 	$query .= " `vitalsigndata` SET
-	`blood_pressure`		= '$blood_pressure',
+	`blood_pressure`		= $blood_pressure,
 	`heart_rate`			= $heart_rate,
 	`breathe_rate`			= $breathe_rate,
 	`temperature`			= $temperature,
@@ -1887,6 +1887,10 @@ function saveVitalSignData_DOM($connection, $method,
 	// echo $query;
 
 	$inserted = mysqli_query($connection, $query);
+
+	// if(!$inserted){
+	// 	echo $query;
+	// }
 
 	return $inserted;
 }

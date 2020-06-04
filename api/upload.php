@@ -1796,6 +1796,141 @@ if($_FILES["select_excel"]["name"] != ''){
             $linkDB->commit();
           }
           break;
+        case 14:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== 'FUMARATO FERROSO' ||
+                  trim($row[10]) !== 'ÁCIDO FOLICO' ||
+                  trim($row[14]) !== 'MULTIVITAMINICOS' ||
+                  trim($row[18]) !== 'PRUEBA DE VIH' ||
+                  trim($row[22]) !== 'PRUEBA DE SIFILIS' ||
+                  trim($row[26]) !== 'PLATICAS DE CUIDADO DE RECIEN NACIDO' ||
+                  trim($row[30]) !== 'PLATICAS PARA AMAMANTAR' ||
+                  trim($row[34]) !== '¿EDAD IDEAL PARA CASARSE?' ||
+                  trim($row[35]) !== '¿NÚMERO DE HIJOS QUE PLANEA TENER?' ||
+                  trim($row[36]) !== '¿NÚMERO DE HIJOS ACTUALMENTE?' ||
+                  trim($row[37]) !== '¿DESCONOCE LA UTILIZACION DE ALGUN TIPO DE METODO DE PLANIFICACION FAMILIAR?' ||
+                  trim($row[38]) !== '¿CUENTA CON ALGUIEN PARA LLEVARLA AL MEDICO EN CASO DE URGENCIAS?' ||
+                  trim($row[39]) !== 'PARENTESCO' ||
+                  trim($row[40]) !== '¿CUENTA CON TRANSPORTE PARA TRASLADARSE AL MEDICO?' ||
+                  trim($row[41]) !== 'TIPO DE VEHÍCULO' ||
+                  trim($row[42]) !== '¿ANTE UNA URGENCIA QUE SERVICIO MEDICO USA POR LO REGULAR?' ||
+                  trim($row[43]) !== '¿CUANTAS CONSULTAS REALIZA AL AÑO PARA ODONTOLOGIA?' ||
+                  trim($row[44]) !== 'FUR:' ||
+                  trim($row[45]) !== 'IVSA:' ||
+                  trim($row[46]) !== 'NÚMERO DE EMBARAZOS:' ||
+                  trim($row[49]) !== 'HIJOS VIVOS/MUERTOS:' ||
+                  trim($row[51]) !== 'PESO AL NACER DE HIJO DE' || //Continuar apartir de aqui
+                  trim($row[53]) !== 'AUTOEXPLORACIÓN MAMARIA' ||
+                  trim($row[55]) !== 'EXPLORACION MAMARIA EN UNIDAD DE SALUD' ||
+                  trim($row[60]) !== 'MASTOGRAFIA' ||
+                  trim($row[64]) !== 'DENSITOMETRIA:'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['ferrous_fumarate_a'] = trim($row[6]) !== '' ? (strtoupper(trim($row[6])) == 'NO' ? '0' : '1') : NULL;
+                $data['ferrous_fumarate_b'] = trim($row[7]) !== '' ? (strtoupper(trim($row[7])) == 'NO' ? '0' : '1') : NULL;
+                $data['ferrous_fumarate_c'] = trim($row[8]) !== '' ? (strtoupper(trim($row[8])) == 'NO' ? '0' : '1') : NULL;
+                $data['ferrous_fumarate_d'] = trim($row[9]) !== '' ? (strtoupper(trim($row[9])) == 'NO' ? '0' : '1') : NULL;
+                $data['folic_acid_a'] = trim($row[10]) !== '' ? (strtoupper(trim($row[10])) == 'NO' ? '0' : '1') : NULL;
+                $data['folic_acid_b'] = trim($row[11]) !== '' ? (strtoupper(trim($row[11])) == 'NO' ? '0' : '1') : NULL;
+                $data['folic_acid_c'] = trim($row[12]) !== '' ? (strtoupper(trim($row[12])) == 'NO' ? '0' : '1') : NULL;
+                $data['folic_acid_d'] = trim($row[13]) !== '' ? (strtoupper(trim($row[13])) == 'NO' ? '0' : '1') : NULL;
+                $data['multivitamins_a'] = trim($row[14]) !== '' ? (strtoupper(trim($row[14])) == 'NO' ? '0' : '1') : NULL;
+                $data['multivitamins_b'] = trim($row[15]) !== '' ? (strtoupper(trim($row[15])) == 'NO' ? '0' : '1') : NULL;
+                $data['multivitamins_c'] = trim($row[16]) !== '' ? (strtoupper(trim($row[16])) == 'NO' ? '0' : '1') : NULL;
+                $data['multivitamins_d'] = trim($row[17]) !== '' ? (strtoupper(trim($row[17])) == 'NO' ? '0' : '1') : NULL;
+                $data['hiv_test_a'] = trim($row[18]) !== '' ? (strtoupper(trim($row[18])) == 'NO' ? '0' : '1') : NULL;
+                $data['hiv_test_b'] = trim($row[19]) !== '' ? (strtoupper(trim($row[19])) == 'NO' ? '0' : '1') : NULL;
+                $data['hiv_test_c'] = trim($row[20]) !== '' ? (strtoupper(trim($row[20])) == 'NO' ? '0' : '1') : NULL;
+                $data['hiv_test_d'] = trim($row[21]) !== '' ? (strtoupper(trim($row[21])) == 'NO' ? '0' : '1') : NULL;
+                $data['syphilis_test_a'] = trim($row[22]) !== '' ? (strtoupper(trim($row[22])) == 'NO' ? '0' : '1') : NULL;
+                $data['syphilis_test_b'] = trim($row[23]) !== '' ? (strtoupper(trim($row[23])) == 'NO' ? '0' : '1') : NULL;
+                $data['syphilis_test_c'] = trim($row[24]) !== '' ? (strtoupper(trim($row[24])) == 'NO' ? '0' : '1') : NULL;
+                $data['syphilis_test_d'] = trim($row[25]) !== '' ? (strtoupper(trim($row[25])) == 'NO' ? '0' : '1') : NULL;
+                $data['newborn_care_a'] = trim($row[26]) !== '' ? (strtoupper(trim($row[26])) == 'NO' ? '0' : '1') : NULL;
+                $data['newborn_care_b'] = trim($row[27]) !== '' ? (strtoupper(trim($row[27])) == 'NO' ? '0' : '1') : NULL;
+                $data['newborn_care_c'] = trim($row[28]) !== '' ? (strtoupper(trim($row[28])) == 'NO' ? '0' : '1') : NULL;
+                $data['newborn_care_d'] = trim($row[29]) !== '' ? (strtoupper(trim($row[29])) == 'NO' ? '0' : '1') : NULL;
+                $data['breast_feed_a'] = trim($row[30]) !== '' ? (strtoupper(trim($row[30])) == 'NO' ? '0' : '1') : NULL;
+                $data['breast_feed_b'] = trim($row[31]) !== '' ? (strtoupper(trim($row[31])) == 'NO' ? '0' : '1') : NULL;
+                $data['breast_feed_c'] = trim($row[32]) !== '' ? (strtoupper(trim($row[32])) == 'NO' ? '0' : '1') : NULL;
+                $data['breast_feed_d'] = trim($row[33]) !== '' ? (strtoupper(trim($row[33])) == 'NO' ? '0' : '1') : NULL;
+
+                $data['get_married'] = trim($row[34]) !== '' ? trim($row[34]) : NULL;
+                $data['children_plan'] = trim($row[35]) !== '' ? trim($row[35]) : NULL;
+                $data['children_current'] = trim($row[36]) !== '' ? trim($row[36]) : NULL;
+                $data['planning_method'] = trim($row[37]) !== '' ? trim($row[37]) : NULL;
+                $data['transporter'] = trim($row[38]) !== '' ? (strtoupper(trim($row[38])) == 'NO' ? '0' : '1') : NULL;
+                $data['relationship'] = trim($row[39]) !== '' ? trim($row[39]) : NULL;
+                $data['transport'] = trim($row[40]) !== '' ? (strtoupper(trim($row[40])) == 'NO' ? '0' : '1') : NULL;
+                $data['vehicle_type'] = trim($row[41]) !== '' ? trim($row[41]) : NULL;
+                $data['medical_service'] = trim($row[42]) !== '' ? trim($row[42]) : NULL;
+                $data['odontology'] = trim($row[43]) !== '' ? trim($row[43]) : NULL;
+                $data['fur'] = trim($row[44]) !== '' ? trim($row[44]) : NULL;
+                $data['ivsa'] = trim($row[45]) !== '' ? trim($row[45]) : NULL;
+
+                $data['childbirth'] = (string)(int)$row[46] == $row[46] ? $row[46] : NULL;
+                $data['caesarean'] = (string)(int)$row[47] == $row[47] ? $row[47] : NULL;
+                $data['abortion'] = (string)(int)$row[48] == $row[48] ? $row[48] : NULL;
+                $data['children_live'] = (string)(int)$row[49] == $row[49] ? $row[49] : NULL;
+                $data['children_dead'] = (string)(int)$row[50] == $row[50] ? $row[50] : NULL;
+
+                $data['min_weight'] = trim($row[51]) !== '' ? (is_numeric(trim(str_replace('KG', '', strtoupper($row[51])))) ? trim(str_replace('KG', '', strtoupper($row[51]))) : NULL) : NULL;
+                $data['max_weight'] = trim($row[52]) !== '' ? (is_numeric(trim(str_replace('KG', '', strtoupper($row[52])))) ? trim(str_replace('KG', '', strtoupper($row[52]))) : NULL) : NULL;
+
+                $data['self_manual'] = trim($row[53]) !== '' ? trim($row[53]) : NULL;
+                $data['self_image'] = trim($row[54]) !== '' ? trim($row[54]) : NULL;
+                $data['exam_manual'] = trim($row[55]) !== '' ? trim($row[55]) : NULL;
+                $data['exam_image'] = trim($row[56]) !== '' ? trim($row[56]) : NULL;
+                $data['menopausia'] = trim($row[57]) !== '' ? trim($row[57]) : NULL;
+
+                $data['mammography_date'] = trim($row[60]) !== '' && trim($row[59]) !== '' && trim($row[58]) !== '' ? get2Date($row[60], $row[59], $row[58]) : '';
+                $data['mammography_result'] = trim($row[61]) !== '' ? trim($row[61]) : '';
+
+                $data['densitometry_date'] = trim($row[64]) !== '' && trim($row[63]) !== '' && trim($row[62]) !== '' ? get2Date($row[64], $row[63], $row[62]) : '';
+                $data['densitometry_result'] = trim($row[65]) !== '' ? trim($row[65]) : '';
+
+                $insert_id = saveGynecologyData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
         case 15:
           $update = true;
           $row_count=0;
@@ -1865,6 +2000,95 @@ if($_FILES["select_excel"]["name"] != ''){
                 $data['mental_illness'] = trim($row[23]) !== '' ? substr($row[23], 0, 1) : NULL;
                 
                 $insert_id = saveHealthCareData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
+        case 16:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== 'PRESION ARTERIAL' ||
+                  trim($row[7]) !== 'FRECUENCIA CARDIACA' ||
+                  trim($row[8]) !== 'FRECUENCIA RESPIRATORIA' ||
+                  trim($row[9]) !== 'TEMPERATURA' ||
+                  trim($row[10]) !== 'GLUCOSA' ||
+                  trim($row[11]) !== 'PESOS' ||
+                  trim($row[12]) !== 'TALLA' ||
+                  trim($row[13]) !== 'IMC' ||
+                  trim($row[14]) !== '% GRASA CORPORAL' ||
+                  trim($row[15]) !== 'PERIMETRO DE BRAZO' ||
+                  trim($row[16]) !== 'PERIMETRO ABDOMINAL' ||
+                  trim($row[17]) !== 'LLENADO CAPILAR' ||
+                  trim($row[18]) !== 'SATURACIÓN' ||
+                  trim($row[19]) !== 'HEMOGLOBINA GLUCOSILADA' ||
+                  trim($row[20]) !== 'GLUCOSA' ||
+                  trim($row[21]) !== 'CREATININA' ||
+                  trim($row[22]) !== 'COLESTEROL' ||
+                  trim($row[23]) !== 'TRIGLICERIDOS' ||
+                  trim($row[24]) !== 'ANTIGENO PROSTÁTICO' ||
+                  trim($row[25]) !== 'PRUEBA DE VIH' ||
+                  trim($row[26]) !== 'PRUEBA DE SÍFILIS'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['blood_pressure'] = trim($row[6]) !== '' ? $row[6] : NULL;
+                $data['heart_rate'] = (string)(int)$row[7] == $row[7] ? $row[7] : NULL;
+                $data['breathe_rate'] = (string)(int)$row[8] == $row[8] ? $row[8] : NULL;
+                $data['temperature'] = is_numeric(trim($row[9])) ? $row[9] : NULL;
+                $data['glucose'] = is_numeric(trim($row[10])) ? $row[10] : NULL;
+                $data['weight'] = is_numeric(trim($row[11])) ? $row[11] : NULL;
+                $data['height'] = is_numeric(trim($row[12])) ? $row[12] : NULL;
+                $data['body_mass'] = is_numeric(trim($row[13])) ? $row[13] : NULL;
+                $data['body_fat'] = is_numeric(trim($row[14])) ? $row[14] : NULL;
+                $data['arm_perimeter'] = is_numeric(trim($row[15])) ? $row[15] : NULL;
+                $data['abdomen_perimeter'] = is_numeric(trim($row[16])) ? $row[16] : NULL;
+                $data['capillary_refill'] = is_numeric(trim($row[17])) ? $row[17] : NULL;
+                $data['saturation'] = (string)(int)$row[18] == $row[18] ? $row[18] : NULL;
+                $data['glycated_hemoglobin'] = is_numeric(trim($row[19])) ? $row[19] : NULL;
+                $data['glucose_lab'] = is_numeric(trim($row[20])) ? $row[20] : NULL;
+                $data['creatinine'] = is_numeric(trim($row[21])) ? $row[21] : NULL;
+                $data['cholesterol'] = is_numeric(trim($row[22])) ? $row[22] : NULL;
+                $data['triglycerides'] = is_numeric(trim($row[23])) ? $row[23] : NULL;
+                $data['prostatic_antigen'] = is_numeric(trim($row[24])) ? $row[24] : NULL;
+                $data['sida'] = trim($row[25]) !== '' ? (strtoupper(trim($row[25])) == 'SI' ? '1' : '0') : NULL;
+                $data['syphilis'] = trim($row[26]) !== '' ? (strtoupper(trim($row[26])) == 'SI' ? '1' : '0') : NULL;
+                
+                $insert_id = saveVitalSignData($linkDB, "INSERT", $data, 1);
                 saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
 
                 ++$row_count;
@@ -1985,93 +2209,6 @@ if($_FILES["select_excel"]["name"] != ''){
                 }
                 
                 $insert_id = saveGenderViolenceData($linkDB, "INSERT", $data, 1);
-                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
-
-                ++$row_count;
-                if ($found !== 0){
-                  ++$found_count;
-                }
-              }
-            }
-          }
-          if($update){
-            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
-            $linkDB->commit();
-          }
-          break;
-        case 22:
-          $update = true;
-          $row_count=0;
-          $found_count=0;
-          foreach ($sheetData as $key=>$row){
-            if($key==0){
-              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
-                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
-                  trim($row[6]) !== '1. Espero el futuro con esperanza y entusiasmo' ||
-                  trim($row[7]) !== '2. Puedo darme por vencido, renunciar, ya que no puedo hacer mejor las cosas por mí mismo' ||
-                  trim($row[8]) !== '3. Cuando las cosas van mal me alivia saber que las cosas no pueden permanecer tiempo así' ||
-                  trim($row[9]) !== '4. No puedo imaginar cómo será mi vida en 10 años' ||
-                  trim($row[10]) !== '5. Tengo bastante tiempo para poder hacer las cosas que quisiera poder hacer' ||
-                  trim($row[11]) !== '6. En el futuro, espero conseguir lo que me pueda interesar' ||
-                  trim($row[12]) !== '7. Mi futuro me parece oscuro' ||
-                  trim($row[13]) !== '8. Espero más cosas buenas de la vida que lo que la gente suele conseguir por término medio' ||
-                  trim($row[14]) !== '9. No logro hacer que las cosas cambien, y no existen razones para creer que pueda en el futuro' ||
-                  trim($row[15]) !== '10. Mis pasadas experiencias me han preparado bien para mi futuro' ||
-                  trim($row[16]) !== '11. Todo lo que puedo ver por delante de mí es más desagradable que agradable' ||
-                  trim($row[17]) !== '12. No espero conseguir lo que realmente deseo' ||
-                  trim($row[18]) !== '13. Cuando miro hacia el futuro, espero que seré más feliz de lo que soy ahora' ||
-                  trim($row[19]) !== '14. Las cosas no marchan como yo quisiera' ||
-                  trim($row[20]) !== '15. Tengo una gran confianza en el futuro' ||
-                  trim($row[21]) !== '16. Nunca consigo lo que deseo, por lo que es absurdo desear cualquier cosa' ||
-                  trim($row[22]) !== '17. Es muy improbable que pueda lograr una satisfacción real en el futuro' ||
-                  trim($row[23]) !== '18. El futuro me parece vago e incierto' ||
-                  trim($row[24]) !== '19. Espero más bien épocas buenas que malas' ||
-                  trim($row[25]) !== '20. No merece la pena que intente conseguir algo que desee, porque probablemente no lo lograré'
-              ){
-                $update = false;
-                $response->success = false;
-                $response->message = 'Esté no parece ser el archivo correcto.';
-                break;
-              } else {
-                resetFormData($linkDB, $id_data);
-              }
-            }
-            if($key>2){
-              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
-                $data = array();
-
-                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
-                $data['affiliation_number'] = trim($row[1]);
-                $data['name'] = trim($row[2]);
-                $data['first_lastname'] = trim($row[3]);
-                $data['second_lastname'] = trim($row[4]);
-                $data['gender'] = trim($row[5]);
-
-                $found = searchPatientByName($linkDB, $data);
-                $data['id_patient'] = $found !== 0 ? $found : -1;
-
-                $data['hope'] = trim($row[6]) !== '' ? (substr($row[6], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['renounce'] = trim($row[7]) !== '' ? (substr($row[7], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['relief'] = trim($row[8]) !== '' ? (substr($row[8], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['imagine'] = trim($row[9]) !== '' ? (substr($row[9], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['have_time'] = trim($row[10]) !== '' ? (substr($row[10], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['future'] = trim($row[11]) !== '' ? (substr($row[11], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['dark_future'] = trim($row[12]) !== '' ? (substr($row[12], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['expect_good'] = trim($row[13]) !== '' ? (substr($row[13], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['cant_change'] = trim($row[14]) !== '' ? (substr($row[14], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['experiences'] = trim($row[15]) !== '' ? (substr($row[15], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['unpleasant_future'] = trim($row[16]) !== '' ? (substr($row[16], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['expect_anything'] = trim($row[17]) !== '' ? (substr($row[17], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['happy_future'] = trim($row[18]) !== '' ? (substr($row[18], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['things_wrong'] = trim($row[19]) !== '' ? (substr($row[19], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['expect_future'] = trim($row[20]) !== '' ? (substr($row[20], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['not_want'] = trim($row[21]) !== '' ? (substr($row[21], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['satisfaction'] = trim($row[22]) !== '' ? (substr($row[22], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['uncertain_future'] = trim($row[23]) !== '' ? (substr($row[23], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['good_times'] = trim($row[24]) !== '' ? (substr($row[24], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                $data['dont_try'] = trim($row[25]) !== '' ? (substr($row[25], 0, 1) == '0' ? '1' : '0' ) : NULL;
-                
-                $insert_id = saveHopelessData($linkDB, "INSERT", $data, 1);
                 saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
 
                 ++$row_count;
@@ -2654,6 +2791,93 @@ if($_FILES["select_excel"]["name"] != ''){
                 $data['influenza12_desc'] = '';
 
                 $insert_id = saveElderVaccinatonData($linkDB, "INSERT", $data, 1);
+                saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
+
+                ++$row_count;
+                if ($found !== 0){
+                  ++$found_count;
+                }
+              }
+            }
+          }
+          if($update){
+            saveUpdateData($linkDB, $id_data, $row_count, $found_count, 0, $row_count, 1);
+            $linkDB->commit();
+          }
+          break;
+        case 22:
+          $update = true;
+          $row_count=0;
+          $found_count=0;
+          foreach ($sheetData as $key=>$row){
+            if($key==0){
+              if ($row[0] !== 'FOLIO INTERNO' || $row[1] !== '# AFILIADO' || $row[2] !== 'NOMBRE (S)' || 
+                  $row[3] !== 'APELLIDO PATERNO' || $row[4] !== 'APELLIDO MATERNO' || $row[5] !== 'SEXO' || 
+                  trim($row[6]) !== '1. Espero el futuro con esperanza y entusiasmo' ||
+                  trim($row[7]) !== '2. Puedo darme por vencido, renunciar, ya que no puedo hacer mejor las cosas por mí mismo' ||
+                  trim($row[8]) !== '3. Cuando las cosas van mal me alivia saber que las cosas no pueden permanecer tiempo así' ||
+                  trim($row[9]) !== '4. No puedo imaginar cómo será mi vida en 10 años' ||
+                  trim($row[10]) !== '5. Tengo bastante tiempo para poder hacer las cosas que quisiera poder hacer' ||
+                  trim($row[11]) !== '6. En el futuro, espero conseguir lo que me pueda interesar' ||
+                  trim($row[12]) !== '7. Mi futuro me parece oscuro' ||
+                  trim($row[13]) !== '8. Espero más cosas buenas de la vida que lo que la gente suele conseguir por término medio' ||
+                  trim($row[14]) !== '9. No logro hacer que las cosas cambien, y no existen razones para creer que pueda en el futuro' ||
+                  trim($row[15]) !== '10. Mis pasadas experiencias me han preparado bien para mi futuro' ||
+                  trim($row[16]) !== '11. Todo lo que puedo ver por delante de mí es más desagradable que agradable' ||
+                  trim($row[17]) !== '12. No espero conseguir lo que realmente deseo' ||
+                  trim($row[18]) !== '13. Cuando miro hacia el futuro, espero que seré más feliz de lo que soy ahora' ||
+                  trim($row[19]) !== '14. Las cosas no marchan como yo quisiera' ||
+                  trim($row[20]) !== '15. Tengo una gran confianza en el futuro' ||
+                  trim($row[21]) !== '16. Nunca consigo lo que deseo, por lo que es absurdo desear cualquier cosa' ||
+                  trim($row[22]) !== '17. Es muy improbable que pueda lograr una satisfacción real en el futuro' ||
+                  trim($row[23]) !== '18. El futuro me parece vago e incierto' ||
+                  trim($row[24]) !== '19. Espero más bien épocas buenas que malas' ||
+                  trim($row[25]) !== '20. No merece la pena que intente conseguir algo que desee, porque probablemente no lo lograré'
+              ){
+                $update = false;
+                $response->success = false;
+                $response->message = 'Esté no parece ser el archivo correcto.';
+                break;
+              } else {
+                resetFormData($linkDB, $id_data);
+              }
+            }
+            if($key>2){
+              if(trim($row[2]) !== '' && trim($row[3]) !== ''){
+                $data = array();
+
+                $data['invoice'] = trim($row[0]) !== '' ? trim($row[0]) : 'NULL';
+                $data['affiliation_number'] = trim($row[1]);
+                $data['name'] = trim($row[2]);
+                $data['first_lastname'] = trim($row[3]);
+                $data['second_lastname'] = trim($row[4]);
+                $data['gender'] = trim($row[5]);
+
+                $found = searchPatientByName($linkDB, $data);
+                $data['id_patient'] = $found !== 0 ? $found : -1;
+
+                $data['hope'] = trim($row[6]) !== '' ? (substr($row[6], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['renounce'] = trim($row[7]) !== '' ? (substr($row[7], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['relief'] = trim($row[8]) !== '' ? (substr($row[8], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['imagine'] = trim($row[9]) !== '' ? (substr($row[9], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['have_time'] = trim($row[10]) !== '' ? (substr($row[10], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['future'] = trim($row[11]) !== '' ? (substr($row[11], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['dark_future'] = trim($row[12]) !== '' ? (substr($row[12], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['expect_good'] = trim($row[13]) !== '' ? (substr($row[13], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['cant_change'] = trim($row[14]) !== '' ? (substr($row[14], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['experiences'] = trim($row[15]) !== '' ? (substr($row[15], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['unpleasant_future'] = trim($row[16]) !== '' ? (substr($row[16], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['expect_anything'] = trim($row[17]) !== '' ? (substr($row[17], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['happy_future'] = trim($row[18]) !== '' ? (substr($row[18], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['things_wrong'] = trim($row[19]) !== '' ? (substr($row[19], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['expect_future'] = trim($row[20]) !== '' ? (substr($row[20], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['not_want'] = trim($row[21]) !== '' ? (substr($row[21], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['satisfaction'] = trim($row[22]) !== '' ? (substr($row[22], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['uncertain_future'] = trim($row[23]) !== '' ? (substr($row[23], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['good_times'] = trim($row[24]) !== '' ? (substr($row[24], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                $data['dont_try'] = trim($row[25]) !== '' ? (substr($row[25], 0, 1) == '0' ? '1' : '0' ) : NULL;
+                
+                $insert_id = saveHopelessData($linkDB, "INSERT", $data, 1);
                 saveLoadData($linkDB, $id_data, $insert_id, ($found == 0 ? $found : 1), $data);
 
                 ++$row_count;

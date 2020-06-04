@@ -592,7 +592,7 @@
 
                     <label class="col-sm-4 col-form-label text-royal-blue regular-font"><strong>23. </strong>Inicio de menopausia(edad)</label>
                     <div class="col-sm-8">
-                        <input type="number" class="form-control custom-input" name="menopausia" value="<?php echo utf8_encode($result[0]["menopausia"]); ?>" min="0" />
+                        <input class="form-control custom-input" name="menopausia" value="<?php echo utf8_encode($result[0]["menopausia"]); ?>" />
                     </div>
 
                     <div class="col-12 mt-2 mt-2">
