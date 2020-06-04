@@ -96,7 +96,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label class="container regular-font text-royal-blue">Hombre
-                                        <input type="radio" name="genre" <?php if ($result[0]["genre"]=="a")  { echo 'checked="true"'; } ?> value="a" />
+                                        <input type="radio" name="genre" <?php if ($result[0]["gender"]=="a")  { echo 'checked="true"'; } ?> value="a" />
                                         <span class="radiomark"></span>
                                     </label>
                                 </div>
@@ -104,7 +104,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label class="container regular-font text-royal-blue">Mujer
-                                        <input type="radio" name="genre" <?php if ($result[0]["genre"]=="b")  { echo 'checked="true"'; } ?> value="b" />
+                                        <input type="radio" name="genre" <?php if ($result[0]["gender"]=="b")  { echo 'checked="true"'; } ?> value="b" />
                                         <span class="radiomark"></span>
                                     </label>
                                 </div>
@@ -112,7 +112,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label class="container regular-font text-royal-blue">No Binario
-                                        <input type="radio" name="genre" <?php if ($result[0]["genre"]=="d")  { echo 'checked="true"'; } ?> value="c" />
+                                        <input type="radio" name="genre" <?php if ($result[0]["gender"]=="c")  { echo 'checked="true"'; } ?> value="c" />
                                         <span class="radiomark"></span>
                                     </label>
                                 </div>

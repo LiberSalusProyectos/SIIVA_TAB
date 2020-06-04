@@ -813,7 +813,7 @@ function saveSocioculturalData_DOM($connection, $method,
 	}
 
 	$query .= " `socioculturaldata` SET
-	`decisions`			= '$decisions',
+	`decisions`			= $decisions,
 	`harmony`			= $harmony,
 	`responsibility`	= $responsibility,
 	`sweetie`			= $sweetie,
@@ -835,6 +835,10 @@ function saveSocioculturalData_DOM($connection, $method,
 	// echo $query;
 
 	$inserted = mysqli_query($connection, $query);
+
+	if(!$inserted){
+		echo $query;
+	}
 
 	return $inserted;
 }

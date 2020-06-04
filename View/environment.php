@@ -29,6 +29,7 @@
       }
 
       $result = getModuleData($linkDB, $_POST["module"], $_POST["id_patient"]);
+    //   var_dump($result);
     } else {
       header('Location: index.php'); exit;
     }
@@ -292,7 +293,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                             <label class="container text-royal-blue regular-font">a) Irritación de ojos
-                                <input type="radio" <?php if ($result[0]["pollution_react"]=="c")  { echo 'checked="true"'; } ?> name="pollution_react" value="a" />
+                                <input type="radio" <?php if ($result[0]["pollution_react"]=="a")  { echo 'checked="true"'; } ?> name="pollution_react" value="a" />
                                 <span class="radiomark"></span>
                             </label>
                         </div>
@@ -331,7 +332,7 @@
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="form-group">
                             <label class="container text-royal-blue regular-font">a) Ruido
-                                <input type="radio" <?php if ($result[0]["contamination"]=='c')  { echo 'checked="true"'; } ?> name="contamination" value="a" />
+                                <input type="radio" <?php if ($result[0]["contamination"]=='a')  { echo 'checked="true"'; } ?> name="contamination" value="a" />
                                 <span class="radiomark"></span>
                             </label>
                         </div>

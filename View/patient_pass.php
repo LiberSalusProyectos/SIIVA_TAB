@@ -120,7 +120,7 @@
                     case 'vitalSign':
                         $sectionName = VITAL_SIGN_NAME;
                         $iconName = "fa-microscope";
-                        $table = "younglifestyledata";
+                        $table = "vitalsigndata";
                         $module = "vital_sign.php";
                         break;
 
