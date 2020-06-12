@@ -3925,224 +3925,741 @@ function getRiskCompletedData_DOM($connection, $search){
  */
 function getDetailByTownshipData_DOM($connection, $municipio){
 	$query = "SELECT
-	SUM(CASE DATA.FORM WHEN 'clinichistory' THEN DATA.CONT ELSE 0 END) clinichistory,
-	SUM(CASE DATA.FORM WHEN 'environment' THEN DATA.CONT ELSE 0 END) environment,
-	SUM(CASE DATA.FORM WHEN 'depression' THEN DATA.CONT ELSE 0 END) depression,
-	SUM(CASE DATA.FORM WHEN 'anxiety' THEN DATA.CONT ELSE 0 END) anxiety,
-	SUM(CASE DATA.FORM WHEN 'violence' THEN DATA.CONT ELSE 0 END) violence,
-	SUM(CASE DATA.FORM WHEN 'hopelessness' THEN DATA.CONT ELSE 0 END) hopelessness,
-	SUM(CASE DATA.FORM WHEN 'vaccinaton' THEN DATA.CONT ELSE 0 END) vaccinaton,
-	SUM(CASE DATA.FORM WHEN 'vector' THEN DATA.CONT ELSE 0 END) vector,
-	SUM(CASE DATA.FORM WHEN 'ets' THEN DATA.CONT ELSE 0 END) ets,
-	SUM(CASE DATA.FORM WHEN 'cronic' THEN DATA.CONT ELSE 0 END) cronic,
-	SUM(CASE DATA.FORM WHEN 'edas' THEN DATA.CONT ELSE 0 END) edas,
-	SUM(CASE DATA.FORM WHEN 'vitalsign' THEN DATA.CONT ELSE 0 END) vitalsign,
-	SUM(CASE DATA.FORM WHEN 'nutritional' THEN DATA.CONT ELSE 0 END) nutritional,
-	SUM(CASE DATA.FORM WHEN 'laboratory' THEN DATA.CONT ELSE 0 END) laboratory,
-	SUM(CASE DATA.FORM WHEN 'cabinet' THEN DATA.CONT ELSE 0 END) cabinet,
-	SUM(CASE DATA.FORM WHEN 'hearing' THEN DATA.CONT ELSE 0 END) hearing,
-	SUM(CASE DATA.FORM WHEN 'visual' THEN DATA.CONT ELSE 0 END) visual,
-	SUM(CASE DATA.FORM WHEN 'ortopedic' THEN DATA.CONT ELSE 0 END) ortopedic,
-	SUM(CASE DATA.FORM WHEN 'cardio' THEN DATA.CONT ELSE 0 END) cardio,
-	SUM(CASE DATA.FORM WHEN 'cancer' THEN DATA.CONT ELSE 0 END) cancer,
-	SUM(CASE DATA.FORM WHEN 'barthel' THEN DATA.CONT ELSE 0 END) barthel,
-	SUM(CASE DATA.FORM WHEN 'geriatricdepression' THEN DATA.CONT ELSE 0 END) geriatricdepression,
-	SUM(CASE DATA.FORM WHEN 'zaritt' THEN DATA.CONT ELSE 0 END) zaritt,
-	SUM(CASE DATA.FORM WHEN 'risk' THEN DATA.CONT ELSE 0 END) risk,
-	SUM(DATA.CONT) TOTAL
-	FROM(
-		SELECT
-		'clinichistory' FORM,
-		COUNT(DISTINCT chd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN clinichistorydata chd ON chd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'environment' FORM,
-		COUNT(DISTINCT ed.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN environmentdata ed ON ed.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'depression' FORM,
-		COUNT(DISTINCT dd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN depressiondata dd ON dd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'anxiety' FORM,
-		COUNT(DISTINCT ad.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN anxietydata ad ON ad.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'violence' FORM,
-		COUNT(DISTINCT vd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN violencedata vd ON vd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'hopelessness' FORM,
-		COUNT(DISTINCT hnd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN hopelessnessdata hnd ON hnd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'vaccinaton' FORM,
-		COUNT(DISTINCT vcd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN vaccinatondata vcd ON vcd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'vector' FORM,
-		COUNT(DISTINCT vtd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN vectordata vtd ON vtd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'ets' FORM,
-		COUNT(DISTINCT etsd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN etsdata etsd ON etsd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'cronic' FORM,
-		COUNT(DISTINCT crd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN cronicdata crd ON crd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'edas' FORM,
-		COUNT(DISTINCT edd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN edasdata edd ON edd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'vitalsign' FORM,
-		COUNT(DISTINCT vsd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN vitalsigndata vsd ON vsd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'nutritional' FORM,
-		COUNT(DISTINCT ntd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN nutritionaldata ntd ON ntd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'laboratory' FORM,
-		COUNT(DISTINCT ld.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN laboratorydata ld ON ld.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'cabinet' FORM,
-		COUNT(DISTINCT cnd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN cabinetdata cnd ON cnd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'hearing' FORM,
-		COUNT(DISTINCT hd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN hearingdata hd ON hd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'visual' FORM,
-		COUNT(DISTINCT vsd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN visualdata vsd ON vsd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'ortopedic' FORM,
-		COUNT(DISTINCT od.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN ortopedicdata od ON od.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'cardio' FORM,
-		COUNT(DISTINCT cd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN cardiodata cd ON cd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'cancer' FORM,
-		COUNT(DISTINCT cnd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN cancercdata cnd ON cnd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'barthel' FORM,
-		COUNT(DISTINCT btd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN bartheldata btd ON btd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'geriatricdepression' FORM,
-		COUNT(DISTINCT gdd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN geriatricdepressiondata gdd ON gdd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'zaritt' FORM,
-		COUNT(DISTINCT zd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN zarittdata zd ON zd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	UNION
-		SELECT
-		'risk' FORM,
-		COUNT(DISTINCT rd.id_patient) CONT,
-		bpd.municipio
-		FROM basicpatientdata bpd
-		JOIN riskdata rd ON rd.id_patient = bpd.id
-		GROUP BY bpd.municipio
-	) AS DATA WHERE DATA.municipio = '".$municipio."'";
+  COUNT(DISTINCT data.basicpatient) patient_cant,
+  COUNT(DISTINCT data.patient) / COUNT(DISTINCT data.basicpatient) * 100 total_perc,
+  COUNT(DISTINCT data.patient) total,
+  COUNT(DISTINCT data.familyrecord) / COUNT(DISTINCT data.basicpatient) * 100 familyrecord_perc,
+  COUNT(DISTINCT data.familyrecord) familyrecord,
+  COUNT(DISTINCT data.dass21) / COUNT(DISTINCT data.basicpatient) * 100 dass21_perc,
+  COUNT(DISTINCT data.dass21) dass21,
+  COUNT(DISTINCT data.environment) / COUNT(DISTINCT data.basicpatient) * 100 environment_perc,
+  COUNT(DISTINCT data.environment) environment,
+  COUNT(DISTINCT data.geriatricdepression) / COUNT(DISTINCT data.basicpatient) * 100 geriatricdepression_perc,
+  COUNT(DISTINCT data.geriatricdepression) geriatricdepression,
+  COUNT(DISTINCT data.zarittscale) / COUNT(DISTINCT data.basicpatient) * 100 zarittscale_perc,
+  COUNT(DISTINCT data.zarittscale) zarittscale,
+  COUNT(DISTINCT data.sociocultural) / COUNT(DISTINCT data.basicpatient) * 100 sociocultural_perc,
+  COUNT(DISTINCT data.sociocultural) sociocultural,
+  COUNT(DISTINCT data.diabetes) / COUNT(DISTINCT data.basicpatient) * 100 diabetes_perc,
+  COUNT(DISTINCT data.diabetes) diabetes,
+  COUNT(DISTINCT data.hypertension) / COUNT(DISTINCT data.basicpatient) * 100 hypertension_perc,
+  COUNT(DISTINCT data.hypertension) hypertension,
+  COUNT(DISTINCT data.bornlifestyle) / COUNT(DISTINCT data.basicpatient) * 100 bornlifestyle_perc,
+  COUNT(DISTINCT data.bornlifestyle) bornlifestyle,
+  COUNT(DISTINCT data.childlifestyle) / COUNT(DISTINCT data.basicpatient) * 100 childlifestyle_perc,
+  COUNT(DISTINCT data.childlifestyle) childlifestyle,
+  COUNT(DISTINCT data.younglifestyle) / COUNT(DISTINCT data.basicpatient) * 100 younglifestyle_perc,
+  COUNT(DISTINCT data.younglifestyle) younglifestyle,
+  COUNT(DISTINCT data.babylifestyle) / COUNT(DISTINCT data.basicpatient) * 100 babylifestyle_perc,
+  COUNT(DISTINCT data.babylifestyle) babylifestyle,
+  COUNT(DISTINCT data.gynecology) / COUNT(DISTINCT data.basicpatient) * 100 gynecology_perc,
+  COUNT(DISTINCT data.gynecology) gynecology,
+  COUNT(DISTINCT data.healthcare) / COUNT(DISTINCT data.basicpatient) * 100 healthcare_perc,
+  COUNT(DISTINCT data.healthcare) healthcare,
+  COUNT(DISTINCT data.vitalsign) / COUNT(DISTINCT data.basicpatient) * 100 vitalsign_perc,
+  COUNT(DISTINCT data.vitalsign) vitalsign,
+  COUNT(DISTINCT data.genderviolence) / COUNT(DISTINCT data.basicpatient) * 100 genderviolence_perc,
+  COUNT(DISTINCT data.genderviolence) genderviolence,
+  COUNT(DISTINCT data.childvaccination) / COUNT(DISTINCT data.basicpatient) * 100 childvaccination_perc,
+  COUNT(DISTINCT data.childvaccination) childvaccination,
+  COUNT(DISTINCT data.youngvaccination) / COUNT(DISTINCT data.basicpatient) * 100 youngvaccination_perc,
+  COUNT(DISTINCT data.youngvaccination) youngvaccination,
+  COUNT(DISTINCT data.adultvaccination) / COUNT(DISTINCT data.basicpatient) * 100 adultvaccination_perc,
+  COUNT(DISTINCT data.adultvaccination) adultvaccination,
+  COUNT(DISTINCT data.eldervaccination) / COUNT(DISTINCT data.basicpatient) * 100 eldervaccination_perc,
+  COUNT(DISTINCT data.eldervaccination) eldervaccination,
+  COUNT(DISTINCT data.hopeless) / COUNT(DISTINCT data.basicpatient) * 100 hopeless_perc,
+  COUNT(DISTINCT data.hopeless) hopeless
+  FROM(
+    SELECT
+    bpd.id basicpatient,
+    NULL patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    GROUP BY bpd.id, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    fd.id_patient familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN familyrecorddata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    fd.id_patient dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN dass21data fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    fd.id_patient environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN environmentdata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    fd.id_patient geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN geriatricdepressiondata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    fd.id_patient zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN zarittscaledata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    fd.id_patient ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN etsdata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    fd.id_patient sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN socioculturaldata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    fd.id_patient diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN diabetesdata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    fd.id_patient hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN hypertensiondata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    fd.id_patient bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN bornlifestyledata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    fd.id_patient childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN childlifestyledata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    fd.id_patient younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN younglifestyledata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    fd.id_patient babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN babylifestyledata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    fd.id_patient gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN gynecologydata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    fd.id_patient healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN healthcaredata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    fd.id_patient vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN vitalsigndata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    fd.id_patient genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN genderviolencedata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    fd.id_patient childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN childvaccinationdata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    fd.id_patient youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN youngvaccinationdata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    fd.id_patient adultvaccination,
+    NULL eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN adultvaccinationdata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    fd.id_patient eldervaccination,
+    NULL hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN eldervaccinationdata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  UNION
+    SELECT
+    NULL basicpatient,
+    fd.id_patient patient,
+    NULL familyrecord,
+    NULL dass21,
+    NULL environment,
+    NULL geriatricdepression,
+    NULL zarittscale,
+    NULL ets,
+    NULL sociocultural,
+    NULL diabetes,
+    NULL hypertension,
+    NULL bornlifestyle,
+    NULL childlifestyle,
+    NULL younglifestyle,
+    NULL babylifestyle,
+    NULL gynecology,
+    NULL healthcare,
+    NULL vitalsign,
+    NULL genderviolence,
+    NULL childvaccination,
+    NULL youngvaccination,
+    NULL adultvaccination,
+    NULL eldervaccination,
+    fd.id_patient hopeless,
+    bpd.municipio
+    FROM basicpatientdata bpd
+    JOIN hopelessdata fd ON fd.id_patient = bpd.id
+    GROUP BY fd.id_patient, bpd.municipio
+  ) AS data WHERE data.municipio LIKE '%".$municipio."%';";
 
 	$resultado = array();
 

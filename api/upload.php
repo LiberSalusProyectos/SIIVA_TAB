@@ -79,7 +79,7 @@ if($_FILES["select_excel"]["name"] != ''){
                 $element->num_ext = trim($row[13]);
                 $element->num_int = trim($row[14]);
                 $element->colonia = trim($row[15]);
-                $element->municipip = trim($row[16]);
+                $element->municipio = trim($row[16]);
                 $element->codigo_postal = trim($row[17]);
                 $element->estado = trim($row[18]);
                 array_push($data, $element);

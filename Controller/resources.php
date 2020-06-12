@@ -1575,7 +1575,7 @@ function resetFormData($connection, $id_form){
 		case 2:
 			$table='dass21data';
 			break;
-		case 2:
+		case 3:
 			$table='environmentdata';
 			break;
 		case 4:
@@ -1775,11 +1775,8 @@ function getCompletedData($connection, $search){
  * @param  [string] $table       [Nombre de la tabla en la DB]
  * @return [array]               [Listado de pacientes sin registros]
  */
-function getDetailByTownshipData($connection){
-	$result = new stdClass();
-	$result->BALANCAN = getDetailByTownshipData_DOM($connection, 'BALANCAN');
-	$result->CENTRO = getDetailByTownshipData_DOM($connection, 'CENTRO');
-	$result->CENTLA = getDetailByTownshipData_DOM($connection, 'CENTLA');
+function getDetailByTownshipData($connection, $municipio){
+	$result = getDetailByTownshipData_DOM($connection, $municipio);
 
 	return $result;
 }
@@ -1805,6 +1802,19 @@ function get2Date($y, $m, $d){
 		}
 	}
 	return $response;
+}
+
+
+function findObjectById($array, $value){
+	foreach ( $array as $element ) {
+		echo "<pre>";
+		echo $element;
+		echo "</pre>";
+		if ( $value == $element->municipio ) {
+			return $element;
+		}
+	}
+	return false;
 }
 
  ?>
