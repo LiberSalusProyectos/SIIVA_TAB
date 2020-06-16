@@ -10,7 +10,7 @@ switch($query){
     break;
   case 'jalpa':
     $municipio = 'JALPA DE MENDEZ';
-    break;
+    break; 
   case 'total':
     $municipio = '';
     break;

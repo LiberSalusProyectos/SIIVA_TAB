@@ -1,7 +1,8 @@
 SELECT
+  COUNT(data.patient) total,
   COUNT(DISTINCT data.basicpatient) patient_cant,
   COUNT(DISTINCT data.patient) / COUNT(DISTINCT data.basicpatient) * 100 total_perc,
-  COUNT(DISTINCT data.patient) total,
+  COUNT(DISTINCT data.patient) cont,
   COUNT(DISTINCT data.familyrecord) / COUNT(DISTINCT data.basicpatient) * 100 familyrecord_perc,
   COUNT(DISTINCT data.familyrecord) familyrecord,
   COUNT(DISTINCT data.dass21) / COUNT(DISTINCT data.basicpatient) * 100 dass21_perc,
@@ -12,6 +13,8 @@ SELECT
   COUNT(DISTINCT data.geriatricdepression) geriatricdepression,
   COUNT(DISTINCT data.zarittscale) / COUNT(DISTINCT data.basicpatient) * 100 zarittscale_perc,
   COUNT(DISTINCT data.zarittscale) zarittscale,
+  COUNT(DISTINCT data.ets) / COUNT(DISTINCT data.basicpatient) * 100 ets_perc,
+  COUNT(DISTINCT data.ets) ets,
   COUNT(DISTINCT data.sociocultural) / COUNT(DISTINCT data.basicpatient) * 100 sociocultural_perc,
   COUNT(DISTINCT data.sociocultural) sociocultural,
   COUNT(DISTINCT data.diabetes) / COUNT(DISTINCT data.basicpatient) * 100 diabetes_perc,
@@ -733,4 +736,5 @@ SELECT
     FROM basicpatientdata bpd
     JOIN hopelessdata fd ON fd.id_patient = bpd.id
     GROUP BY fd.id_patient, bpd.municipio
-  ) AS data WHERE data.municipio LIKE '%TEAPA%';
+  ) AS data WHERE data.municipio NOT IN ('BALANCAN', 'CARDENAS', 'CENTLA', 'CENTRO', 'COMALCALCO', 'CUNDUACAN', 'EMILIANO ZAPATA', 
+	'HUIMANGUILLO', 'JALAPA', 'JALPA DE MENDEZ', 'JONUTA', 'MACUSPANA', 'NACAJUCA', 'PARAISO', 'TACOTALPA', 'TEAPA', 'TENOSIQUE');

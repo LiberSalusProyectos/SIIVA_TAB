@@ -3925,9 +3925,10 @@ function getRiskCompletedData_DOM($connection, $search){
  */
 function getDetailByTownshipData_DOM($connection, $municipio){
 	$query = "SELECT
+	COUNT(data.patient) total,
   COUNT(DISTINCT data.basicpatient) patient_cant,
   COUNT(DISTINCT data.patient) / COUNT(DISTINCT data.basicpatient) * 100 total_perc,
-  COUNT(DISTINCT data.patient) total,
+  COUNT(DISTINCT data.patient) cont,
   COUNT(DISTINCT data.familyrecord) / COUNT(DISTINCT data.basicpatient) * 100 familyrecord_perc,
   COUNT(DISTINCT data.familyrecord) familyrecord,
   COUNT(DISTINCT data.dass21) / COUNT(DISTINCT data.basicpatient) * 100 dass21_perc,
@@ -3938,6 +3939,8 @@ function getDetailByTownshipData_DOM($connection, $municipio){
   COUNT(DISTINCT data.geriatricdepression) geriatricdepression,
   COUNT(DISTINCT data.zarittscale) / COUNT(DISTINCT data.basicpatient) * 100 zarittscale_perc,
   COUNT(DISTINCT data.zarittscale) zarittscale,
+	COUNT(DISTINCT data.ets) / COUNT(DISTINCT data.basicpatient) * 100 ets_perc,
+  COUNT(DISTINCT data.ets) ets,
   COUNT(DISTINCT data.sociocultural) / COUNT(DISTINCT data.basicpatient) * 100 sociocultural_perc,
   COUNT(DISTINCT data.sociocultural) sociocultural,
   COUNT(DISTINCT data.diabetes) / COUNT(DISTINCT data.basicpatient) * 100 diabetes_perc,
@@ -4659,7 +4662,7 @@ function getDetailByTownshipData_DOM($connection, $municipio){
     FROM basicpatientdata bpd
     JOIN hopelessdata fd ON fd.id_patient = bpd.id
     GROUP BY fd.id_patient, bpd.municipio
-  ) AS data WHERE data.municipio LIKE '%".$municipio."%';";
+	) AS data WHERE data.municipio ".($municipio !== 'OTROS' ? "LIKE '%".$municipio."%';" : "IN ('-', '');");
 
 	$resultado = array();
 
