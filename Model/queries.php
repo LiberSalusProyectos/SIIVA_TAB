@@ -3915,7 +3915,6 @@ function getRiskCompletedData_DOM($connection, $search){
 	}
 }
 
-
 /**
  * [Función para obtener el total de mediciones por municipio.]
  * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
@@ -3923,55 +3922,33 @@ function getRiskCompletedData_DOM($connection, $search){
  * @param  [int] $id_patient 	 [ID_del usuario]
  * @return [array]             	 [Información relacionada con el paciente.]
  */
-function getDetailByTownshipData_DOM($connection, $municipio){
+function getDashboardData_DOM($connection, $municipio){
 	$query = "SELECT
 	COUNT(data.patient) total,
   COUNT(DISTINCT data.basicpatient) patient_cant,
   COUNT(DISTINCT data.patient) / COUNT(DISTINCT data.basicpatient) * 100 total_perc,
   COUNT(DISTINCT data.patient) cont,
-  COUNT(DISTINCT data.familyrecord) / COUNT(DISTINCT data.basicpatient) * 100 familyrecord_perc,
   COUNT(DISTINCT data.familyrecord) familyrecord,
-  COUNT(DISTINCT data.dass21) / COUNT(DISTINCT data.basicpatient) * 100 dass21_perc,
   COUNT(DISTINCT data.dass21) dass21,
-  COUNT(DISTINCT data.environment) / COUNT(DISTINCT data.basicpatient) * 100 environment_perc,
   COUNT(DISTINCT data.environment) environment,
-  COUNT(DISTINCT data.geriatricdepression) / COUNT(DISTINCT data.basicpatient) * 100 geriatricdepression_perc,
   COUNT(DISTINCT data.geriatricdepression) geriatricdepression,
-  COUNT(DISTINCT data.zarittscale) / COUNT(DISTINCT data.basicpatient) * 100 zarittscale_perc,
   COUNT(DISTINCT data.zarittscale) zarittscale,
-	COUNT(DISTINCT data.ets) / COUNT(DISTINCT data.basicpatient) * 100 ets_perc,
   COUNT(DISTINCT data.ets) ets,
-  COUNT(DISTINCT data.sociocultural) / COUNT(DISTINCT data.basicpatient) * 100 sociocultural_perc,
   COUNT(DISTINCT data.sociocultural) sociocultural,
-  COUNT(DISTINCT data.diabetes) / COUNT(DISTINCT data.basicpatient) * 100 diabetes_perc,
   COUNT(DISTINCT data.diabetes) diabetes,
-  COUNT(DISTINCT data.hypertension) / COUNT(DISTINCT data.basicpatient) * 100 hypertension_perc,
   COUNT(DISTINCT data.hypertension) hypertension,
-  COUNT(DISTINCT data.bornlifestyle) / COUNT(DISTINCT data.basicpatient) * 100 bornlifestyle_perc,
   COUNT(DISTINCT data.bornlifestyle) bornlifestyle,
-  COUNT(DISTINCT data.childlifestyle) / COUNT(DISTINCT data.basicpatient) * 100 childlifestyle_perc,
   COUNT(DISTINCT data.childlifestyle) childlifestyle,
-  COUNT(DISTINCT data.younglifestyle) / COUNT(DISTINCT data.basicpatient) * 100 younglifestyle_perc,
   COUNT(DISTINCT data.younglifestyle) younglifestyle,
-  COUNT(DISTINCT data.babylifestyle) / COUNT(DISTINCT data.basicpatient) * 100 babylifestyle_perc,
   COUNT(DISTINCT data.babylifestyle) babylifestyle,
-  COUNT(DISTINCT data.gynecology) / COUNT(DISTINCT data.basicpatient) * 100 gynecology_perc,
   COUNT(DISTINCT data.gynecology) gynecology,
-  COUNT(DISTINCT data.healthcare) / COUNT(DISTINCT data.basicpatient) * 100 healthcare_perc,
   COUNT(DISTINCT data.healthcare) healthcare,
-  COUNT(DISTINCT data.vitalsign) / COUNT(DISTINCT data.basicpatient) * 100 vitalsign_perc,
   COUNT(DISTINCT data.vitalsign) vitalsign,
-  COUNT(DISTINCT data.genderviolence) / COUNT(DISTINCT data.basicpatient) * 100 genderviolence_perc,
   COUNT(DISTINCT data.genderviolence) genderviolence,
-  COUNT(DISTINCT data.childvaccination) / COUNT(DISTINCT data.basicpatient) * 100 childvaccination_perc,
   COUNT(DISTINCT data.childvaccination) childvaccination,
-  COUNT(DISTINCT data.youngvaccination) / COUNT(DISTINCT data.basicpatient) * 100 youngvaccination_perc,
   COUNT(DISTINCT data.youngvaccination) youngvaccination,
-  COUNT(DISTINCT data.adultvaccination) / COUNT(DISTINCT data.basicpatient) * 100 adultvaccination_perc,
   COUNT(DISTINCT data.adultvaccination) adultvaccination,
-  COUNT(DISTINCT data.eldervaccination) / COUNT(DISTINCT data.basicpatient) * 100 eldervaccination_perc,
   COUNT(DISTINCT data.eldervaccination) eldervaccination,
-  COUNT(DISTINCT data.hopeless) / COUNT(DISTINCT data.basicpatient) * 100 hopeless_perc,
   COUNT(DISTINCT data.hopeless) hopeless
   FROM(
     SELECT
@@ -4663,6 +4640,55 @@ function getDetailByTownshipData_DOM($connection, $municipio){
     JOIN hopelessdata fd ON fd.id_patient = bpd.id
     GROUP BY fd.id_patient, bpd.municipio
 	) AS data WHERE data.municipio ".($municipio !== 'OTROS' ? "LIKE '%".$municipio."%';" : "IN ('-', '');");
+
+	$resultado = array();
+
+	if ($result = mysqli_query($connection, $query)) {
+	    while ($row = $result->fetch_assoc()) {
+			$resultado[] = $row;
+		}
+	    return $resultado;
+	}
+}
+
+
+/**
+ * [Función para obtener el total de mediciones por municipio.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $module      [Nombre del módulo transmitido por GET]
+ * @param  [int] $id_patient 	 [ID_del usuario]
+ * @return [array]             	 [Información relacionada con el paciente.]
+ */
+function getDetailByTownshipData_DOM($connection, $municipio){
+	$query = "SELECT
+		COUNT(`patient`) AS `total`,
+		COUNT(DISTINCT `basicpatient`) AS `patient_cant`,
+		((COUNT(DISTINCT `patient`) / COUNT(DISTINCT `basicpatient`)) * 100) AS `total_perc`,
+		COUNT(DISTINCT `patient`) AS `cont`,
+		COUNT(DISTINCT `familyrecord`) AS `familyrecord`,
+		COUNT(DISTINCT `dass21`) AS `dass21`,
+		COUNT(DISTINCT `environment`) AS `environment`,
+		COUNT(DISTINCT `geriatricdepression`) AS `geriatricdepression`,
+		COUNT(DISTINCT `zarittscale`) AS `zarittscale`,
+		COUNT(DISTINCT `ets`) AS `ets`,
+		COUNT(DISTINCT `sociocultural`) AS `sociocultural`,
+		COUNT(DISTINCT `diabetes`) AS `diabetes`,
+		COUNT(DISTINCT `hypertension`) AS `hypertension`,
+		COUNT(DISTINCT `bornlifestyle`) AS `bornlifestyle`,
+		COUNT(DISTINCT `childlifestyle`) AS `childlifestyle`,
+		COUNT(DISTINCT `younglifestyle`) AS `younglifestyle`,
+		COUNT(DISTINCT `babylifestyle`) AS `babylifestyle`,
+		COUNT(DISTINCT `gynecology`) AS `gynecology`,
+		COUNT(DISTINCT `healthcare`) AS `healthcare`,
+		COUNT(DISTINCT `vitalsign`) AS `vitalsign`,
+		COUNT(DISTINCT `genderviolence`) AS `genderviolence`,
+		COUNT(DISTINCT `childvaccination`) AS `childvaccination`,
+		COUNT(DISTINCT `youngvaccination`) AS `youngvaccination`,
+		COUNT(DISTINCT `adultvaccination`) AS `adultvaccination`,
+		COUNT(DISTINCT `eldervaccination`) AS `eldervaccination`,
+		COUNT(DISTINCT `hopeless`) AS `hopeless`
+	FROM dashboard_view
+	WHERE municipio = '__' OR municipio ".($municipio !== 'OTROS' ? "LIKE '%".$municipio."%';" : "IS NULL;");
 
 	$resultado = array();
 

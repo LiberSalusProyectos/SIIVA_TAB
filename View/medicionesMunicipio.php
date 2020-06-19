@@ -150,7 +150,6 @@
           $("#tarjeta_" + this.id).toggle(250)
 
           $.ajax({
-            url:"dashboard.php",
             method:"GET",
             url:"dashboard.php?" + $.param({ municipio: _this.id }),
             contentType:false,

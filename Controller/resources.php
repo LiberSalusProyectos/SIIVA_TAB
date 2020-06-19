@@ -1775,6 +1775,18 @@ function getCompletedData($connection, $search){
  * @param  [string] $table       [Nombre de la tabla en la DB]
  * @return [array]               [Listado de pacientes sin registros]
  */
+function getDashboardData($connection, $municipio){
+	$result = getDashboardData_DOM($connection, $municipio);
+
+	return $result;
+}
+
+/**
+ * [Función para obtener los datos de mediciones completadas por municipio]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $table       [Nombre de la tabla en la DB]
+ * @return [array]               [Listado de pacientes sin registros]
+ */
 function getDetailByTownshipData($connection, $municipio){
 	$result = getDetailByTownshipData_DOM($connection, $municipio);
 

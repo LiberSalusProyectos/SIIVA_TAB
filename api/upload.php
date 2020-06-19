@@ -1,4 +1,6 @@
 <?php
+ini_set('memory_limit', '-1');
+ini_set('max_execution_time', 60000);
 include 'resources/phpExcel/vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;

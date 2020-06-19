@@ -19,7 +19,7 @@ switch($query){
     break;
 }
 
-$response = getDetailByTownshipData($linkDB, $municipio)[0];
+$response = getDashboardData($linkDB, $municipio)[0];
 
 echo json_encode($response);
 
