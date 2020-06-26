@@ -1793,6 +1793,30 @@ function getDetailByTownshipData($connection, $municipio){
 	return $result;
 }
 
+/**
+ * [Función para obtener estadistico por género y edad]
+ * @param  [mysqlC] $connection  			[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @return [bool]             	 			[Resultado de la comparación entre credenciales]
+ */
+function getDataByGenderAge($connection){
+
+	$result = getDataByGenderAge_DOM($connection);
+
+	return $result;
+}
+
+/**
+ * [Función para obtener estadistico por género y edad]
+ * @param  [mysqlC] $connection  			[Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @return [bool]             	 			[Resultado de la comparación entre credenciales]
+ */
+function getDataEstadistic($connection){
+
+	$result = getDataEstadistic_DOM($connection);
+
+	return $result;
+}
+
 function getDetailUpdateData($connection){
 	$result = getDetailUpdateData_DOM($connection);
 

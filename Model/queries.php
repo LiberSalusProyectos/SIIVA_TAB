@@ -158,7 +158,7 @@ function saveFamilyRecordData_DOM($connection, $method,
 		echo $query;
 	}
 
-	return $inserted;
+	return mysqli_insert_id($connection);
 }
 
 /**
@@ -4689,6 +4689,47 @@ function getDetailByTownshipData_DOM($connection, $municipio){
 		COUNT(DISTINCT `hopeless`) AS `hopeless`
 	FROM dashboard_view
 	WHERE municipio = '__' OR municipio ".($municipio !== 'OTROS' ? "LIKE '%".$municipio."%';" : "IS NULL;");
+
+	$resultado = array();
+
+	if ($result = mysqli_query($connection, $query)) {
+	    while ($row = $result->fetch_assoc()) {
+			$resultado[] = $row;
+		}
+	    return $resultado;
+	}
+}
+
+
+/**
+ * [Función para obtener el total de mediciones por municipio.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $module      [Nombre del módulo transmitido por GET]
+ * @param  [int] $id_patient 	 [ID_del usuario]
+ * @return [array]             	 [Información relacionada con el paciente.]
+ */
+function getDataByGenderAge_DOM($connection){
+	$query = "SELECT * FROM generico_vw;";
+
+	$resultado = array();
+
+	if ($result = mysqli_query($connection, $query)) {
+	    while ($row = $result->fetch_assoc()) {
+			$resultado[] = $row;
+		}
+	    return $resultado;
+	}
+}
+
+/**
+ * [Función para obtener el total de mediciones por municipio.]
+ * @param  [mysqlC] $connection  [Recurso MySQL. Objeto con la conexión a la base de datos]
+ * @param  [string] $module      [Nombre del módulo transmitido por GET]
+ * @param  [int] $id_patient 	 [ID_del usuario]
+ * @return [array]             	 [Información relacionada con el paciente.]
+ */
+function getDataEstadistic_DOM($connection){
+	$query = "SELECT * FROM estadistico_vw;";
 
 	$resultado = array();
 
