@@ -1,5 +1,6 @@
 -- CREATE OR REPLACE VIEW estadistico_vw AS
 SELECT
+  1 as id,
   'Antecedentes Familiares' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -26,6 +27,7 @@ LEFT JOIN basicpatientdata bp ON bp.id = fr.id_patient
 WHERE ld.id_form = 1) AS data GROUP BY data.age
   UNION
 SELECT
+  2 as id,
   'DASS-21' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -51,6 +53,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  3 as id,
   'Medio ambiente' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -76,6 +79,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  4 as id,
   'Depresión geriátrica' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -101,6 +105,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  5 as id,
   'Escala de Zarit' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -126,6 +131,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  6 as id,
   'Enfermedades de transmisión sexual' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -151,6 +157,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  7 as id,
   'Cuestionario socio-cultural' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -176,6 +183,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  8 as id,
   'Diabetes mellitus' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -201,6 +209,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  9 as id,
   'Hipertensión Arterial Sistémica' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -226,6 +235,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  10 as id,
   'Estilo de vida personal de [0-1] años' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -251,6 +261,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  11 as id,
   'Estilo de vida personal de [6-12] años' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -276,6 +287,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  12 as id,
   'Estilo de vida personal de [12+] años.' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -301,6 +313,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  13 as id,
   'Estilo de vida personal de [1-5] años' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -326,6 +339,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  14 as id,
   'Ginecología' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -351,6 +365,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  15 as id,
   'PBIQ' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -376,6 +391,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  16 as id,
   'Signos vitales + Laboratorio' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -401,6 +417,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  17 as id,
   'Violencia de género' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -426,6 +443,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  18 as id,
   'Esquema de vacunación de [0-9] años' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -451,6 +469,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  19 as id,
   'Esquema de vacunación de [10-19] años' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -476,6 +495,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  20 as id,
   'Esquema de vacunación de [20-59] años' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -501,6 +521,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  21 as id,
   'Esquema de vacunación de [60+] años' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',
@@ -526,6 +547,7 @@ LEFT JOIN patients_vw pw on pw.id_patient = fd.id_patient
 ) AS data GROUP BY data.age
   UNION
 SELECT
+  22 as id,
   'Desesperanza de Beck' form,
   data.age,
   SUM(CASE data.gender WHEN 1 THEN 1 ELSE 0 END) 'feminine',

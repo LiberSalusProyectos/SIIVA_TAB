@@ -25,6 +25,8 @@
 		
 		<link rel="stylesheet" type="text/css" href="View/assets/css/index.css" />
 
+		<link rel="stylesheet" type="text/css" href="View/assets/css/bootstrap4-toggle.min.css" />
+
 		<!--script type="text/javascript"
 	    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script-->
 		<script type="text/javascript" src="View/assets/js/bootstrap-datepicker.min.js"></script>
@@ -37,4 +39,13 @@
 
 		<script type="text/javascript" src="View/assets/js/bootstrap-filestyle.min.js"> </script>
 
+		<script type="text/javascript" src="View/assets/js/bootstrap4-toggle.min.js"> </script>
+
 		<script src="View/assets/js/typed.js@2.0.11"></script>
+
+		<!-- FusionCharts -->
+		<script type="text/javascript" src="View/assets/js/fusioncharts.js"></script>
+    <!-- jQuery-FusionCharts -->
+    <script type="text/javascript" src="View/assets/js/jquery-fusioncharts.js"></script>
+    <!-- Fusion Theme -->
+    <script type="text/javascript" src="View/assets/js/fusioncharts.theme.fusion.js"></script>
