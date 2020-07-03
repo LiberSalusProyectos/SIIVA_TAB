@@ -40,6 +40,7 @@
     }
 
     .bottom-shadow {
+      background: #FFFF;
       -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.2);
 	    -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.2);
 	        box-shadow: 0 8px 6px -6px rgba(0,0,0,0.2);
@@ -185,7 +186,7 @@
     </div>
 
     <div class="row">
-      <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 bottom-shadow">
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10 pt-3 bottom-shadow">
         <div class="row">
           <div class="col-10 mb-4">
             <input id="select" type="checkbox">
@@ -388,10 +389,6 @@
             </div>
         </div>
     </div>
-    </div>
-
-    <div class="row">
-      <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 bottom-shadow"></div>
     </div>
 
     <div class="row pb-5">
