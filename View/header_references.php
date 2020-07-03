@@ -41,6 +41,8 @@
 
 		<script type="text/javascript" src="View/assets/js/bootstrap4-toggle.min.js"> </script>
 
+		<script type="text/javascript" src="View/assets/js/underscore.min.js"> </script>
+
 		<script src="View/assets/js/typed.js@2.0.11"></script>
 
 		<!-- FusionCharts -->

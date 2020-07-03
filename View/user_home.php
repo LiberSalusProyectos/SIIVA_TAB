@@ -70,6 +70,18 @@
           </a>
         </center>
       </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xl-3">
+        <center>
+          <a href="estadistico.php">
+            <button class="btn my-2 my-sm-0 custom-btn-dark" type="submit">
+              <span>
+                <i class="fas fa-chart-pie custom-teeth-open-icon icon-behind"></i>
+                <h2 class="text-white bold-font text-forward2">ESTADISTICO</h2>
+              </span>
+            </button>
+          </a>
+        </center>
+      </div>
     </div>
   </div>
 </body>

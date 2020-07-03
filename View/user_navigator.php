@@ -33,10 +33,16 @@
                     <a class="nav-link" href="user.php">HOME</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="mediciones2020.php">CAMPAÑA 2020 - I</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="medicionesCompletadas.php">MEDICIONES COMPLETADAS</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="medicionesMunicipio.php">MEDICIONES POR MUNICIPIO</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="estadistico.php">ESTADISTICO</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php">CERRAR SESIÓN</a>

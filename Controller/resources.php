@@ -1810,9 +1810,9 @@ function getDataByGenderAge($connection){
  * @param  [mysqlC] $connection  			[Recurso MySQL. Objeto con la conexión a la base de datos]
  * @return [bool]             	 			[Resultado de la comparación entre credenciales]
  */
-function getDataEstadistic($connection){
+function getDataEstadistic($connection, $form){
 
-	$result = getDataEstadistic_DOM($connection);
+	$result = getDataEstadistic_DOM($connection, $form);
 
 	return $result;
 }
@@ -1821,6 +1821,28 @@ function getDetailUpdateData($connection){
 	$result = getDetailUpdateData_DOM($connection);
 
 	return $result;
+}
+
+/**
+ * Encode array from latin1 to utf8 recursively
+ * @param $dat
+ * @return array|string
+ */
+function convert_from_latin1_to_utf8_recursively($dat){
+	 if (is_string($dat)) {
+			return utf8_encode($dat);
+	 } elseif (is_array($dat)) {
+			$ret = [];
+			foreach ($dat as $i => $d) $ret[ $i ] = convert_from_latin1_to_utf8_recursively($d);
+
+			return $ret;
+	 } elseif (is_object($dat)) {
+			foreach ($dat as $i => $d) $dat->$i = convert_from_latin1_to_utf8_recursively($d);
+
+			return $dat;
+	 } else {
+			return $dat;
+	 }
 }
 
 function get2Date($y, $m, $d){

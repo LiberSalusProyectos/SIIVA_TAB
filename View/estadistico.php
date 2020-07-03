@@ -3,56 +3,10 @@
 <html lang="en">
 
 <head>
-  <?php include("header_references.php");
-
-    $result = getDataEstadistic($linkDB);
-
-    // echo "<pre>";
-    // var_dump($result);
-    // echo "</pre>";
-
-  ?>
+  <?php include("header_references.php"); ?>
 
   <style>
-
-    table {
-      width:100%;
-      margin-bottom:40px;
-      border-collapse: collapse;
-    }
-
-    table, th, td {
-      border: 1px solid black;
-    }
-
-    th, td {
-      width:20%;
-      padding: 4px;
-    }
-
-    .contenedor {
-      transform: translate(0, 50px);
-    }
-    .texto {
-      transform: rotate(270deg);
-      transform-origin: center;
-    }
-    .marco {
-      box-shadow: 0px 0px 10px #00000040;
-      border: 3px solid #06AACA;
-      border-radius: 12px;
-      opacity: 1;
-    }
-    .propiedad {
-      font-size: 16px;
-      color: #C3BFBF;
-    }
-    .contenido {
-      font-size: 20px;
-      color: #0074B0;
-    }
-    .nombre {
-      font-size: 16px;
+    th {
       color: #7A8183;
     }
 
@@ -65,6 +19,30 @@
     .hsb {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    }
+
+    /* CHEKBOX INICIA */
+    .checktainer input:checked ~ .checkmark {
+      background-color: #5d666f !important;
+    }
+    /* CHEKBOX TERMINA */
+
+    .card-paper {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      padding: 5px;
+      border-radius: 5px;
+      background: #FFFF;
+    }
+
+    .card-paper:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .bottom-shadow {
+      -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.2);
+	    -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.2);
+	        box-shadow: 0 8px 6px -6px rgba(0,0,0,0.2);
     }
   </style>
   <script>
@@ -79,24 +57,18 @@
       }
 
       $('input[id^=c_]').change(function() {
-        toggleOff()
-        $('table[id=t_'+this.name+']').toggle(200);
+
+        $('div[id=t_'+this.name+']').toggle(200);
+
+        loadItem(this.name);
 
         var offc = false;
         var filtro = ''
         for (var i = 1; i < 24; i++) {
-          if(i==23){
-            if($('input[id=c_t]').is(":checked")){
-              filtro += 'Total, ';
-            } else {
-              offc = true;
-            }
+          if($('input[id=c_'+i+']').is(":checked")){
+            filtro += $('input[id=c_'+i+']').parent().text().trim()+', ';
           } else {
-            if($('input[id=c_'+i+']').is(":checked")){
-              filtro += $('input[id=c_'+i+']').parent().text().trim()+', ';
-            } else {
-              offc = true;
-            }
+            offc = true;
           }
         }
         if(offc){
@@ -107,28 +79,22 @@
         $('span[id=filtros]').html(filtro.slice(0, -2))
       });
 
-      $('input[id=select]').change(function() {
+      $('input[id=select]').change(async function() {
         if($(this).prop('checked')){
           $('input[id^=c_]').prop('checked', true);
           $('span[id=filtros]').html('Todos')
 
           for (var i = 1; i < 24; i++) {
-            if(i==23){
-              $('table[id=t_t]').show(200)
-            } else {
-              $('table[id=t_'+i+']').show(200)
-            }
+            $('div[id=t_'+i+']').show(200)
+
+            await loadItem(i);
           }
         } else {
           $('input[id^=c_]').prop('checked', false);
           $('span[id=filtros]').html('Ninguno')
 
           for (var i = 1; i < 24; i++) {
-            if(i==23){
-              $('table[id=t_t]').hide(200)
-            } else {
-              $('table[id=t_'+i+']').hide(200)
-            }
+            $('div[id=t_'+i+']').hide(200)
           }
         }
       });
@@ -140,11 +106,66 @@
 
       $('input[id=select]').bootstrapToggle({
         on: 'Todos',
-        off: 'Ninguno'
+        off: 'Ninguno',
+        onstyle: 'secondary'
       });
 
-      toggleOn()
+      loadItem(1);
     })
+    function loadItem(id) {
+      var _id = id
+
+      return $.ajax({
+        method:"GET",
+        url:"graficas.php?" + $.param({ form: _id }),
+        contentType:false,
+        cache:false,
+        processData:false,
+        success:function(resp){
+          var data = JSON.parse(resp);
+
+          var table = '';
+          var array = [];
+          data.reverse().forEach(function(item) {
+            if(_id != 23){
+              array.push({label: item.age, value: item.total})
+            } else {
+              array.push({label: 'Mujeres', value: item.feminine})
+              array.push({label: 'Hombres', value: item.masculine})
+              array.push({label: 'ND', value: item.gender_inv})
+            }
+
+            table += '<tr>';
+            if (_id != 23) table += '<td>'+item.age+'</td>'
+            table += '<td style="text-align:right;">'+item.feminine+'</td>'
+            table += '<td style="text-align:right;">'+item.masculine+'</td>'
+            table += '<td style="text-align:right;">'+item.gender_inv+'</td>'
+            table += '<td style="text-align:right;">'+item.total+'</td>'
+            table += '</tr>'
+          })
+
+          var chartConfigs = {
+            type: "pie2d",
+            width: "100%",
+            height: "350",
+            dataFormat: "json",
+            dataSource: {
+              // Chart Configuration
+              "chart": {
+                "caption": data[0].form,
+                "theme": "fusion",
+              },
+              // Chart Data
+              "data": array
+            },
+          }
+
+          $("#sp_"+_id).html(data[0].form);
+          $("#ch_"+_id).insertFusionCharts(chartConfigs);
+          $("#tb_"+_id).html(table);
+        }
+      })
+    }
   </script>
 </head>
 
@@ -156,36 +177,31 @@
         <div class="offset-0 offset-md-2 offset-sm-2 offset-lg-3 col-12 col-sm-8 col-md-8 col-lg-6 text-center">
             <button class="btn my-2 my-sm-0 custom-btn-disabled" type="submit">
                 <span>
-                    <i class="fas fa-file custom-icon icon-behind"></i>
-                    <h4 class="text-white bold-font text-forward">MEDICIONES COMPLETADAS</h4>
+                    <i class="fas fa-chart-pie custom-icon icon-behind"></i>
+                    <h4 class="text-white bold-font text-forward">ESTADISTICO</h4>
                 </span>
             </button>
         </div>
     </div>
 
     <div class="row">
-      <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10">
+      <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 bottom-shadow">
         <div class="row">
-            <div class="col-10 mb-4">
-              <input id="select" type="checkbox">
-              <span class="instructions-paragraph regular-font text-royal-blue ml-4">
-                <strong>Filtrando por: </strong><span id="filtros">Todos</span>
-              </span>
-            </div>
-            <div class="col-2 mb-4 d-flex justify-content-end">
-                <button id="expand" class="btn btn-light">
-                    <span>
-                        <i name="collapse" class="fas fa-chevron-up"></i>
-                    </span>
-                </button>
-            </div>
+          <div class="col-10 mb-4">
+            <input id="select" type="checkbox">
+            <span class="instructions-paragraph regular-font text-royal-blue ml-4">
+              <strong>Filtrando por: </strong><span id="filtros">Antecedentes Familiares</span>
+            </span>
+          </div>
+          <div class="col-2 mb-4 d-flex justify-content-end">
+              <button id="expand" class="btn btn-light">
+                  <span>
+                      <i name="collapse" class="fas fa-chevron-down"></i>
+                  </span>
+              </button>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <div id="filters" class="row">
-      <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10">
-        <div class="row">
+        <div id="filters" style="display:none;" class="row">
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Antecedentes Familiares
@@ -197,7 +213,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">DASS-21
-                        <input type="checkbox" id="c_2" name="2" checked="true" />
+                        <input type="checkbox" id="c_2" name="2" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -205,7 +221,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Medio Ambiente
-                        <input type="checkbox" id="c_3" name="3" checked="true" />
+                        <input type="checkbox" id="c_3" name="3" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -213,7 +229,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Depresión geriátrica
-                        <input type="checkbox" id="c_4" name="4" checked="true" />
+                        <input type="checkbox" id="c_4" name="4" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -221,7 +237,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Escala de Zarit
-                        <input type="checkbox" id="c_5" name="5" checked="true" />
+                        <input type="checkbox" id="c_5" name="5" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -229,7 +245,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Enfermedades de transmisión sexual
-                        <input type="checkbox" id="c_6" name="6" checked="true" />
+                        <input type="checkbox" id="c_6" name="6" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -237,7 +253,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Cuestionario socio-cultural
-                        <input type="checkbox" id="c_7" name="7" checked="true" />
+                        <input type="checkbox" id="c_7" name="7" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -245,7 +261,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Diabetes mellitus
-                        <input type="checkbox" id="c_8" name="8" checked="true" />
+                        <input type="checkbox" id="c_8" name="8" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -253,7 +269,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Hipertensión Arterial Sistémica
-                        <input type="checkbox" id="c_9" name="9" checked="true" />
+                        <input type="checkbox" id="c_9" name="9" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -261,7 +277,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Estilo de vida personal de [0-1] años
-                        <input type="checkbox" id="c_10" name="10" checked="true" />
+                        <input type="checkbox" id="c_10" name="10" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -269,7 +285,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Estilo de vida personal de [6-12] años
-                        <input type="checkbox" id="c_11" name="11" checked="true" />
+                        <input type="checkbox" id="c_11" name="11" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -277,7 +293,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Estilo de vida personal de [12+] años.
-                        <input type="checkbox" id="c_12" name="12" checked="true" />
+                        <input type="checkbox" id="c_12" name="12" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -285,7 +301,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Estilo de vida personal de [1-5] años
-                        <input type="checkbox" id="c_13" name="13" checked="true" />
+                        <input type="checkbox" id="c_13" name="13" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -293,7 +309,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Ginecología
-                        <input type="checkbox" id="c_14" name="14" checked="true" />
+                        <input type="checkbox" id="c_14" name="14" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -301,7 +317,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">PBIQ
-                        <input type="checkbox" id="c_15" name="15" checked="true" />
+                        <input type="checkbox" id="c_15" name="15" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -309,7 +325,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Signos vitales + Laboratorio
-                        <input type="checkbox" id="c_16" name="16" checked="true" />
+                        <input type="checkbox" id="c_16" name="16" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -317,7 +333,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Violencia de género
-                        <input type="checkbox" id="c_17" name="17" checked="true" />
+                        <input type="checkbox" id="c_17" name="17" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -325,7 +341,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Esquema de vacunación de [0-9] años
-                        <input type="checkbox" id="c_18" name="18" checked="true" />
+                        <input type="checkbox" id="c_18" name="18" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -333,7 +349,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Esquema de vacunación de [10-19] años
-                        <input type="checkbox" id="c_19" name="19" checked="true" />
+                        <input type="checkbox" id="c_19" name="19" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -341,7 +357,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Esquema de vacunación de [20-59] años
-                        <input type="checkbox" id="c_20" name="20" checked="true" />
+                        <input type="checkbox" id="c_20" name="20" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -349,7 +365,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Esquema de vacunación de [60+] años
-                        <input type="checkbox" id="c_21" name="21" checked="true" />
+                        <input type="checkbox" id="c_21" name="21" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -357,7 +373,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Desesperanza de Beck
-                        <input type="checkbox" id="c_22" name="22" checked="true" />
+                        <input type="checkbox" id="c_22" name="22" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -365,7 +381,7 @@
             <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="form-group">
                     <label class="checktainer text-royal-blue regular-font">Total
-                        <input type="checkbox" id="c_t" name="t" checked="true" />
+                        <input type="checkbox" id="c_23" name="23" />
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -375,70 +391,794 @@
     </div>
 
     <div class="row">
+      <div class="offset-0 offset-lg-1 offset-md-1 offset-sm-1 col-12 col-sm-10 col-md-10 col-lg-10 bottom-shadow"></div>
+    </div>
+
+    <div class="row pb-5">
 
       <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
-        <?php if (count($result) > 0): ?>
+        <div class="row" id="t_1">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_1" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
 
-        <?php $grupo=''; $fem=0; $masc=0; $gi=0; $total=0; foreach ($result as $key=>$row): $fem+=$row["feminine"]; $masc+=$row["masculine"];; $gi+=$row["gender_inv"];; $total+=$row["total"]; ?>
-            <?php if ($grupo != $row["form"]): ?>
-              <?php if ($grupo != ''): ?>
-                  </tbody>
-                </table>
-              <?php endif; ?>
-              <table id="t_<?php echo $row["id"]; ?>">
-                <thead>
-                  <tr>
-                    <td colspan=5 style="text-align:center;color:white;background-color:rgb(247, 164, 26);font-weight:bold;"><?php echo utf8_encode($row["form"]); ?></td>
-                  </tr>
-                  <tr>
-                    <th>Rango de edad</th>
-                    <th>Mujeres</th>
-                    <th>Hombres</th>
-                    <th>Sin género/No válido</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-            <?php endif; ?>
-            <tr>
-              <td><?php echo utf8_encode($row["age"]); ?></td>
-              <td style="text-align:right;"><?php echo number_format($row["feminine"]); ?></td>
-              <td style="text-align:right;"><?php echo number_format($row["masculine"]); ?></td>
-              <td style="text-align:right;"><?php echo number_format($row["gender_inv"]); ?></td>
-              <td style="text-align:right;"><?php echo number_format($row["total"]); ?></td>
-            </tr>
-            <?php if (($key+1) === sizeof($result)): ?>
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_1" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_1">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
               </tbody>
-                </table>
-
-              <table id="t_t">
-                <thead>
-                  <tr>
-                    <td colspan=5 style="text-align:center;color:white;background-color:rgb(247, 164, 26);font-weight:bold;">TOTAL</td>
-                  </tr>
-                  <tr>
-                    <th>Mujeres</th>
-                    <th>Hombres</th>
-                    <th>Sin género/No válido</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style="text-align:right;"><?php echo number_format($fem); ?></td>
-                    <td style="text-align:right;"><?php echo number_format($masc); ?></td>
-                    <td style="text-align:right;"><?php echo number_format($gi); ?></td>
-                    <td style="text-align:right;"><?php echo number_format($total); ?></td>
-                  </tr>
-                </tbody>
-              </table>
-            <?php endif; ?>
-            <?php $grupo=$row["form"]; ?>
-        <?php endforeach; ?>
-            </tbody>
-          </table>
-        <?php endif; ?>
+            </table>
+          </div>
+        </div>
       </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_2">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_2" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_2" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_2">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_3">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_3" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_3" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_3">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_4">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_4" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_4" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_4">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_5">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_5" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_5" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_5">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_6">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_6" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_6" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_6">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_7">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_7" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_7" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_7">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_8">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_8" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_8" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_8">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_9">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_9" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_9" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_9">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_10">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_10" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_10" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_10">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_11">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_11" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_11" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_11">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_12">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_12" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_12" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_12">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_13">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_13" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_13" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_13">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_14">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_14" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_14" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_14">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_15">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_15" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_15" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_15">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_16">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_16" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_16" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_16">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_17">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_17" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_17" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_17">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_18">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_18" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_18" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_18">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_19">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_19" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_19" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_19">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_20">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_20" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_20" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_20">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_21">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_21" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_21" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_21">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_22">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_22" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_22" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Edad</th>
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_22">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-sm-0 offset-md-1 col-sm-12 col-md-10">
+        <div class="row" style="display:none;" id="t_23">
+          <div class="col-12 text-center mt-4 mb-2">
+            <span id="sp_23" class="text-royal-blue bold-font custom-form-label-element">
+              Cargando...
+            </span>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card-paper">
+              <div id="ch_23" class="text-center"><span class="text-secondary">Cargando graficos...</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <table class="table">
+              <thead>
+                <tr>
+                  <!-- <th>Edad</th> -->
+                  <th style="text-align:right;">Mujeres</th>
+                  <th style="text-align:right;">Hombres</th>
+                  <th style="text-align:right;">ND</th>
+                  <th style="text-align:right;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tb_23">
+                <tr>
+                  <td colspan=5 style="text-align:center;"><span class="text-secondary">Cargando datos...</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </body>

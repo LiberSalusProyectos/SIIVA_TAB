@@ -4728,17 +4728,25 @@ function getDataByGenderAge_DOM($connection){
  * @param  [int] $id_patient 	 [ID_del usuario]
  * @return [array]             	 [Información relacionada con el paciente.]
  */
-function getDataEstadistic_DOM($connection){
-	$query = "SELECT * FROM estadistico_vw;";
+function getDataEstadistic_DOM($connection, $form){
+	$query = ($form==23) ? "SELECT 'TOTAL' form, sum(masculine) masculine, sum(feminine) feminine, sum(gender_inv) gender_inv, sum(total) total FROM estadistico_vw" : "SELECT * FROM estadistico_vw WHERE id = ?";
+	$stmt = $connection->prepare($query);
+	if($form!=23){
+		$stmt->bind_param("i", $form);
+	}
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+	if($result->num_rows === 0) return 'Sin resultados';
 
 	$resultado = array();
-
-	if ($result = mysqli_query($connection, $query)) {
-	    while ($row = $result->fetch_assoc()) {
-			$resultado[] = $row;
-		}
-	    return $resultado;
+	while($row = $result->fetch_assoc()) {
+		$resultado[] = $row;
 	}
+
+	$stmt->close();
+
+	return $resultado;
 }
 
 
